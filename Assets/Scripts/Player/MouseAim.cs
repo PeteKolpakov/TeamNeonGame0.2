@@ -10,6 +10,9 @@ public class MouseAim : MonoBehaviour
     [SerializeField, Range(2f,5f)]
     private float _gizmoLenght = 2f;
 
+    [SerializeField]
+    private Camera _cam;
+
     private Vector2 _mousePosition;
 
     private Vector2 _lookDir;
@@ -17,7 +20,9 @@ public class MouseAim : MonoBehaviour
     private Vector2 _playerPositionOnScreen;
 
     private float _viewAngle;
-    
+
+    public Rigidbody2D rb;
+
 
     private void OnDrawGizmos()
     {
@@ -29,16 +34,20 @@ public class MouseAim : MonoBehaviour
 
     private void Update()
     {
-        _playerPositionOnScreen = Camera.main.WorldToViewportPoint(_player.position);
+        _playerPositionOnScreen = _cam.WorldToViewportPoint(_player.position);
 
-        FaceTheMouse();
+        _mousePosition = _cam.ScreenToWorldPoint(Input.mousePosition);
+    }
+    private void FixedUpdate()
+    {
+        FaceTheMouse(_mousePosition);
     }
 
-    private void FaceTheMouse()
+    private void FaceTheMouse(Vector2 mousePos)
     {
-        _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _lookDir = _mousePosition - (Vector2)transform.position;
-        _viewAngle = Mathf.Atan2(_mousePosition.y, _mousePosition.x) * Mathf.Rad2Deg - 90;
-        _player.rotation = Quaternion.Euler(new Vector3(0f, 0f, _viewAngle));
+        _viewAngle = Mathf.Atan2(_lookDir.y, _lookDir.x) * Mathf.Rad2Deg - 90;
+        rb.rotation = _viewAngle;
+        //_player.rotation = Quaternion.Euler(new Vector3(0f, 0f, _viewAngle));  
     }
 }

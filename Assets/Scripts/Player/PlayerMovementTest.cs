@@ -29,6 +29,7 @@ public class PlayerMovementTest : MonoBehaviour
     }
     private void Update()
     {
+        //FALLING: PIT COLLIDERS, MAKING IT THEN HAVE LAYER ODER OF 0.
         Move();
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -66,11 +67,11 @@ public class PlayerMovementTest : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.velocity = _direction * _movementSpeed * Time.deltaTime;         //for Move() (with 250f as movement speed works)
+        rb.velocity = _direction * _movementSpeed * Time.fixedDeltaTime;         //for Move() (with 250f as movement speed works)
 
         Dash();
 
-        //rb.MovePosition(rb.position + _direction * _movementSpeed * Time.deltaTime); FOR MoveWithGetAxis() (with about 10f)
+        //rb.MovePosition(rb.position + _direction * _movementSpeed * Time.fixedDeltaTime); FOR MoveWithGetAxis() (with about 10f)
     }
     private void Dash()
     {
