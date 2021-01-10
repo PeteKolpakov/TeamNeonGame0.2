@@ -75,7 +75,7 @@ public class PlayerMovementTest : MonoBehaviour
     }
     private void Dash()
     {
-        
+        _isDashing = true; // turns off pit colliders / collider being ignored while dashing
         if (_wannaDash)
         {
             Vector2 dashPosition = ((Vector2)transform.position + _direction * _dashLenght);
@@ -84,7 +84,7 @@ public class PlayerMovementTest : MonoBehaviour
             
             if (raycastHit2d.collider != null)
             {
-                Debug.DrawLine(rb.position, raycastHit2d.point, Color.cyan, 2f);    //saw this on Dainis' prototype c:
+                Debug.DrawLine(rb.position, raycastHit2d.point, Color.cyan, 2f);
                 dashPosition = raycastHit2d.point;
             }
 
@@ -93,5 +93,6 @@ public class PlayerMovementTest : MonoBehaviour
 
             _wannaDash = false;
         }
+        _isDashing = false; // turns the pit colliders on. If _isDashing is false, and the player finds itself on top of a Pit, he falls.
     }
 }
