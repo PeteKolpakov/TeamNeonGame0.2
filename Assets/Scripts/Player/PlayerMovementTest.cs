@@ -13,6 +13,9 @@ public class PlayerMovementTest : MonoBehaviour
     [SerializeField]
     private float _dashLenght;
 
+    [SerializeField]
+    private float _fallGravity;
+
     private float _dashTimer;
 
     private bool _wannaDash;
@@ -23,9 +26,12 @@ public class PlayerMovementTest : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    public SpriteRenderer sprite;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
     private void Update()
     {
@@ -34,6 +40,19 @@ public class PlayerMovementTest : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
             _wannaDash = true;
+    }
+    private void FixedUpdate()
+    {
+        rb.velocity = _direction * _movementSpeed * Time.fixedDeltaTime;         //for Move() (with 250f as movement speed works)
+
+        Dash();
+
+        //rb.MovePosition(rb.position + _direction * _movementSpeed * Time.fixedDeltaTime); FOR MoveWithGetAxis() (with about 10f)
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        Debug.Log("Over a Pit");
+        Falling();
     }
     private void MoveWithGetAxis()
     {
@@ -65,14 +84,6 @@ public class PlayerMovementTest : MonoBehaviour
 
         _direction = new Vector2(moveX, moveY).normalized;
     }
-    private void FixedUpdate()
-    {
-        rb.velocity = _direction * _movementSpeed * Time.fixedDeltaTime;         //for Move() (with 250f as movement speed works)
-
-        Dash();
-
-        //rb.MovePosition(rb.position + _direction * _movementSpeed * Time.fixedDeltaTime); FOR MoveWithGetAxis() (with about 10f)
-    }
     private void Dash()
     {
         _isDashing = true; // turns off pit colliders / collider being ignored while dashing
@@ -94,5 +105,11 @@ public class PlayerMovementTest : MonoBehaviour
             _wannaDash = false;
         }
         _isDashing = false; // turns the pit colliders on. If _isDashing is false, and the player finds itself on top of a Pit, he falls.
+    }
+    private void Falling()
+    {
+        this.rb.gravityScale = +_fallGravity;
+        sprite.sortingOrder = 0;
+
     }
 }
