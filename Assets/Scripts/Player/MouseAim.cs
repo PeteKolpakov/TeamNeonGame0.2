@@ -34,7 +34,7 @@ public class MouseAim : MonoBehaviour
 
     private void Update()
     {
-        _playerPositionOnScreen = _cam.WorldToViewportPoint(_player.position);
+        _playerPositionOnScreen = _cam.WorldToViewportPoint(_player.position); //do i need this? or do I just use player.position
 
         _mousePosition = _cam.ScreenToWorldPoint(Input.mousePosition);
     }

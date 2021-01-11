@@ -18,6 +18,8 @@ public class PlayerMovementTest : MonoBehaviour
 
     private float _dashTimer;
 
+    private bool _canMove;
+
     private bool _wannaDash;
 
     private bool _isDashing;
@@ -32,18 +34,22 @@ public class PlayerMovementTest : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
-    }
+        _canMove = true;
+}
     private void Update()
     {
-        //FALLING: PIT COLLIDERS, MAKING IT THEN HAVE LAYER ODER OF 0.
-        Move();
+        MoveInput();
 
         if (Input.GetKeyDown(KeyCode.Space))
             _wannaDash = true;
     }
     private void FixedUpdate()
     {
-        rb.velocity = _direction * _movementSpeed * Time.fixedDeltaTime;         //for Move() (with 250f as movement speed works)
+        if (_canMove)
+        {
+            rb.velocity = _direction * _movementSpeed * Time.fixedDeltaTime;         //for Move() (with 400f as movement speed works)
+        }
+        
 
         Dash();
 
@@ -52,7 +58,8 @@ public class PlayerMovementTest : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log("Over a Pit");
-        Falling();
+        if(!_isDashing)
+            Falling();
     }
     private void MoveWithGetAxis()
     {
@@ -61,7 +68,7 @@ public class PlayerMovementTest : MonoBehaviour
         _direction.x = Input.GetAxis("Horizontal");
         _direction.y = Input.GetAxis("Vertical");
     }
-    private void Move()
+    private void MoveInput()
     {
         float moveX = 0f;
         float moveY = 0f;
@@ -86,9 +93,9 @@ public class PlayerMovementTest : MonoBehaviour
     }
     private void Dash()
     {
-        _isDashing = true; // turns off pit colliders / collider being ignored while dashing
         if (_wannaDash)
         {
+            _isDashing = true; //Collider being ignored while dashing
             Vector2 dashPosition = ((Vector2)transform.position + _direction * _dashLenght);
 
             RaycastHit2D raycastHit2d = Physics2D.Raycast(transform.position, _direction, _dashLenght,_dashLayerMask);
@@ -102,14 +109,25 @@ public class PlayerMovementTest : MonoBehaviour
             //Debug.DrawLine(rb.position, raycastHit2d.point, Color.cyan, 2f);
             rb.MovePosition(dashPosition);
 
-            _wannaDash = false;
+            _wannaDash = false; //Bool to be used if the dash movement doesn't want to be used constantly
         }
-        _isDashing = false; // turns the pit colliders on. If _isDashing is false, and the player finds itself on top of a Pit, he falls.
+        _isDashing = false; //If _isDashing is false, and the player finds itself on top of a Pit, he falls.
     }
     private void Falling()
     {
         this.rb.gravityScale = +_fallGravity;
         sprite.sortingOrder = 0;
-
+        //Trying to make its position (0,0), but it does it more then once before you're able to move freely again. Basically Respawnning more than twice. Help :c
+        if((Vector2)transform.position != Vector2.zero)
+        {
+            Invoke(nameof(Respwan), 3f);
+        }
+    }
+    public void Respwan()
+    {
+        Debug.Log("Respawned");
+        transform.position = Vector2.zero;
+        sprite.sortingOrder = 2;
+        this.rb.gravityScale = 0;
     }
 }
