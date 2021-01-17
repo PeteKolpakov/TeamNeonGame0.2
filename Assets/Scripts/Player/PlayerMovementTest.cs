@@ -16,6 +16,8 @@ public class PlayerMovementTest : MonoBehaviour
     [SerializeField]
     private float _fallGravity;
 
+    private float _scale;
+
     private float _dashTimer;
 
     private bool _canMove;
@@ -23,6 +25,8 @@ public class PlayerMovementTest : MonoBehaviour
     private bool _wannaDash;
 
     private bool _isDashing;
+
+    private bool _isFalling;
 
     private Vector2 _direction;
 
@@ -72,19 +76,19 @@ public class PlayerMovementTest : MonoBehaviour
     {
         float moveX = 0f;
         float moveY = 0f;
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && !_isFalling)
         {
             moveY += +1f;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) &&!_isFalling)
         {
             moveY -= 1f;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) &&!_isFalling)
         {
             moveX +=1f;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && !_isFalling)
         {
             moveX -= 1f;
         }
@@ -115,19 +119,34 @@ public class PlayerMovementTest : MonoBehaviour
     }
     private void Falling()
     {
-        this.rb.gravityScale = +_fallGravity;
+        //this.rb.gravityScale = +_fallGravity;
+        _scale = 0.5f;
         sprite.sortingOrder = 0;
-        //Trying to make its position (0,0), but it does it more then once before you're able to move freely again. Basically Respawnning more than twice. Help :c
+        _isFalling = true;
+        DecreasePlayerScale();
+        
         if((Vector2)transform.position != Vector2.zero)
         {
-            Invoke(nameof(Respwan), 3f);
+            Invoke(nameof(Respawn), 3f);           
         }
     }
-    public void Respwan()
+    public void Respawn()
     {
         Debug.Log("Respawned");
         transform.position = Vector2.zero;
+        transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         sprite.sortingOrder = 2;
         this.rb.gravityScale = 0;
+        _isFalling = false;
+        CancelInvoke();
+    }
+    public void DecreasePlayerScale()
+    {
+        //Can also be done trough coroutines or animations
+        if(_scale > 0f)
+        {
+            _scale -= 0.1f;
+            transform.localScale = new Vector3(_scale, _scale, _scale);
+        }
     }
 }
