@@ -27,7 +27,7 @@ public class MouseAim : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(_player.position, _gizmoLenght);
+        //Gizmos.DrawWireSphere(_player.position, _gizmoLenght);
         Gizmos.DrawLine(_player.position, _mousePosition);
         Gizmos.DrawCube(_mousePosition, new Vector2(0.5f,0.5f));
     }
