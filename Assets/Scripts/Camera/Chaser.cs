@@ -14,6 +14,7 @@ namespace Assets.Scripts.Camera
         private Transform _playerPosition;
 
         private Vector3 _direction;
+
         public bool startCrawl;
 
         private void Start()
@@ -24,7 +25,7 @@ namespace Assets.Scripts.Camera
 
         private void Update()
         {
-            if (startCrawl == true)
+            if (startCrawl == true)     
             {
                 transform.Translate(_direction * Time.deltaTime);
             }
