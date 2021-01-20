@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        _target = new Vector2(_player.position.x, _player.position.y); // for like guided missiles or something like that and using MoveTowards, not Translate
+        _target = new Vector2(_player.position.x, _player.position.y);
     }
     private void Update()
     {
