@@ -88,7 +88,8 @@ class UI_Manager : MonoBehaviour
                 _currentAmmoAmount.Add(_removedAmmo[pos]);
                 _removedAmmo.RemoveAt(pos);
                 _currentAmmoAmount[_currentAmmoAmount.Count - 1].SetActive(true);
-            }
+
+        }
         
     }
 

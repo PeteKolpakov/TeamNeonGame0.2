@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlayerStatManager : MonoBehaviour
+public class PlayerStatManager : MonoBehaviour, IShopCustomer
 {
     public int _maxHealth = 5;
     public int _currentHealth;
@@ -19,6 +19,8 @@ public class PlayerStatManager : MonoBehaviour
     public float _fireRate = 1f;
 
     public int _damage = 1;
+
+    public int _moneyAmount;
 
 
 
@@ -56,5 +58,21 @@ public class PlayerStatManager : MonoBehaviour
     }
 
 
+    public bool TrySpendCurrency(int price)
+    {
+        if(_moneyAmount >= price)
+        {
+            _moneyAmount -= price;
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+
+    public void BoughtItem(Item.ItemType itemType)
+    {
+        Debug.Log("Bought a " + itemType);
+    }
 }
     
