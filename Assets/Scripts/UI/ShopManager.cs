@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
+
 public class ShopManager : MonoBehaviour
 {
 
@@ -37,6 +38,8 @@ public class ShopManager : MonoBehaviour
         CreateItem(Item.ItemType.Big_Gun, "Big Gun", "A very big gun. What else do you want?", Item.ItemCost(Item.ItemType.Big_Gun), itemSprites.Katana, 4);
         CreateItem(Item.ItemType.Big_Gun, "Big Gun", "A very big gun. What else do you want?", Item.ItemCost(Item.ItemType.Big_Gun), itemSprites.BigGun, 5);
         CreateItem(Item.ItemType.Big_Gun, "Big Gun", "A very big gun. What else do you want?", Item.ItemCost(Item.ItemType.Big_Gun), itemSprites.BigGun, 6);
+        CreateItem(Item.ItemType.Big_Gun, "Big Gun", "A very big gun. What else do you want?", Item.ItemCost(Item.ItemType.Big_Gun), itemSprites.BigGun, 7);
+
 
     }
     void Update()
