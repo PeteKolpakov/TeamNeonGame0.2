@@ -132,10 +132,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 350449033}
+  - component: {fileID: 350449036}
   - component: {fileID: 350449032}
   - component: {fileID: 350449035}
   - component: {fileID: 350449034}
-  - component: {fileID: 350449036}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -261,9 +261,10 @@ MonoBehaviour:
   _dashLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  _movementSpeed: 250
+  _movementSpeed: 400
   _dashLenght: 3
   _fallGravity: 0
+  _dashDelay: 0.5
   rb: {fileID: 350449035}
   sprite: {fileID: 350449032}
 --- !u!1 &574260687
