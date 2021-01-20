@@ -10,6 +10,10 @@ class UI_Manager : MonoBehaviour
     public PlayerStatManager _playerStatManager;
     public HealthBar _playerHealthbar;
 
+    public EnemyStatManager _enemyStats;
+    public EnemyHealthBar _enemyHealhbar;
+
+
     [SerializeField]
     private List<GameObject> _maxAmmoAmount;
     public List<GameObject> _currentAmmoAmount;
@@ -29,6 +33,8 @@ class UI_Manager : MonoBehaviour
     private void Start()
     {
         _playerHealthbar.SetMaxHealth(_playerStatManager._maxHealth);
+        _enemyHealhbar.SetMaxHealth(_enemyStats._maxHealth);
+       
         SetAmmoCountDisplay();
         SetArmorPointDisplay();
     }
@@ -36,6 +42,7 @@ class UI_Manager : MonoBehaviour
     private void Update()
     {
         _playerHealthbar.SetHealth(_playerStatManager._currentHealth);
+        _enemyHealhbar.SetHealth(_enemyStats._currentHealth);
 
         //Debug ONLY
         // DELETE AFTER DONE
