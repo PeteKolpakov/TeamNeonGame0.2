@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,13 +17,18 @@ public class PlayerMovementTest : MonoBehaviour
     [SerializeField]
     private float _fallGravity;
 
+    [SerializeField]
+    private float _dashDelay = .5f;      // dash delay utils
+    private float _timeSinceDash = 0f;
+
     private float _scale;
 
     private float _dashTimer;
 
     private bool _canMove;
 
-    private bool _wannaDash;
+    private bool _wannaDash;            // dash delay utils
+    private bool _canDash;
 
     private bool _isDashing;
 
@@ -39,14 +45,28 @@ public class PlayerMovementTest : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         _canMove = true;
+
+        _timeSinceDash = 0;
 }
     private void Update()
     {
         MoveInput();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && _canDash == true)
             _wannaDash = true;
+
+        _timeSinceDash += Time.deltaTime; // update dash timer
+        DashCheck();
     }
+
+    private void DashCheck() // checks lastTimeDashed vs. dashDelay to see if dashing is possible 
+    {
+        if (_timeSinceDash >= _dashDelay)
+        {
+            _canDash = true;
+        }
+    }
+
     private void FixedUpdate()
     {
         if (_canMove)
@@ -54,7 +74,6 @@ public class PlayerMovementTest : MonoBehaviour
             rb.velocity = _direction * _movementSpeed * Time.fixedDeltaTime;         //for Move() (with 400f as movement speed works)
         }
         
-
         Dash();
 
         //rb.MovePosition(rb.position + _direction * _movementSpeed * Time.fixedDeltaTime); FOR MoveWithGetAxis() (with about 10f)
@@ -97,7 +116,7 @@ public class PlayerMovementTest : MonoBehaviour
     }
     private void Dash()
     {
-        if (_wannaDash)
+        if (_wannaDash && _canDash)
         {
             _isDashing = true; //Collider being ignored while dashing
             Vector2 dashPosition = ((Vector2)transform.position + _direction * _dashLenght);
@@ -112,6 +131,9 @@ public class PlayerMovementTest : MonoBehaviour
 
             //Debug.DrawLine(rb.position, raycastHit2d.point, Color.cyan, 2f);
             rb.MovePosition(dashPosition);
+
+            _timeSinceDash = 0; // reset dash timer
+            _canDash = false;   // reset ability to dash
 
             _wannaDash = false; //Bool to be used if the dash movement doesn't want to be used constantly
         }
