@@ -7,6 +7,7 @@ public class ShopkeeperInteraction : MonoBehaviour
     public float _interactionRange = 5f;
     public Transform _player;
     public GameObject shopUI;
+    public bool _isShopOpen = false;
 
     // Update is called once per frame
     void Update()
@@ -17,9 +18,11 @@ public class ShopkeeperInteraction : MonoBehaviour
         
         if (Vector3.Distance(_player.position, transform.position) <= _interactionRange)
         {
+            _isShopOpen = true;
             shopUI.SetActive(true);
         } else
         {
+            _isShopOpen = false;
             shopUI.SetActive(false);
 
         }
