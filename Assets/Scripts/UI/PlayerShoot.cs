@@ -23,6 +23,9 @@ class PlayerShoot : AttackBase
     public delegate void RemoveAmmo(int ammo);
     public static event RemoveAmmo removeAmmo;
 
+    private bool _canShoot = true;
+    private float nextFireTime;
+
     protected override void Update()
     {
         base.Update();
@@ -43,8 +46,12 @@ class PlayerShoot : AttackBase
 
     protected override void Shoot()
     {
-        if (Input.GetMouseButtonDown(1) && _shop._isShopOpen == false && _playerStats._currentAmmoCount >= 3)
+        float cooldown = 1 / _playerStats._fireRate;
+        
+
+        if (Input.GetMouseButtonDown(1) && _shop._isShopOpen == false && _playerStats._currentAmmoCount >= 3 && _canShoot == true && Time.time >= nextFireTime)
         {
+            nextFireTime = Time.time + cooldown;
             for (int i = 0; i < 3; i++)
             {
                 switch (i)
@@ -67,8 +74,9 @@ class PlayerShoot : AttackBase
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && _shop._isShopOpen == false && _playerStats._currentAmmoCount > 0)
+        if (Input.GetMouseButtonDown(0) && _shop._isShopOpen == false && _playerStats._currentAmmoCount > 0&& _canShoot == true && Time.time >= nextFireTime)
         {
+            nextFireTime = Time.time + cooldown;
             Instantiate(_bulletPrefab, _firePoint.transform.position, _weapon.transform.rotation);
             _playerStats._currentAmmoCount--;
             if (removeAmmo != null)
@@ -76,6 +84,8 @@ class PlayerShoot : AttackBase
                 removeAmmo(1);
             }
         }
+
+       
     }
 }
         

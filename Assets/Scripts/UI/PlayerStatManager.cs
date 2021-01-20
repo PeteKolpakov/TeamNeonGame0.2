@@ -16,7 +16,11 @@ public class PlayerStatManager : MonoBehaviour
     public int _maxxAmmoCount = 5;
     public int _currentAmmoCount;
 
+    public float _fireRate = 1f;
+
     public int _damage = 1;
+
+
 
     public delegate void RemoveArmorPoints();
     public static event RemoveArmorPoints removeArmor;
