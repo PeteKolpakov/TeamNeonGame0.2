@@ -8,12 +8,6 @@ abstract class AttackBase : MonoBehaviour
     [SerializeField]
     protected GameObject _weapon;
 
-    void Start()
-    {
-        
-    }
-
-   
     protected virtual void Update()
     {
         Aim();
