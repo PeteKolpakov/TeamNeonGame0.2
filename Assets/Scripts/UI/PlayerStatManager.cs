@@ -31,7 +31,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     {
         _currentHealth = _maxHealth;
         _currentArmorPoints = _maxxArmorPoints;
-
         _currentAmmoCount = _maxxAmmoCount;
     }
     private void Update()
