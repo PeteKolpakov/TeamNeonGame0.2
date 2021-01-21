@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthSystem : MonoBehaviour
+public class Entity : MonoBehaviour
 {
 
     public int health;
@@ -23,6 +23,4 @@ public class HealthSystem : MonoBehaviour
         health += healAmount;
         if (health > healthMax) health = healthMax;
     }
-
-
 }
