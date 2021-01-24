@@ -20,14 +20,10 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject _bulletPrefab;
 
-    public static Vector2 _target;
-
-    private void Awake()
-    {
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
-    }
     private void Start()
     {
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
+
         _shootingDelay = _startTimeShots;
     }
     private void Update()
@@ -36,7 +32,6 @@ public class EnemyBehaviour : MonoBehaviour
 
         if(_shootingDelay <= 0)
         {
-            _target = new Vector2(_player.position.x, _player.position.y);
             Instantiate(_bulletPrefab, transform.position, transform.rotation);
             _shootingDelay = _startTimeShots;
         }
