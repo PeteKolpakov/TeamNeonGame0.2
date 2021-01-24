@@ -9,7 +9,8 @@ public class Item : MonoBehaviour
     {
         Big_Gun,
         Even_Bigger_gun,
-        Katana
+        Katana,
+        Healing_Potion
     }
 
     public enum ItemClass
@@ -25,9 +26,10 @@ public class Item : MonoBehaviour
         switch (itemType)
         {
             default:
-            case ItemType.Big_Gun: return 50;
-            case ItemType.Even_Bigger_gun: return 120;
-            case ItemType.Katana: return 90;
+            case ItemType.Big_Gun:          return 50;
+            case ItemType.Even_Bigger_gun:  return 120;
+            case ItemType.Katana:           return 90;
+            case ItemType.Healing_Potion:   return 20;
         }
     }
 
@@ -39,6 +41,7 @@ public class Item : MonoBehaviour
             case ItemType.Big_Gun: return 1;
             case ItemType.Even_Bigger_gun: return 3;
             case ItemType.Katana: return 2;
+            case ItemType.Healing_Potion: return 0;
         }
     }
 
@@ -50,6 +53,7 @@ public class Item : MonoBehaviour
             case ItemType.Big_Gun: return ItemClass.Ranged;
             case ItemType.Even_Bigger_gun: return ItemClass.Ranged;
             case ItemType.Katana: return ItemClass.Melee;
+            case ItemType.Healing_Potion: return ItemClass.Consumable;
         }
     }
 
@@ -62,7 +66,28 @@ public class Item : MonoBehaviour
             case ItemType.Big_Gun: return ItemSprites.i.circle;
             case ItemType.Even_Bigger_gun: return ItemSprites.i.square;
             case ItemType.Katana: return ItemSprites.i.triangle;
+            case ItemType.Healing_Potion: return ItemSprites.i.circle;
         }
     }
 
+
+    public static int ItemYield(ItemType itemType)
+    {
+        switch (itemType)
+        {
+            default: return 1;
+            case ItemType.Healing_Potion: return 1;
+        }
+    }
+
+    public static ItemType StringSearch(string name)
+    {
+        switch (name)
+        {
+            default:        
+            case "Healing_Potion": return Item.ItemType.Healing_Potion;
+        }
+    }
 }
+
+

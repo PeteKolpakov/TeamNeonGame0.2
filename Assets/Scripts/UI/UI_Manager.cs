@@ -26,16 +26,24 @@ class UI_Manager : MonoBehaviour
 
     public TMP_Text _moneyDisplay;
     public TMP_Text _healthDisplay;
+    public TMP_Text _consumableCharges;
+    public TMP_Text _consumableTypeText;
+    public TMP_Text _compareEquipmentText;
 
     public Image firstSlot;
     public Image secondSlot;
+    public Image thirdSlot;
 
+    public Transform consumableSlot;
+
+    public int _charges = 2;
 
 
     private void Awake()
     {
         PlayerShoot.removeAmmo += RemoveAmmo;
         PlayerStatManager.removeArmor += RemoveArmor;
+        ShopManager.addConsumable += AddConsumable;
     }
 
 
@@ -67,8 +75,19 @@ class UI_Manager : MonoBehaviour
             _playerStatManager._currentAmmoCount += 1;
             AddAmmo(1);
         }
+        if (Input.GetKeyDown(KeyCode.Q) && _charges != 0)
+        {
+            UseConsumable();
+
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            CompareEquipment();
+        }
         // DELETE THIS SHIT AFTERWARDS
     }
+
+  
 
     public void SetAmmoCountDisplay()
     {
@@ -135,9 +154,75 @@ class UI_Manager : MonoBehaviour
         {
             secondSlot.sprite = sprite;
             secondSlot.color = Color.white;
-
+        }
+        if (Item.AssignClass(itemType).ToString() == "Consumable")
+        {
+            thirdSlot.sprite = sprite;
+            thirdSlot.color = Color.red;
         }
 
+    }
 
+    public void AddConsumable(Item.ItemType itemType)
+    {
+        //Debug.Log("purchased a potion");
+        _charges++;
+        _consumableCharges.text = _charges.ToString();
+        _consumableCharges.gameObject.SetActive(true);
+        _consumableTypeText.text = itemType.ToString();
+    }
+
+    public void UseConsumable()
+    {
+        Item.ItemType itemType = Item.StringSearch(consumableSlot.Find("consumableType").GetComponent<TextMeshProUGUI>().text);
+        _charges--;
+        _consumableCharges.text = _charges.ToString();
+
+
+        //effect of the consumable
+        // switch statement with different potion options
+        // each one of them invokes an event on PlayerStatManager
+
+        if(_charges == 0)
+        {
+            shopManager.RefreshConsumableStock(itemType);
+            _consumableCharges.gameObject.SetActive(false);
+            thirdSlot.sprite = null;
+            thirdSlot.color = Color.gray;
+            _consumableTypeText.text = null;
+        }
+    }
+
+    public void CompareEquipment()
+    {
+        Debug.Log("Starting to compare equipment");
+        for (int i = 0; i < shopManager.children.Length; i++)
+        {
+            Debug.Log("Going through the children");
+
+            if (shopManager.children[i].name == "ATKstatText")
+            {
+                Debug.Log("Found one text");
+
+                Transform parent = shopManager.children[i].parent.parent;
+                string name = parent.Find("itemName").name.ToString();
+                Item.ItemType itemType = Item.StringSearch(name);
+                int itemDamage = Item.ItemDamage(itemType);
+
+                if(itemDamage > _playerStatManager._damage)
+                {
+                    Debug.Log("Modifying text");
+
+                    _compareEquipmentText.text = "+ " + (itemDamage - _playerStatManager._damage);
+                } else if(itemDamage == _playerStatManager._damage)
+                {
+                    _compareEquipmentText.text = "+ 0";
+                } else if (itemDamage < _playerStatManager._damage)
+                {
+                    _compareEquipmentText.text = "- " + (itemDamage - _playerStatManager._damage);
+
+                }
+            }
+        }
     }
 }

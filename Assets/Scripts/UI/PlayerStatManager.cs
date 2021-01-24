@@ -30,12 +30,16 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
     public delegate void RemoveArmorPoints();
     public static event RemoveArmorPoints removeArmor;
+    
 
     private void Start()
     {
         _currentHealth = _maxHealth;
         _currentArmorPoints = _maxxArmorPoints;
         _currentAmmoCount = _maxxAmmoCount;
+
+        
+        
     }
     private void Update()
     {
@@ -66,7 +70,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         }
     }
 
-
     public bool TrySpendCurrency(int price)
     {
         if(_moneyAmount >= price)
@@ -85,10 +88,10 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     }
 
     public void EquipItem(Item.ItemType itemType)
-    {    
-            _damage += Item.ItemDamage(itemType);
+    {   
+        _damage += Item.ItemDamage(itemType);
     }
 
 
 }
-    
+

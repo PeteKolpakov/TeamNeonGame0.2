@@ -9,6 +9,7 @@ using TMPro;
 class ShopManager : MonoBehaviour
 {
     public PlayerStatManager player;
+    public Transform playerTransform;
     public TMP_Text _currencyDisplayText;
     public UI_Manager UIManager;
 
@@ -17,11 +18,13 @@ class ShopManager : MonoBehaviour
 
     public List<GameObject> itemsBought;
 
-
     private int _sameTypeIndex;
     private int _sameTypeCount = 0;
 
     public RectTransform[] children;
+
+    public delegate void AddConsumable(Item.ItemType itemType);
+    public static event AddConsumable addConsumable;
 
     private void Awake()
     {
@@ -29,8 +32,6 @@ class ShopManager : MonoBehaviour
         shopItemTemplate = container.Find("shopItemTemplate");
         shopItemTemplate.gameObject.SetActive(false);
     }
-
-    
 
     private void Start()
     {
@@ -42,12 +43,15 @@ class ShopManager : MonoBehaviour
         CreateItem(Item.ItemType.Big_Gun, "Big Gun", "A very big gun. What else do you want?", Item.ItemCost(Item.ItemType.Big_Gun), Item.ItemSprite(Item.ItemType.Big_Gun), 5);
         CreateItem(Item.ItemType.Big_Gun, "Big Gun", "A very big gun. What else do you want?", Item.ItemCost(Item.ItemType.Big_Gun), Item.ItemSprite(Item.ItemType.Big_Gun), 6);
         CreateItem(Item.ItemType.Katana, "Katana", "Cool looking Katana", Item.ItemCost(Item.ItemType.Katana), Item.ItemSprite(Item.ItemType.Katana), 7);
+        CreateItem(Item.ItemType.Healing_Potion, "Healing Potion", "Heals A LOT of HP (jk)", Item.ItemCost(Item.ItemType.Healing_Potion), Item.ItemSprite(Item.ItemType.Healing_Potion), 8);
+
 
         children = gameObject.GetComponentsInChildren<RectTransform>();
 
     }
     void Update()
     {
+
     }
 
     private void CreateItem(Item.ItemType itemType, string itemName, string itemDescription, int itemCost,Sprite sprite, int positionIndex)
@@ -76,8 +80,7 @@ class ShopManager : MonoBehaviour
 
     public void TryBuyItem(Item.ItemType itemType,Transform shopItemTransform)
     {
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        IShopCustomer shopCustomer = playerObject.GetComponent<IShopCustomer>();
+        IShopCustomer shopCustomer = playerTransform.GetComponent<IShopCustomer>();
         if (shopCustomer.TrySpendCurrency(Item.ItemCost(itemType)))
         {
             shopCustomer.BoughtItem(itemType);
@@ -95,6 +98,7 @@ class ShopManager : MonoBehaviour
             Button equipButton =shopItemTransform.Find("equipButton").GetComponent<Button>();
             equipButton.gameObject.SetActive(true);
             equipButton.onClick.AddListener(delegate { EquipCheck(shopItemTransform, itemType,shopCustomer); });
+           
         }
     }
 
@@ -126,24 +130,31 @@ class ShopManager : MonoBehaviour
         }
         else if (player._equippedItems.Count == 0)
         {
-            shopCustomer.EquipItem(itemType);
-            Equip(shopItemTransform, itemType);
+
+            shopCustomer.EquipItem(itemType); 
+            Equip(shopItemTransform, itemType); // for some reason gets called twice
             player._equippedItems.Add(itemType);
 
         }
+        _sameTypeCount = 0;
     }
     public void Equip(Transform shopItemTransform, Item.ItemType itemType)
     {
+        Debug.Log("Equip");
+
         Transform buttonTransform = shopItemTransform.Find("equipButton");
         Button button = buttonTransform.gameObject.GetComponent<Button>();
         buttonTransform.Find("equip").gameObject.SetActive(false);
         buttonTransform.Find("equipped").gameObject.SetActive(true);
         button.interactable = false;
-        _sameTypeCount = 0;
 
         UIManager.ChangeLoadoutSprite(itemType);
-    }
 
+        if(Item.AssignClass(itemType).ToString() == "Consumable")
+        {          
+            addConsumable(itemType);           
+        }
+    }
     private void Unequip(Transform shopItemTransform, Item.ItemType itemType)
     {
         for (int i = 0; i < children.Length; i++)
@@ -172,6 +183,28 @@ class ShopManager : MonoBehaviour
         }
     }
 
+    public void RefreshConsumableStock(Item.ItemType itemType)
+    {
+        string name = itemType.ToString();
+        for (int i = 0; i < children.Length; i++)
+        {
+            if (children[i].name.ToString() == "itemName")
+            {
+                if (Item.StringSearch(children[i].GetComponent<TextMeshProUGUI>().text).ToString() == name)
+                {
+                    Transform parent = children[i].parent.transform;
 
+                    parent.GetComponent<Button>().interactable = true;
+                    parent.Find("equipButton").Find("equipped").gameObject.SetActive(false);
+                    parent.Find("equipButton").Find("equip").gameObject.SetActive(true);
+                    parent.Find("equipButton").GetComponent<Button>().interactable = true;
+                    parent.Find("equipButton").gameObject.SetActive(false);
+                    player._purchasedItems.Remove(itemType);
+                    player._equippedItems.Remove(itemType);
+                }
+                
+            }
+        }
+    }
 
 }
