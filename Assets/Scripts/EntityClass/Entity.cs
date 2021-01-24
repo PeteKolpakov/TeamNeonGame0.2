@@ -10,6 +10,13 @@ public class Entity : MonoBehaviour
     [SerializeField]
     private int _maxHealth;
 
+    private void Update()
+    {
+        if (health<= 0)
+        {
+            Die();
+        }
+    }
     public void Initialize() // to be called at the beginning of a lvl
     {
         health = _maxHealth;
