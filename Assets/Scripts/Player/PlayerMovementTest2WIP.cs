@@ -14,6 +14,11 @@ public class PlayerMovementTest2WIP : MonoBehaviour
     private float _dashLenght;
 
     [SerializeField]
+    private float _fallDelay = 0.5f;
+
+    private float _fallTimer;
+
+    [SerializeField]
     private float _dashDelay = 0.5f;
 
     private float _timeSinceDash = 0f;
@@ -43,6 +48,7 @@ public class PlayerMovementTest2WIP : MonoBehaviour
     {
         _timeSinceDash = 0;
         _exitPoint = transform.position;
+        StartCoroutine(FallDelay(_fallDelay));
     }
 
     private void Update()
@@ -54,10 +60,8 @@ public class PlayerMovementTest2WIP : MonoBehaviour
 
         _timeSinceDash += Time.deltaTime; // update dash timer
         DashCheck();
-    }
-
-    private void FixedUpdate()
-    {
+        
+        //Debug.Log(_fallTimer);
         if (!FallScriptWIP._isFalling)
         {
             rb.velocity = _direction * _movementSpeed * Time.fixedDeltaTime;
@@ -65,11 +69,16 @@ public class PlayerMovementTest2WIP : MonoBehaviour
         Dash();
     }
 
+    private void FixedUpdate()
+    {
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         _exitPoint = collision.transform.position;
-        if (!_isDashing)
+        if (!_isDashing && !FallScriptWIP._isFalling)
         {
+            Debug.Log("Is gonna fall boys");
             fallScript.Fall();
         }
     }
@@ -103,16 +112,16 @@ public class PlayerMovementTest2WIP : MonoBehaviour
             _isDashing = true; //Collider being ignored while dashing
             Vector2 dashPosition = ((Vector2)transform.position + _direction * _dashLenght);
 
-            RaycastHit2D raycastHit2d = Physics2D.Raycast(transform.position, _direction, _dashLenght, _dashLayerMask);
+            Debug.Log("Is Dashing");
 
+            RaycastHit2D raycastHit2d = Physics2D.Raycast(transform.position, _direction, _dashLenght, _dashLayerMask);
+           
             if (raycastHit2d.collider != null)
             {
                 Debug.DrawLine(rb.position, raycastHit2d.point, Color.cyan, 2f);
                 dashPosition = raycastHit2d.point;
             }
-
-            //Debug.DrawLine(rb.position, raycastHit2d.point, Color.cyan, 2f);
-            rb.MovePosition(dashPosition);
+            rb.AddForce(dashPosition, ForceMode2D.Impulse);
 
             _timeSinceDash = 0;
             _canDash = false;
@@ -120,12 +129,33 @@ public class PlayerMovementTest2WIP : MonoBehaviour
             _wannaDash = false; //Bool to be used if the dash movement doesn't want to be used constantly
         }
         _isDashing = false; //If _isDashing is false, and the player finds itself on top of a Pit, he falls.
+        Debug.Log("Not dashing, should Fall");
     }
     private void DashCheck()
     {
         if(_timeSinceDash >= _dashDelay)
         {
             _canDash = true;
+        }
+    }
+    private void FallDelay() //Implement or delete c:
+    {
+        _fallTimer = Time.deltaTime;
+        if (_fallTimer >= _fallDelay)
+        {
+            FallScriptWIP._isFalling = true;
+            _isDashing = false;
+            Debug.Log("NOt dashing anymore :c");
+            _fallTimer = 0;
+        }
+    }
+    private IEnumerator FallDelay(float recoveryTime)
+    {
+        while (_isDashing)
+        {
+            yield return new WaitForSeconds(recoveryTime);
+            _isDashing = false;
+            
         }
     }
 }

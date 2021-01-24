@@ -26,12 +26,15 @@ public class FallScriptWIP: MonoBehaviour
         _canMove = true;
         _isFalling = false;
     }
+   
+  
     public void Fall()
     {
         _scale = 0.5f;
         sprite.sortingOrder = 0;
         _isFalling = true;
         DecreasePlayerScale();
+        Debug.Log("The dude do be falling tho");
 
         //if ((Vector2)transform.position != Vector2.zero)
         //Invoke(nameof(Respawn(PlayerMovementTest2WIP._exitPoint), 3f);
