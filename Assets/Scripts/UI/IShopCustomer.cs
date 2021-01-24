@@ -6,4 +6,6 @@ public interface IShopCustomer
 {
     void BoughtItem(Item.ItemType itemType);
     bool TrySpendCurrency(int price);
+    void EquipItem(Item.ItemType itemType);
+
 }

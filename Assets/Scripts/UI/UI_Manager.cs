@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using TMPro;
+using UnityEngine.UI;
 
 class UI_Manager : MonoBehaviour
 {
     public PlayerStatManager _playerStatManager;
     public HealthBar _playerHealthbar;
+    public ShopManager shopManager;
 
     public EnemyStatManager _enemyStats;
     public EnemyHealthBar _enemyHealhbar;
@@ -21,6 +23,13 @@ class UI_Manager : MonoBehaviour
 
     public List<GameObject> _maxArmorPointCount;
     public List<GameObject> _currentArmorPoints;
+
+    public TMP_Text _moneyDisplay;
+    public TMP_Text _healthDisplay;
+
+    public Image firstSlot;
+    public Image secondSlot;
+
 
 
     private void Awake()
@@ -44,11 +53,14 @@ class UI_Manager : MonoBehaviour
         _playerHealthbar.SetHealth(_playerStatManager._currentHealth);
         _enemyHealhbar.SetHealth(_enemyStats._currentHealth);
 
+        _moneyDisplay.text = "$: " +_playerStatManager._moneyAmount.ToString();
+        _healthDisplay.text = _playerStatManager._currentHealth.ToString() + " \\ " + _playerStatManager._maxHealth.ToString();
+
         //Debug ONLY
         // DELETE AFTER DONE
         if (Input.GetKeyDown(KeyCode.H))
         {
-            _playerStatManager.HurtPlayer(7);
+            _playerStatManager.HurtPlayer(2);
         }
         if (Input.GetKeyDown(KeyCode.G)&& _playerStatManager._currentAmmoCount != _playerStatManager._maxxAmmoCount)
         {
@@ -109,5 +121,23 @@ class UI_Manager : MonoBehaviour
             _currentArmorPoints[i].SetActive(false);
             _playerStatManager._currentArmorPoints--;
         }
+    }
+
+    public void ChangeLoadoutSprite(Item.ItemType itemType)
+    {
+        Sprite sprite = Item.ItemSprite(itemType);
+        if(Item.AssignClass(itemType).ToString() == "Ranged" )
+        {
+            firstSlot.sprite = sprite;
+            firstSlot.color = Color.white;
+        }
+        if (Item.AssignClass(itemType).ToString() == "Melee")
+        {
+            secondSlot.sprite = sprite;
+            secondSlot.color = Color.white;
+
+        }
+
+
     }
 }
