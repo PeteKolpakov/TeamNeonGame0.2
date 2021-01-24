@@ -40,4 +40,9 @@ public class Entity : MonoBehaviour
             Debug.LogError("WARNING: Max HP must be greater than zero!");
         }
     }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
 }
