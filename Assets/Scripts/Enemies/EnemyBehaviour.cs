@@ -24,7 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        //Vector2 playerPos = PlayerMarker.Instance.Player.transform.position;
     }
     private void Start()
     {
