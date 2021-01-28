@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMarker : MonoBehaviour
+namespace Assets.Scripts.Player
 {
+    public class PlayerMarker : MonoBehaviour
+    {
     
+    }
 }

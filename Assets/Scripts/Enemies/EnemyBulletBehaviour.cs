@@ -1,33 +1,33 @@
+using Assets.Scripts.Enemies;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBulletBehaviour : MonoBehaviour
 {
-    public float _speed;
+    [SerializeField]
+    private float _speed;
+    [SerializeField]
+    private float _lifeTime = 10f;
 
-    private Transform _player;
+    private Vector2 _bulletDirection;
+    [SerializeField]
+    private Rigidbody2D _rb;
 
-    private Vector2 _bulletTarget;
-
-    public Rigidbody2D _rb;
-
-    private void Start()
+    private void Start() // is there a reason not to put this in awake? (question for Luca)
     {
-        _bulletTarget = EnemyBehaviour._target;
+        _rb = GetComponent<Rigidbody2D>();
+        _bulletDirection = EnemyBehaviour.Direction;
     }
     private void Update()
     {
-        //transform.position = Vector2.MoveTowards(transform.position, _bulletTarget, _speed * Time.deltaTime);
+        transform.Translate(Vector3.right*Time.deltaTime*_speed,Space.Self); // TODO Change to Rb2D movement
+        Destroy(gameObject, _lifeTime);
 
-        if (transform.position.x == _bulletTarget.x && transform.position.y == _bulletTarget.y)
-        {
-            Destroy(gameObject);
-        }
     }
     private void FixedUpdate()
     {
-        _rb.MovePosition(Vector2.MoveTowards(_rb.position, _bulletTarget, Time.deltaTime * _speed));
+        //_rb.MovePosition(_bulletDirection);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

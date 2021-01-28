@@ -1,21 +1,24 @@
+using Assets.Scripts.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTracker : MonoBehaviour
-{
-    public static PlayerTracker Instance;
-    public PlayerMarker Player;
-
-    private void Awake()
+namespace Assets.Scripts.GameManager{
+    public class PlayerTracker : MonoBehaviour
     {
-        if(Instance == null)
+        public static PlayerTracker Instance;
+        public PlayerMarker Player;
+
+        private void Awake()
         {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
+            if(Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
