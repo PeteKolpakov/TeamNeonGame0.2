@@ -34,6 +34,5 @@ namespace Assets.Scripts.CameraBehaviour
                 transform.position = _playerPosition.position;
             }
         }
-
     }
 }
