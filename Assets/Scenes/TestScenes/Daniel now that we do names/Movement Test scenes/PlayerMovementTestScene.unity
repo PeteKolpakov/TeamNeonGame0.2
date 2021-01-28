@@ -1769,10 +1769,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1366725666}
   - component: {fileID: 1366725665}
-  - component: {fileID: 1366725664}
   - component: {fileID: 1366725667}
   - component: {fileID: 1366725668}
   - component: {fileID: 1366725669}
+  - component: {fileID: 1366725664}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1789,17 +1789,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1366725663}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bec1d695628ab84d9e807743c14a842, type: 3}
+  m_Script: {fileID: 11500000, guid: fe01f1738f3d5f0439e0b26fd728efd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _dashLayerMask:
     serializedVersion: 2
-    m_Bits: 64
-  _movementSpeed: 400
-  _dashLenght: 5
-  _fallGravity: 90
-  rb: {fileID: 1366725667}
-  sprite: {fileID: 1366725665}
+    m_Bits: 0
+  _movementSpeed: 250
+  _dashLenght: 0
+  _fallGravity: 0
+  rb: {fileID: 0}
+  sprite: {fileID: 0}
 --- !u!212 &1366725665
 SpriteRenderer:
   m_ObjectHideFlags: 0
