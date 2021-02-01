@@ -288,6 +288,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1114473655894850487, guid: 624cbbb10a8393c47b181bd7bff8f34b,
+        type: 3}
+      propertyPath: _chaser
+      value: 
+      objectReference: {fileID: 1356733864}
     - target: {fileID: 1554763728315498182, guid: 624cbbb10a8393c47b181bd7bff8f34b,
         type: 3}
       propertyPath: m_RootOrder
@@ -462,7 +467,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -647,7 +652,5 @@ MonoBehaviour:
   - {fileID: 4856514563483142382, guid: 05a24bf6c2c58ed418f8e8c5a76391fa, type: 3}
   - {fileID: 4856514563483142382, guid: c16cf49fe21590948a39798aef32cb80, type: 3}
   - {fileID: 4856514563483142382, guid: 6ccd4e1459a0da04cb9b6f1cc3d8109a, type: 3}
-  - {fileID: 4856514563483142382, guid: 5d277b3a0b58e2d4fb9426fd34721b4a, type: 3}
-  - {fileID: 4856514563483142382, guid: 7556e4aa4ac3f17459e913a7d56fc828, type: 3}
   _chaser: {fileID: 1356733864}
   _preSpawnLevelParts: 4
