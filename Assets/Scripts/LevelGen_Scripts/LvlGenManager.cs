@@ -41,14 +41,16 @@ namespace Assets.Scripts.LevelGen_Scripts
 
         private void SpawnLevelPart()
         {
-            Transform selectedLevelSection = _levelPartList[Random.Range(0, _levelPartList.Count)];             // Select next Section from list 
-            Transform lastSpawnedSectionTransform = SpawnSectionGetPosition(selectedLevelSection, _lastEndPos); // Spawn Selected Section at lastEndPos, Store Spawned Section Transform
-            _lastEndPos = lastSpawnedSectionTransform.Find("EndPos").position;                                  // Update last used EndPos
+            Transform selectedSectionPrefab = _levelPartList[Random.Range(0, _levelPartList.Count)];             // Select next Section from list 
+            LevelSection lastSpawnedSectionTransform = SpawnSection(selectedSectionPrefab, _lastEndPos); // Spawn Selected Section at lastEndPos, Store Spawned Section Transform
+            _lastEndPos = lastSpawnedSectionTransform.EndPosition.position;                                  // Update last used EndPos
         }
-        private Transform SpawnSectionGetPosition(Transform levelSection, Vector3 spawnPosition)                
+        private LevelSection SpawnSection(Transform levelPrefab, Vector3 spawnPosition)                
         {
-            Transform sectionTransform = Instantiate(levelSection, spawnPosition, Quaternion.identity);         // Spawn Lvl Section
-            return sectionTransform;                                                                            // return position it spawned at
+            Transform sectionTransform = Instantiate(levelPrefab, spawnPosition, Quaternion.identity);         // Spawn Lvl Section
+            LevelSection levelSection = sectionTransform.GetComponent<LevelSection>();
+            levelSection.Setup(_chaser);
+            return levelSection;                                                                            // return position it spawned at
         }
     }
 }
