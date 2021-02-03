@@ -4,90 +4,64 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    // Name
+    public string _name;
+    // Description
+    public string _description;
+    // Price
+    public int _price;
+    public int _damage = 1;
+    public ItemType itemType;
+    public float _fireRate = 1f;
+
+
+    private float _attackTimer;
+    // projectile amount
+    [SerializeField]
+    private int _projectileAmount = 1;
+    // spread angle
+    [SerializeField]
+    private float _spreadAngle = 5;
+    // Sprite
+    public Sprite _icon;
+    // projectile spawn point
+    [SerializeField]
+    private Transform _firePoint;
+    // Bullet prefab
+    [SerializeField]
+    private GameObject _projectilePrefab;
+    public bool _isEquipped = false;
 
     public enum ItemType
     {
-        Big_Gun,
-        Even_Bigger_gun,
-        Katana,
-        Healing_Potion
-    }
-
-    public enum ItemClass
-    {
         Ranged,
         Melee,
-        Consumable,
-        Upgrade
+        Consumable
     }
 
-    public static int ItemCost(ItemType itemType)
+    private void Update()
     {
-        switch (itemType)
+        if (_attackTimer < _fireRate)
         {
-            default:
-            case ItemType.Big_Gun:          return 50;
-            case ItemType.Even_Bigger_gun:  return 120;
-            case ItemType.Katana:           return 90;
-            case ItemType.Healing_Potion:   return 20;
+            _attackTimer += Time.deltaTime;
         }
     }
 
-    public static int ItemDamage(ItemType itemType)
+    public void Attack()
     {
-        switch (itemType)
-        {
-            default:
-            case ItemType.Big_Gun: return 1;
-            case ItemType.Even_Bigger_gun: return 3;
-            case ItemType.Katana: return 2;
-            case ItemType.Healing_Potion: return 0;
-        }
-    }
+        // ammo check
 
-    public static ItemClass AssignClass(ItemType itemType)
-    {
-        switch (itemType)
-        {
-            default:
-            case ItemType.Big_Gun: return ItemClass.Ranged;
-            case ItemType.Even_Bigger_gun: return ItemClass.Ranged;
-            case ItemType.Katana: return ItemClass.Melee;
-            case ItemType.Healing_Potion: return ItemClass.Consumable;
-        }
-    }
+        if (_attackTimer < _fireRate)
+            return;
 
-    public static Sprite ItemSprite(ItemType itemType)
-    {
-
-        switch (itemType)
+        for (int i = 0; i < _projectileAmount; i++)
         {
-            default:
-            case ItemType.Big_Gun: return ItemSprites.i.circle;
-            case ItemType.Even_Bigger_gun: return ItemSprites.i.square;
-            case ItemType.Katana: return ItemSprites.i.triangle;
-            case ItemType.Healing_Potion: return ItemSprites.i.circle;
+            float angle = Random.Range(-_spreadAngle, _spreadAngle);
+            Instantiate(_projectilePrefab, _firePoint.position, transform.rotation * Quaternion.Euler(0, 0, angle));
         }
+        _attackTimer -= _attackTimer;
     }
 
 
-    public static int ItemYield(ItemType itemType)
-    {
-        switch (itemType)
-        {
-            default: return 1;
-            case ItemType.Healing_Potion: return 1;
-        }
-    }
 
-    public static ItemType StringSearch(string name)
-    {
-        switch (name)
-        {
-            default:        
-            case "Healing_Potion": return Item.ItemType.Healing_Potion;
-        }
-    }
 }
-
-

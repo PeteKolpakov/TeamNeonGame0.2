@@ -22,8 +22,8 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
     public int _moneyAmount;
 
-    public List<Item.ItemType> _purchasedItems;
-    public List<Item.ItemType> _equippedItems;
+    public List<GameObject> _purchasedItems;
+    public List<GameObject> _equippedItems;
 
     public bool _canEquipItem;
 
@@ -37,9 +37,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         _currentHealth = _maxHealth;
         _currentArmorPoints = _maxxArmorPoints;
         _currentAmmoCount = _maxxAmmoCount;
-
-        
-        
     }
     private void Update()
     {
@@ -58,7 +55,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         {
             damageTaken = 0;
         }
-        Debug.Log(_APBlock);
         _currentHealth -= damageTaken;
 
         if (damage > _APBlock)
@@ -82,14 +78,20 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         }
     }
 
-    public void BoughtItem(Item.ItemType itemType)
+    public void BoughtItem(GameObject item)
     { 
-        _purchasedItems.Add(itemType);
+        _purchasedItems.Add(item);
     }
 
-    public void EquipItem(Item.ItemType itemType)
+    public void EquipItem(Item item)
     {   
-        _damage += Item.ItemDamage(itemType);
+        _damage += item._damage;
+    }
+
+    public void UnequipItem(Item item)
+    {
+        _damage -= item._damage;
+
     }
 
 

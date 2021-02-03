@@ -82,7 +82,7 @@ class UI_Manager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            CompareEquipment();
+            //CompareEquipment();
         }
         // DELETE THIS SHIT AFTERWARDS
     }
@@ -142,28 +142,28 @@ class UI_Manager : MonoBehaviour
         }
     }
 
-    public void ChangeLoadoutSprite(Item.ItemType itemType)
+    public void ChangeLoadoutSprite(GameObject weapon, Item item)
     {
-        Sprite sprite = Item.ItemSprite(itemType);
-        if(Item.AssignClass(itemType).ToString() == "Ranged" )
+        if(item.itemType == Item.ItemType.Ranged )
         {
-            firstSlot.sprite = sprite;
+            firstSlot.sprite = item._icon;
             firstSlot.color = Color.white;
         }
-        if (Item.AssignClass(itemType).ToString() == "Melee")
+        if (item.itemType == Item.ItemType.Melee)
         {
-            secondSlot.sprite = sprite;
+            secondSlot.sprite = item._icon;
             secondSlot.color = Color.white;
         }
-        if (Item.AssignClass(itemType).ToString() == "Consumable")
+        if (item.itemType == Item.ItemType.Consumable)
         {
-            thirdSlot.sprite = sprite;
-            thirdSlot.color = Color.red;
+            thirdSlot.sprite = item._icon;
+            thirdSlot.color = Color.white;
         }
+
 
     }
 
-    public void AddConsumable(Item.ItemType itemType)
+    public void AddConsumable(ItemOld.ItemType itemType)
     {
         //Debug.Log("purchased a potion");
         _charges++;
@@ -174,7 +174,7 @@ class UI_Manager : MonoBehaviour
 
     public void UseConsumable()
     {
-        Item.ItemType itemType = Item.StringSearch(consumableSlot.Find("consumableType").GetComponent<TextMeshProUGUI>().text);
+        ItemOld.ItemType itemType = ItemOld.StringSearch(consumableSlot.Find("consumableType").GetComponent<TextMeshProUGUI>().text);
         _charges--;
         _consumableCharges.text = _charges.ToString();
 
@@ -183,17 +183,17 @@ class UI_Manager : MonoBehaviour
         // switch statement with different potion options
         // each one of them invokes an event on PlayerStatManager
 
-        if(_charges == 0)
+        /*if(_charges == 0)
         {
             shopManager.RefreshConsumableStock(itemType);
             _consumableCharges.gameObject.SetActive(false);
             thirdSlot.sprite = null;
             thirdSlot.color = Color.gray;
             _consumableTypeText.text = null;
-        }
+        }*/
     }
 
-    public void CompareEquipment()
+    /*public void CompareEquipment()
     {
         Debug.Log("Starting to compare equipment");
         for (int i = 0; i < shopManager.children.Length; i++)
@@ -204,10 +204,10 @@ class UI_Manager : MonoBehaviour
             {
                 Debug.Log("Found one text");
 
-                Transform parent = shopManager.children[i].parent.parent;
-                string name = parent.Find("itemName").name.ToString();
-                Item.ItemType itemType = Item.StringSearch(name);
-                int itemDamage = Item.ItemDamage(itemType);
+                //Transform parent = shopManager.children[i].parent.parent;
+                //string name = parent.Find("itemName").name.ToString();
+                ItemOld.ItemType itemType = ItemOld.StringSearch(name);
+                int itemDamage = ItemOld.ItemDamage(itemType);
 
                 if(itemDamage > _playerStatManager._damage)
                 {
@@ -224,5 +224,5 @@ class UI_Manager : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 }
