@@ -31,9 +31,8 @@ namespace Assets.Scripts.CameraBehaviour
             }
             if (_playerPosition.transform.position.y > transform.position.y)
             {
-                transform.position = _playerPosition.position;
+                transform.position = new Vector3(0, _playerPosition.position.y, 0);
             }
         }
-
     }
 }
