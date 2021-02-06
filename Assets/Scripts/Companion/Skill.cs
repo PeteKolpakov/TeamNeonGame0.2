@@ -4,20 +4,25 @@ using UnityEngine;
 
 namespace Companion
 {
-    abstract class Skill
+    abstract class Skill : MonoBehaviour
     {
+        [SerializeField]
         private string _skillName;
-        private GameObject _player;
+        [SerializeField]
+        private string _skillDescription;
 
-        public Skill(GameObject player)
-        {
-            _player = player;
-        }
+        [SerializeField]
+        protected bool _isPassiveSkill = false;
+
+        [SerializeField]
+        protected GameObject _player;
 
         abstract public void Activate();
 
         public string GetSkillName() => _skillName;
 
         public void SetSkillName(string name) => _skillName = name;
+
+        public string GetDescription() => _skillDescription;
     }
 }

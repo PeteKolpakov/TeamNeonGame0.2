@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Companion
 {
-    class Companion : MonoBehaviour
+    class CompanionMovement : MonoBehaviour
     {
         [SerializeField]
         private Transform _playerTransform;  // Reference to transform component of the player gameobject
