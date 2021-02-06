@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Camera
+namespace Assets.Scripts.CameraBehaviour
 {
     class Chaser : MonoBehaviour
     {
@@ -31,9 +31,8 @@ namespace Assets.Scripts.Camera
             }
             if (_playerPosition.transform.position.y > transform.position.y)
             {
-                transform.position = _playerPosition.position;
+                transform.position = new Vector3(0, _playerPosition.position.y, 0);
             }
         }
-
     }
 }
