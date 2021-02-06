@@ -14,7 +14,13 @@ class ShopManager : MonoBehaviour
     public UI_Manager UIManager;
 
     private Transform shopItemTemplate;
-    private Transform container;
+    private Transform shopItemTemplateConsumable;
+
+
+
+    public Transform weaponContainer;
+    public Transform consumableContainer;
+
 
     public List<Transform> children;
 
@@ -22,15 +28,24 @@ class ShopManager : MonoBehaviour
     private int _sameTypeCount = 0;
 
     public List<Object> weaponPrefabList;
+    public List<Object> consumablePrefabList;
+
 
     public delegate void AddConsumable(ItemOld.ItemType itemType);
     public static event AddConsumable addConsumable;
 
+    // test
+    public TextMeshProUGUI nameTextTest;
+
+
     private void Awake()
     {
-        container = transform.Find("container");
-        shopItemTemplate = container.Find("shopItemTemplate");
+        shopItemTemplate = weaponContainer.Find("shopItemTemplate");
         shopItemTemplate.gameObject.SetActive(false);
+
+        shopItemTemplateConsumable = consumableContainer.Find("shopItemTemplate");
+        shopItemTemplateConsumable.gameObject.SetActive(false);
+
     }
 
     private void Start()
@@ -38,15 +53,29 @@ class ShopManager : MonoBehaviour
 
         // Grabbing all the weapon prefabs from a folder and putting them in a nice list
         weaponPrefabList = new List<Object>(Resources.LoadAll("WeaponPrefabs", typeof(GameObject)));
+        consumablePrefabList = new List<Object>(Resources.LoadAll("ConsumablePrefabs", typeof(GameObject)));
+
+
 
         PopulateShopList();
+
+        // see the Unequip function to understand what the hell is this thing
+        foreach (Transform child in weaponContainer)
+        {
+            children.Add( child.Find("itemType"));
+        }
+        foreach (Transform child in consumableContainer)
+        {
+            children.Add(child.Find("itemType"));
+        }
+
     }
     private void PopulateShopList()
     {
         int positionIndex = 0; // position in the list
         for (int i = 0; i < weaponPrefabList.Count; i++)
         {
-            Transform shopItemTransform = Instantiate(shopItemTemplate, container);
+            Transform shopItemTransform = Instantiate(shopItemTemplate, weaponContainer);
 
             // This is a terrible way to do it.
             // But this is the only way to convert List[i] (which is of type Object)
@@ -61,10 +90,13 @@ class ShopManager : MonoBehaviour
             // I know strings are bad, but we can't reference a specific
             // GameObject in the hierarchy otherwise, since we're always
             // instantiating a new parent with a new set of children.
+
             shopItemTransform.Find("itemName").GetComponent<TextMeshProUGUI>().SetText(itemScript._name);
+            //nameTextTest.SetText(itemScript._name); // doesn't work for the first item in the list :thinking:
             shopItemTransform.Find("itemDescription").GetComponent<TextMeshProUGUI>().SetText(itemScript._description);
             shopItemTransform.Find("itemCost").GetComponent<TextMeshProUGUI>().SetText(itemScript._price.ToString());
             shopItemTransform.Find("itemIcon").GetComponent<Image>().sprite = itemScript._icon;
+            shopItemTransform.Find("itemType").GetComponent<TextMeshProUGUI>().SetText(itemScript.itemType.ToString());
 
             // Positioning an item in the shop list
 
@@ -79,16 +111,52 @@ class ShopManager : MonoBehaviour
             button.onClick.AddListener(delegate { BuyItem(itemScript, weapon, button, shopItemTransform); });
 
         }
+
+        for (int i = 0; i < consumablePrefabList.Count; i++)
+        {
+            Transform shopItemTransformConsumable = Instantiate(shopItemTemplateConsumable, consumableContainer);
+
+            GameObject consumable = (GameObject)consumablePrefabList[i];
+
+            Item itemScript = consumable.GetComponent<Item>();
+
+
+            // Updating the visuals
+
+            // I know strings are bad, but we can't reference a specific
+            // GameObject in the hierarchy otherwise, since we're always
+            // instantiating a new parent with a new set of children.
+
+            shopItemTransformConsumable.Find("itemName").GetComponent<TextMeshProUGUI>().SetText(itemScript._name);
+            //nameTextTest.SetText(itemScript._name); // doesn't work for the first item in the list :thinking:
+            shopItemTransformConsumable.Find("itemDescription").GetComponent<TextMeshProUGUI>().SetText(itemScript._description);
+            shopItemTransformConsumable.Find("itemCost").GetComponent<TextMeshProUGUI>().SetText(itemScript._price.ToString());
+            shopItemTransformConsumable.Find("itemIcon").GetComponent<Image>().sprite = itemScript._icon;
+            shopItemTransformConsumable.Find("itemType").GetComponent<TextMeshProUGUI>().SetText(itemScript.itemType.ToString());
+
+            // Positioning an item in the shop list
+
+            shopItemTransformConsumable.gameObject.SetActive(true);
+            RectTransform shopItemRectTransform = shopItemTransformConsumable.GetComponent<RectTransform>();
+            float shopItemHeight = 90f;
+            shopItemRectTransform.anchoredPosition = new Vector2(1, -shopItemHeight * positionIndex);
+            positionIndex++;
+
+            // Adding a button event for "Buy"
+            Button button = shopItemTransformConsumable.GetComponent<Button>();
+            button.onClick.AddListener(delegate { BuyItem(itemScript, consumable, button, shopItemTransformConsumable); });
+
+        }
     }
 
-    public void BuyItem(Item itemScript, GameObject weapon, Button button, Transform shopItemTransform)
+    public void BuyItem(Item itemScript, GameObject item, Button button, Transform shopItemTransform)
     {
         // Getting a reference for the customer interface
         IShopCustomer shopCustomer = playerTransform.GetComponent<IShopCustomer>();
         if (shopCustomer.TrySpendCurrency(itemScript._price))
         {
             // Buy item
-            shopCustomer.BoughtItem(weapon);
+            shopCustomer.BoughtItem(item);
 
             // Disabling the interactivity of the button after a purchase
             button.interactable = false;
@@ -107,7 +175,7 @@ class ShopManager : MonoBehaviour
             // can't do it any other way. But also since the EquipCheck
             // function is in the same class as this function, 
             // we do this magical thing with "delegate" AddListener.
-            equipButton.onClick.AddListener(delegate { EquipCheck(itemScript, weapon, shopCustomer, shopItemTransform); });
+            equipButton.onClick.AddListener(delegate { EquipCheck(itemScript, item, shopCustomer, shopItemTransform); });
 
         }
     }
@@ -135,10 +203,11 @@ class ShopManager : MonoBehaviour
             if (_sameTypeCount != 0)
             {
                 // We replace equipped item of the same type with a new one
+                GameObject oldWeapon = player._equippedItems[_sameTypeIndex];
                 player._equippedItems[_sameTypeIndex] = weapon;
                 Equip(itemScript, weapon, shopCustomer, shopItemTransform);
                 shopCustomer.EquipItem(itemScript);
-                Unequip(itemScript, weapon, shopItemTransform);
+                Unequip(itemScript,shopItemTransform, oldWeapon);
             }
             else
             {
@@ -161,56 +230,63 @@ class ShopManager : MonoBehaviour
 
     public void Equip(Item itemScript, GameObject weapon, IShopCustomer shopCustomer, Transform shopItemTransform)
     {
+        // disabling the "equip" button and changing the display text
+        // to "Equipped"
         Transform buttonTransform = shopItemTransform.Find("equipButton");
         Button button = buttonTransform.gameObject.GetComponent<Button>();
         buttonTransform.Find("equip").gameObject.SetActive(false);
         buttonTransform.Find("equipped").gameObject.SetActive(true);
         button.interactable = false;
 
+        // Update the sprite in the loadout
+
         UIManager.ChangeLoadoutSprite(weapon, itemScript);
         itemScript._isEquipped = true;
 
     }
 
-    public void Unequip(Item item, GameObject weapon, Transform shopItemTransform)
+    public void Unequip(Item item,Transform shopItemTransform, GameObject oldWeapon)
     {
-        for (int i = 0; i < player._equippedItems.Count; i++)
-        {
-            if (player._equippedItems[i].GetComponent<Item>().itemType == item.itemType)
-            {
-                Debug.Log(player._equippedItems[i].name + player._equippedItems[i].GetComponent<Item>()._isEquipped);
-            }
+        // THIS SHIT SUCKS SO MUCH I HATE IT
+        // thanks god we only run this mess once, when we equip another weapon.
 
+        // basically - we get the "children" list, with all of the
+        // itemTypes (melee, ranged) of the weapons in the shop.
+       
+        // we iterate through this list
+        for (int i = 0; i < children.Count; i++)
+        {
+            // checking if children[i] has the same type as our current weapon
+            // (but making sure we're not counting THE current weapon
+            if(children[i].GetComponent<TextMeshProUGUI>().text == item.itemType.ToString() && children[i].transform.parent.transform != shopItemTransform)
+            {
+                // then we find the parent transform, that holds the interactible button
+                // and we re-enable it, chaning the text from "equipped" to "equip", 
+                // making player able to equip it again
+                Transform parent = children[i].transform.parent.transform;
+                Transform buttonTransform = parent.Find("equipButton");
+                Button button = buttonTransform.gameObject.GetComponent<Button>();
+                Transform equipped = buttonTransform.Find("equipped");
+                if (equipped.gameObject.activeSelf == true)
+                {
+                    buttonTransform.Find("equip").gameObject.SetActive(true);
+                    buttonTransform.Find("equipped").gameObject.SetActive(false);
+                    button.interactable = true;
+
+                    // unequip the old weapon, removing his stats from the player
+                    Item oldWeaponStats = oldWeapon.GetComponent<Item>();
+                    player.UnequipItem(oldWeaponStats);
+                }
+            }
         }
+
+        // Is this efficient? Hell no. Does it work? Yes.
+        
     }
 
-    /*private void Unequip(Transform shopItemTransform, ItemOld.ItemType itemType)
-    {
-        for (int i = 0; i < children.Length; i++)
-        {
-            if (children[i].name == "itemClass")
-            {
-               if(children[i].GetComponent<TextMeshProUGUI>().text == ItemOld.AssignClass(itemType).ToString() && children[i].gameObject.transform.parent.transform != shopItemTransform)
-                {
-                    Transform parent = children[i].transform.parent.transform;
-                    Transform buttonTransform = parent.Find("equipButton");
-                    //Transform damageTextTransform = parent.Find("damage");
-                    Button button = buttonTransform.gameObject.GetComponent<Button>();
-                    //string damageText = damageTextTransform.gameObject.GetComponent<TextMeshProUGUI>().text;
-                    Transform equipped = buttonTransform.Find("equipped");
-                    if(equipped.gameObject.activeSelf == true)
-                    {
-                        buttonTransform.Find("equip").gameObject.SetActive(true);
-                        buttonTransform.Find("equipped").gameObject.SetActive(false);
-                        button.interactable = true;
-                        //player._damage -= int.Parse(damageText);
-                    }
-                }
-
-            }
-         
-        }
-    }*/
+    // !!!!!!!!!!!!!!!
+    // ignore this for now , this is for later work on consumables 
+    // !!!!!!!!!!!!!!
 
     /*public void RefreshConsumableStock(ItemOld.ItemType itemType)
     {

@@ -25,6 +25,8 @@ class UI_Manager : MonoBehaviour
     public List<GameObject> _currentArmorPoints;
 
     public TMP_Text _moneyDisplay;
+    public TMP_Text _moneyShopDisplay;
+
     public TMP_Text _healthDisplay;
     public TMP_Text _consumableCharges;
     public TMP_Text _consumableTypeText;
@@ -33,6 +35,9 @@ class UI_Manager : MonoBehaviour
     public Image firstSlot;
     public Image secondSlot;
     public Image thirdSlot;
+    public Image firstGlobalSlot;
+    public Image secondGlobalSlot;
+    public Image thirdGlobalSlot;
 
     public Transform consumableSlot;
 
@@ -62,6 +67,8 @@ class UI_Manager : MonoBehaviour
         _enemyHealhbar.SetHealth(_enemyStats._currentHealth);
 
         _moneyDisplay.text = "$: " +_playerStatManager._moneyAmount.ToString();
+        _moneyShopDisplay.text = _playerStatManager._moneyAmount.ToString();
+
         _healthDisplay.text = _playerStatManager._currentHealth.ToString() + " \\ " + _playerStatManager._maxHealth.ToString();
 
         //Debug ONLY
@@ -148,16 +155,26 @@ class UI_Manager : MonoBehaviour
         {
             firstSlot.sprite = item._icon;
             firstSlot.color = Color.white;
+
+            firstGlobalSlot.sprite = item._icon;
+            firstGlobalSlot.color = Color.white;
+
         }
         if (item.itemType == Item.ItemType.Melee)
         {
             secondSlot.sprite = item._icon;
             secondSlot.color = Color.white;
+
+            secondGlobalSlot.sprite = item._icon;
+            secondGlobalSlot.color = Color.white;
         }
         if (item.itemType == Item.ItemType.Consumable)
         {
             thirdSlot.sprite = item._icon;
             thirdSlot.color = Color.white;
+
+            thirdGlobalSlot.sprite = item._icon;
+            thirdGlobalSlot.color = Color.white;
         }
 
 

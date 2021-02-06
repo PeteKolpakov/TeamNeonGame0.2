@@ -10,6 +10,7 @@ public class Item : MonoBehaviour
     public string _description;
     // Price
     public int _price;
+
     public int _damage = 1;
     public ItemType itemType;
     public float _fireRate = 1f;
