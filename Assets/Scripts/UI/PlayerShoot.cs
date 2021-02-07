@@ -13,7 +13,7 @@ class PlayerShoot : AttackBase
     PlayerStatManager _playerStats;
 
     private Vector3 _mousePos;
-    public ShopkeeperInteraction _shop;
+    //public ShopkeeperInteraction _shop;
 
     public delegate void RemoveAmmo(int ammo);
     public static event RemoveAmmo removeAmmo;
@@ -42,7 +42,11 @@ class PlayerShoot : AttackBase
     protected override void Shoot()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
             _weapon.Attack();
+            removeAmmo(1);
+
+        }
     }
 }
         

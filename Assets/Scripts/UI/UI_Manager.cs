@@ -10,10 +10,12 @@ class UI_Manager : MonoBehaviour
 {
     public PlayerStatManager _playerStatManager;
     public HealthBar _playerHealthbar;
-    public ShopManager shopManager;
+    //public ShopManager shopManager;
 
-    public EnemyStatManager _enemyStats;
-    public EnemyHealthBar _enemyHealhbar;
+    //TODO: DONT FORGET TO REENABLE THIS SHIT
+
+    //public EnemyStatManager _enemyStats;
+    //public EnemyHealthBar _enemyHealhbar;
 
 
     [SerializeField]
@@ -25,21 +27,23 @@ class UI_Manager : MonoBehaviour
     public List<GameObject> _currentArmorPoints;
 
     public TMP_Text _moneyDisplay;
-    public TMP_Text _moneyShopDisplay;
+    //public TMP_Text _moneyShopDisplay;
 
     public TMP_Text _healthDisplay;
-    public TMP_Text _consumableCharges;
-    public TMP_Text _consumableTypeText;
-    public TMP_Text _compareEquipmentText;
+    //public TMP_Text _consumableCharges;
+    //public TMP_Text _consumableTypeText;
+    //public TMP_Text _compareEquipmentText;
 
-    public Image firstSlot;
+    // TODO: put this shit in the ShopManager 
+
+    /*public Image firstSlot;
     public Image secondSlot;
     public Image thirdSlot;
     public Image firstGlobalSlot;
     public Image secondGlobalSlot;
-    public Image thirdGlobalSlot;
+    public Image thirdGlobalSlot;*/
 
-    public Transform consumableSlot;
+    //public Transform consumableSlot;
 
     public int _charges = 2;
 
@@ -48,14 +52,14 @@ class UI_Manager : MonoBehaviour
     {
         PlayerShoot.removeAmmo += RemoveAmmo;
         PlayerStatManager.removeArmor += RemoveArmor;
-        ShopManager.addConsumable += AddConsumable;
+        //ShopManager.addConsumable += AddConsumable;
     }
 
 
     private void Start()
     {
         _playerHealthbar.SetMaxHealth(_playerStatManager._maxHealth);
-        _enemyHealhbar.SetMaxHealth(_enemyStats._maxHealth);
+        //_enemyHealhbar.SetMaxHealth(_enemyStats._maxHealth);
        
         SetAmmoCountDisplay();
         SetArmorPointDisplay();
@@ -64,10 +68,10 @@ class UI_Manager : MonoBehaviour
     private void Update()
     {
         _playerHealthbar.SetHealth(_playerStatManager._currentHealth);
-        _enemyHealhbar.SetHealth(_enemyStats._currentHealth);
+        //_enemyHealhbar.SetHealth(_enemyStats._currentHealth);
 
         _moneyDisplay.text = "$: " +_playerStatManager._moneyAmount.ToString();
-        _moneyShopDisplay.text = _playerStatManager._moneyAmount.ToString();
+        //_moneyShopDisplay.text = _playerStatManager._moneyAmount.ToString();
 
         _healthDisplay.text = _playerStatManager._currentHealth.ToString() + " \\ " + _playerStatManager._maxHealth.ToString();
 
@@ -84,7 +88,7 @@ class UI_Manager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q) && _charges != 0)
         {
-            UseConsumable();
+            //UseConsumable();
 
         }
         if (Input.GetKeyDown(KeyCode.E))
@@ -149,7 +153,7 @@ class UI_Manager : MonoBehaviour
         }
     }
 
-    public void ChangeLoadoutSprite(GameObject weapon, Item item)
+    /*public void ChangeLoadoutSprite(GameObject weapon, Item item)
     {
         if(item.itemType == Item.ItemType.Ranged )
         {
@@ -178,18 +182,18 @@ class UI_Manager : MonoBehaviour
         }
 
 
-    }
+    }*/
 
-    public void AddConsumable(ItemOld.ItemType itemType)
+    /*public void AddConsumable(ItemOld.ItemType itemType)
     {
         //Debug.Log("purchased a potion");
         _charges++;
         _consumableCharges.text = _charges.ToString();
         _consumableCharges.gameObject.SetActive(true);
         _consumableTypeText.text = itemType.ToString();
-    }
+    }*/
 
-    public void UseConsumable()
+    /*public void UseConsumable()
     {
         ItemOld.ItemType itemType = ItemOld.StringSearch(consumableSlot.Find("consumableType").GetComponent<TextMeshProUGUI>().text);
         _charges--;
@@ -200,15 +204,15 @@ class UI_Manager : MonoBehaviour
         // switch statement with different potion options
         // each one of them invokes an event on PlayerStatManager
 
-        /*if(_charges == 0)
+        *//*if(_charges == 0)
         {
             shopManager.RefreshConsumableStock(itemType);
             _consumableCharges.gameObject.SetActive(false);
             thirdSlot.sprite = null;
             thirdSlot.color = Color.gray;
             _consumableTypeText.text = null;
-        }*/
-    }
+        }*//*
+    }*/
 
     /*public void CompareEquipment()
     {

@@ -240,7 +240,7 @@ class ShopManager : MonoBehaviour
 
         // Update the sprite in the loadout
 
-        UIManager.ChangeLoadoutSprite(weapon, itemScript);
+        //UIManager.ChangeLoadoutSprite(weapon, itemScript);
         itemScript._isEquipped = true;
 
     }
