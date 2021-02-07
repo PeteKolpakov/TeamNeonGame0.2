@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 546490613288765786}
   - component: {fileID: 7071724313003228853}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: EnemyBulletPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 8
+  _lifeTime: 10
   _rb: {fileID: 7071724313003228853}
 --- !u!58 &546490613288765786
 CircleCollider2D:

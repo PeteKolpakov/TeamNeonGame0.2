@@ -20,9 +20,9 @@ namespace Assets.Scripts.Enemies
         private Transform playerPos;
 
         [SerializeField]
-        private GameObject _bulletPrefab;
+        private GameObject _bulletPrefab = null;
         [SerializeField]
-        private EnemyGunTest _weapon;
+        private EnemyGunTest _weapon = null;
 
         public static Vector3 Direction;
 
