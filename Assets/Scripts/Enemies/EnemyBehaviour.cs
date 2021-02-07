@@ -7,17 +7,13 @@ namespace Assets.Scripts.Enemies
 {
     public class EnemyBehaviour : MonoBehaviour
     {
-        public float _enemySpeed;
-    
-        public float _stopingDistance;
-    
-        public float _retreatdistance;
-
-        public float _startTimeShots;
+        public float EnemySpeed;
+        public float ShootingDistance = 18;
+        public float StartTimeShots;
 
         private float _shootingDelay;
+        private Vector2 _playerDistanceComparison;
 
-        private Transform playerPos;
 
         [SerializeField]
         private GameObject _bulletPrefab = null;
@@ -31,40 +27,30 @@ namespace Assets.Scripts.Enemies
         }
         private void Start()
         {          
-            _shootingDelay = _startTimeShots;
+            _shootingDelay = StartTimeShots;
         }
         private void Update()
         {
-            //CalculateDistance(); //can put the moveTowards method on a Couroutine, to have it not calculate it each frame, want some feedback.Or with NavhMesh, also not using physics, so much questions 
-            Aim();
+                Aim();
 
-            if(_shootingDelay <= 0)
+            if (Vector2.Distance(transform.position, _playerDistanceComparison) < ShootingDistance)
             {
-                _shootingDelay = _startTimeShots;
-                Shoot();
-            }
-            else
-            {
-                _shootingDelay -= Time.deltaTime;
-            }
+                if(_shootingDelay <= 0)
+                {
+                    _shootingDelay = StartTimeShots;
+                    Shoot();
+                }
+                else
+                {
+                    _shootingDelay -= Time.deltaTime;
+                }
+            } 
         }
 
-        /**private void CalculateDistance()
-        {
-            if(Vector2.Distance(transform.position, playerPos.position) > _stopingDistance)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, playerPos.position, _enemySpeed * Time.deltaTime);
-
-            }else if(Vector2.Distance(transform.position, playerPos.position) < _stopingDistance && Vector2.Distance(transform.position, playerPos.position) > _retreatdistance){
-                transform.position = this.transform.position;
-            }else if(Vector2.Distance(transform.position, playerPos.position) < _retreatdistance)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, playerPos.position, -_enemySpeed * Time.deltaTime);
-            }
-        }**/
         private void Aim()
         {
             Vector3 playerPos = PlayerTracker.Instance.Player.transform.position;
+            _playerDistanceComparison = playerPos;
             Direction = playerPos - transform.position;
 
             float angle = Mathf.Atan2(Direction.y, Direction.x);
