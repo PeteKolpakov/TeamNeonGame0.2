@@ -286,17 +286,17 @@ PrefabInstance:
     - target: {fileID: 3709444868155502955, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.322377
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3709444868155502955, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.3263147
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3709444868155502955, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.248074
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3709444868155502955, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
@@ -340,13 +340,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
+      propertyPath: _chaser
+      value: 
+      objectReference: {fileID: 621092708}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
       propertyPath: _levelPart_Start
       value: 
       objectReference: {fileID: 1615593937}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
       propertyPath: _levelPartList.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
@@ -359,6 +364,18 @@ PrefabInstance:
       propertyPath: _levelPartList.Array.data[1]
       value: 
       objectReference: {fileID: 4856514563483142382, guid: ad32ae94010d3c143883e15c3c647444,
+        type: 3}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
+      propertyPath: _levelPartList.Array.data[2]
+      value: 
+      objectReference: {fileID: 4856514563483142382, guid: dd7e1360be816214f83f60e9c7371038,
+        type: 3}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
+      propertyPath: _levelPartList.Array.data[3]
+      value: 
+      objectReference: {fileID: 4856514563483142382, guid: c66735ef6e04f6c4ab446248f7d59fd8,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fc50377f5b45374eb863e32093e39f4, type: 3}
