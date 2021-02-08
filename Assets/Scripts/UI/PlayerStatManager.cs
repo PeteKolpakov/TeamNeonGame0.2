@@ -7,11 +7,11 @@ using UnityEngine;
 public class PlayerStatManager : MonoBehaviour, IShopCustomer
 {
     public int _maxHealth = 5;
-    public int _currentHealth;
+    public float _currentHealth;
 
     public int _maxxArmorPoints = 1;
     public int _currentArmorPoints;
-    public int _armorPointHealth = 1; // How much HP is 1 AP
+    public float _armorPointHealth = 1; // How much HP is 1 AP
 
     public int _maxxAmmoCount = 5;
     public int _currentAmmoCount;
@@ -22,10 +22,15 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
     public int _moneyAmount;
 
+    public List<GameObject> _purchasedItems;
+    public List<GameObject> _equippedItems;
+
+    public bool _canEquipItem;
 
 
     public delegate void RemoveArmorPoints();
     public static event RemoveArmorPoints removeArmor;
+    
 
     private void Start()
     {
@@ -35,16 +40,21 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     }
     private void Update()
     {
-        if (_currentHealth <= 0)
+        if (_currentHealth < 0)
         {
+            _currentHealth = 0;
             gameObject.SetActive(false);
             Debug.Log("You ded, lol");
         }
     }
     public void HurtPlayer(int damage)
     {
-        int _APBlock = _currentArmorPoints * _armorPointHealth;
-        int damageTaken = damage - _APBlock;
+        float _APBlock = _currentArmorPoints * _armorPointHealth;
+        float damageTaken = damage - _APBlock;
+        if(damageTaken < 0)
+        {
+            damageTaken = 0;
+        }
         _currentHealth -= damageTaken;
 
         if (damage > _APBlock)
@@ -55,7 +65,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
             }
         }
     }
-
 
     public bool TrySpendCurrency(int price)
     {
@@ -69,9 +78,22 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         }
     }
 
-    public void BoughtItem(Item.ItemType itemType)
-    {
-        Debug.Log("Bought a " + itemType);
+    public void BoughtItem(GameObject item)
+    { 
+        _purchasedItems.Add(item);
     }
+
+    public void EquipItem(Item item)
+    {   
+        _damage += item._damage;
+    }
+
+    public void UnequipItem(Item item)
+    {
+        _damage -= item._damage;
+
+    }
+
+
 }
-    
+

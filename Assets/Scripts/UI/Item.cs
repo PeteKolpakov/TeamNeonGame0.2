@@ -4,22 +4,65 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    // Name
+    public string _name;
+    // Description
+    public string _description;
+    // Price
+    public int _price;
+
+    public int _damage = 1;
+    public ItemType itemType;
+    public float _fireRate = 1f;
+
+
+    private float _attackTimer;
+    // projectile amount
+    [SerializeField]
+    private int _projectileAmount = 1;
+    // spread angle
+    [SerializeField]
+    private float _spreadAngle = 5;
+    // Sprite
+    public Sprite _icon;
+    // projectile spawn point
+    [SerializeField]
+    private Transform _firePoint;
+    // Bullet prefab
+    [SerializeField]
+    private GameObject _projectilePrefab;
+    public bool _isEquipped = false;
+
     public enum ItemType
     {
-        Big_Gun,
-        Even_Bigger_gun,
-        Katana
+        Ranged,
+        Melee,
+        Consumable
     }
 
-    public static int ItemCost(ItemType itemType)
+    private void Update()
     {
-        switch (itemType)
+        if (_attackTimer < _fireRate)
         {
-            default:
-            case ItemType.Big_Gun:          return 50;
-            case ItemType.Even_Bigger_gun:  return 120;
-            case ItemType.Katana:           return 90;
+            _attackTimer += Time.deltaTime;
         }
     }
+
+    public void Attack()
+    {
+        // ammo check
+
+        if (_attackTimer < _fireRate)
+            return;
+
+        for (int i = 0; i < _projectileAmount; i++)
+        {
+            float angle = Random.Range(-_spreadAngle, _spreadAngle);
+            Instantiate(_projectilePrefab, _firePoint.position, transform.rotation * Quaternion.Euler(0, 0, angle));
+        }
+        _attackTimer -= _attackTimer;
+    }
+
+
 
 }
