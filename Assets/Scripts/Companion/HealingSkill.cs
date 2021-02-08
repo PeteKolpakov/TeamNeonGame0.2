@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Assets.Scripts.GameManager;
+using Assets.Scripts.EntityClass;
 
 namespace Companion
 {
     class HealingSkill : Skill
     {
-        private Entity _playerEntity;
-
         private Coroutine _healingCoroutine;
 
         [SerializeField]
@@ -15,12 +15,7 @@ namespace Companion
 
         [SerializeField]
         [Tooltip("Time to wait to heal again the player")]
-        private float _healCooldown = 10f; // Time in seconds
-
-        private void Start()
-        {
-            _playerEntity = _player.GetComponent<Entity>();
-        }
+        private float _healCooldown = 2f; // Time in seconds
 
         public override void Activate()
         {
@@ -39,8 +34,7 @@ namespace Companion
                 // If it's 1, player will be healed.
                 if (willHeal == 1)
                 {
-                    _playerEntity.Heal(_healAmount);
-                    Debug.Log("Healing Player");
+                    PlayerTracker.Instance.Player.GetComponent<PlayerBase>().Heal(_healAmount);
                 }
 
             }

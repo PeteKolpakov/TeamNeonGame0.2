@@ -282,6 +282,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5404111507466956513, guid: f0322d091f2b2a0409f0e620e657d2c1,
+        type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0322d091f2b2a0409f0e620e657d2c1, type: 3}
 --- !u!4 &242375013 stripped
@@ -301,6 +306,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealingSkill
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738956189375764801, guid: f5de8bc345a53f84baabb7f78d7b6554,
+        type: 3}
+      propertyPath: _healCooldown
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5738956189375764862, guid: f5de8bc345a53f84baabb7f78d7b6554,
         type: 3}
@@ -457,7 +467,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbfd8fbf4860a047ab76b4070a71197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerTransform: {fileID: 137357568}
   _petMovementSpeed: 2
   _petOffSet: 1.2
   _companionSkillButtonName: CompanionSkill
