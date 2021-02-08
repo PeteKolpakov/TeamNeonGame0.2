@@ -19,7 +19,7 @@ public class Item : MonoBehaviour
     private float _attackTimer;
     // projectile amount
     [SerializeField]
-    private int _projectileAmount = 1;
+    public int _projectileAmount = 1;
     // spread angle
     [SerializeField]
     private float _spreadAngle = 5;
@@ -33,12 +33,16 @@ public class Item : MonoBehaviour
     private GameObject _projectilePrefab;
     public bool _isEquipped = false;
 
+    public delegate void RemoveAmmo(int ammo);
+    public static event RemoveAmmo removeAmmo;
+
     public enum ItemType
     {
         Ranged,
         Melee,
         Consumable
     }
+
 
     private void Update()
     {
@@ -50,7 +54,6 @@ public class Item : MonoBehaviour
 
     public void Attack()
     {
-        // ammo check
 
         if (_attackTimer < _fireRate)
             return;
@@ -60,7 +63,10 @@ public class Item : MonoBehaviour
             float angle = Random.Range(-_spreadAngle, _spreadAngle);
             Instantiate(_projectilePrefab, _firePoint.position, transform.rotation * Quaternion.Euler(0, 0, angle));
         }
+        removeAmmo(_projectileAmount);
         _attackTimer -= _attackTimer;
+        
+        
     }
 
 
