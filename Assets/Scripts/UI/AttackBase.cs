@@ -6,7 +6,7 @@ using UnityEngine;
 abstract class AttackBase : MonoBehaviour
 {
     [SerializeField]
-    protected GameObject _weapon;
+    protected Item _weapon;
 
     protected virtual void Update()
     {
