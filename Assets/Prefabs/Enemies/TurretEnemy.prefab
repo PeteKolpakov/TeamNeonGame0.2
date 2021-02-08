@@ -112,6 +112,8 @@ GameObject:
   - component: {fileID: 1030341708709422756}
   - component: {fileID: 1030341708709422752}
   - component: {fileID: 1030341708709422754}
+  - component: {fileID: 377731357188578503}
+  - component: {fileID: 6582319218940928089}
   m_Layer: 0
   m_Name: TurretEnemy
   m_TagString: Untagged
@@ -198,10 +200,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb68a37b33b1d0439c8828b53f9fa59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemySpeed: 3
-  _stopingDistance: 4
-  _retreatdistance: 2
-  _startTimeShots: 2
+  EnemySpeed: 0
+  ShootingDistance: 18
+  StartTimeShots: 2
   _bulletPrefab: {fileID: 7305429848443478757, guid: fe01ad779f5a7ad4595c76882b77e15c,
     type: 3}
   _weapon: {fileID: 1030341707909668346}
@@ -231,6 +232,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &377731357188578503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030341708709422757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21f8cce31a7a8204f9c12cc0b7078f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _currentHealth: 0
+--- !u!114 &6582319218940928089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030341708709422757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee593e85e6f1994f80e0155cf1ec32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  _maxHealth: 100
 --- !u!1 &1030341709444230953
 GameObject:
   m_ObjectHideFlags: 0

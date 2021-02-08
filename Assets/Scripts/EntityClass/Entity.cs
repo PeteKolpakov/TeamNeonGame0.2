@@ -48,7 +48,7 @@ public class Entity : MonoBehaviour
         }
     }
 
-    public void Die()
+    protected virtual void Die()
     {
         Destroy(gameObject);
     }
