@@ -13,13 +13,10 @@ class PlayerShoot : AttackBase
     PlayerStatManager _playerStats;
 
     private Vector3 _mousePos;
+
+    
+
     //public ShopkeeperInteraction _shop;
-
-    public delegate void RemoveAmmo(int ammo);
-    public static event RemoveAmmo removeAmmo;
-
-    private bool _canShoot = true;
-    private float nextFireTime;
 
     protected override void Update()
     {
@@ -41,11 +38,10 @@ class PlayerShoot : AttackBase
 
     protected override void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && _weapon._projectileAmount <= _playerStats._currentAmmoCount)
         {
             _weapon.Attack();
-            removeAmmo(1);
-
+            
         }
     }
 }

@@ -1,3 +1,4 @@
+using Assets.Scripts.EntityClass;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,10 +30,13 @@ public class PlayerBullet : MonoBehaviour
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         PlayerStatManager player = playerObject.GetComponent<PlayerStatManager>();
 
-        if(collision.collider.CompareTag("Enemy"))
+        if(collision.collider.TryGetComponent(out Entity entity))
         {
-            EnemyStatManager enemy = collision.collider.GetComponent<EnemyStatManager>();
-            enemy.HurtEnemy(player._damage);
+            entity.TakeDamage(player._damage);
+            Destroy(gameObject);
+        }
+        else
+        {
             Destroy(gameObject);
         }
     }
