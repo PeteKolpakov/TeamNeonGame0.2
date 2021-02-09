@@ -50,7 +50,7 @@ class UI_Manager : MonoBehaviour
 
     private void Awake()
     {
-        PlayerShoot.removeAmmo += RemoveAmmo;
+        Item.removeAmmo += RemoveAmmo;
         PlayerStatManager.removeArmor += RemoveArmor;
         //ShopManager.addConsumable += AddConsumable;
     }
@@ -110,6 +110,7 @@ class UI_Manager : MonoBehaviour
     }
     public void RemoveAmmo(int count)
     {
+        _playerStatManager._currentAmmoCount -= count;
         
             for (int i = 1; i < count + 1; i++)
             {

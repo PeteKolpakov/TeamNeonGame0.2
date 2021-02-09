@@ -133,6 +133,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radius: 0.3
+  _groundCheckMask:
+    serializedVersion: 2
+    m_Bits: 9
 --- !u!114 &5404111507466956513
 MonoBehaviour:
   m_ObjectHideFlags: 0
