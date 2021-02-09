@@ -15,5 +15,10 @@ namespace Assets.Scripts.EntityClass
             Destroy(gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
+        protected override void TakeDamage(int damage)
+        {
+
+        }
     }
 }
