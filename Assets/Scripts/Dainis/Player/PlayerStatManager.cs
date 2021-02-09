@@ -27,43 +27,12 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
     public bool _canEquipItem;
 
-
-    public delegate void RemoveArmorPoints();
-    public static event RemoveArmorPoints removeArmor;
     
-
     private void Start()
     {
         _currentHealth = _maxHealth;
         _currentArmorPoints = _maxxArmorPoints;
         _currentAmmoCount = _maxxAmmoCount;
-    }
-    private void Update()
-    {                               // should use Die() method in Entity Class
-        //if (_currentHealth < 0)
-        //{
-        //    _currentHealth = 0;
-        //    gameObject.SetActive(false);
-        //    Debug.Log("You ded, lol");
-        //}
-    }
-    public void HurtPlayer(int damage)
-    {
-        float _APBlock = _currentArmorPoints * _armorPointHealth;
-        float damageTaken = damage - _APBlock;
-        if (damageTaken < 0)
-        {
-            damageTaken = 0;
-        }
-        _currentHealth -= damageTaken;
-
-        if (damage > _APBlock)
-        {
-            if (removeArmor != null)
-            {
-                removeArmor();
-            }
-        }
     }
 
     public bool TrySpendCurrency(int price)
