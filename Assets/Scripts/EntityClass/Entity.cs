@@ -33,7 +33,7 @@ public class Entity : MonoBehaviour
         if (health > _maxHealth) health = _maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         // TODO - take armor ponts into account
         health -= damage;
