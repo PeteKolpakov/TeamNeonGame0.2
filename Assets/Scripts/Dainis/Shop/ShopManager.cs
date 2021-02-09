@@ -52,7 +52,6 @@ class ShopManager : MonoBehaviour
         consumablePrefabList = new List<Object>(Resources.LoadAll("ConsumablePrefabs", typeof(GameObject)));
 
 
-
         PopulateShopList();
 
         // see the Unequip function to understand what the hell is this thing

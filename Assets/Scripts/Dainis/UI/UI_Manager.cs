@@ -11,6 +11,7 @@ class UI_Manager : MonoBehaviour
 {
     public PlayerStatManager _playerStatManager;
     public HealthBar _playerHealthbar;
+    public Entity player;
     //public ShopManager shopManager;
 
     //TODO: DONT FORGET TO REENABLE THIS SHIT
@@ -59,7 +60,7 @@ class UI_Manager : MonoBehaviour
 
     private void Start()
     {
-        _playerHealthbar.SetMaxHealth(_playerStatManager._maxHealth);
+        _playerHealthbar.SetMaxHealth(player.health);
         //_enemyHealhbar.SetMaxHealth(_enemyStats._maxHealth);
        
         SetAmmoCountDisplay();
@@ -68,30 +69,22 @@ class UI_Manager : MonoBehaviour
 
     private void Update()
     {
-        _playerHealthbar.SetHealth(_playerStatManager._currentHealth);
+        _playerHealthbar.SetHealth(player.health);
         //_enemyHealhbar.SetHealth(_enemyStats._currentHealth);
 
         _moneyDisplay.text = "$: " +_playerStatManager._moneyAmount.ToString();
         //_moneyShopDisplay.text = _playerStatManager._moneyAmount.ToString();
 
-        _healthDisplay.text = _playerStatManager._currentHealth.ToString() + " \\ " + _playerStatManager._maxHealth.ToString();
+        _healthDisplay.text = player.health.ToString() + " \\ " + player._maxHealth.ToString();
 
         //Debug ONLY
         // DELETE AFTER DONE
-        if (Input.GetKeyDown(KeyCode.G)&& _playerStatManager._currentAmmoCount != _playerStatManager._maxxAmmoCount)
+        if (Input.GetKeyDown(KeyCode.R)&& _playerStatManager._currentAmmoCount != _playerStatManager._maxxAmmoCount)
         {
             _playerStatManager._currentAmmoCount += 1;
             AddAmmo(1);
         }
-        if (Input.GetKeyDown(KeyCode.Q) && _charges != 0)
-        {
-            //UseConsumable();
-
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            //CompareEquipment();
-        }
+        
         // DELETE THIS SHIT AFTERWARDS
     }
 
