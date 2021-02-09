@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// TEMPORARY TEST CLASS
+
+[CreateAssetMenu(fileName = "New Item", menuName = "Assets/Resources/Test")]
 public class Item2 : ScriptableObject
 {
     // Name
@@ -11,18 +12,18 @@ public class Item2 : ScriptableObject
     // Price
     public int _price;
 
-    public int _damage = 1;
+    public int _damage;
     public ItemType itemType;
-    public float _fireRate = 1f;
+    public float _fireRate;
 
 
     private float _attackTimer;
     // projectile amount
 
-    public int _projectileAmount = 1;
+    public int _projectileAmount;
     // spread angle
 
-    public float _spreadAngle = 5;
+    public float _spreadAngle;
     // Sprite
     public Sprite _icon;
     // projectile spawn point
@@ -33,6 +34,10 @@ public class Item2 : ScriptableObject
     private GameObject _projectilePrefab;
     public bool _isEquipped = false;
 
+
+    public delegate void RemoveAmmo(int ammo);
+    public static event RemoveAmmo removeAmmo;
+
     public enum ItemType
     {
         Ranged,
@@ -40,27 +45,3 @@ public class Item2 : ScriptableObject
         Consumable
     }
 }
-
-   /* private void Update()
-    {
-        if (_attackTimer < _fireRate)
-        {
-            _attackTimer += Time.deltaTime;
-        }
-    }
-}*/
-
-/*   public void Attack()
-    {
-        // ammo check
-
-        if (_attackTimer < _fireRate)
-            return;
-
-        for (int i = 0; i < _projectileAmount; i++)
-        {
-            float angle = Random.Range(-_spreadAngle, _spreadAngle);
-            Instantiate(_projectilePrefab, _firePoint.position, transform.rotation * Quaternion.Euler(0, 0, angle));
-        }
-        _attackTimer -= _attackTimer;
-    }*/
