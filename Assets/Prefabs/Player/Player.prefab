@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5404111507466956513}
   - component: {fileID: 1869990351959778785}
   - component: {fileID: 1869990351959778784}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   _maxHealth: 100
+  player: {fileID: 0}
 --- !u!50 &1869990351959778785
 Rigidbody2D:
   serializedVersion: 4

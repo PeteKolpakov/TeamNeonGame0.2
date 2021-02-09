@@ -7,6 +7,7 @@ namespace Assets.Scripts.CameraBehaviour
 {
     class Chaser : MonoBehaviour
     {
+        // generic comment
         [SerializeField]
         private float _crawlSpeed = 2f;
 
