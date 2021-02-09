@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
+using Assets.Scripts.EntityClass;
 
 class UI_Manager : MonoBehaviour
 {
@@ -51,7 +52,7 @@ class UI_Manager : MonoBehaviour
     private void Awake()
     {
         Item.removeAmmo += RemoveAmmo;
-        PlayerStatManager.removeArmor += RemoveArmor;
+        PlayerBase.removeArmor += RemoveArmor;
         //ShopManager.addConsumable += AddConsumable;
     }
 
@@ -77,10 +78,6 @@ class UI_Manager : MonoBehaviour
 
         //Debug ONLY
         // DELETE AFTER DONE
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            _playerStatManager.HurtPlayer(2);
-        }
         if (Input.GetKeyDown(KeyCode.G)&& _playerStatManager._currentAmmoCount != _playerStatManager._maxxAmmoCount)
         {
             _playerStatManager._currentAmmoCount += 1;

@@ -30,10 +30,6 @@ class ShopManager : MonoBehaviour
     public List<Object> weaponPrefabList;
     public List<Object> consumablePrefabList;
 
-
-    public delegate void AddConsumable(ItemOld.ItemType itemType);
-    public static event AddConsumable addConsumable;
-
     // test
     public TextMeshProUGUI nameTextTest;
 

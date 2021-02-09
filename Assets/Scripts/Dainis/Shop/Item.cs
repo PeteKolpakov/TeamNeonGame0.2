@@ -16,6 +16,7 @@ public class Item : MonoBehaviour
     public float _fireRate = 1f;
 
 
+
     private float _attackTimer;
     // projectile amount
     [SerializeField]
@@ -52,7 +53,7 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void Attack()
+    public void Attack(bool isPlayer)
     {
 
         if (_attackTimer < _fireRate)
@@ -63,7 +64,11 @@ public class Item : MonoBehaviour
             float angle = Random.Range(-_spreadAngle, _spreadAngle);
             Instantiate(_projectilePrefab, _firePoint.position, transform.rotation * Quaternion.Euler(0, 0, angle));
         }
-        removeAmmo(_projectileAmount);
+        if(isPlayer == true)
+        {
+            removeAmmo(_projectileAmount);
+
+        }
         _attackTimer -= _attackTimer;
         
         
