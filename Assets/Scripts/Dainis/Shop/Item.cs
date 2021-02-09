@@ -16,6 +16,7 @@ public class Item : MonoBehaviour
     public float _fireRate = 1f;
 
 
+
     private float _attackTimer;
     // projectile amount
     [SerializeField]
