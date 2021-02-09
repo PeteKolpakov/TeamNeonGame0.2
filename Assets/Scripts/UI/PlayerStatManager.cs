@@ -39,19 +39,19 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         _currentAmmoCount = _maxxAmmoCount;
     }
     private void Update()
-    {
-        if (_currentHealth < 0)
-        {
-            _currentHealth = 0;
-            gameObject.SetActive(false);
-            Debug.Log("You ded, lol");
-        }
+    {                               // should use Die() method in Entity Class
+        //if (_currentHealth < 0)
+        //{
+        //    _currentHealth = 0;
+        //    gameObject.SetActive(false);
+        //    Debug.Log("You ded, lol");
+        //}
     }
     public void HurtPlayer(int damage)
     {
         float _APBlock = _currentArmorPoints * _armorPointHealth;
         float damageTaken = damage - _APBlock;
-        if(damageTaken < 0)
+        if (damageTaken < 0)
         {
             damageTaken = 0;
         }
