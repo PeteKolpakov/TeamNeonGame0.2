@@ -300,6 +300,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5404111507466956513, guid: f0322d091f2b2a0409f0e620e657d2c1,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 197418999}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0322d091f2b2a0409f0e620e657d2c1, type: 3}
 --- !u!1 &197418998 stripped
@@ -320,8 +325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4988f237b831a84e9b22e070dad59f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 5
-  _currentHealth: 0
   _maxxArmorPoints: 1
   _currentArmorPoints: 0
   _armorPointHealth: 1
@@ -348,6 +351,18 @@ MonoBehaviour:
   _weapon: {fileID: 2119149951}
   _sceneCamera: {fileID: 2022824864}
   _playerStats: {fileID: 197418999}
+--- !u!114 &197419003 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5404111507466956513, guid: f0322d091f2b2a0409f0e620e657d2c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 197418997}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197418998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82307163ed561d74d908e8219f761f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &242375013 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3629841848125617612, guid: 2b5b71af45e96f1438667ca939cb0586,
@@ -1574,6 +1589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerStatManager: {fileID: 197418999}
   _playerHealthbar: {fileID: 1882068313}
+  player: {fileID: 197419003}
   _maxAmmoAmount:
   - {fileID: 2113031849}
   - {fileID: 136773444}
@@ -1631,6 +1647,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shotgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 6666308040233647416, guid: 1372c6bd329431d40bb29f8cc020e81c,
+        type: 3}
+      propertyPath: _fireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6666308040233647416, guid: 1372c6bd329431d40bb29f8cc020e81c,
+        type: 3}
+      propertyPath: _projectileAmount
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6666308040233647417, guid: 1372c6bd329431d40bb29f8cc020e81c,
         type: 3}
