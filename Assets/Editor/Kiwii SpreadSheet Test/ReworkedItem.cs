@@ -3,7 +3,7 @@ using UnityEngine;
 // TEMPORARY TEST CLASS
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Assets/Resources/Test")]
-public class Item2 : ScriptableObject
+public class ReworkedItem : ScriptableObject
 {
     // Name
     public string _name;
