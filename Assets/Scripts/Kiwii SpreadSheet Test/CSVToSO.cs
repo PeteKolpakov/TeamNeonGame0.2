@@ -19,7 +19,7 @@ public class CSVToSO
             item._name = splitData[0];
             item._description = splitData[1];
             //  item._price = int.Parse(splitData[2]);
-            item._damage = int.TryParse(out splitData[3]);
+            //item._damage = int.TryParse(out splitData[3]);
             // item.itemType = splitData[4];
             item._fireRate = float.Parse(splitData[5]);
 
