@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.EntityClass
 {
-    class PlayerBase : Entity
+    public class PlayerBase : Entity
     {
         // base player class, should handle health and damage related functions
         public PlayerStatManager player;
