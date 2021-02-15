@@ -20,7 +20,7 @@ namespace Assets.Scripts.EntityClass
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-       /* public override void TakeDamage(float damage)
+        public override void TakeDamage(float damage)
         {
             float _APBlock = player._currentArmorPoints * player._armorPointHealth;
             float damageTaken = damage - _APBlock;
@@ -37,6 +37,6 @@ namespace Assets.Scripts.EntityClass
                     removeArmor();
                 }
             }
-        }*/
+        }
     }
 }

@@ -8,29 +8,33 @@ public class LandMine : MonoBehaviour
    private SpriteRenderer rend;
     public Color changeColor = Color.red;
 
-    public float lineOfSight;
+    public float LineOfSight = 4f;
 
     public float ExplosionDelay = 2f;
 
-    public bool ExplosionRange;
+    public float MaxDamage = 80f;
    
     private Transform player;
 
-
-    public float Damage = 20;
     public float SplashRange = 1;
+
+    public bool Triggered;
+
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rend = gameObject.GetComponent<SpriteRenderer>();
 
-        ExplosionRange = false;
+       
     }
 
     private void Update()
     {
-        DetectPlayer();
+        if (!Triggered)
+        {
+            DetectPlayer();
+        }
 
     }
 
@@ -38,66 +42,97 @@ public class LandMine : MonoBehaviour
     public void DetectPlayer()
     {
         float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
-        if (distanceFromPlayer <= lineOfSight)
+        if (distanceFromPlayer <= LineOfSight)
         {
-            rend.color = changeColor;
+
+            StartCoroutine(TriggerExplode());
+          
             Debug.Log("Explosion Range");
 
-            ExplosionRange = true;
-            AlBaghdadi();
         }
      
     }
 
-
-    //Explode and deal damage after being triggered
-    public void AlBaghdadi()
+    private IEnumerator TriggerExplode()
     {
-        if ((ExplosionRange == true))
-        {
-               Destroy(gameObject, ExplosionDelay);
-           
-            //Add damage to anything inside this range
+        Triggered = true;
+
+        rend.color = changeColor;
+        yield return new WaitForSeconds(ExplosionDelay);
+
+        Explode();
 
 
-
-        }
     }
 
 
-    //If player walks over mine it explodes and deals damage
-
- /*   private void OnCollisionEnter2D(Collision2D collision)
+    //Explode and deal damage after being triggered
+    public void Explode()
     {
 
-        if (collision.collider.TryGetComponent(out Entity health))
+        Debug.Log("Explodeee");
+
+        Destroy(gameObject);
+
+        //Add damage to anything inside this range
+
+        var hitColliders = Physics2D.OverlapCircleAll(transform.position, SplashRange);
+
+        // Detect all colliders inside the SplashRange
+        foreach (var hitCollider in hitColliders)
+        {
+            Debug.Log(hitCollider.name);
+
+            //Check if its an entity
+
+            if (hitCollider.TryGetComponent(out Entity entity))
+            {
+
+                var closestPoint = hitCollider.ClosestPoint(transform.position);
+
+                var distance = Vector3.Distance(closestPoint, transform.position);
+
+
+                //The damage percent depends on how close you are to the center of the explosion
+                var damage = Mathf.Lerp(MaxDamage, 0, distance / SplashRange);
+
+                //Deal damage to all Entities inside the range based on percentage related distance
+
+                
+
+                Debug.Log(entity.name + "Took" + damage);
+
+                entity.TakeDamage(damage);
+            }
+
+        }
+
+    }
+
+    //If player walks over mine it explodes and deals damage
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+
+        if (collider.TryGetComponent(out Entity health))
         {
             Debug.Log("inside");
 
-            //   health.TakeDamage(80);
+        
 
-            Destroy(gameObject, ExplosionDelay);
+            Explode();
 
 
-
-           *//* var hitColliders = Physics2D.OverlapCircleAll(transform.position, SplashRange);
-            foreach (var hitCollider in hitColliders)
-            {
-                var closestPoint = hitCollider.ClosestPoint(transform.position);
-                var distance = Vector3.Distance(closestPoint, transform.position);
-
-                var damagePercent = Mathf.InverseLerp(SplashRange, 0, distance);
-                health.TakeDamage(damagePercent * Damage);
-            }*//*
         }
 
-    }*/
+    }
+
 
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(transform.position, lineOfSight);
+        Gizmos.DrawWireSphere(transform.position, LineOfSight);
     }
 
 }

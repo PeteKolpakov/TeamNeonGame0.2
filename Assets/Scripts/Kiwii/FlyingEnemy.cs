@@ -5,14 +5,22 @@ using UnityEngine;
 public class FlyingEnemy : MonoBehaviour
 {
 
-    public float speed;
+    public float Speed;
 
-    public float lineOfSight;
+    public float LineOfSight = 8f;
 
-    public float shootingRange;
+    public float KamikazeRange = 6f;
 
+    public float SplashRange = 3f;
+
+
+    // This is the speed the normal Speed will be multiplied for (Speed * Kamikaze)
     [SerializeField]
-    private float kamikaze = 4;
+    private float Kamikaze = 4;
+
+    private float MaxDamage = 80f;
+
+
 
     private Transform player;
 
@@ -27,58 +35,85 @@ public class FlyingEnemy : MonoBehaviour
 
     }
 
-   public void DetectPlayer()
+    public void Explode()
+    {
+
+        Debug.Log("Explodeee");
+
+        Destroy(gameObject);
+
+        //Add damage to anything inside this range
+
+        var hitColliders = Physics2D.OverlapCircleAll(transform.position, SplashRange);
+
+        // Detect all colliders inside the SplashRange
+        foreach (var hitCollider in hitColliders)
+        {
+            Debug.Log(hitCollider.name);
+
+            //Check if its an entity
+
+            if (hitCollider.TryGetComponent(out Entity entity))
+            {
+
+                var closestPoint = hitCollider.ClosestPoint(transform.position);
+
+                var distance = Vector3.Distance(closestPoint, transform.position);
+
+
+                //The damage percent depends on how close you are to the center of the explosion
+
+                var damage = Mathf.Lerp(MaxDamage, 0, distance / SplashRange);
+
+                //Deal damage to all Entities inside the range based on percentage related distance
+
+              
+                Debug.Log(entity.name + "Took" + damage);
+
+                entity.TakeDamage(damage);
+            }
+
+        }
+    }
+
+    // Detect if player is within range of sight and KamikazeRange
+
+        public void DetectPlayer()
     {
         float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
-        if (distanceFromPlayer < lineOfSight && distanceFromPlayer > shootingRange)
+        if (distanceFromPlayer < LineOfSight && distanceFromPlayer > KamikazeRange)
         {
-            transform.position = Vector2.MoveTowards(this.transform.position, player.position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(this.transform.position, player.position, Speed * Time.deltaTime);
         }
-        else if (distanceFromPlayer <= shootingRange)
+        else if (distanceFromPlayer <= KamikazeRange)
         {
-            transform.position = Vector2.MoveTowards(this.transform.position, player.position, (speed * kamikaze) * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(this.transform.position, player.position, (Speed * Kamikaze) * Time.deltaTime);
            
         }
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         
-       if (collision.collider.TryGetComponent(out Entity health))
+       if (collider.TryGetComponent(out Entity health))
             {
                 Debug.Log("Hitting Player");
           
-            health.TakeDamage(50);
 
-            Destroy(gameObject);
+            Explode();
         }
       
     }
 
 
 
-    //Instantiate explosion
-    //    GameObject e = Instantiate(explosion) as GameObject;
-    //   e.transform.position = transform.position;
-
-    // deal damage to player here
-
-
-
-
-    public void AlBaghdadi()
-    {
-       
-        
-    }
-
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(transform.position, lineOfSight);
-        Gizmos.DrawWireSphere(transform.position, shootingRange);
+        Gizmos.DrawWireSphere(transform.position, LineOfSight);
+        Gizmos.DrawWireSphere(transform.position, KamikazeRange);
+        Gizmos.DrawWireSphere(transform.position, SplashRange);
     }
 
 }
