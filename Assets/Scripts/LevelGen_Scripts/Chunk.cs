@@ -10,6 +10,7 @@ namespace Assets.Scripts.LevelGen_Scripts
     [Serializable]
     struct Chunk
     {
+        public string name;
         public int GenerationRounds;
         public List<LevelSection> sections;
 

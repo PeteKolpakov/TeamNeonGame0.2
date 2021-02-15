@@ -35,7 +35,7 @@ namespace Assets.Scripts.LevelGen_Scripts
                     Destroy(gameObject);
                 }
                 else
-                {
+                {   // TODO : Move to somewhere where the error makes sense
                     Debug.LogError("LVL GEN ERROR: SECTION CHASER REFERENCE IS NULL");
                 }
             }

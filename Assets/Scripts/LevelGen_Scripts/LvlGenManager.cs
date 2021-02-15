@@ -19,7 +19,7 @@ namespace Assets.Scripts.LevelGen_Scripts
         [SerializeField]
         private int _preSpawnLevelParts = 4;
 
-        private List<LevelSection> _generatedSectionsLog;
+        private List<LevelSection> _generatedSectionsLog = new List<LevelSection>();
 
         [SerializeField]
         private List<Chunk> _chunks;
