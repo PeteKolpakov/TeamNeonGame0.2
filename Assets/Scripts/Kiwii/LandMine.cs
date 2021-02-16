@@ -114,7 +114,7 @@ public class LandMine : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
 
-        if (collider.TryGetComponent(out Entity health))
+        if (collider.TryGetComponent(out Entity entity))
         {
             Debug.Log("inside");
 
@@ -133,6 +133,7 @@ public class LandMine : MonoBehaviour
     {
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(transform.position, LineOfSight);
+        Gizmos.DrawWireSphere(transform.position, SplashRange);
     }
 
 }

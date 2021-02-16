@@ -10,7 +10,7 @@ public class PlayerBullet : MonoBehaviour
 
     private void Start()
     {
-        
+
         Destroy(gameObject, 4f);
     }
 
@@ -30,7 +30,7 @@ public class PlayerBullet : MonoBehaviour
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         PlayerStatManager player = playerObject.GetComponent<PlayerStatManager>();
 
-        if(collision.collider.TryGetComponent(out Entity entity))
+        if (collision.collider.TryGetComponent(out Entity entity))
         {
             entity.TakeDamage(player._damage);
             Destroy(gameObject);
@@ -40,4 +40,5 @@ public class PlayerBullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }

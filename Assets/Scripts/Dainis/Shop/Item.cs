@@ -64,14 +64,14 @@ public class Item : MonoBehaviour
             float angle = Random.Range(-_spreadAngle, _spreadAngle);
             Instantiate(_projectilePrefab, _firePoint.position, transform.rotation * Quaternion.Euler(0, 0, angle));
         }
-        if(isPlayer == true)
+        if (isPlayer == true)
         {
             removeAmmo(_projectileAmount);
 
         }
         _attackTimer -= _attackTimer;
-        
-        
+
+
     }
 
 

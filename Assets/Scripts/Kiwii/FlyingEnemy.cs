@@ -93,10 +93,12 @@ public class FlyingEnemy : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+ 
+    
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         
-       if (collider.TryGetComponent(out Entity health))
+       if (collision.collider.TryGetComponent(out Entity health))
             {
                 Debug.Log("Hitting Player");
           
