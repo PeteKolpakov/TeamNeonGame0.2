@@ -35,7 +35,7 @@ public class Item : MonoBehaviour
     public bool _isEquipped = false;
 
     public delegate void RemoveAmmo(int ammo);
-    public static event RemoveAmmo removeAmmo;
+    public event RemoveAmmo removeAmmo;
 
     public enum ItemType
     {
@@ -53,9 +53,8 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void Attack(bool isPlayer)
+    public void Attack()
     {
-
         if (_attackTimer < _fireRate)
             return;
 
@@ -64,16 +63,19 @@ public class Item : MonoBehaviour
             float angle = Random.Range(-_spreadAngle, _spreadAngle);
             Instantiate(_projectilePrefab, _firePoint.position, transform.rotation * Quaternion.Euler(0, 0, angle));
         }
+<<<<<<< HEAD
         if (isPlayer == true)
         {
             removeAmmo(_projectileAmount);
+=======
+>>>>>>> Production
 
-        }
+        removeAmmo?.Invoke(_projectileAmount);
         _attackTimer -= _attackTimer;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> Production
     }
-
-
-
 }

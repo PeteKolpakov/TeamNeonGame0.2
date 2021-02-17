@@ -102,9 +102,8 @@ public class LandMine : MonoBehaviour
 
                 Debug.Log(entity.name + "Took" + damage);
 
-                entity.TakeDamage(damage);
+                entity.TakeDamage(damage, DamageType.Bullet);
             }
-
         }
 
     }
