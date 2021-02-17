@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class PlayerStatManager : MonoBehaviour, IShopCustomer
 {
-    public int _maxHealth = 5;
-    public float _currentHealth;
 
     public int _maxxArmorPoints = 1;
     public int _currentArmorPoints;
@@ -30,7 +28,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     
     private void Start()
     {
-        _currentHealth = _maxHealth;
         _currentArmorPoints = _maxxArmorPoints;
         _currentAmmoCount = _maxxAmmoCount;
     }

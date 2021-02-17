@@ -8,6 +8,8 @@ abstract class AttackBase : MonoBehaviour
     [SerializeField]
     protected Item _weapon;
 
+    public Item CurrentWeapon { get => _weapon; }
+
     protected virtual void Update()
     {
         Aim();

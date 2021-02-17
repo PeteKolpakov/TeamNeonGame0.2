@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DamageType
+{
+    Bullet,
+    Fall
+}
+
 public class Entity : MonoBehaviour
 {
 
-    public int health;
+    public float health;
 
     [SerializeField]
-    private int _maxHealth;
+    public float _maxHealth;
 
     private void Update()
     {
@@ -22,24 +28,23 @@ public class Entity : MonoBehaviour
         health = _maxHealth;
     }
 
-    public int GetHealth()
+    public float GetHealth()
     {
         return health;
     }
 
-    public void Heal(int healAmount)
+    public void Heal(float healAmount)
     {
         health += healAmount;
         if (health > _maxHealth) health = _maxHealth;
     }
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(float damage, DamageType type)
     {
-        // TODO - take armor ponts into account
         health -= damage;
     }
 
-    public void SetNewMaxHealth(int newMax)
+    public void SetNewMaxHealth(float newMax)
     {
         _maxHealth = newMax;
         if(newMax <= 0)

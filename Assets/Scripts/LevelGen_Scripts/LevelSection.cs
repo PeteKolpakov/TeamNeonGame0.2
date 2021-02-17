@@ -30,8 +30,14 @@ namespace Assets.Scripts.LevelGen_Scripts
                 {
                     Destroy(gameObject);
                 }
+                else
+                {
+                    Debug.LogError("LVL GEN ERROR: SECTION CHASER REFERENCE IS NULL");
+                }
             }
         }
+
+        // sets up dependency injection for the chacer when section is pawned
         public void Setup(Transform chaser)
         {
             _chaser = chaser;

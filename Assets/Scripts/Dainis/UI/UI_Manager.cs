@@ -11,6 +11,7 @@ class UI_Manager : MonoBehaviour
 {
     public PlayerStatManager _playerStatManager;
     public HealthBar _playerHealthbar;
+    public Entity player;
     //public ShopManager shopManager;
 
     //TODO: DONT FORGET TO REENABLE THIS SHIT
@@ -21,8 +22,6 @@ class UI_Manager : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> _maxAmmoAmount;
-    public List<GameObject> _currentAmmoAmount;
-    public List<GameObject> _removedAmmo;
 
     public List<GameObject> _maxArmorPointCount;
     public List<GameObject> _currentArmorPoints;
@@ -51,86 +50,64 @@ class UI_Manager : MonoBehaviour
 
     private void Awake()
     {
-        Item.removeAmmo += RemoveAmmo;
+        PlayerShoot playerShoot = player.GetComponent<PlayerShoot>();
+
+        playerShoot.CurrentWeapon.removeAmmo += OnRemoveAmmo;
         PlayerBase.removeArmor += RemoveArmor;
         //ShopManager.addConsumable += AddConsumable;
     }
 
 
+
     private void Start()
     {
-        _playerHealthbar.SetMaxHealth(_playerStatManager._maxHealth);
+        _playerHealthbar.SetMaxHealth(player.health);
         //_enemyHealhbar.SetMaxHealth(_enemyStats._maxHealth);
-       
+
         SetAmmoCountDisplay();
         SetArmorPointDisplay();
     }
 
     private void Update()
     {
-        _playerHealthbar.SetHealth(_playerStatManager._currentHealth);
+        _playerHealthbar.SetHealth(player.health);
         //_enemyHealhbar.SetHealth(_enemyStats._currentHealth);
 
-        _moneyDisplay.text = "$: " +_playerStatManager._moneyAmount.ToString();
+        _moneyDisplay.text = "$: " + _playerStatManager._moneyAmount.ToString();
         //_moneyShopDisplay.text = _playerStatManager._moneyAmount.ToString();
 
-        _healthDisplay.text = _playerStatManager._currentHealth.ToString() + " \\ " + _playerStatManager._maxHealth.ToString();
+        _healthDisplay.text = player.health.ToString() + " \\ " + player._maxHealth.ToString();
 
         //Debug ONLY
         // DELETE AFTER DONE
-        if (Input.GetKeyDown(KeyCode.G)&& _playerStatManager._currentAmmoCount != _playerStatManager._maxxAmmoCount)
+        if (Input.GetKeyDown(KeyCode.R) && _playerStatManager._currentAmmoCount <= _playerStatManager._maxxAmmoCount)
         {
-            _playerStatManager._currentAmmoCount += 1;
-            AddAmmo(1);
+            _playerStatManager._currentAmmoCount += 10;
+            UpdateAmmoUI();
         }
-        if (Input.GetKeyDown(KeyCode.Q) && _charges != 0)
-        {
-            //UseConsumable();
 
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            //CompareEquipment();
-        }
         // DELETE THIS SHIT AFTERWARDS
     }
 
-  
 
     public void SetAmmoCountDisplay()
     {
-        for (int i = 0; i < _playerStatManager._maxxAmmoCount; i++)
+        for (int i = 0; i < _maxAmmoAmount.Count; i++)
         {
-            _currentAmmoAmount.Add(_maxAmmoAmount[i]);
-            _currentAmmoAmount[i].SetActive(true);
+            _maxAmmoAmount[i].SetActive(i < _playerStatManager._maxxAmmoCount);
         }
     }
-    public void RemoveAmmo(int count)
+    private void OnRemoveAmmo(int ammo)
     {
-        _playerStatManager._currentAmmoCount -= count;
-        
-            for (int i = 1; i < count + 1; i++)
-            {
-                int pos = _currentAmmoAmount.Count - 1;
-                _currentAmmoAmount[pos].SetActive(false);
-                _removedAmmo.Add(_currentAmmoAmount[pos]);
-                _currentAmmoAmount.RemoveAt(pos);
-            }
-        
-
+        UpdateAmmoUI();
     }
-    public void AddAmmo(int count)
-    {
-        
-            for (int i = 1; i < count + 1; i++)
-            {
-                int pos = _removedAmmo.Count - 1;
-                _currentAmmoAmount.Add(_removedAmmo[pos]);
-                _removedAmmo.RemoveAt(pos);
-                _currentAmmoAmount[_currentAmmoAmount.Count - 1].SetActive(true);
 
+    public void UpdateAmmoUI()
+    {
+        for (int i = 0; i < _maxAmmoAmount.Count; i++)
+        {
+            _maxAmmoAmount[i].SetActive(i < _playerStatManager._currentAmmoCount);
         }
-        
     }
 
     public void SetArmorPointDisplay()
