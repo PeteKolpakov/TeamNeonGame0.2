@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DamageType
+{
+    Bullet,
+    Fall
+}
+
 public class Entity : MonoBehaviour
 {
 
@@ -33,9 +39,8 @@ public class Entity : MonoBehaviour
         if (health > _maxHealth) health = _maxHealth;
     }
 
-    public virtual void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage, DamageType type)
     {
-        // TODO - take armor ponts into account
         health -= damage;
     }
 
