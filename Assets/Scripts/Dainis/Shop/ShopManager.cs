@@ -86,12 +86,8 @@ class ShopManager : MonoBehaviour
             // GameObject in the hierarchy otherwise, since we're always
             // instantiating a new parent with a new set of children.
 
-            shopItemTransform.Find("itemName").GetComponent<TextMeshProUGUI>().SetText(itemScript._name);
-            //nameTextTest.SetText(itemScript._name); // doesn't work for the first item in the list :thinking:
-            shopItemTransform.Find("itemDescription").GetComponent<TextMeshProUGUI>().SetText(itemScript._description);
-            shopItemTransform.Find("itemCost").GetComponent<TextMeshProUGUI>().SetText(itemScript._price.ToString());
-            shopItemTransform.Find("itemIcon").GetComponent<Image>().sprite = itemScript._icon;
-            shopItemTransform.Find("itemType").GetComponent<TextMeshProUGUI>().SetText(itemScript.itemType.ToString());
+            ShopItemUI itemUI = shopItemTransform.GetComponent<ShopItemUI>();
+            itemUI.SetUIFromItem(itemScript);
 
             // Positioning an item in the shop list
 
@@ -122,12 +118,8 @@ class ShopManager : MonoBehaviour
             // GameObject in the hierarchy otherwise, since we're always
             // instantiating a new parent with a new set of children.
 
-            shopItemTransformConsumable.Find("itemName").GetComponent<TextMeshProUGUI>().SetText(itemScript._name);
-            //nameTextTest.SetText(itemScript._name); // doesn't work for the first item in the list :thinking:
-            shopItemTransformConsumable.Find("itemDescription").GetComponent<TextMeshProUGUI>().SetText(itemScript._description);
-            shopItemTransformConsumable.Find("itemCost").GetComponent<TextMeshProUGUI>().SetText(itemScript._price.ToString());
-            shopItemTransformConsumable.Find("itemIcon").GetComponent<Image>().sprite = itemScript._icon;
-            shopItemTransformConsumable.Find("itemType").GetComponent<TextMeshProUGUI>().SetText(itemScript.itemType.ToString());
+            ShopItemUI itemUI = shopItemTransformConsumable.GetComponent<ShopItemUI>();
+            itemUI.SetUIFromItem(itemScript);
 
             // Positioning an item in the shop list
 
@@ -162,15 +154,14 @@ class ShopManager : MonoBehaviour
             button.colors = newColorBlock;
 
             // Enabling the equip button
-            Button equipButton = shopItemTransform.Find("equipButton").GetComponent<Button>();
-            equipButton.gameObject.SetActive(true);
+            ShopItemUI itemUI = shopItemTransform.GetComponent<ShopItemUI>();
 
             // Adding the "Equip" button event.
             // Since Button.Onclick is always an event -
             // can't do it any other way. But also since the EquipCheck
             // function is in the same class as this function, 
             // we do this magical thing with "delegate" AddListener.
-            equipButton.onClick.AddListener(delegate { EquipCheck(itemScript, item, shopCustomer, shopItemTransform); });
+            itemUI.SetEquipButton(delegate { EquipCheck(itemScript, item, shopCustomer, shopItemTransform); });
 
         }
     }
