@@ -63,19 +63,10 @@ public class Item : MonoBehaviour
             float angle = Random.Range(-_spreadAngle, _spreadAngle);
             Instantiate(_projectilePrefab, _firePoint.position, transform.rotation * Quaternion.Euler(0, 0, angle));
         }
-<<<<<<< HEAD
-        if (isPlayer == true)
-        {
-            removeAmmo(_projectileAmount);
-=======
->>>>>>> Production
+
 
         removeAmmo?.Invoke(_projectileAmount);
         _attackTimer -= _attackTimer;
-<<<<<<< HEAD
 
-
-=======
->>>>>>> Production
     }
 }

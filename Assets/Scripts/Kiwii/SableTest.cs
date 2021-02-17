@@ -122,7 +122,7 @@ public class SableTest : MonoBehaviour
             {
 
                 Debug.Log(entity.name + "Took" + _damage);
-                entity.TakeDamage(_damage);
+                entity.TakeDamage(_damage, DamageType.Bullet);
 
                 // ADD particle effects
 
