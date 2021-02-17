@@ -32,7 +32,7 @@ public class PlayerBullet : MonoBehaviour
 
         if(collision.collider.TryGetComponent(out Entity entity))
         {
-            entity.TakeDamage(player._damage);
+            entity.TakeDamage(player._damage, DamageType.Bullet);
             Destroy(gameObject);
         }
         else
