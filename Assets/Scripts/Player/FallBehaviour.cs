@@ -79,9 +79,9 @@ namespace Assets.Scripts.Player
             _scale = 0.5f;
             _sprite.sortingOrder = 0;
             _isFalling = true;
-            
-            //Remove Health ask Dainis what to call on the new player base
-            //_playerHealth.
+
+            //Remove Health
+            _playerHealth.TakeDamage(10, DamageType.Fall);
 
             _playerMovement.DisableMovement();
             Debug.Log("Falling");
