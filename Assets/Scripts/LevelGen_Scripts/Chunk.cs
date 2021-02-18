@@ -11,10 +11,10 @@ namespace Assets.Scripts.LevelGen_Scripts
     struct Chunk
     {
         public string name;
-        public int GenerationRounds;
+        //public float chaserSpeed; // TODO implement sections or chunks settings chaser's speed
         public List<LevelSection> sections;
 
-        private List<LevelSection> _spawnOrder;
+        private List<LevelSection> _spawnOrder;        
 
         public void Shuffle()
         {
@@ -27,11 +27,6 @@ namespace Assets.Scripts.LevelGen_Scripts
                 sections[listCount] = sections[k];
                 sections[k] = temp;
             }
-
-            //foreach (LevelSection c in sections)
-            //{
-            //    _spawnOrder.Add(c);
-            //}
         }
     }
 }

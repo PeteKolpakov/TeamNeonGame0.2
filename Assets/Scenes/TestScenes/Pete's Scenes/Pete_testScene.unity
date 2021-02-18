@@ -197,6 +197,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af1f50feca6e3624ab9fa05911576702, type: 3}
+--- !u!114 &49453642 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3629841848125617603, guid: 2b5b71af45e96f1438667ca939cb0586,
+    type: 3}
+  m_PrefabInstance: {fileID: 1525272444}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e41b12f7f097414bbed5bffed97edc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &137357563 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1869990351959778791, guid: f0322d091f2b2a0409f0e620e657d2c1,
@@ -491,7 +503,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _chaser
       value: 
-      objectReference: {fileID: 242375013}
+      objectReference: {fileID: 49453642}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
       propertyPath: _levelPart_Start
@@ -509,18 +521,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
+      propertyPath: _level.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
       propertyPath: _chunks.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
       propertyPath: _preSpawnLevelParts
-      value: 8
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
+      propertyPath: _level.Array.data[0].name
+      value: Part One
+      objectReference: {fileID: 0}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
+      propertyPath: _level.Array.data[1].name
+      value: Part Two
       objectReference: {fileID: 0}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
       propertyPath: _levelPartList.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
@@ -3178,6 +3205,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
+      propertyPath: _level.Array.data[0].sections.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
+      propertyPath: _level.Array.data[1].sections.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
       propertyPath: _chunks.Array.data[0].sections.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -3191,6 +3228,60 @@ PrefabInstance:
       propertyPath: _chunks.Array.data[2].sections.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
+      propertyPath: _level.Array.data[0].sections.Array.data[0]
+      value: 
+      objectReference: {fileID: 5309097350911853961, guid: b08a00ecc431fe04f811428fc3d892b5,
+        type: 3}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
+      propertyPath: _level.Array.data[0].sections.Array.data[1]
+      value: 
+      objectReference: {fileID: 5309097350911853961, guid: 78f6caeeee091ee469ea8e3341e1ce2c,
+        type: 3}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
+      propertyPath: _level.Array.data[0].sections.Array.data[2]
+      value: 
+      objectReference: {fileID: 5309097350911853961, guid: 0afc7fdd6af201844a17a2832ca071b8,
+        type: 3}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
+      propertyPath: _level.Array.data[0].sections.Array.data[3]
+      value: 
+      objectReference: {fileID: 5309097350911853961, guid: a26156fd30a342e48b879e1a217a8494,
+        type: 3}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
+      propertyPath: _level.Array.data[1].sections.Array.data[0]
+      value: 
+      objectReference: {fileID: 5309097350911853961, guid: 6b27356e0fd1ce34aa0294b94a483eae,
+        type: 3}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
+      propertyPath: _level.Array.data[1].sections.Array.data[1]
+      value: 
+      objectReference: {fileID: 5309097350911853961, guid: 335d66f61add32841bb83d954627023d,
+        type: 3}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
+      propertyPath: _level.Array.data[1].sections.Array.data[2]
+      value: 
+      objectReference: {fileID: 5309097350911853961, guid: df433923f1d597e4692037f37e70bd4c,
+        type: 3}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
+      propertyPath: _level.Array.data[1].sections.Array.data[3]
+      value: 
+      objectReference: {fileID: 5309097350911853961, guid: 88c2c1d51eb804445b302f2c19403008,
+        type: 3}
+    - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
+        type: 3}
+      propertyPath: _level.Array.data[1].sections.Array.data[4]
+      value: 
+      objectReference: {fileID: 5309097350911853961, guid: 4098b6c6ff13e0c4d85aeac7bb0e13ee,
+        type: 3}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
       propertyPath: _chunks.Array.data[0].sections.Array.data[0]
