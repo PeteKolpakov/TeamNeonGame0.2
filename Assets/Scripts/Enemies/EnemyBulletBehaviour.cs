@@ -33,8 +33,10 @@ public class EnemyBulletBehaviour : MonoBehaviour
     {
         if (collision.collider.TryGetComponent(out Entity health))
         {
-            health.TakeDamage(20);
+            health.TakeDamage(20, DamageType.Bullet);
         }
         Destroy(gameObject);
     }
+
+  
 }
