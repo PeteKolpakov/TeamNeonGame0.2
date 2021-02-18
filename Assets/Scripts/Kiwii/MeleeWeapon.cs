@@ -11,70 +11,48 @@ public class MeleeWeapon : MonoBehaviour
 
     public int MeleeDamage;
 
-    //   public LayerMask whatIsTrees;
 
     public float chopRange;
 
-    // I need to reference the animator 
+    // Reference the animator 
 
-    //public Animator dudeAnim;
+    //public Animator anim;
 
 
-    private void Update()
+    private void Start()
     {
-
-   //     MeleeAttack();
+        startTimeBtwChop = 0f;
 
     }
+    
 
     public void MeleeAttack()
     {
-
-      //  if ((timeBtwChop <= 0) && (Input.GetButton("click")))
-
         if (timeBtwChop <= 0)
         {
-
             //Add the animation trigger here
 
-            // anim.SetTrigger("Example");
-
-
-
+            // anim.SetTrigger("Daniel is gay");
 
             var CollidersToDamage = Physics2D.OverlapCircleAll(AttackPos.position, chopRange);
-
-            /* for (int i = 0; i < CollidersToDamage.Length; i++)
-             {*/
-
             foreach (var hitCollider in CollidersToDamage)
             {
                 Debug.Log(hitCollider.name);
-
-
-
                 //Check if its an entity
 
                 if (hitCollider.TryGetComponent(out Entity entity))
                 {
 
                     Debug.Log(entity.name + "Took" + MeleeDamage);
-                    entity.TakeDamage(MeleeDamage, DamageType.Bullet);
+                    entity.TakeDamage(MeleeDamage, DamageType.Melee);
 
                     // ADD particle effects
 
                 }
-
-
-            }
-            timeBtwChop = startTimeBtwChop;
-
+            } timeBtwChop = startTimeBtwChop;
         }
         else
-        {
-            timeBtwChop -= Time.deltaTime;
-        }
-    }
+        { timeBtwChop -= Time.deltaTime; }  }
 
 
     private void OnDrawGizmosSelected()
