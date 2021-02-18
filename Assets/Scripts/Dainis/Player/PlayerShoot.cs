@@ -43,7 +43,24 @@ class PlayerShoot : AttackBase
             _playerStats._currentAmmoCount -= _weapon._projectileAmount;
             _weapon.Attack();
         }
-      
+
+        if ((Input.GetKeyDown(KeyCode.Mouse1)) && (_weapon.TryGetComponent(out MeleeWeapon melee)))
+        {
+
+            Debug.Log("Cutting");
+
+            melee.MeleeAttack();
+
+        }
+        /*  if(_weapon.TryGetComponent(out MeleeWeapon melee))
+            {
+
+              melee.MeleeAttack();
+
+          }*/
+
+
     }
-}
+    }
+
 

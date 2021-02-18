@@ -125,8 +125,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee593e85e6f1994f80e0155cf1ec32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 60
-  _maxHealth: 0
+  health: 1
+  _maxHealth: 1
+  currencyPrefab: {fileID: 5108749737209198752, guid: aae6a1bda0edc8148b26dbf48ee187a5,
+    type: 3}
+  ammoPrefab: {fileID: 8743885004090351468, guid: 3d586cc4622327748874ed211619bac4,
+    type: 3}
+  currencyDropChance: 30
+  ammoDropChance: 30
 --- !u!114 &2947890936890169538
 MonoBehaviour:
   m_ObjectHideFlags: 0
