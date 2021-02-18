@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using Companion;
 
 
 class ShopManager : MonoBehaviour
@@ -15,11 +16,15 @@ class ShopManager : MonoBehaviour
 
     private Transform shopItemTemplate;
     private Transform shopItemTemplateConsumable;
+    private Transform shopItemTemplateSkill;
+
 
 
 
     public Transform weaponContainer;
     public Transform consumableContainer;
+    public Transform skillContainer;
+
 
 
     public List<Transform> children;
@@ -29,6 +34,8 @@ class ShopManager : MonoBehaviour
 
     public List<Object> weaponPrefabList;
     public List<Object> consumablePrefabList;
+    public List<Object> skillPrefabList;
+
 
     // test
     public TextMeshProUGUI nameTextTest;
@@ -42,6 +49,9 @@ class ShopManager : MonoBehaviour
         shopItemTemplateConsumable = consumableContainer.Find("shopItemTemplate");
         shopItemTemplateConsumable.gameObject.SetActive(false);
 
+        shopItemTemplateSkill = skillContainer.Find("shopItemTemplate");
+        shopItemTemplateSkill.gameObject.SetActive(false);
+
     }
 
     private void Start()
@@ -50,6 +60,7 @@ class ShopManager : MonoBehaviour
         // Grabbing all the weapon prefabs from a folder and putting them in a nice list
         weaponPrefabList = new List<Object>(Resources.LoadAll("WeaponPrefabs", typeof(GameObject)));
         consumablePrefabList = new List<Object>(Resources.LoadAll("ConsumablePrefabs", typeof(GameObject)));
+        skillPrefabList = new List<Object>(Resources.LoadAll("SkillPrefabs", typeof(GameObject)));
 
 
         PopulateShopList();
@@ -110,10 +121,6 @@ class ShopManager : MonoBehaviour
 
             // Updating the visuals
 
-            // I know strings are bad, but we can't reference a specific
-            // GameObject in the hierarchy otherwise, since we're always
-            // instantiating a new parent with a new set of children.
-
             ShopItemUI itemUI = shopItemTransformConsumable.GetComponent<ShopItemUI>();
             itemUI.SetUIFromItem(itemScript);
 
@@ -128,6 +135,33 @@ class ShopManager : MonoBehaviour
             // Adding a button event for "Buy"
             Button button = shopItemTransformConsumable.GetComponent<Button>();
             button.onClick.AddListener(delegate { BuyItem(itemScript, consumable, button, shopItemTransformConsumable); });
+
+        }
+        for (int i = 0; i < skillPrefabList.Count; i++)
+        {
+            Transform shopItemTransformSkill = Instantiate(shopItemTemplateSkill, skillContainer);
+
+            GameObject skillGO = (GameObject)skillPrefabList[i];
+            Skill skillScript =  skillGO.GetComponent<Skill>();
+
+            // Updating the visuals
+
+            ShopItemUI itemUI = shopItemTransformSkill.GetComponent<ShopItemUI>();
+            itemUI.SetUIFromSkillName(skillScript.GetSkillName());
+            itemUI.SetUIFromSkillDescription(skillScript.GetDescription());
+
+
+            // Positioning an item in the shop list
+
+            shopItemTransformSkill.gameObject.SetActive(true);
+            RectTransform shopItemRectTransform = shopItemTransformSkill.GetComponent<RectTransform>();
+            float shopItemHeight = 90f;
+            shopItemRectTransform.anchoredPosition = new Vector2(1, -shopItemHeight * positionIndex);
+            positionIndex++;
+
+            // Adding a button event for "Buy"
+            Button button = shopItemTransformSkill.GetComponent<Button>();
+            //button.onClick.AddListener(delegate { BuyItem(itemScript, consumable, button, shopItemTransformConsumable); });
 
         }
     }

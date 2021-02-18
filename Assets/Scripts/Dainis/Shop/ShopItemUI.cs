@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
+
 public class ShopItemUI : MonoBehaviour
 {
     [SerializeField] TMP_Text itemName;
@@ -22,6 +23,17 @@ public class ShopItemUI : MonoBehaviour
         itemType.SetText(item.itemType.ToString());
         itemIcon.sprite = item._icon;
     }
+
+    public void SetUIFromSkillName(string text)
+    {
+        itemName.SetText(text);
+    }
+    public void SetUIFromSkillDescription(string text)
+    {
+        itemDescription.SetText(text);
+    }
+
+
 
     public void SetEquipButton(UnityEngine.Events.UnityAction action)
     {
