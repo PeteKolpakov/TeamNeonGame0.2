@@ -1,3 +1,4 @@
+using Assets.Scripts.EntityClass;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Assets.Scripts.Player
         private float _radius;
         private Transform _currentGround;
         private PlayerMovement _playerMovement;
+        private PlayerBase _playerHealth;
         private SpriteRenderer _sprite;
         private Vector2 _exitPoint;
         private Rigidbody2D _rigidBody;
@@ -22,6 +24,7 @@ namespace Assets.Scripts.Player
         private void Start()
         {
             _playerMovement = GetComponent<PlayerMovement>();
+            _playerHealth = GetComponent<PlayerBase>();
             _sprite = GetComponent<SpriteRenderer>();
             _rigidBody = GetComponent<Rigidbody2D>();
             _isFalling = false;
@@ -76,7 +79,10 @@ namespace Assets.Scripts.Player
             _scale = 0.5f;
             _sprite.sortingOrder = 0;
             _isFalling = true;
-        
+
+            //Remove Health
+            _playerHealth.TakeDamage(10, DamageType.Fall);
+
             _playerMovement.DisableMovement();
             Debug.Log("Falling");
             StartCoroutine(DelayedRespawn(1f));
