@@ -43,6 +43,7 @@ class PlayerShoot : AttackBase
             _playerStats._currentAmmoCount -= _weapon._projectileAmount;
             _weapon.Attack();
         }
+      
     }
 }
 

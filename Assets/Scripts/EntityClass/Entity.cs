@@ -87,7 +87,7 @@ public class Entity : MonoBehaviour
     {
         if (_canDrop == true)
         {
-            int roll = Random.Range(1, 100);
+            float roll = Random.Range(1, 100f);
 
             if (roll <= currencyDropChance)
             {

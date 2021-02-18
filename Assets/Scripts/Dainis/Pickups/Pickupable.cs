@@ -24,12 +24,12 @@ public class Pickupable : MonoBehaviour
         {
             if(pickupableType.ToString() == "Currency")
             {
-                int amount = Random.Range(2, 6);
+                int amount = Random.Range(2, 7);
                 pickupCurrency(amount);
                 Destroy(gameObject);
             }else if(pickupableType.ToString() == "Ammo")
             {
-                int amount = Random.Range(1, 2);
+                int amount = Random.Range(1, 3);
                 pickupAmmo(amount);
                 Destroy(gameObject);
 
