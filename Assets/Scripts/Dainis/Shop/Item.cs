@@ -64,7 +64,9 @@ public class Item : MonoBehaviour
             Instantiate(_projectilePrefab, _firePoint.position, transform.rotation * Quaternion.Euler(0, 0, angle));
         }
 
+
         removeAmmo?.Invoke(_projectileAmount);
         _attackTimer -= _attackTimer;
+
     }
 }
