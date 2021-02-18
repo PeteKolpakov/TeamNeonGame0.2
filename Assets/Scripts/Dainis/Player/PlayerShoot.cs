@@ -44,14 +44,23 @@ class PlayerShoot : AttackBase
             _weapon.Attack();
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if ((Input.GetKeyDown(KeyCode.Mouse1)) && (_weapon.TryGetComponent(out MeleeWeapon melee)))
         {
-            MeleeWeapon _melee = _weapon.GetComponent<MeleeWeapon>();
 
-           // MeleeWeapon _melee = _weapon.TryGetComponent<MeleeWeapon>(out MeleeWeapon 
+            Debug.Log("Cutting");
 
-            _melee.MeleeAttack();
+            melee.MeleeAttack();
+
         }
+        /*  if(_weapon.TryGetComponent(out MeleeWeapon melee))
+            {
+
+              melee.MeleeAttack();
+
+          }*/
+
+
     }
-}
+    }
+
 
