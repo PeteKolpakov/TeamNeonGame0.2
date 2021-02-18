@@ -1,49 +1,67 @@
-﻿using System.Collections.Generic;
+﻿using NaughtyAttributes;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.LevelGen_Scripts
 {
-    class LvlGenManager : MonoBehaviour
+    public class LvlGenManager : MonoBehaviour
     {
         private const float MIN_DISTANCE_TO_SPAWN_TRIGGER = 20f;
 
         [SerializeField]
-        private Transform _levelPart_Start;
+        private Transform _lvlStartSection;
         [SerializeField]
         private List<Transform> _levelPartList;
         [SerializeField]
         private Transform _chaser;
         [SerializeField]
         private int _preSpawnLevelParts = 4;
+        [SerializeField]
+        private List<LevelSection> _generatedSectionsLog;
 
         private Vector3 _lastEndPos;
 
         private void Awake()
         {
-            // anchor LastEndPos to Lvl_Start Section (Section must be active in scene)
-            _lastEndPos = _levelPart_Start.Find("EndPos").position;         
-
-            // prespwn initial lvl parts
-            for (int i = 0; i < _preSpawnLevelParts; i++)
-            {
-                SpawnLevelPart();
-            }
-
+            Setup();
         }
-
         private void Update()
         {
             if (Vector3.Distance(_chaser.position, _lastEndPos) < MIN_DISTANCE_TO_SPAWN_TRIGGER)   // Spawn new Section when Chaser is close enough
             {
-                SpawnLevelPart();
+                SpawnLevelPart(RandomIndex(_levelPartList));
             }
         }
 
-        private void SpawnLevelPart()
+        [Button("Generate", EButtonEnableMode.Editor)]
+        private void Setup()
         {
-            Transform selectedSectionPrefab = _levelPartList[Random.Range(0, _levelPartList.Count)];             // Select next Section from list 
+            _lastEndPos = _lvlStartSection.Find("EndPos").position;                 // anchor LastEndPos to Lvl_Start Section (Section must be active in scene)
+            LogCheck();
+            Prespawn(_preSpawnLevelParts);                                          // prespwn initial lvl parts
+        }
+
+        [Button("Reset", EButtonEnableMode.Editor)]
+        private void EditorReset() // if section log is not empty, destroys logged sections and clears list
+        {
+            if(_generatedSectionsLog.Count > 0)                         
+            {
+                for (int i = 0; i < _generatedSectionsLog.Count; i++)
+                {
+                    DestroyImmediate(_generatedSectionsLog[i].gameObject);
+                }
+            }
+            _generatedSectionsLog.Clear();
+        }
+        private void SpawnLevelPart(int index)
+        {
+            Transform selectedSectionPrefab = _levelPartList[index];                                     // Select next Section from list 
             LevelSection lastSpawnedSectionTransform = SpawnSection(selectedSectionPrefab, _lastEndPos); // Spawn Selected Section at lastEndPos, Store Spawned Section Transform
-            _lastEndPos = lastSpawnedSectionTransform.EndPosition.position;                                  // Update last used EndPos
+            _lastEndPos = lastSpawnedSectionTransform.EndPosition.position;                              // Update last used EndPos
+            if (Application.isEditor)                                                       // if using the button to spawn in editor, add spawned sections to log
+            {                                                                                      
+                _generatedSectionsLog.Add(lastSpawnedSectionTransform);                     // log generated sections for later removal
+            }
         }
         private LevelSection SpawnSection(Transform levelPrefab, Vector3 spawnPosition)                
         {
@@ -51,6 +69,27 @@ namespace Assets.Scripts.LevelGen_Scripts
             LevelSection levelSection = sectionTransform.GetComponent<LevelSection>();
             levelSection.Setup(_chaser);
             return levelSection;                                                                            // return position it spawned at
+        }
+        private void Prespawn(int amount)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                SpawnLevelPart(RandomIndex(_levelPartList));
+            }
+        }  
+        private void LogCheck()
+        {
+            if (Application.isEditor)                                               // if using the button to spawn in editor, add spawned sections to log
+            {
+                if (_generatedSectionsLog.Count > 0)                                // if parts already generated, regenrate parts
+                {
+                    EditorReset();                    
+                }
+            }
+        } // check if section log exists on Generate Call
+        private int RandomIndex(List<Transform> list)
+        {
+            return Random.Range(0, list.Count);
         }
     }
 }

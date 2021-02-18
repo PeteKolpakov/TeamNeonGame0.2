@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.EntityClass
 {
-    class PlayerBase : Entity
+    public class PlayerBase : Entity
     {
         // base player class, should handle health and damage related functions
         public PlayerStatManager player;
@@ -20,22 +20,29 @@ namespace Assets.Scripts.EntityClass
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        public override void TakeDamage(float damage)
+        public override void TakeDamage(float damage, DamageType type)
         {
-            float _APBlock = player._currentArmorPoints * player._armorPointHealth;
-            float damageTaken = damage - _APBlock;
-            if (damageTaken < 0)
+            if(type == DamageType.Bullet)
             {
-                damageTaken = 0;
-            }
-            health -= damageTaken;
-
-            if (damage > _APBlock)
-            {
-                if (removeArmor != null)
+                float _APBlock = player._currentArmorPoints * player._armorPointHealth;
+                float damageTaken = damage - _APBlock;
+                if (damageTaken < 0)
                 {
-                    removeArmor();
+                    damageTaken = 0;
                 }
+                health -= damageTaken;
+
+                if (damage > _APBlock)
+                {
+                    if (removeArmor != null)
+                    {
+                        removeArmor();
+                    }
+                }
+            }
+            else if(type == DamageType.Fall)
+            {
+                health -= damage;
             }
         }
     }

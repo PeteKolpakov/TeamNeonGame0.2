@@ -40,13 +40,9 @@ class PlayerShoot : AttackBase
     {
         if (Input.GetKey(KeyCode.Mouse0) && _weapon._projectileAmount <= _playerStats._currentAmmoCount)
         {
-            _weapon.Attack(true);
-            
+            _playerStats._currentAmmoCount -= _weapon._projectileAmount;
+            _weapon.Attack();
         }
     }
 }
-        
-        
-    
-
 
