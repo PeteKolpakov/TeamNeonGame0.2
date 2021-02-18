@@ -7,7 +7,6 @@ namespace Assets.Scripts.CameraBehaviour
 {
     class Chaser : MonoBehaviour
     {
-        // generic comment
         [SerializeField]
         private float _crawlSpeed = 2f;
 
@@ -16,17 +15,17 @@ namespace Assets.Scripts.CameraBehaviour
 
         private Vector3 _direction;
 
-        public bool startCrawl;
+        private bool _canMove;
 
         private void Start()
         {
-            startCrawl = true;
+            SetCanMove(true);
             _direction = new Vector3(0, _crawlSpeed, 0);
         }
 
         private void Update()
         {
-            if (startCrawl == true)     
+            if (_canMove == true)     
             {
                 transform.Translate(_direction * Time.deltaTime);
             }
@@ -34,6 +33,16 @@ namespace Assets.Scripts.CameraBehaviour
             {
                 transform.position = new Vector3(0, _playerPosition.position.y, 0);
             }
+        }
+
+        public void SetCanMove(bool condition)
+        {
+            _canMove = condition;
+        }
+
+        public void SetSpeed(float speed)
+        {
+            _crawlSpeed = speed;
         }
     }
 }
