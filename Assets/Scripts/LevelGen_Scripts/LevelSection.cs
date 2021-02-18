@@ -32,7 +32,7 @@ namespace Assets.Scripts.LevelGen_Scripts
                 }
                 else
                 {
-                    Debug.LogError("LVL GEN ERROR: SECTION CHASER REFERENCE IS NULL");
+                    //Debug.LogError("LVL GEN ERROR: SECTION CHASER REFERENCE IS NULL");
                 }
             }
         }

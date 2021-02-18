@@ -38,7 +38,7 @@ class PlayerShoot : AttackBase
 
     protected override void Shoot()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && _weapon._projectileAmount <= _playerStats._currentAmmoCount)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && _weapon._projectileAmount <= _playerStats._currentAmmoCount)
         {
             _playerStats._currentAmmoCount -= _weapon._projectileAmount;
             _weapon.Attack();

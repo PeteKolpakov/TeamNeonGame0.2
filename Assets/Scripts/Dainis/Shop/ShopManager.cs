@@ -57,7 +57,7 @@ class ShopManager : MonoBehaviour
         // see the Unequip function to understand what the hell is this thing
         foreach (Transform child in weaponContainer)
         {
-            children.Add( child.Find("itemType"));
+            children.Add(child.Find("itemType"));
         }
         foreach (Transform child in consumableContainer)
         {
@@ -81,10 +81,6 @@ class ShopManager : MonoBehaviour
 
 
             // Updating the visuals
-
-            // I know strings are bad, but we can't reference a specific
-            // GameObject in the hierarchy otherwise, since we're always
-            // instantiating a new parent with a new set of children.
 
             ShopItemUI itemUI = shopItemTransform.GetComponent<ShopItemUI>();
             itemUI.SetUIFromItem(itemScript);
@@ -226,7 +222,7 @@ class ShopManager : MonoBehaviour
 
         // Update the sprite in the loadout
 
-        //UIManager.ChangeLoadoutSprite(weapon, itemScript);
+        UIManager.ChangeLoadoutSprite(weapon, itemScript);
         itemScript._isEquipped = true;
 
     }

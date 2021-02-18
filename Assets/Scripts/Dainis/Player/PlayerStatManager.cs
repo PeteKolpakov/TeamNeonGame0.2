@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class PlayerStatManager : MonoBehaviour, IShopCustomer
 {
+    [SerializeField]
+    UI_Manager UIManager;
 
     public int _maxxArmorPoints = 1;
     public int _currentArmorPoints;
@@ -30,6 +32,9 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     {
         _currentArmorPoints = _maxxArmorPoints;
         _currentAmmoCount = _maxxAmmoCount;
+
+        Pickupable.pickupAmmo += AddAmmo;
+        Pickupable.pickupCurrency += AddCurrency;
     }
 
     public bool TrySpendCurrency(int price)
@@ -38,8 +43,12 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         {
             _moneyAmount -= price;
             return true;
-        } else
+
+        }
+        else
         {
+            Debug.Log("Not enough money!");
+
             return false;
         }
     }
@@ -58,6 +67,17 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     {
         _damage -= item._damage;
 
+    }
+
+    public void AddCurrency(int currency)
+    {
+        _moneyAmount += currency;
+    }
+
+    public void AddAmmo(int ammo)
+    {
+        _currentAmmoCount += ammo;
+        UIManager.UpdateAmmoUI();
     }
 
 
