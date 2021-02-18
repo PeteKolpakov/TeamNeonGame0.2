@@ -153,6 +153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   _maxHealth: 1000
+  currencyPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
   currencyDropChance: 30
   ammoDropChance: 30
   player: {fileID: 197418999}
@@ -213,7 +215,7 @@ MonoBehaviour:
   _currentAmmoCount: 0
   _fireRate: 1
   _damage: 1
-  _moneyAmount: 8000
+  _moneyAmount: 0
   _purchasedItems: []
   _equippedItems: []
   _canEquipItem: 0
@@ -229,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec9a509a1573c3438d9efc969f660c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 6666308039890373555}
+  _weapon: {fileID: 0}
   _sceneCamera: {fileID: 0}
   _playerStats: {fileID: 197418999}
 --- !u!1001 &1972106891
@@ -253,11 +255,6 @@ PrefabInstance:
         type: 3}
       propertyPath: _fireRate
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6666308040233647416, guid: 1372c6bd329431d40bb29f8cc020e81c,
-        type: 3}
-      propertyPath: _spreadAngle
-      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6666308040233647416, guid: 1372c6bd329431d40bb29f8cc020e81c,
         type: 3}
@@ -327,15 +324,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1972106891}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6666308039890373555 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6666308040233647416, guid: 1372c6bd329431d40bb29f8cc020e81c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1972106891}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89b3df919a1c06f409ebe959ce31142b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
