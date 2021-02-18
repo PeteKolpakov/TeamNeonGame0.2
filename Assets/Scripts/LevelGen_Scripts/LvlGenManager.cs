@@ -37,33 +37,33 @@ namespace Assets.Scripts.LevelGen_Scripts
         }
         private void Update()
         {
-            Generate();
+           Generate();
+            Debug.Log(ShouldSpawn());
         }
 
         private void Generate()
-        {
+        {            
+            
             if (ShouldSpawn())
             {
                 for (int i = _chunkIndex; i < _level.Count; i++)
                 {
-                    for (int n = _sectionIndex; n < _level[_chunkIndex].sections.Count; n++)
+                    if (ShouldSpawn())
                     {
-                        GenerateSectionAt(_chunkIndex, _sectionIndex);
-                        _sectionIndex++;
+                        for (int n = _sectionIndex; n < _level[_chunkIndex].sections.Count; n++)
+                        {
+                            GenerateSectionAt(_chunkIndex, _sectionIndex);
+                            _sectionIndex++;                   
+                        }
+                        _sectionIndex = 0;
+                        _chunkIndex++;
                     }
-                }
-                if (_chunkIndex < _level.Count)
-                {
-                    _chunkIndex++;
-                }
-                else
-                {
                     _chaser.SetCanMove(false);
                     Debug.Log("All Level Sections Generated");
-                }               
+                }
             }
+            
         }
-
         private void GenerateSectionAt(int chunk, int section)
         {
             Transform selectedSectionPrefab = _level[chunk].sections[section].transform;                                     // Select next Section from list
