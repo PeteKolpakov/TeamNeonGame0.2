@@ -41,9 +41,9 @@ GameObject:
   - component: {fileID: 6666308040233647417}
   - component: {fileID: 6666308040233647366}
   - component: {fileID: 6666308040233647416}
-  - component: {fileID: -5443871545435266143}
+  - component: {fileID: 2863717535132064794}
   m_Layer: 0
-  m_Name: DanielIsGay
+  m_Name: Sable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 00088b267dce2f145a17828675df1931, type: 3}
-  m_Color: {r: 0.5923445, g: 0.6603774, b: 0.15263441, a: 1}
+  m_Color: {r: 0.15908137, g: 0.16037738, b: 0.15054291, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -127,12 +127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b3df919a1c06f409ebe959ce31142b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Katana
-  _description: :)
+  _name: Old Shotgun
+  _description: Shoots 3 bullets in a cone-like fashion. You know the drill.
   _price: 90
   _damage: 1
   itemType: 1
-  _fireRate: 0.1
+  _fireRate: 0.5
   _projectileAmount: 3
   _spreadAngle: 30
   _icon: {fileID: 21300000, guid: d63bd423a80feca41be002fba45aeb60, type: 3}
@@ -140,7 +140,7 @@ MonoBehaviour:
   _projectilePrefab: {fileID: 3351136579877671628, guid: 6db80e3557cf9854688284df4af6b70b,
     type: 3}
   _isEquipped: 0
---- !u!114 &-5443871545435266143
+--- !u!114 &2863717535132064794
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,6 +149,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6666308040233647367}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42fa903f8b252d74188d9e4c626fad24, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ce5c4e5ac3b89f4aa327d1f7602f574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startTimeBtwChop: 0.1
+  AttackPos: {fileID: 0}
+  MeleeDamage: 0
+  chopRange: 0

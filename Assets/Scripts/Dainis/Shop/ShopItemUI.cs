@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 
 public class ShopItemUI : MonoBehaviour
 {
-    [SerializeField] TMPro.TMP_Text itemName;
-    [SerializeField] TMPro.TMP_Text itemDescription;
-    [SerializeField] TMPro.TMP_Text itemCost;
-    [SerializeField] TMPro.TMP_Text itemType;
+    [SerializeField] TMP_Text itemName;
+    [SerializeField] TMP_Text itemDescription;
+    [SerializeField] TMP_Text itemCost;
+    [SerializeField] TMP_Text itemType;
     [SerializeField] Image itemIcon;
     [SerializeField] Button equipButton;
 
@@ -21,6 +23,17 @@ public class ShopItemUI : MonoBehaviour
         itemType.SetText(item.itemType.ToString());
         itemIcon.sprite = item._icon;
     }
+
+    public void SetUIFromSkillName(string text)
+    {
+        itemName.SetText(text);
+    }
+    public void SetUIFromSkillDescription(string text)
+    {
+        itemDescription.SetText(text);
+    }
+
+
 
     public void SetEquipButton(UnityEngine.Events.UnityAction action)
     {

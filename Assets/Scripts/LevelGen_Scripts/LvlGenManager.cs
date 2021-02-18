@@ -37,9 +37,10 @@ namespace Assets.Scripts.LevelGen_Scripts
         }
         private void Update()
         {
-           Generate();
-            Debug.Log(ShouldSpawn());
+           Generate();         
         }
+
+
 
         private void Generate()
         {            
