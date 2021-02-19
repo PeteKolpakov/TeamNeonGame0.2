@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using Companion;
 
 
 class ShopManager : MonoBehaviour
@@ -15,11 +16,15 @@ class ShopManager : MonoBehaviour
 
     private Transform shopItemTemplate;
     private Transform shopItemTemplateConsumable;
+    private Transform shopItemTemplateSkill;
+
 
 
 
     public Transform weaponContainer;
     public Transform consumableContainer;
+    public Transform skillContainer;
+
 
 
     public List<Transform> children;
@@ -29,6 +34,8 @@ class ShopManager : MonoBehaviour
 
     public List<Object> weaponPrefabList;
     public List<Object> consumablePrefabList;
+    public List<Object> skillPrefabList;
+
 
     // test
     public TextMeshProUGUI nameTextTest;
@@ -42,6 +49,9 @@ class ShopManager : MonoBehaviour
         shopItemTemplateConsumable = consumableContainer.Find("shopItemTemplate");
         shopItemTemplateConsumable.gameObject.SetActive(false);
 
+        shopItemTemplateSkill = skillContainer.Find("shopItemTemplate");
+        shopItemTemplateSkill.gameObject.SetActive(false);
+
     }
 
     private void Start()
@@ -50,6 +60,7 @@ class ShopManager : MonoBehaviour
         // Grabbing all the weapon prefabs from a folder and putting them in a nice list
         weaponPrefabList = new List<Object>(Resources.LoadAll("WeaponPrefabs", typeof(GameObject)));
         consumablePrefabList = new List<Object>(Resources.LoadAll("ConsumablePrefabs", typeof(GameObject)));
+        skillPrefabList = new List<Object>(Resources.LoadAll("SkillPrefabs", typeof(GameObject)));
 
 
         PopulateShopList();
@@ -57,7 +68,7 @@ class ShopManager : MonoBehaviour
         // see the Unequip function to understand what the hell is this thing
         foreach (Transform child in weaponContainer)
         {
-            children.Add( child.Find("itemType"));
+            children.Add(child.Find("itemType"));
         }
         foreach (Transform child in consumableContainer)
         {
@@ -82,16 +93,8 @@ class ShopManager : MonoBehaviour
 
             // Updating the visuals
 
-            // I know strings are bad, but we can't reference a specific
-            // GameObject in the hierarchy otherwise, since we're always
-            // instantiating a new parent with a new set of children.
-
-            shopItemTransform.Find("itemName").GetComponent<TextMeshProUGUI>().SetText(itemScript._name);
-            //nameTextTest.SetText(itemScript._name); // doesn't work for the first item in the list :thinking:
-            shopItemTransform.Find("itemDescription").GetComponent<TextMeshProUGUI>().SetText(itemScript._description);
-            shopItemTransform.Find("itemCost").GetComponent<TextMeshProUGUI>().SetText(itemScript._price.ToString());
-            shopItemTransform.Find("itemIcon").GetComponent<Image>().sprite = itemScript._icon;
-            shopItemTransform.Find("itemType").GetComponent<TextMeshProUGUI>().SetText(itemScript.itemType.ToString());
+            ShopItemUI itemUI = shopItemTransform.GetComponent<ShopItemUI>();
+            itemUI.SetUIFromItem(itemScript);
 
             // Positioning an item in the shop list
 
@@ -118,16 +121,8 @@ class ShopManager : MonoBehaviour
 
             // Updating the visuals
 
-            // I know strings are bad, but we can't reference a specific
-            // GameObject in the hierarchy otherwise, since we're always
-            // instantiating a new parent with a new set of children.
-
-            shopItemTransformConsumable.Find("itemName").GetComponent<TextMeshProUGUI>().SetText(itemScript._name);
-            //nameTextTest.SetText(itemScript._name); // doesn't work for the first item in the list :thinking:
-            shopItemTransformConsumable.Find("itemDescription").GetComponent<TextMeshProUGUI>().SetText(itemScript._description);
-            shopItemTransformConsumable.Find("itemCost").GetComponent<TextMeshProUGUI>().SetText(itemScript._price.ToString());
-            shopItemTransformConsumable.Find("itemIcon").GetComponent<Image>().sprite = itemScript._icon;
-            shopItemTransformConsumable.Find("itemType").GetComponent<TextMeshProUGUI>().SetText(itemScript.itemType.ToString());
+            ShopItemUI itemUI = shopItemTransformConsumable.GetComponent<ShopItemUI>();
+            itemUI.SetUIFromItem(itemScript);
 
             // Positioning an item in the shop list
 
@@ -140,6 +135,33 @@ class ShopManager : MonoBehaviour
             // Adding a button event for "Buy"
             Button button = shopItemTransformConsumable.GetComponent<Button>();
             button.onClick.AddListener(delegate { BuyItem(itemScript, consumable, button, shopItemTransformConsumable); });
+
+        }
+        for (int i = 0; i < skillPrefabList.Count; i++)
+        {
+            Transform shopItemTransformSkill = Instantiate(shopItemTemplateSkill, skillContainer);
+
+            GameObject skillGO = (GameObject)skillPrefabList[i];
+            Skill skillScript =  skillGO.GetComponent<Skill>();
+
+            // Updating the visuals
+
+            ShopItemUI itemUI = shopItemTransformSkill.GetComponent<ShopItemUI>();
+            itemUI.SetUIFromSkillName(skillScript.GetSkillName());
+            itemUI.SetUIFromSkillDescription(skillScript.GetDescription());
+
+
+            // Positioning an item in the shop list
+
+            shopItemTransformSkill.gameObject.SetActive(true);
+            RectTransform shopItemRectTransform = shopItemTransformSkill.GetComponent<RectTransform>();
+            float shopItemHeight = 90f;
+            shopItemRectTransform.anchoredPosition = new Vector2(1, -shopItemHeight * positionIndex);
+            positionIndex++;
+
+            // Adding a button event for "Buy"
+            Button button = shopItemTransformSkill.GetComponent<Button>();
+            //button.onClick.AddListener(delegate { BuyItem(itemScript, consumable, button, shopItemTransformConsumable); });
 
         }
     }
@@ -162,15 +184,14 @@ class ShopManager : MonoBehaviour
             button.colors = newColorBlock;
 
             // Enabling the equip button
-            Button equipButton = shopItemTransform.Find("equipButton").GetComponent<Button>();
-            equipButton.gameObject.SetActive(true);
+            ShopItemUI itemUI = shopItemTransform.GetComponent<ShopItemUI>();
 
             // Adding the "Equip" button event.
             // Since Button.Onclick is always an event -
             // can't do it any other way. But also since the EquipCheck
             // function is in the same class as this function, 
             // we do this magical thing with "delegate" AddListener.
-            equipButton.onClick.AddListener(delegate { EquipCheck(itemScript, item, shopCustomer, shopItemTransform); });
+            itemUI.SetEquipButton(delegate { EquipCheck(itemScript, item, shopCustomer, shopItemTransform); });
 
         }
     }
@@ -201,13 +222,13 @@ class ShopManager : MonoBehaviour
                 GameObject oldWeapon = player._equippedItems[_sameTypeIndex];
                 player._equippedItems[_sameTypeIndex] = weapon;
                 Equip(itemScript, weapon, shopCustomer, shopItemTransform);
-                shopCustomer.EquipItem(itemScript);
+                shopCustomer.EquipItem(itemScript, weapon);
                 Unequip(itemScript,shopItemTransform, oldWeapon);
             }
             else
             {
                 player._equippedItems.Add(weapon);
-                shopCustomer.EquipItem(itemScript);
+                shopCustomer.EquipItem(itemScript, weapon);
                 Equip(itemScript, weapon, shopCustomer, shopItemTransform);
             }
 
@@ -217,7 +238,7 @@ class ShopManager : MonoBehaviour
         else
         {
             player._equippedItems.Add(weapon);
-            shopCustomer.EquipItem(itemScript);
+            shopCustomer.EquipItem(itemScript, weapon);
             Equip(itemScript,weapon,shopCustomer, shopItemTransform);
         }
         _sameTypeCount = 0;
@@ -235,7 +256,7 @@ class ShopManager : MonoBehaviour
 
         // Update the sprite in the loadout
 
-        //UIManager.ChangeLoadoutSprite(weapon, itemScript);
+        UIManager.ChangeLoadoutSprite(weapon, itemScript);
         itemScript._isEquipped = true;
 
     }

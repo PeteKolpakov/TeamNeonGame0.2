@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd85e5679dc110441928fb1b54c71504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelPart_Start: {fileID: 0}
-  _levelPartList: []
+  _lvlStartSection: {fileID: 0}
   _chaser: {fileID: 0}
-  _preSpawnLevelParts: 4
+  _level: []
+  _chunkIndex: 0
+  _sectionIndex: 0
