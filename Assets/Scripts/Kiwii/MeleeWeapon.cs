@@ -37,14 +37,13 @@ public class MeleeWeapon : MonoBehaviour
             var CollidersToDamage = Physics2D.OverlapCircleAll(AttackPos.position, chopRange);
             foreach (var hitCollider in CollidersToDamage)
             {
-                Debug.Log(hitCollider.name);
                 //Check if its an entity
 
                 if (hitCollider.TryGetComponent(out Entity entity))
                 {
 
-                    Debug.Log(entity.name + "Took" + MeleeDamage);
-                    entity.TakeDamage(MeleeDamage, DamageType.Melee);
+                    Debug.Log(entity.name + " took " + MeleeDamage + " damage");
+                    entity.TakeDamage(MeleeDamage, DamageType.Bullet);
 
                     // ADD particle effects
 

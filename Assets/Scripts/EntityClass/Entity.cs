@@ -5,7 +5,6 @@ using UnityEngine;
 public enum DamageType
 {
     Bullet,
-    Melee,
     Fall
 }
 
@@ -22,8 +21,8 @@ public class Entity : MonoBehaviour
     [SerializeField]
     GameObject ammoPrefab;
 
-    public int currencyDropChance = 30;
-    public int ammoDropChance = 30;
+    public int currencyDropPercent = 30;
+    public int ammodropPercent = 30;
     private int getFuckedChance = 40;
 
     private bool _canDrop = true;
@@ -32,9 +31,9 @@ public class Entity : MonoBehaviour
     {
         health = _maxHealth;
 
-        getFuckedChance = 100 - currencyDropChance - ammoDropChance;
+        getFuckedChance = 100 - currencyDropPercent - ammodropPercent;
 
-        if (System.Math.Abs(getFuckedChance) + currencyDropChance + ammoDropChance != 100)
+        if (System.Math.Abs(getFuckedChance) + currencyDropPercent + ammodropPercent != 100)
         {
             Debug.Log("Drop percentages do not equal 100. Change the values and try again, darling");
             _canDrop = false;
@@ -90,17 +89,17 @@ public class Entity : MonoBehaviour
         {
             float roll = Random.Range(1, 100f);
 
-            if (roll <= currencyDropChance)
+            if (roll <= currencyDropPercent)
             {
                 Debug.Log("You get MONEY!");
                 Instantiate(currencyPrefab, transform.position, Quaternion.identity);
             }
-            else if (roll >= currencyDropChance + 1 && roll <= currencyDropChance + ammoDropChance)
+            else if (roll >= currencyDropPercent + 1 && roll <= currencyDropPercent + ammodropPercent)
             {
                 Debug.Log("You get AMMO!");
                 Instantiate(ammoPrefab, transform.position, Quaternion.identity);
             }
-            else if (roll >= currencyDropChance + ammoDropChance + 1)
+            else if (roll >= currencyDropPercent + ammodropPercent + 1)
             {
                 Debug.Log("You get FUCKED!");
 

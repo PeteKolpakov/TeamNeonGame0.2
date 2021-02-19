@@ -6,7 +6,7 @@ public interface IShopCustomer
 {
     void BoughtItem(GameObject item);
     bool TrySpendCurrency(int price);
-    void EquipItem(Item item);
+    void EquipItem(Item item, GameObject weapon);
     void UnequipItem(Item item);
 
 }
