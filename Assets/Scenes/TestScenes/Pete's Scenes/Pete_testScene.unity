@@ -319,6 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4988f237b831a84e9b22e070dad59f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIManager: {fileID: 0}
   _maxxArmorPoints: 1
   _currentArmorPoints: 0
   _armorPointHealth: 1
@@ -3252,19 +3253,19 @@ PrefabInstance:
         type: 3}
       propertyPath: _level.Array.data[0].sections.Array.data[0]
       value: 
-      objectReference: {fileID: 5309097350911853961, guid: 6b27356e0fd1ce34aa0294b94a483eae,
+      objectReference: {fileID: 5309097350911853961, guid: 335d66f61add32841bb83d954627023d,
         type: 3}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
       propertyPath: _level.Array.data[0].sections.Array.data[1]
       value: 
-      objectReference: {fileID: 5309097350911853961, guid: 335d66f61add32841bb83d954627023d,
+      objectReference: {fileID: 5309097350911853961, guid: df433923f1d597e4692037f37e70bd4c,
         type: 3}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
       propertyPath: _level.Array.data[0].sections.Array.data[2]
       value: 
-      objectReference: {fileID: 5309097350911853961, guid: df433923f1d597e4692037f37e70bd4c,
+      objectReference: {fileID: 5309097350911853961, guid: 6b27356e0fd1ce34aa0294b94a483eae,
         type: 3}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
@@ -3288,13 +3289,13 @@ PrefabInstance:
         type: 3}
       propertyPath: _level.Array.data[1].sections.Array.data[0]
       value: 
-      objectReference: {fileID: 5309097350911853961, guid: b08a00ecc431fe04f811428fc3d892b5,
+      objectReference: {fileID: 5309097350911853961, guid: 78f6caeeee091ee469ea8e3341e1ce2c,
         type: 3}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
       propertyPath: _level.Array.data[1].sections.Array.data[1]
       value: 
-      objectReference: {fileID: 5309097350911853961, guid: 78f6caeeee091ee469ea8e3341e1ce2c,
+      objectReference: {fileID: 5309097350911853961, guid: b08a00ecc431fe04f811428fc3d892b5,
         type: 3}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
@@ -3780,8 +3781,15 @@ MonoBehaviour:
   - {fileID: 0}
   _currentArmorPoints: []
   _moneyDisplay: {fileID: 0}
+  _moneyShopDisplay: {fileID: 0}
   _healthDisplay: {fileID: 0}
-  _charges: 2
+  firstSlot: {fileID: 0}
+  secondSlot: {fileID: 0}
+  thirdSlot: {fileID: 0}
+  firstGlobalSlot: {fileID: 0}
+  secondGlobalSlot: {fileID: 0}
+  thirdGlobalSlot: {fileID: 0}
+  ShopUI: {fileID: 0}
 --- !u!1001 &2119149950
 PrefabInstance:
   m_ObjectHideFlags: 0
