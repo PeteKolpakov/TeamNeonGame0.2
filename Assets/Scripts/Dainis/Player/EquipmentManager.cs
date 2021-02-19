@@ -7,7 +7,7 @@ public class EquipmentManager : MonoBehaviour
     public PlayerStatManager player;
     public Transform playerTransform;
 
-    public void SetCurrentRangedWeapon(Item weapon, GameObject weaponGO)
+    public void SetCurrentWeapon(Item weapon, GameObject weaponGO)
     {
         AttackBase attackBase = player.GetComponent<AttackBase>();
 
@@ -20,7 +20,10 @@ public class EquipmentManager : MonoBehaviour
 
             attackBase._weapon = newWeapon.GetComponent<Item>();
             Destroy(oldWeapon);
-
+        }
+        if(weapon.itemType == Item.ItemType.Melee)
+        {
+            attackBase._meleeWeapon = weapon;
         }
 
     }

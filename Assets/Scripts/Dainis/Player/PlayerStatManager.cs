@@ -63,7 +63,7 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     public void EquipItem(Item item, GameObject weapon)
     {   
         _damage += item._damage;
-        EQManager.SetCurrentRangedWeapon(item, weapon);
+        EQManager.SetCurrentWeapon(item, weapon);
     }
 
     public void UnequipItem(Item item)
