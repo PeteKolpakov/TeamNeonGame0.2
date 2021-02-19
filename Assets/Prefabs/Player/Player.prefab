@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1869990351959778784}
   - component: {fileID: 197418999}
   - component: {fileID: 197419000}
+  - component: {fileID: 1270551145}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -208,6 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIManager: {fileID: 0}
+  EQManager: {fileID: 1270551145}
   _maxxArmorPoints: 1
   _currentArmorPoints: 0
   _armorPointHealth: 1
@@ -215,7 +217,7 @@ MonoBehaviour:
   _currentAmmoCount: 0
   _fireRate: 1
   _damage: 1
-  _moneyAmount: 0
+  _moneyAmount: 1000
   _purchasedItems: []
   _equippedItems: []
   _canEquipItem: 0
@@ -232,8 +234,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weapon: {fileID: 6666308039890373555}
+  _meleeWeapon: {fileID: 0}
   _sceneCamera: {fileID: 0}
   _playerStats: {fileID: 197418999}
+--- !u!114 &1270551145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869990351959778797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1213068c25748f4fb6219a65fcf939b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 197418999}
+  playerTransform: {fileID: 1869990351959778787}
 --- !u!1001 &1972106891
 PrefabInstance:
   m_ObjectHideFlags: 0
