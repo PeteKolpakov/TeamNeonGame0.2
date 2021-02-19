@@ -32,8 +32,12 @@ class PlayerShoot : AttackBase
 
         float angle = Mathf.Atan2(direction.y, direction.x); // in radians
         _weapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+        _meleeWeapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+
         direction.z = 0;
         _weapon.transform.position = transform.position + direction.normalized;
+        _meleeWeapon.transform.position = transform.position + direction.normalized;
+
     }
 
     protected override void Shoot()
@@ -46,7 +50,7 @@ class PlayerShoot : AttackBase
 
         // Melee attack 
 
-       if ((Input.GetKeyDown(KeyCode.Mouse1)) && (_meleeWeapon.TryGetComponent(out MeleeWeapon melee)))
+       if ((Input.GetKeyDown(KeyCode.Mouse1)) && (_meleeWeapon.TryGetComponent(out MeleeWeapon melee)) == true)
             {
             
             Debug.Log("Cutting");
