@@ -38,17 +38,18 @@ class PlayerShoot : AttackBase
 
     protected override void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && _weapon._projectileAmount <= _playerStats._currentAmmoCount)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && _weapon._projectileAmount <= _playerStats._currentAmmoCount && _weapon.itemType == Item.ItemType.Ranged)
         {
+            Debug.Log("Shooting");
             _playerStats._currentAmmoCount -= _weapon._projectileAmount;
             _weapon.Attack();
         }
 
         // Melee attack 
 
-       if ((Input.GetKeyDown(KeyCode.Mouse1)) && (_weapon.TryGetComponent(out MeleeWeapon melee)))
+       if ((Input.GetKeyDown(KeyCode.Mouse1)) && (_weapon.TryGetComponent(out MeleeWeapon melee)) && _weapon.itemType == Item.ItemType.Melee)
             {
-
+            
             Debug.Log("Cutting");
 
             melee.MeleeAttack();

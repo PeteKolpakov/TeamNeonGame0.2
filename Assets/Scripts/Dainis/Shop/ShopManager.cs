@@ -222,13 +222,13 @@ class ShopManager : MonoBehaviour
                 GameObject oldWeapon = player._equippedItems[_sameTypeIndex];
                 player._equippedItems[_sameTypeIndex] = weapon;
                 Equip(itemScript, weapon, shopCustomer, shopItemTransform);
-                shopCustomer.EquipItem(itemScript);
+                shopCustomer.EquipItem(itemScript, weapon);
                 Unequip(itemScript,shopItemTransform, oldWeapon);
             }
             else
             {
                 player._equippedItems.Add(weapon);
-                shopCustomer.EquipItem(itemScript);
+                shopCustomer.EquipItem(itemScript, weapon);
                 Equip(itemScript, weapon, shopCustomer, shopItemTransform);
             }
 
@@ -238,7 +238,7 @@ class ShopManager : MonoBehaviour
         else
         {
             player._equippedItems.Add(weapon);
-            shopCustomer.EquipItem(itemScript);
+            shopCustomer.EquipItem(itemScript, weapon);
             Equip(itemScript,weapon,shopCustomer, shopItemTransform);
         }
         _sameTypeCount = 0;

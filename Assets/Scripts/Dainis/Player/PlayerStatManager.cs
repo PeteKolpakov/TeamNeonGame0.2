@@ -8,6 +8,8 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 {
     [SerializeField]
     UI_Manager UIManager;
+    [SerializeField]
+    EquipmentManager EQManager;
 
     public int _maxxArmorPoints = 1;
     public int _currentArmorPoints;
@@ -58,9 +60,10 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         _purchasedItems.Add(item);
     }
 
-    public void EquipItem(Item item)
+    public void EquipItem(Item item, GameObject weapon)
     {   
         _damage += item._damage;
+        EQManager.SetCurrentRangedWeapon(item, weapon);
     }
 
     public void UnequipItem(Item item)
