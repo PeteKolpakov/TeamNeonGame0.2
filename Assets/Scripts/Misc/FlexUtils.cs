@@ -7,7 +7,8 @@ namespace Assets.Scripts.Misc
     {
         /// <summary>
         /// Will only call the method when in Editor Mode,
-        /// Function Must return Void
+        /// HINT: () =>
+        /// 
         /// </summary>
         /// <param Method="f"></param>
         public static void OnlyRunInEditor(Action method)
