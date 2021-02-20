@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using NaughtyAttributes;
 using UnityEngine;
 
 namespace Assets.Scripts.LevelGen_Scripts
@@ -19,9 +17,14 @@ namespace Assets.Scripts.LevelGen_Scripts
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         // TODO : hook this shit up
         public bool HasSpawned = false;
+=======
+        [SerializeField][ReadOnly] // TODO : hook this shit up
+        private bool HasSpawned = false;
+>>>>>>> Pete'sBranch
 
         private void Awake()
         {
