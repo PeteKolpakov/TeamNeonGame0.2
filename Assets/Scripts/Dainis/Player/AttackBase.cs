@@ -5,8 +5,8 @@ using UnityEngine;
 
 abstract class AttackBase : MonoBehaviour
 {
-    [SerializeField]
-    protected Item _weapon;
+    public Item _weapon;
+    public Item _meleeWeapon;
 
     public Item CurrentWeapon { get => _weapon; }
 
@@ -15,7 +15,7 @@ abstract class AttackBase : MonoBehaviour
         Aim();
         Shoot();
     }
-
+    
     protected abstract void Aim();
     protected abstract void Shoot();
 }

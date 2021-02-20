@@ -9,18 +9,26 @@ namespace Assets.Scripts.LevelGen_Scripts
     {
         [SerializeField]
         private Transform _chaser;
-
         [SerializeField]
         private float _despawnDistance = 35f; // set this to be relevant to the height of the section
-
         [SerializeField]
         private Transform _endPosition;
-
         public Transform EndPosition
         {
             get { return _endPosition; }
         }
 
+<<<<<<< HEAD
+=======
+        // TODO : hook this shit up
+        public bool HasSpawned = false;
+
+        private void Awake()
+        {
+            HasSpawned = false;
+        }
+
+>>>>>>> Production
         private void Update()
         {
             if (_chaser != null)
@@ -29,17 +37,14 @@ namespace Assets.Scripts.LevelGen_Scripts
                 {
                     Destroy(gameObject);
                 }
-                else
-                {
-                    Debug.LogError("LVL GEN ERROR: SECTION CHASER REFERENCE IS NULL");
-                }
             }
         }
 
-        // sets up dependency injection for the chacer when section is pawned
+        // sets up dependency injection for the chacer when section is pawned, ALSO sets HasSpawned to True
         public void Setup(Transform chaser)
         {
             _chaser = chaser;
+            HasSpawned = true;
         }
 
 
