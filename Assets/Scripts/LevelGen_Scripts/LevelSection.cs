@@ -21,7 +21,6 @@ namespace Assets.Scripts.LevelGen_Scripts
             get { return _endPosition; }
         }
 
-
         private void Update()
         {
             if (_chaser != null)

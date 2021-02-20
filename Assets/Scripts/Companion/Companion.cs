@@ -50,29 +50,33 @@ namespace Companion
 
             // This can be moved into the player controller. It's used to activate the active skill of the companion.
             // Works by having a button in the InputManager of the project to assign to the CompanionSkill.
-            if (Input.GetButtonDown(_companionSkillButtonName))  
+            /*if (Input.GetButtonDown(_companionSkillButtonName))  
             {
                 ActivateSkill();
+            }*/
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                ActiveSkill();
             }
 
             // This activates the passive skill if not activated already
-            if (!_passiveSkill.IsActivated) _passiveSkill.Activate();
+            if (!_passiveSkill.IsActive()) _passiveSkill.Activate();
         }
 
-        public void ActivateSkill()
+        public void ActiveSkill()
         {
-            //TODO: Add an example skill to showcase
+            _activeSkill.Activate();
         }
 
         public void ChangeActiveSkill(Skill newActiveSkill)
         {
-            _activeSkill.DeactivateSkill();
+            _activeSkill.Deactivate();
             _activeSkill = newActiveSkill;
         }
 
         public void ChangePassiveSkill(Skill newPassiveSkill)
         {
-            _passiveSkill.DeactivateSkill();
+            _passiveSkill.Deactivate();
             _passiveSkill = newPassiveSkill;
         }
     }

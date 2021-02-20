@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerMaterial
+  m_Name: Mat_Shield
   m_Shader: {fileID: 4800000, guid: 58d090a58c24e844584c5b10247d4e48, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -57,7 +57,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaIntensity_Fade_1: 0
-    - _AlphaIntensity_Fade_2: 2.02
+    - _AlphaIntensity_Fade_2: 2
     - _BumpScale: 1
     - _ColorMask: 15
     - _Cutoff: 0.5
@@ -69,11 +69,11 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OperationBlend_Fade_1: 0.79
+    - _OperationBlend_Fade_1: 0.8
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpriteFade: 0.68
+    - _SpriteFade: 0.7
     - _SrcBlend: 1
     - _Stencil: 0
     - _StencilComp: 8

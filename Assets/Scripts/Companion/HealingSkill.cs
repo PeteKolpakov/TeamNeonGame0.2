@@ -17,6 +17,8 @@ namespace Companion
         [Tooltip("Time to wait to heal again the player")]
         private float _healCooldown = 2f; // Time in seconds
 
+        private bool _isActivated = false;
+
         public override void Activate()
         {
             _isActivated = true;
@@ -41,5 +43,11 @@ namespace Companion
             
         }
 
+        public override void Deactivate()
+        {
+            _isActivated = false;
+        }
+
+        public override bool IsActive() => _isActivated;
     }
 }
