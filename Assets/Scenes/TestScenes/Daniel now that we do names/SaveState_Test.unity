@@ -300,6 +300,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5404111507466956513, guid: f0322d091f2b2a0409f0e620e657d2c1,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 197418999}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0322d091f2b2a0409f0e620e657d2c1, type: 3}
 --- !u!1 &197418998 stripped
@@ -320,8 +325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4988f237b831a84e9b22e070dad59f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 5
-  _currentHealth: 0
   _maxxArmorPoints: 1
   _currentArmorPoints: 0
   _armorPointHealth: 1
@@ -1574,6 +1577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerStatManager: {fileID: 197418999}
   _playerHealthbar: {fileID: 1882068313}
+  player: {fileID: 0}
   _maxAmmoAmount:
   - {fileID: 2113031849}
   - {fileID: 136773444}
@@ -1589,8 +1593,6 @@ MonoBehaviour:
   - {fileID: 41200603}
   - {fileID: 1576608324}
   - {fileID: 478243770}
-  _currentAmmoAmount: []
-  _removedAmmo: []
   _maxArmorPointCount:
   - {fileID: 868667764}
   - {fileID: 720400497}
