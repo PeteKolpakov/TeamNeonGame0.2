@@ -27,7 +27,7 @@ class UI_Manager : MonoBehaviour
     public List<GameObject> _currentArmorPoints;
 
     public TMP_Text _moneyDisplay;
-    //public TMP_Text _moneyShopDisplay;
+    public TMP_Text _moneyShopDisplay;
 
     public TMP_Text _healthDisplay;
     //public TMP_Text _consumableCharges;
@@ -36,16 +36,17 @@ class UI_Manager : MonoBehaviour
 
     // TODO: put this shit in the ShopManager 
 
-    /*public Image firstSlot;
+    public Image firstSlot;
     public Image secondSlot;
     public Image thirdSlot;
     public Image firstGlobalSlot;
     public Image secondGlobalSlot;
-    public Image thirdGlobalSlot;*/
+    public Image thirdGlobalSlot;
 
     //public Transform consumableSlot;
 
-    public int _charges = 2;
+    public GameObject ShopUI;
+    private bool isShopOpen = false;
 
 
     private void Awake()
@@ -74,7 +75,7 @@ class UI_Manager : MonoBehaviour
         //_enemyHealhbar.SetHealth(_enemyStats._currentHealth);
 
         _moneyDisplay.text = "$: " + _playerStatManager._moneyAmount.ToString();
-        //_moneyShopDisplay.text = _playerStatManager._moneyAmount.ToString();
+        _moneyShopDisplay.text = _playerStatManager._moneyAmount.ToString();
 
         _healthDisplay.text = player.health.ToString() + " \\ " + player._maxHealth.ToString();
 
@@ -82,8 +83,24 @@ class UI_Manager : MonoBehaviour
         // DELETE AFTER DONE
         if (Input.GetKeyDown(KeyCode.R) && _playerStatManager._currentAmmoCount <= _playerStatManager._maxxAmmoCount)
         {
-            _playerStatManager._currentAmmoCount += 10;
+            _playerStatManager.AddAmmo(3);
             UpdateAmmoUI();
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(isShopOpen == false)
+            {
+                Time.timeScale = 0;
+                ShopUI.SetActive(true);
+                isShopOpen = true;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                ShopUI.SetActive(false);
+                isShopOpen = false;
+            }
+
         }
 
         // DELETE THIS SHIT AFTERWARDS
@@ -128,7 +145,7 @@ class UI_Manager : MonoBehaviour
         }
     }
 
-    /*public void ChangeLoadoutSprite(GameObject weapon, Item item)
+    public void ChangeLoadoutSprite(GameObject weapon, Item item)
     {
         if(item.itemType == Item.ItemType.Ranged )
         {
@@ -157,7 +174,7 @@ class UI_Manager : MonoBehaviour
         }
 
 
-    }*/
+    }
 
     /*public void AddConsumable(ItemOld.ItemType itemType)
     {
