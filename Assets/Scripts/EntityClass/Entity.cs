@@ -109,12 +109,5 @@ public class Entity : MonoBehaviour
     }
 
 
-    public void LoadPlayerData()
-    {
-        PlayerData data = PlayerData.PlayerData();
-        _maxHealth = data.PlayerMaxHealth;
-
-    }
-
 
 }
