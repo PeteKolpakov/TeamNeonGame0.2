@@ -17,7 +17,7 @@ public class MeleeWeapon : MonoBehaviour
 
     // Reference the animator 
 
-   // public Animator Anim;
+    //public Animator Anim;
 
 
     private void Start()
