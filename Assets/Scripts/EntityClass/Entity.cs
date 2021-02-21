@@ -42,7 +42,7 @@ public class Entity : MonoBehaviour
 
     private void Update()
     {
-        if (health<= 0)
+        if (health <= 0)
         {
             Die();
         }
@@ -71,7 +71,7 @@ public class Entity : MonoBehaviour
     public void SetNewMaxHealth(float newMax)
     {
         _maxHealth = newMax;
-        if(newMax <= 0)
+        if (newMax <= 0)
         {
             Debug.LogError("WARNING: Max HP must be greater than zero!");
         }
@@ -108,3 +108,4 @@ public class Entity : MonoBehaviour
         }
     }
 }
+
