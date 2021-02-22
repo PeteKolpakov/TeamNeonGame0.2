@@ -7,44 +7,33 @@ using System;
 
 public class SavingGameData : MonoBehaviour
 {
+    //Currently it will override the previous save
+
     private string DATA_PATH = "/Neonsave.dat";
 
     private PlayerData myPlayer;
 
-    /*private float playerCurrentMaxHealth;
-    private float playerCurrentMaxAmmo;
-    private float playerCurrentMaxArmor;
-    private int playerCurrentMoney;*/
+    // We always need to reference it in the inspector which is a problem when switching scenes
 
     [SerializeField]
     private Entity entity;  
     
-   
-
     [SerializeField]
     private PlayerStatManager PStats;
 
-    
+
     private void Start()
     {
-     /*   playerCurrentMaxHealth = entity._maxHealth; 
-        playerCurrentMaxArmor = PStats._maxxArmorPoints;
-        playerCurrentMaxAmmo = PStats._maxxAmmoCount;
-        playerCurrentMoney = PStats._moneyAmount;*/
-
-
+       // TO SAVE
 
        // SavingData();
 
 
         //    print("DATA PATH IS" + Application.persistentDataPath + DATA_PATH);
 
+        // LOADING DATA
 
-        LoadingData();
-        entity._maxHealth = myPlayer.PlayerMaxHealth;
-        PStats._maxxArmorPoints = myPlayer.PlayerMaxArmor;
-        PStats._maxxAmmoCount = myPlayer.PlayerMaxAmmo;
-        PStats._moneyAmount = myPlayer.PlayerCurrentMoney;
+      /*  LoadingData();
 
         if (myPlayer != null)
         {
@@ -55,7 +44,16 @@ public class SavingGameData : MonoBehaviour
             print("Player Shotgun:" + myPlayer.Shotgun);
             print("Player Gun:" + myPlayer.Gun);
             print("Player Katana:" + myPlayer.Katana);
-        }
+        }*/
+
+        // Here I am inputting these values into the scripts that handles them
+
+        entity._maxHealth = myPlayer.PlayerMaxHealth;
+        PStats._maxxArmorPoints = myPlayer.PlayerMaxArmor;
+        PStats._maxxAmmoCount = myPlayer.PlayerMaxAmmo;
+        PStats._moneyAmount = myPlayer.PlayerCurrentMoney;
+
+      
     }
 
 
@@ -80,6 +78,7 @@ public class SavingGameData : MonoBehaviour
 
 
 
+            // Encrypting the data
 
             BF.Serialize(file, p);
 
@@ -104,10 +103,6 @@ public class SavingGameData : MonoBehaviour
     {
         FileStream file = null;
 
-      /*  entity._maxHealth = myPlayer.PlayerMaxHealth;
-        PStats._maxxArmorPoints = myPlayer.PlayerMaxArmor;
-        PStats._maxxAmmoCount = myPlayer.PlayerMaxAmmo;
-        PStats._moneyAmount = myPlayer.PlayerCurrentMoney;*/
 
 
         try
@@ -115,7 +110,8 @@ public class SavingGameData : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
 
             file = File.Open(Application.persistentDataPath + DATA_PATH, FileMode.Open);
-            // Decrypting
+
+            // Decrypting the data
 
             myPlayer = bf.Deserialize(file) as PlayerData;
         }
@@ -137,15 +133,5 @@ public class SavingGameData : MonoBehaviour
 
     } 
 }
-
-    // THIS GOES IN THE PLAYER CLASS AND ALL OTHER CLASSES THAT NEED THE INFORMATION CONTAINED WITHIN THE PLAYERDATA FILE
-
-/*public void LoadPlayerData()
-{
-    PlayerData data = PlayerData();
-    maxhealth = data.PlayerMaxHealth; // Like this for all variables
-
-}*/
-
 
 
