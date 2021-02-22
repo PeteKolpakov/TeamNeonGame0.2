@@ -13,7 +13,7 @@ namespace Assets.Scripts.LevelGen_Scripts
         [SerializeField] private Chaser _chaser;
         [SerializeField] private List<Chunk> _level;
 
-        private List<LevelSection> _generatedSectionsLog = new List<LevelSection>(); // used for tracking generated sections in editor
+        //private List<LevelSection> _generatedSectionsCache = new List<LevelSection>(); // used for tracking generated sections in editor
 
         private Vector3 _lastEndPos;
 
@@ -37,7 +37,7 @@ namespace Assets.Scripts.LevelGen_Scripts
 
         private void Setup()
         {
-            IndexReset();
+            SceneReset();
             _lastEndPos = _lvlStartSection.Find("EndPos").position;
             ShuffleChunks();
             Generate();
@@ -67,15 +67,11 @@ namespace Assets.Scripts.LevelGen_Scripts
             Transform selectedSectionPrefab = _level[chunk].sections[section].transform;                                     // Select next Section from list
             LevelSection lastSpawnedSectionTransform = GenerateSection(selectedSectionPrefab, _lastEndPos); // Spawn Selected Section at lastEndPos, Store Spawned Section Transform
             _lastEndPos = lastSpawnedSectionTransform.EndPosition.position;                              // Update last used EndPos
-            if (Application.isEditor)                                                       // if using the button to spawn in editor, add spawned sections to log
-            {                                                                                      
-                _generatedSectionsLog.Add(lastSpawnedSectionTransform);                     // log generated sections for later removal
-            }
         }
         private LevelSection GenerateSection(Transform levelPrefab, Vector3 spawnPosition)   
             
         {
-            Transform sectionTransform = Instantiate(levelPrefab, spawnPosition, Quaternion.identity);         // Spawn Lvl Section
+            Transform sectionTransform = Instantiate(levelPrefab, spawnPosition, Quaternion.identity, transform);  // Spawn Lvl Section, make child of gen manager
             LevelSection levelSection = sectionTransform.GetComponent<LevelSection>();
             levelSection.Setup(_chaser.transform);
             return levelSection;                                                                            // return position it spawned at
@@ -86,13 +82,13 @@ namespace Assets.Scripts.LevelGen_Scripts
         //    _chaser.SetSpeed(_level[_chunkIndex].chaserSpeed);
         //}
 
-        private void LogCheck()
+        private void CheckCache()
         {
-            if (_generatedSectionsLog.Count > 0)   
+            if (transform.childCount > 0)   
             {
                 SceneReset();                    
             }
-        } // TODO : check if section log exists on Generate Call
+        }
         private bool ShouldSpawn()
         {
             if (Application.isPlaying)
@@ -121,27 +117,22 @@ namespace Assets.Scripts.LevelGen_Scripts
         {
             IndexReset();
             _lastEndPos = _lvlStartSection.Find("EndPos").position;
-            LogCheck();
+            CheckCache();
             ShuffleChunks();
             Generate();
-
         }
 
         [Button("Reset", EButtonEnableMode.Editor)]
         private void SceneReset() // if section log is not empty, destroys logged sections and clears list
         {
             IndexReset();
-            InitializeLog();
-            _generatedSectionsLog.Clear();
+            ClearSectionsCache();
         }
-        private void InitializeLog()
+        private void ClearSectionsCache()
         {
-            if (_generatedSectionsLog.Count > 0)
+            for (int i = transform.childCount -1; i >= 0; i--)
             {
-                for (int i = 0; i < _generatedSectionsLog.Count; i++)
-                {
-                    DestroyImmediate(_generatedSectionsLog[i].gameObject);
-                }
+                DestroyImmediate(transform.GetChild(i).gameObject);
             }
         }
     }

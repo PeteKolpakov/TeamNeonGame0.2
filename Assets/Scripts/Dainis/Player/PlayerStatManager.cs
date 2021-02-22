@@ -24,8 +24,8 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
     public int _moneyAmount;
 
-    public List<GameObject> _purchasedItems;
-    public List<GameObject> _equippedItems;
+    public List<ReworkedItem> _purchasedItems;
+    public List<ReworkedItem> _equippedItems;
 
     public bool _canEquipItem;
 
@@ -55,18 +55,18 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         }
     }
 
-    public void BoughtItem(GameObject item)
+    public void BoughtItem(ReworkedItem item)
     { 
         _purchasedItems.Add(item);
     }
 
-    public void EquipItem(Item item, GameObject weapon)
+    public void EquipItem(ReworkedItem item)
     {   
         _damage += item._damage;
-        EQManager.SetCurrentWeapon(item, weapon);
+        EQManager.SetCurrentWeapon(item);
     }
 
-    public void UnequipItem(Item item)
+    public void UnequipItem(ReworkedItem item)
     {
         _damage -= item._damage;
 
