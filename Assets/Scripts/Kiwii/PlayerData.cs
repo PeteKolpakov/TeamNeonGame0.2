@@ -6,29 +6,32 @@ using System;
 [Serializable]
 public class PlayerData
 {
-    private int currentLvl;
+    public int CurrentLvl;
 
-    private float playerMaxHealth;
-    private float playerMaxArmor;
-    private float playerMaxAmmo;
+    public float PlayerMaxHealth;
+    public int PlayerMaxArmor;
+    public int PlayerMaxAmmo;
 
-    private int playerCurrentMoney;
+    public int PlayerCurrentMoney;
 
-    private int shotgun;
-    private int gun;
-    private int katana;
+    public int Shotgun;
+    public int Gun;
+    public int Katana;
 
-    private int lvl1;
-    private int lvl2;
-    private int lvl3;
-  
+//   public int[] PurchasedGuns;
 
-    private int companion1;
-    private int companion2;
+   
 
-    public PlayerData() { }
+    public int companion1;
+    public int companion2;
 
-    public PlayerData(float playermaxhealth, float playermaxarmor, float playermaxammo, int playermoney, int shotgunn, int gunn, int katanaa) {
+    public PlayerData() {
+    
+    }
+
+
+ 
+   /* public PlayerData(float playermaxhealth, float playermaxarmor, float playermaxammo, int playermoney, int shotgunn, int gunn, int katanaa) {
 
         playerMaxHealth = playermaxhealth;
         playerMaxArmor = playermaxarmor;
@@ -41,8 +44,8 @@ public class PlayerData
 
 
 
-            }
-    public int CurrentLvl
+            }*/
+   /* public int CurrentLvl
     {
         get
         {
@@ -185,6 +188,6 @@ public class PlayerData
         }
     }
 
-
+*/
 
 }

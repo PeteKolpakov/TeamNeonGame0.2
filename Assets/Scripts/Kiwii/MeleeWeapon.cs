@@ -31,14 +31,14 @@ public class MeleeWeapon : MonoBehaviour
     {
         if (timeBtwChop <= 0)
         {
-           // if (Input.GetKeyDown(KeyCode.Mouse1)) {
+          
 
            //     Anim.SetTrigger("Cutting");
 
 
                 //Add the animation trigger here
 
-                // anim.SetTrigger("Daniel is gay");
+                // anim.SetTrigger("Daniel is not gay");
 
                 var CollidersToDamage = Physics2D.OverlapBoxAll(AttackPos.position, new Vector2(attackRangeX, attackRangeY), 0);
 

@@ -365,6 +365,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6666308039890373516, guid: f1a7b170970143343b61c861b7eb791c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1a7b170970143343b61c861b7eb791c, type: 3}
 --- !u!1001 &354206483
@@ -923,7 +928,7 @@ PrefabInstance:
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
       propertyPath: _level.Array.data[0].sections.Array.size
-      value: 20
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
@@ -988,7 +993,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _level.Array.data[0].sections.Array.data[9]
       value: 
-      objectReference: {fileID: 5309097350911853961, guid: a1e564ec078d3ed47b2098055fd83c25,
+      objectReference: {fileID: 5309097350911853961, guid: 05a5366b6ecc5324eaf78d238546f491,
         type: 3}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
@@ -1024,13 +1029,13 @@ PrefabInstance:
         type: 3}
       propertyPath: _level.Array.data[0].sections.Array.data[12]
       value: 
-      objectReference: {fileID: 5309097350911853961, guid: 05a5366b6ecc5324eaf78d238546f491,
+      objectReference: {fileID: 5309097350911853961, guid: a1e564ec078d3ed47b2098055fd83c25,
         type: 3}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
       propertyPath: _level.Array.data[0].sections.Array.data[13]
       value: 
-      objectReference: {fileID: 5309097350911853961, guid: 4120ff6961a669e4baed89170fe2ced5,
+      objectReference: {fileID: 5309097350911853961, guid: 5de3ce195f528d8459ab08acf996f30c,
         type: 3}
     - target: {fileID: 6944531078240361344, guid: 5fc50377f5b45374eb863e32093e39f4,
         type: 3}
