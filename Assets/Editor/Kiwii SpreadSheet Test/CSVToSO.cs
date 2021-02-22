@@ -63,9 +63,9 @@ public class CSVToSO : EditorWindow
         }
     }
 
-    private static bool ParseItemType(int line, string[] splitData, int index, ref ReworkedItem.ItemType reference)
+    private static bool ParseItemType(int line, string[] splitData, int index, ref ItemType reference)
     {
-        if (System.Enum.TryParse(splitData[index], out ReworkedItem.ItemType value))
+        if (System.Enum.TryParse(splitData[index], out ItemType value))
         {
             reference = value;
             return true;

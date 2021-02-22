@@ -32,19 +32,27 @@ class PlayerShoot : AttackBase
 
         float angle = Mathf.Atan2(direction.y, direction.x); // in radians
         _weapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
-        _meleeWeapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+        if(_meleeWeapon != null)
+        {
+            _meleeWeapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+
+        }
 
         direction.z = 0;
         _weapon.transform.position = transform.position + direction.normalized;
-        _meleeWeapon.transform.position = transform.position + direction.normalized;
+        if(_meleeWeapon != null)
+        {
+            _meleeWeapon.transform.position = transform.position + direction.normalized;
+
+        }
 
     }
 
     protected override void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && _weapon._projectileAmount <= _playerStats._currentAmmoCount)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && _weapon.projectileAmount <= _playerStats._currentAmmoCount)
         {
-            _playerStats._currentAmmoCount -= _weapon._projectileAmount;
+            _playerStats._currentAmmoCount -= _weapon.projectileAmount;
             _weapon.Attack();
         }
 
