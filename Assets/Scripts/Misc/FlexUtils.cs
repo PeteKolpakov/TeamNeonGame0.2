@@ -27,7 +27,7 @@ namespace Assets.Scripts.Misc
         /// <returns></returns>
         public static int RandInt(int from, int to)
         {
-            return UnityEngine.Random.Range(from, to - 1);
+            return UnityEngine.Random.Range(from, to + 1);
         }
         /// <summary>
         /// 50/50 true or false
