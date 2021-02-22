@@ -41,8 +41,9 @@ GameObject:
   - component: {fileID: 6666308040233647417}
   - component: {fileID: 6666308040233647366}
   - component: {fileID: 6666308040233647416}
+  - component: {fileID: 3758981685354664714}
   m_Layer: 0
-  m_Name: Rifle
+  m_Name: RangedWeaponTemplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,8 +56,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6666308040233647367}
-  m_LocalRotation: {x: -0, y: -0, z: -0.011164154, w: 0.9999377}
-  m_LocalPosition: {x: -2.2002497, y: -0.022326915, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.42616785, w: 0.90464413}
+  m_LocalPosition: {x: 0.6367619, y: 0.77106047, z: 0}
   m_LocalScale: {x: 0.8332, y: 0.2031, z: 1}
   m_Children:
   - {fileID: 6666308039632654906}
@@ -104,7 +105,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 00088b267dce2f145a17828675df1931, type: 3}
-  m_Color: {r: 0.8207547, g: 0.36683062, b: 0.18970275, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -126,16 +127,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b3df919a1c06f409ebe959ce31142b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: M4A1
-  _description: Shoots fast boom boom
-  _price: 120
-  _damage: 4
-  itemType: 0
-  _fireRate: 0.1
-  _projectileAmount: 1
-  _spreadAngle: 0
-  _icon: {fileID: 21300000, guid: d63bd423a80feca41be002fba45aeb60, type: 3}
   _firePoint: {fileID: 6666308039632654906}
-  _projectilePrefab: {fileID: 3351136579877671628, guid: 6db80e3557cf9854688284df4af6b70b,
-    type: 3}
+  itemData: {fileID: 11400000, guid: 9cf95e30425e7914d9a3f5834f29675d, type: 2}
   _isEquipped: 1
+--- !u!210 &3758981685354664714
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6666308040233647367}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 9

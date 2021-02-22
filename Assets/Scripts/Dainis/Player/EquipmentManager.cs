@@ -6,24 +6,27 @@ public class EquipmentManager : MonoBehaviour
 {
     public PlayerStatManager player;
     public Transform playerTransform;
+    public GameObject weaponTemplatePrefab;
 
-    public void SetCurrentWeapon(Item weapon, GameObject weaponGO)
+    public void SetCurrentWeapon(ReworkedItem weapon)
     {
         AttackBase attackBase = player.GetComponent<AttackBase>();
 
-        if(weapon.itemType == Item.ItemType.Ranged)
+        if(weapon.itemType == ItemType.Ranged)
         {
-            GameObject oldWeapon = attackBase._weapon.transform.gameObject;
-            GameObject newWeapon = Instantiate(weaponGO, playerTransform);
-            weaponGO.transform.position = attackBase._weapon.transform.position;
-            weaponGO.transform.rotation = attackBase._weapon.transform.rotation;
+            if(weaponTemplatePrefab == null)
+            {
+                Instantiate(weaponTemplatePrefab, playerTransform);
+            }
 
-            attackBase._weapon = newWeapon.GetComponent<Item>();
-            Destroy(oldWeapon);
+            Item templateWeaponItem = weaponTemplatePrefab.GetComponent<Item>();
+            templateWeaponItem.AssignData(weapon);
+
+
         }
-        if(weapon.itemType == Item.ItemType.Melee)
+        if(weapon.itemType == ItemType.Melee)
         {
-            attackBase._meleeWeapon = weapon;
+            //attackBase._meleeWeapon = weapon;
         }
 
     }

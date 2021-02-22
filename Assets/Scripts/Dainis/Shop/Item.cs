@@ -1,53 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
-    // Name
-    public string _name;
-    // Description
-    public string _description;
-    // Price
-    public int _price;
 
-    public int _damage = 1;
-    public ItemType itemType;
-    public float _fireRate = 1f;
-
-
-
-    private float _attackTimer;
-    // projectile amount
-    [SerializeField]
-    public int _projectileAmount = 1;
-    // spread angle
-    [SerializeField]
-    private float _spreadAngle = 5;
-    // Sprite
-    public Sprite _icon;
     // projectile spawn point
     [SerializeField]
     private Transform _firePoint;
-    // Bullet prefab
+
     [SerializeField]
-    private GameObject _projectilePrefab;
+    private ReworkedItem itemData;
+
+    private float _attackTimer;
+
     public bool _isEquipped = false;
 
     public delegate void RemoveAmmo(int ammo);
     public event RemoveAmmo removeAmmo;
 
-    public enum ItemType
-    {
-        Ranged,
-        Melee,
-        Consumable
-    }
+    public ItemType itemType { get => itemData.itemType; }
+    public int price { get => itemData._price; }
+    public Sprite icon { get => itemData._icon; }
+    public string itemName { get => itemData._name; }
+    public string itemDescription { get => itemData._description; }
+    public int damage { get => itemData._damage; }
+    public int projectileAmount { get => itemData._projectileAmount; }
 
 
     private void Update()
     {
-        if (_attackTimer < _fireRate)
+        if (_attackTimer < itemData._fireRate)
         {
             _attackTimer += Time.deltaTime;
         }
@@ -55,18 +39,24 @@ public class Item : MonoBehaviour
 
     public void Attack()
     {
-        if (_attackTimer < _fireRate)
+        if (_attackTimer < itemData._fireRate)
             return;
 
-        for (int i = 0; i < _projectileAmount; i++)
+        for (int i = 0; i < itemData._projectileAmount; i++)
         {
-            float angle = Random.Range(-_spreadAngle, _spreadAngle);
-            Instantiate(_projectilePrefab, _firePoint.position, transform.rotation * Quaternion.Euler(0, 0, angle));
+            float angle = Random.Range(-itemData._spreadAngle, itemData._spreadAngle);
+            Instantiate(itemData._projectilePrefab, _firePoint.position, transform.rotation * Quaternion.Euler(0, 0, angle));
         }
 
 
-        removeAmmo?.Invoke(_projectileAmount);
+        removeAmmo?.Invoke(itemData._projectileAmount);
         _attackTimer -= _attackTimer;
 
+    }
+
+    public void AssignData(ReworkedItem data)
+    {
+        itemData = data;
+        GetComponent<SpriteRenderer>().color = data.colour;
     }
 }

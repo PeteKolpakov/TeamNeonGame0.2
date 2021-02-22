@@ -145,31 +145,31 @@ class UI_Manager : MonoBehaviour
         }
     }
 
-    public void ChangeLoadoutSprite(GameObject weapon, Item item)
+    public void ChangeLoadoutSprite(ReworkedItem itemData)
     {
-        if(item.itemType == Item.ItemType.Ranged )
+        if(itemData.itemType == ItemType.Ranged )
         {
-            firstSlot.sprite = item._icon;
+            firstSlot.sprite = itemData._icon;
             firstSlot.color = Color.white;
 
-            firstGlobalSlot.sprite = item._icon;
+            firstGlobalSlot.sprite = itemData._icon;
             firstGlobalSlot.color = Color.white;
 
         }
-        if (item.itemType == Item.ItemType.Melee)
+        if (itemData.itemType == ItemType.Melee)
         {
-            secondSlot.sprite = item._icon;
+            secondSlot.sprite = itemData._icon;
             secondSlot.color = Color.white;
 
-            secondGlobalSlot.sprite = item._icon;
+            secondGlobalSlot.sprite = itemData._icon;
             secondGlobalSlot.color = Color.white;
         }
-        if (item.itemType == Item.ItemType.Consumable)
+        if (itemData.itemType == ItemType.Consumable)
         {
-            thirdSlot.sprite = item._icon;
+            thirdSlot.sprite = itemData._icon;
             thirdSlot.color = Color.white;
 
-            thirdGlobalSlot.sprite = item._icon;
+            thirdGlobalSlot.sprite = itemData._icon;
             thirdGlobalSlot.color = Color.white;
         }
 

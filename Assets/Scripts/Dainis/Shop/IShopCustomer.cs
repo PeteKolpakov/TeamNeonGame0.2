@@ -4,9 +4,9 @@ using UnityEngine;
 
 public interface IShopCustomer
 {
-    void BoughtItem(GameObject item);
+    void BoughtItem(ReworkedItem item);
     bool TrySpendCurrency(int price);
-    void EquipItem(Item item, GameObject weapon);
-    void UnequipItem(Item item);
+    void EquipItem(ReworkedItem item);
+    void UnequipItem(ReworkedItem item);
 
 }
