@@ -6,7 +6,7 @@ using UnityEngine;
 
 class PlayerShoot : AttackBase
 {
-    [SerializeField]
+
     Camera _sceneCamera;
 
     [SerializeField]
@@ -14,9 +14,14 @@ class PlayerShoot : AttackBase
 
     private Vector3 _mousePos;
 
-    
+
 
     //public ShopkeeperInteraction _shop;
+
+    private void Awake()
+    {
+        _sceneCamera = Camera.main;
+    }
 
     protected override void Update()
     {

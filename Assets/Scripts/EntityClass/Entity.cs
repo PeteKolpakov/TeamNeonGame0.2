@@ -23,7 +23,7 @@ public class Entity : MonoBehaviour
 
     public int currencyDropPercent = 30;
     public int ammodropPercent = 30;
-    private int getFuckedChance = 40;
+    private int nothingPercent = 40;
 
     private bool _canDrop = true;
 
@@ -31,9 +31,9 @@ public class Entity : MonoBehaviour
     {
         health = _maxHealth;
 
-        getFuckedChance = 100 - currencyDropPercent - ammodropPercent;
+        nothingPercent = 100 - currencyDropPercent - ammodropPercent;
 
-        if (System.Math.Abs(getFuckedChance) + currencyDropPercent + ammodropPercent != 100)
+        if (System.Math.Abs(nothingPercent) + currencyDropPercent + ammodropPercent != 100)
         {
             Debug.Log("Drop percentages do not equal 100. Change the values and try again, darling");
             _canDrop = false;
@@ -101,7 +101,7 @@ public class Entity : MonoBehaviour
             }
             else if (roll >= currencyDropPercent + ammodropPercent + 1)
             {
-                Debug.Log("You get FUCKED!");
+                Debug.Log("Nothing");
 
                 // GET FUCKED
             }
