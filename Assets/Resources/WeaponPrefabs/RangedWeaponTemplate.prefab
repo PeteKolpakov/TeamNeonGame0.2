@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 6666308040233647417}
   - component: {fileID: 6666308040233647366}
   - component: {fileID: 6666308040233647416}
-  - component: {fileID: 3758981685354664714}
   m_Layer: 0
   m_Name: RangedWeaponTemplate
   m_TagString: Untagged
@@ -128,16 +127,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 6666308039632654906}
-  itemData: {fileID: 11400000, guid: 9cf95e30425e7914d9a3f5834f29675d, type: 2}
+  itemData: {fileID: 11400000, guid: 52f6f13b733a3fa41bb01571fade1127, type: 2}
   _isEquipped: 1
---- !u!210 &3758981685354664714
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6666308040233647367}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 9

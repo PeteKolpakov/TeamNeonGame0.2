@@ -21,8 +21,8 @@ public class ReworkedItem : ScriptableObject
     public Color colour;
 
 
-    public delegate void RemoveAmmo(int ammo);
-    public static event RemoveAmmo removeAmmo;
+    //public delegate void RemoveAmmo(int ammo);
+    //public static event RemoveAmmo removeAmmo;
 
 }
     public enum ItemType
