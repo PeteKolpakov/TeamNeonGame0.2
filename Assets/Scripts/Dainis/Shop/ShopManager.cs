@@ -11,8 +11,7 @@ class ShopManager : MonoBehaviour
 {
     public PlayerStatManager player;
     public Transform playerTransform;
-    public TMP_Text _currencyDisplayText;
-    public UI_Manager UIManager;
+    private ShopUIManager UIManager;
 
     private Transform shopItemTemplate;
     private Transform shopItemTemplateConsumable;
@@ -41,6 +40,8 @@ class ShopManager : MonoBehaviour
 
         shopItemTemplateSkill = skillContainer.Find("shopItemTemplate");
         shopItemTemplateSkill.gameObject.SetActive(false);
+
+        UIManager = GetComponent<ShopUIManager>();
     }
     private void Start()
     {

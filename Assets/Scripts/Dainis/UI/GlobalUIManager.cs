@@ -27,9 +27,6 @@ class GlobalUIManager : MonoBehaviour
 
     private void Awake()
     {
-        PlayerShoot playerShoot = player.GetComponent<PlayerShoot>();
-
-        playerShoot.CurrentWeapon.removeAmmo += OnRemoveAmmo;
         PlayerBase.removeArmor += RemoveArmor;
 
         _playerHealthbar.SetMaxHealth(player.health);
@@ -37,6 +34,12 @@ class GlobalUIManager : MonoBehaviour
 
         SetAmmoCountDisplay();
         SetArmorPointDisplay();
+    }
+
+    private void Start()
+    {
+        PlayerShoot playerShoot = player.GetComponent<PlayerShoot>();
+        playerShoot.CurrentWeapon.removeAmmo += OnRemoveAmmo;
     }
 
     private void Update()
@@ -48,12 +51,13 @@ class GlobalUIManager : MonoBehaviour
         _healthDisplay.text = player.health.ToString() + " \\ " + player.maxHealth.ToString();
 
         // DEBUG ONLY //
-        if (Input.GetKeyDown(KeyCode.R) && _playerStatManager._currentAmmoCount <= _playerStatManager._maxxAmmoCount)
+        if (Input.GetKeyDown(KeyCode.R))
         {
             _playerStatManager.AddAmmo(3);
             UpdateAmmoUI();
         }
         // DEBUG ONLY //
+
 
 
     }
@@ -65,7 +69,7 @@ class GlobalUIManager : MonoBehaviour
             _maxAmmoAmount[i].SetActive(i < _playerStatManager._maxxAmmoCount);
         }
     }
-    private void OnRemoveAmmo(int ammo)
+    private void OnRemoveAmmo()
     {
         UpdateAmmoUI();
     }

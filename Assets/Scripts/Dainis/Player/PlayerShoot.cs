@@ -32,7 +32,7 @@ class PlayerShoot : AttackBase
 
         float angle = Mathf.Atan2(direction.y, direction.x); // in radians
         _weapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
-        if(_meleeWeapon != null)
+        if (_meleeWeapon != null)
         {
             _meleeWeapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
 
@@ -40,7 +40,7 @@ class PlayerShoot : AttackBase
 
         direction.z = 0;
         _weapon.transform.position = transform.position + direction.normalized;
-        if(_meleeWeapon != null)
+        if (_meleeWeapon != null)
         {
             _meleeWeapon.transform.position = transform.position + direction.normalized;
 
@@ -52,21 +52,22 @@ class PlayerShoot : AttackBase
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && _weapon.projectileAmount <= _playerStats._currentAmmoCount)
         {
-            _playerStats._currentAmmoCount -= _weapon.projectileAmount;
             _weapon.Attack();
+            _playerStats._currentAmmoCount -= _weapon.projectileAmount;
         }
 
         // Melee attack 
 
-       if ((Input.GetKeyDown(KeyCode.Mouse1)) && (_meleeWeapon.TryGetComponent(out MeleeWeapon melee)) == true)
-            {
-            
+        if ((Input.GetKeyDown(KeyCode.Mouse1)) && (_meleeWeapon.TryGetComponent(out MeleeWeapon melee)) == true)
+        {
+
             Debug.Log("Cutting");
 
             melee.MeleeAttack();
 
         }
     }
-    }
+
+}
 
 

@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class PlayerStatManager : MonoBehaviour, IShopCustomer
 {
-    UI_Manager UIManager;
+    [SerializeField]
+    GlobalUIManager UIManager;
     EquipmentManager EQManager;
 
     public int _maxxArmorPoints = 1;
@@ -27,7 +28,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
     private void Awake()
     {
-        UIManager = Camera.main.GetComponent<UI_Manager>();
         EQManager = GetComponent<EquipmentManager>();
     }
     private void Start()

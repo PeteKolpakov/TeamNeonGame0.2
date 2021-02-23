@@ -11,7 +11,7 @@ class ShopUIManager : MonoBehaviour
 {
     public PlayerStatManager _playerStatManager;
 
-    public ShopManager shopManager;
+    private ShopManager shopManager;
     public TMP_Text _moneyShopDisplay;
 
     public Image firstSlot;
@@ -25,12 +25,16 @@ class ShopUIManager : MonoBehaviour
     public GameObject ShopUI;
     private bool isShopOpen = false;
 
+    private void Awake()
+    {
+        shopManager = GetComponent<ShopManager>();
+    }
+
     private void Update()
     {
         _moneyShopDisplay.text = _playerStatManager._moneyAmount.ToString();
 
-
-        // DEBUG ONLY//
+        // DEBUG ONLY //
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (isShopOpen == false)
