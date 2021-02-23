@@ -83,13 +83,7 @@ namespace Assets.Scripts.Player
         private void DashStart()
         {       
             Vector2 dashPosition = ((Vector2)transform.position + _moveDirection * _dashLenght);
-            /**RaycastHit2D raycastHit2d = Physics2D.Raycast(transform.position, _direction, _dashLenght, _dashLayerMask);
-           
-            if (raycastHit2d.collider != null)
-            {
-                Debug.DrawLine(rb.position, raycastHit2d.point, Color.cyan, 2f);
-                dashPosition = raycastHit2d.point;
-            }**/
+            
             Vector2 dashVelocity = (dashPosition - (Vector2)transform.position) / _dashDuration;
             rigidBody.velocity = dashVelocity;
             _timeSinceDash = 0;        

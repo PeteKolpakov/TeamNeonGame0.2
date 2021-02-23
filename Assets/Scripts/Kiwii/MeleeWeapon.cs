@@ -12,11 +12,12 @@ public class MeleeWeapon : MonoBehaviour
     public int MeleeDamage;
 
 
-    public float chopRange;
+    public float attackRangeX;
+    public float attackRangeY;
 
     // Reference the animator 
 
-    //public Animator anim;
+   // public Animator Anim;
 
 
     private void Start()
@@ -24,40 +25,46 @@ public class MeleeWeapon : MonoBehaviour
         startTimeBtwChop = 0f;
 
     }
-    
+
 
     public void MeleeAttack()
     {
         if (timeBtwChop <= 0)
         {
-            //Add the animation trigger here
+           // if (Input.GetKeyDown(KeyCode.Mouse1)) {
 
-            // anim.SetTrigger("Daniel is gay");
+           //     Anim.SetTrigger("Cutting");
 
-            var CollidersToDamage = Physics2D.OverlapCircleAll(AttackPos.position, chopRange);
-            foreach (var hitCollider in CollidersToDamage)
-            {
-                //Check if its an entity
 
-                if (hitCollider.TryGetComponent(out Entity entity))
+                //Add the animation trigger here
+
+                // anim.SetTrigger("Daniel is gay");
+
+                var CollidersToDamage = Physics2D.OverlapBoxAll(AttackPos.position, new Vector2(attackRangeX, attackRangeY), 0);
+
+                foreach (var hitCollider in CollidersToDamage)
                 {
+                    //Check if its an entity
 
-                    Debug.Log(entity.name + " took " + MeleeDamage + " damage");
-                    entity.TakeDamage(MeleeDamage, DamageType.Bullet);
+                    if (hitCollider.TryGetComponent(out Entity entity))
+                    {
 
-                    // ADD particle effects
+                        Debug.Log(entity.name + " took " + MeleeDamage + " damage");
+                        entity.TakeDamage(MeleeDamage, DamageType.Bullet);
 
-                }
-            } timeBtwChop = startTimeBtwChop;
-        }
-        else
-        { timeBtwChop -= Time.deltaTime; }  }
+                        // ADD particle effects
 
+                    }
+                } timeBtwChop = startTimeBtwChop;
+            }
+            else
+            { timeBtwChop -= Time.deltaTime; } }
 
+  //  }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(transform.position, chopRange);
+        Gizmos.DrawWireCube(AttackPos.position, new Vector3(attackRangeX, attackRangeY, 1));
     }
 
 
