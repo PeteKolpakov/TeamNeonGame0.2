@@ -131,8 +131,8 @@ MonoBehaviour:
     type: 3}
   ammoPrefab: {fileID: 8743885004090351468, guid: 3d586cc4622327748874ed211619bac4,
     type: 3}
-  currencyDropPercent: 30
-  ammodropPercent: 30
+  currencyDropChance: 30
+  ammoDropChance: 30
 --- !u!114 &2947890936890169538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   LineOfSight: 8
   KamikazeRange: 6
   SplashRange: 3
-  Kamikaze: 2
+  Kamikaze: 4
 --- !u!50 &2947890936890169541
 Rigidbody2D:
   serializedVersion: 4
