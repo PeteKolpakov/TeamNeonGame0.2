@@ -9,10 +9,15 @@ namespace Assets.Scripts.EntityClass
     public class PlayerBase : Entity
     {
         // base player class, should handle health and damage related functions
-        public PlayerStatManager player;
+        PlayerStatManager player;
 
         public delegate void RemoveArmorPoints();
         public static event RemoveArmorPoints removeArmor;
+
+        private void Awake()
+        {
+            player = GetComponent<PlayerStatManager>();
+        }
 
         protected override void Die()
         {
