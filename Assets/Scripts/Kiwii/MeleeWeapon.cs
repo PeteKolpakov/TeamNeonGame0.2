@@ -15,6 +15,8 @@ public class MeleeWeapon : MonoBehaviour
     public float attackRangeX;
     public float attackRangeY;
 
+     SpriteRenderer spriteRenderer;
+
     // Reference the animator 
 
     //public Animator Anim;
@@ -24,13 +26,17 @@ public class MeleeWeapon : MonoBehaviour
     {
         startTimeBtwChop = 0f;
 
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
     }
 
 
     public void MeleeAttack()
     {
+       
         if (timeBtwChop <= 0)
         {
+            spriteRenderer.enabled = true;
           
 
            //     Anim.SetTrigger("Cutting");
@@ -51,14 +57,21 @@ public class MeleeWeapon : MonoBehaviour
 
                         Debug.Log(entity.name + " took " + MeleeDamage + " damage");
                         entity.TakeDamage(MeleeDamage, DamageType.Bullet);
+                    
+                    // ADD particle effects
 
-                        // ADD particle effects
-
-                    }
+                }
                 } timeBtwChop = startTimeBtwChop;
             }
             else
-            { timeBtwChop -= Time.deltaTime; } }
+            { timeBtwChop -= Time.deltaTime; }
+        
+    }
+
+    public void HideMelee()
+    {
+        spriteRenderer.enabled = false;
+    }
 
   //  }
     private void OnDrawGizmosSelected()

@@ -16,24 +16,24 @@ public class SavingGameData : MonoBehaviour
     // We always need to reference it in the inspector which is a problem when switching scenes
 
     [SerializeField]
-    private Entity entity;  
-    
+    private Entity entity;
+
     [SerializeField]
     private PlayerStatManager PStats;
 
 
     private void Start()
     {
-       // TO SAVE
+        // TO SAVE
 
-       // SavingData();
+         //  SavingData();
 
 
         //    print("DATA PATH IS" + Application.persistentDataPath + DATA_PATH);
 
         // LOADING DATA
 
-      /*  LoadingData();
+        LoadingData();
 
         if (myPlayer != null)
         {
@@ -44,7 +44,7 @@ public class SavingGameData : MonoBehaviour
             print("Player Shotgun:" + myPlayer.Shotgun);
             print("Player Gun:" + myPlayer.Gun);
             print("Player Katana:" + myPlayer.Katana);
-        }*/
+        }
 
         // Here I am inputting these values into the scripts that handles them
 
@@ -52,8 +52,9 @@ public class SavingGameData : MonoBehaviour
         PStats._maxxArmorPoints = myPlayer.PlayerMaxArmor;
         PStats._maxxAmmoCount = myPlayer.PlayerMaxAmmo;
         PStats._moneyAmount = myPlayer.PlayerCurrentMoney;
+     //   PStats.BoughtGuns = myPlayer.PurchasedGuns;
 
-      
+
     }
 
 
@@ -67,14 +68,15 @@ public class SavingGameData : MonoBehaviour
         p.PlayerMaxArmor = PStats._maxxArmorPoints;
         p.PlayerMaxAmmo = PStats._maxxAmmoCount;
         p.PlayerCurrentMoney = PStats._moneyAmount;
+      //  p.PurchasedGuns = PStats.BoughtGuns;
 
         try
         {
 
             BinaryFormatter BF = new BinaryFormatter();
-            file = File.Create(Application.persistentDataPath + DATA_PATH );
+            file = File.Create(Application.persistentDataPath + DATA_PATH);
 
-           // PlayerData p = new PlayerData(playerCurrentMaxHealth, playerCurrentMaxArmor, playerCurrentMaxAmmo, playerCurrentMoney, 1, 0, 1);
+            // PlayerData p = new PlayerData(playerCurrentMaxHealth, playerCurrentMaxArmor, playerCurrentMaxAmmo, playerCurrentMoney, 1, 0, 1);
 
 
 
@@ -86,7 +88,7 @@ public class SavingGameData : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError(e.Message);
-           
+
 
         }
         finally
@@ -131,7 +133,7 @@ public class SavingGameData : MonoBehaviour
 
 
 
-    } 
+    }
 }
 
 
