@@ -6,21 +6,16 @@ using UnityEngine;
 
 class PlayerShoot : AttackBase
 {
-
     Camera _sceneCamera;
-
-    [SerializeField]
     PlayerStatManager _playerStats;
 
     private Vector3 _mousePos;
-
-
-
     //public ShopkeeperInteraction _shop;
 
     private void Awake()
     {
         _sceneCamera = Camera.main;
+        _playerStats = GetComponent<PlayerStatManager>();
     }
 
     protected override void Update()

@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
 {
-    public PlayerStatManager player;
-    public Transform playerTransform;
+    PlayerStatManager player;
+    Transform playerTransform;
     public GameObject weaponTemplatePrefab;
+
+    private void Awake()
+    {
+        player = GetComponent<PlayerStatManager>();
+        playerTransform = transform;
+    }
 
     public void SetCurrentWeapon(ReworkedItem weapon)
     {

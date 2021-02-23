@@ -14,7 +14,7 @@ public class Entity : MonoBehaviour
     public float health;
 
     [SerializeField]
-    public float _maxHealth;
+    public float maxHealth;
 
     [SerializeField]
     GameObject currencyPrefab;
@@ -29,7 +29,7 @@ public class Entity : MonoBehaviour
 
     private void Start()
     {
-        health = _maxHealth;
+        health = maxHealth;
 
         nothingPercent = 100 - currencyDropPercent - ammodropPercent;
 
@@ -49,7 +49,7 @@ public class Entity : MonoBehaviour
     }
     public void Initialize() // to be called at the beginning of a lvl
     {
-        health = _maxHealth;
+        health = maxHealth;
     }
 
     public float GetHealth()
@@ -60,7 +60,7 @@ public class Entity : MonoBehaviour
     public void Heal(float healAmount)
     {
         health += healAmount;
-        if (health > _maxHealth) health = _maxHealth;
+        if (health > maxHealth) health = maxHealth;
     }
 
     public virtual void TakeDamage(float damage, DamageType type)
@@ -70,7 +70,7 @@ public class Entity : MonoBehaviour
 
     public void SetNewMaxHealth(float newMax)
     {
-        _maxHealth = newMax;
+        maxHealth = newMax;
         if(newMax <= 0)
         {
             Debug.LogError("WARNING: Max HP must be greater than zero!");

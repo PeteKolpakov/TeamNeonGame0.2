@@ -18,14 +18,9 @@ class ShopManager : MonoBehaviour
     private Transform shopItemTemplateConsumable;
     private Transform shopItemTemplateSkill;
 
-
-
-
     public Transform weaponContainer;
     public Transform consumableContainer;
     public Transform skillContainer;
-
-
 
     public List<Transform> children;
 
@@ -35,11 +30,6 @@ class ShopManager : MonoBehaviour
     public List<Object> weaponPrefabList;
     public List<Object> consumablePrefabList;
     public List<Object> skillPrefabList;
-
-
-    // test
-    public TextMeshProUGUI nameTextTest;
-
 
     private void Awake()
     {
@@ -51,9 +41,7 @@ class ShopManager : MonoBehaviour
 
         shopItemTemplateSkill = skillContainer.Find("shopItemTemplate");
         shopItemTemplateSkill.gameObject.SetActive(false);
-
     }
-
     private void Start()
     {
 
@@ -61,7 +49,6 @@ class ShopManager : MonoBehaviour
         weaponPrefabList = new List<Object>(Resources.LoadAll("GeneratedWeapons", typeof (ReworkedItem)));
         consumablePrefabList = new List<Object>(Resources.LoadAll("ConsumablePrefabs", typeof(ReworkedItem)));
         skillPrefabList = new List<Object>(Resources.LoadAll("SkillPrefabs", typeof(GameObject)));
-
 
         PopulateShopList();
 
@@ -104,7 +91,6 @@ class ShopManager : MonoBehaviour
             // Adding a button event for "Buy"
             Button button = shopItemTransform.GetComponent<Button>();
             button.onClick.AddListener(delegate { BuyItem(weaponData, button, shopItemTransform); });
-
         }
 
         for (int i = 0; i < consumablePrefabList.Count; i++)
@@ -112,7 +98,6 @@ class ShopManager : MonoBehaviour
             Transform shopItemTransformConsumable = Instantiate(shopItemTemplateConsumable, consumableContainer);
 
             ReworkedItem consumableData = (ReworkedItem)consumablePrefabList[i];
-
 
             // Updating the visuals
 
@@ -130,7 +115,6 @@ class ShopManager : MonoBehaviour
             // Adding a button event for "Buy"
             Button button = shopItemTransformConsumable.GetComponent<Button>();
             button.onClick.AddListener(delegate { BuyItem(consumableData, button, shopItemTransformConsumable); });
-
         }
         for (int i = 0; i < skillPrefabList.Count; i++)
         {
@@ -145,7 +129,6 @@ class ShopManager : MonoBehaviour
             itemUI.SetUIFromSkillName(skillScript.GetSkillName());
             itemUI.SetUIFromSkillDescription(skillScript.GetDescription());
 
-
             // Positioning an item in the shop list
 
             shopItemTransformSkill.gameObject.SetActive(true);
@@ -157,7 +140,6 @@ class ShopManager : MonoBehaviour
             // Adding a button event for "Buy"
             Button button = shopItemTransformSkill.GetComponent<Button>();
             //button.onClick.AddListener(delegate { BuyItem(itemScript, consumable, button, shopItemTransformConsumable); });
-
         }
     }
 
@@ -187,7 +169,6 @@ class ShopManager : MonoBehaviour
             // function is in the same class as this function, 
             // we do this magical thing with "delegate" AddListener.
             itemUI.SetEquipButton(delegate { EquipCheck(weaponData, shopCustomer, shopItemTransform); });
-
         }
     }
 
@@ -224,8 +205,6 @@ class ShopManager : MonoBehaviour
                 shopCustomer.EquipItem(weaponData);
                 Equip(weaponData, shopCustomer, shopItemTransform);
             }
-
-
         }
         // If no items are equipped - equip it right away
         else
@@ -250,7 +229,6 @@ class ShopManager : MonoBehaviour
         // Update the sprite in the loadout
 
         UIManager.ChangeLoadoutSprite(weaponData);
-
     }
 
     public void Unequip(ReworkedItem weaponData,Transform shopItemTransform, ReworkedItem oldWeapon)
@@ -286,37 +264,6 @@ class ShopManager : MonoBehaviour
                 }
             }
         }
-
         // Is this efficient? Hell no. Does it work? Yes.
-        
     }
-
-    // !!!!!!!!!!!!!!!
-    // ignore this for now , this is for later work on consumables 
-    // !!!!!!!!!!!!!!
-
-    /*public void RefreshConsumableStock(ItemOld.ItemType itemType)
-    {
-        string name = itemType.ToString();
-        for (int i = 0; i < children.Length; i++)
-        {
-            if (children[i].name.ToString() == "itemName")
-            {
-                if (ItemOld.StringSearch(children[i].GetComponent<TextMeshProUGUI>().text).ToString() == name)
-                {
-                    Transform parent = children[i].parent.transform;
-
-                    parent.GetComponent<Button>().interactable = true;
-                    parent.Find("equipButton").Find("equipped").gameObject.SetActive(false);
-                    parent.Find("equipButton").Find("equip").gameObject.SetActive(true);
-                    parent.Find("equipButton").GetComponent<Button>().interactable = true;
-                    parent.Find("equipButton").gameObject.SetActive(false);
-                    player._purchasedItems.Remove(itemType);
-                    player._equippedItems.Remove(itemType);
-                }
-                
-            }
-        }
-    }*/
-
 }

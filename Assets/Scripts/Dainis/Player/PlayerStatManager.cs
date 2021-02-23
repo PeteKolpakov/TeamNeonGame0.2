@@ -6,9 +6,7 @@ using UnityEngine;
 
 public class PlayerStatManager : MonoBehaviour, IShopCustomer
 {
-    [SerializeField]
     UI_Manager UIManager;
-    [SerializeField]
     EquipmentManager EQManager;
 
     public int _maxxArmorPoints = 1;
@@ -27,9 +25,11 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     public List<ReworkedItem> _purchasedItems;
     public List<ReworkedItem> _equippedItems;
 
-    public bool _canEquipItem;
-
-    
+    private void Awake()
+    {
+        UIManager = Camera.main.GetComponent<UI_Manager>();
+        EQManager = GetComponent<EquipmentManager>();
+    }
     private void Start()
     {
         _currentArmorPoints = _maxxArmorPoints;
@@ -37,6 +37,14 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
         Pickupable.pickupAmmo += AddAmmo;
         Pickupable.pickupCurrency += AddCurrency;
+    }
+
+    private void Update()
+    {
+        if(_currentAmmoCount > _maxxAmmoCount)
+        {
+            _currentAmmoCount = _maxxAmmoCount;
+        }
     }
 
     public bool TrySpendCurrency(int price)
