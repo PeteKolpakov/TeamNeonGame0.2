@@ -26,6 +26,8 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     public List<ReworkedItem> _purchasedItems;
     public List<ReworkedItem> _equippedItems;
 
+    public List<int> BoughtGunsInt;
+
     private void Awake()
     {
         EQManager = GetComponent<EquipmentManager>();
@@ -37,14 +39,46 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
         Pickupable.pickupAmmo += AddAmmo;
         Pickupable.pickupCurrency += AddCurrency;
+
     }
 
     private void Update()
     {
-        if(_currentAmmoCount > _maxxAmmoCount)
+        if (_currentAmmoCount > _maxxAmmoCount)
         {
             _currentAmmoCount = _maxxAmmoCount;
         }
+
+    }
+
+    // This just works beautifully
+    public void LoadWeapons(List<int> weaponsBought)
+    {
+        BoughtGunsInt = weaponsBought;
+
+        Debug.Log("StartedLoading");
+        Debug.Log(weaponsBought.Count);
+        List<UnityEngine.Object>whatever = new List<UnityEngine.Object>(Resources.LoadAll("GeneratedWeapons", typeof(ReworkedItem)));
+        for(int i = 0; i < weaponsBought.Count; i++)
+        {
+            int current = weaponsBought[i];
+
+            for (int x = 0; x < whatever.Count; x++)
+            {
+                
+                ReworkedItem currentItem = (ReworkedItem)whatever[x];
+               // Debug.Log(whatever.Count);
+                Debug.Log(currentItem.WeaponID);
+                if (currentItem.WeaponID == current)
+                {
+                    _purchasedItems.Add(currentItem);
+                    break;
+                }
+
+            }
+          
+        }
+       
     }
 
     public bool TrySpendCurrency(int price)
@@ -66,6 +100,9 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     public void BoughtItem(ReworkedItem item)
     { 
         _purchasedItems.Add(item);
+        BoughtGunsInt.Add(item.WeaponID);
+
+      
     }
 
     public void EquipItem(ReworkedItem item)

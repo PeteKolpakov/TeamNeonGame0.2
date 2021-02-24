@@ -62,18 +62,26 @@ public class MeleeWeapon : MonoBehaviour
 
                 }
                 } timeBtwChop = startTimeBtwChop;
+            StopCoroutine(HideMelee());
+            StartCoroutine(HideMelee());
+
             }
             else
             { timeBtwChop -= Time.deltaTime; }
         
     }
 
-    public void HideMelee()
+    public IEnumerator HideMelee()
     {
+        yield return new WaitForSeconds(timeBtwChop);
         spriteRenderer.enabled = false;
     }
 
-  //  }
+  /*  public void HideMelee()
+    {
+        spriteRenderer.enabled = false;
+    }*/
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;

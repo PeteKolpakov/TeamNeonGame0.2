@@ -14,17 +14,9 @@ public class PlayerData
 
     public int PlayerCurrentMoney;
 
-    public int Shotgun;
-    public int Gun;
-    public int Katana;
 
+    public List<int> PurchasedGunsInt;
 
-  //  public int[] PurchasedGuns = new int[3];
-
-
-
-    public int companion1;
-    public int companion2;
 
     public PlayerData()
     {
@@ -103,39 +95,7 @@ public class PlayerData
              playerCurrentMoney = value;
          }
      }  
-     public int Shotgun
-     {
-         get
-         {
-             return shotgun;
-         }
-         set
-         {
-             shotgun = value;
-         }
-     }  
-     public int Gun
-     {
-         get
-         {
-             return gun;
-         }
-         set
-         {
-             gun = value;
-         }
-     } 
-     public int Katana
-     {
-         get
-         {
-             return katana;
-         }
-         set
-         {
-             katana = value;
-         }
-     }  
+    
      public int Lvl1
      {
          get
@@ -146,49 +106,6 @@ public class PlayerData
          {
              lvl1 = value;
          }
-     } 
-     public int Lvl2
-     {
-         get
-         {
-             return lvl2;
-         }
-         set
-         {
-             lvl2 = value;
-         }
-     }  
-
-     public int Lvl3    {
-         get
-         {
-             return lvl3;
-         }
-         set
-         {
-             lvl3 = value;
-         }
-     }
-     public int Companion1    {
-         get
-         {
-             return companion1;
-         }
-         set
-         {
-             companion1 = value;
-         }
-     }
-     public int Companion2    {
-         get
-         {
-             return companion2;
-         }
-         set
-         {
-             companion2 = value;
-         }
-     }
 
  */
 

@@ -5,13 +5,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
 
-public class SavingGameData : MonoBehaviour
+public class SaveLoadSystem : MonoBehaviour
 {
     //Currently it will override the previous save
 
     private string DATA_PATH = "/Neonsave.dat";
 
-    private PlayerData myPlayer;
+    private PlayerData MyCurrentPlayerData;
 
     // We always need to reference it in the inspector which is a problem when switching scenes
 
@@ -26,7 +26,7 @@ public class SavingGameData : MonoBehaviour
     {
         // TO SAVE
 
-         //  SavingData();
+        //   SavingData();
 
 
         //    print("DATA PATH IS" + Application.persistentDataPath + DATA_PATH);
@@ -35,54 +35,49 @@ public class SavingGameData : MonoBehaviour
 
         LoadingData();
 
-        if (myPlayer != null)
+        if (MyCurrentPlayerData != null)
         {
-            print("Player Health:" + myPlayer.PlayerMaxHealth);
-            print("Player Armor:" + myPlayer.PlayerMaxArmor);
-            print("Player Ammo:" + myPlayer.PlayerMaxAmmo);
-            print("Player $:" + myPlayer.PlayerCurrentMoney);
-            print("Player Shotgun:" + myPlayer.Shotgun);
-            print("Player Gun:" + myPlayer.Gun);
-            print("Player Katana:" + myPlayer.Katana);
+            print("Player Health:" + MyCurrentPlayerData.PlayerMaxHealth);
+            print("Player Armor:" + MyCurrentPlayerData.PlayerMaxArmor);
+            print("Player Ammo:" + MyCurrentPlayerData.PlayerMaxAmmo);
+            print("Player $:" + MyCurrentPlayerData.PlayerCurrentMoney);
         }
 
         // Here I am inputting these values into the scripts that handles them
+        // AKA LOADING THE DATA
 
-        entity._maxHealth = myPlayer.PlayerMaxHealth;
-        PStats._maxxArmorPoints = myPlayer.PlayerMaxArmor;
-        PStats._maxxAmmoCount = myPlayer.PlayerMaxAmmo;
-        PStats._moneyAmount = myPlayer.PlayerCurrentMoney;
-     //   PStats.BoughtGuns = myPlayer.PurchasedGuns;
-
+        entity.maxHealth = MyCurrentPlayerData.PlayerMaxHealth;
+        PStats._maxxArmorPoints = MyCurrentPlayerData.PlayerMaxArmor;
+        PStats._maxxAmmoCount = MyCurrentPlayerData.PlayerMaxAmmo;
+        PStats._moneyAmount = MyCurrentPlayerData.PlayerCurrentMoney;
+        //  PStats.BoughtGunsInt = myPlayer.PurchasedGunsInt;
+        PStats.LoadWeapons(MyCurrentPlayerData.PurchasedGunsInt);
 
     }
 
 
-    void SavingData()
+   public void SavingData()
     {
         FileStream file = null;
 
         PlayerData p = new PlayerData();
 
-        p.PlayerMaxHealth = entity._maxHealth;
+        p.PlayerMaxHealth = entity.maxHealth;
         p.PlayerMaxArmor = PStats._maxxArmorPoints;
         p.PlayerMaxAmmo = PStats._maxxAmmoCount;
         p.PlayerCurrentMoney = PStats._moneyAmount;
-      //  p.PurchasedGuns = PStats.BoughtGuns;
+        p.PurchasedGunsInt = PStats.BoughtGunsInt;
+
+        Debug.Log("Im trying to save weapons");
+        Debug.Log(PStats.BoughtGunsInt.Count);
 
         try
         {
-
-            BinaryFormatter BF = new BinaryFormatter();
+            BinaryFormatter BFormatter = new BinaryFormatter();
             file = File.Create(Application.persistentDataPath + DATA_PATH);
+          // Encrypting the data
 
-            // PlayerData p = new PlayerData(playerCurrentMaxHealth, playerCurrentMaxArmor, playerCurrentMaxAmmo, playerCurrentMoney, 1, 0, 1);
-
-
-
-            // Encrypting the data
-
-            BF.Serialize(file, p);
+            BFormatter.Serialize(file, p);
 
         }
         catch (Exception e)
@@ -100,22 +95,19 @@ public class SavingGameData : MonoBehaviour
 
         }
     }
-
-    void LoadingData()
+   public void LoadingData()
     {
         FileStream file = null;
 
-
-
         try
         {
-            BinaryFormatter bf = new BinaryFormatter();
+            BinaryFormatter BinaryF = new BinaryFormatter();
 
             file = File.Open(Application.persistentDataPath + DATA_PATH, FileMode.Open);
 
             // Decrypting the data
 
-            myPlayer = bf.Deserialize(file) as PlayerData;
+            MyCurrentPlayerData = BinaryF.Deserialize(file) as PlayerData;
         }
 
         catch (Exception e)
@@ -130,9 +122,6 @@ public class SavingGameData : MonoBehaviour
                 file.Close();
             }
         }
-
-
-
     }
 }
 
