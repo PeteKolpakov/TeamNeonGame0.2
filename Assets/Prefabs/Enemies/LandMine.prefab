@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2969876368306861097}
   - component: {fileID: 2969876368306861099}
   - component: {fileID: 2969876368306861096}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: LandMine
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -131,8 +131,8 @@ MonoBehaviour:
     type: 3}
   ammoPrefab: {fileID: 8743885004090351468, guid: 3d586cc4622327748874ed211619bac4,
     type: 3}
-  currencyDropChance: 30
-  ammoDropChance: 30
+  currencyDropPercent: 30
+  ammodropPercent: 30
 --- !u!50 &2969876368306861099
 Rigidbody2D:
   serializedVersion: 4

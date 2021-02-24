@@ -41,8 +41,8 @@ GameObject:
   - component: {fileID: 8180829781282869106}
   - component: {fileID: 8180829781282869069}
   - component: {fileID: 8180829781282869107}
-  - component: {fileID: 771990670257892945}
   - component: {fileID: 5020406932226205885}
+  - component: {fileID: 5700071610302604424}
   m_Layer: 0
   m_Name: Katana
   m_TagString: Untagged
@@ -56,8 +56,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3757186086511461781}
-  m_LocalRotation: {x: 0, y: 0, z: 0.49331078, w: 0.86985314}
+  m_GameObject: {fileID: 8180829781282869068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.5700414, y: 0.6239014, z: 0}
   m_LocalScale: {x: 0.8332, y: 0.2031, z: 1}
   m_Children:
@@ -129,37 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b3df919a1c06f409ebe959ce31142b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Katana
-  _description: Sharp as shit
-  _price: 90
-  _damage: 5
-  itemType: 1
-  _fireRate: 0.1
-  _projectileAmount: 0
-  _spreadAngle: 30
-  _icon: {fileID: 21300000, guid: d63bd423a80feca41be002fba45aeb60, type: 3}
   _firePoint: {fileID: 8180829782965690481}
-  _projectilePrefab: {fileID: 3351136579877671628, guid: 6db80e3557cf9854688284df4af6b70b,
-    type: 3}
+  itemData: {fileID: 0}
   _isEquipped: 1
---- !u!114 &5700071610302604424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8180829781282869068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ce5c4e5ac3b89f4aa327d1f7602f574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startTimeBtwChop: 0
-  AttackPos: {fileID: 3245791861105710147}
-  MeleeDamage: 5
-  attackRangeX: 1.44
-  attackRangeY: 0.66
-  Anim: {fileID: 5020406932226205885}
 --- !u!95 &5020406932226205885
 Animator:
   serializedVersion: 3
@@ -179,6 +151,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5700071610302604424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8180829781282869068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce5c4e5ac3b89f4aa327d1f7602f574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTimeBtwChop: 0
+  AttackPos: {fileID: 3245791861105710147}
+  MeleeDamage: 5
+  attackRangeX: 1.44
+  attackRangeY: 0.66
 --- !u!1 &8180829782965690480
 GameObject:
   m_ObjectHideFlags: 0

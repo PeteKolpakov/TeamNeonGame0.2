@@ -64,10 +64,15 @@ class PlayerShoot : AttackBase
             Debug.Log("Cutting");
 
             melee.MeleeAttack();
-
+           
         }
-    }
+        if ((Input.GetKeyUp(KeyCode.Mouse1)) && (_meleeWeapon.TryGetComponent(out MeleeWeapon melee2)) == true)
 
+            melee2.HideMelee();
+
+    }
 }
+
+
 
 

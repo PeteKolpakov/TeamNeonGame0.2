@@ -14,6 +14,7 @@ public class ReworkedItem : ScriptableObject
     public float _fireRate;
     public int _projectileAmount;
     public float _spreadAngle;
+    public int WeaponID;
     public Sprite _icon;
     [SerializeField]
     public GameObject _projectilePrefab;

@@ -4,7 +4,7 @@ using System.IO;
 
 public class CSVToSO : EditorWindow
 {
-    private string itemCSVPath = "/Editor/CSV/shopItems.csv";
+    private string itemCSVPath = "/Editor/CSV/shopItems3.csv";
 
     // To see it in action go to the "Utilities" tab and press Generate Items
 
@@ -55,6 +55,7 @@ public class CSVToSO : EditorWindow
                 ParseFloat(i, splitData, 5, ref item._fireRate);
                 ParseInt(i, splitData, 6, ref item._projectileAmount);
                 ParseFloat(i, splitData, 7, ref item._spreadAngle);
+                ParseInt(i, splitData, 8, ref item.WeaponID);
 
                 AssetDatabase.CreateAsset(item, $"Assets/Resources/WeaponPrefabs/Test/{item._name}.asset");
             }

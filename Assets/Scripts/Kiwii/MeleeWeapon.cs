@@ -15,30 +15,36 @@ public class MeleeWeapon : MonoBehaviour
     public float attackRangeX;
     public float attackRangeY;
 
+     SpriteRenderer spriteRenderer;
+
     // Reference the animator 
 
-   // public Animator Anim;
+    //public Animator Anim;
 
 
     private void Start()
     {
         startTimeBtwChop = 0f;
 
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
     }
 
 
     public void MeleeAttack()
     {
+       
         if (timeBtwChop <= 0)
         {
-           // if (Input.GetKeyDown(KeyCode.Mouse1)) {
+            spriteRenderer.enabled = true;
+          
 
            //     Anim.SetTrigger("Cutting");
 
 
                 //Add the animation trigger here
 
-                // anim.SetTrigger("Daniel is gay");
+                // anim.SetTrigger("Daniel is not gay");
 
                 var CollidersToDamage = Physics2D.OverlapBoxAll(AttackPos.position, new Vector2(attackRangeX, attackRangeY), 0);
 
@@ -51,16 +57,31 @@ public class MeleeWeapon : MonoBehaviour
 
                         Debug.Log(entity.name + " took " + MeleeDamage + " damage");
                         entity.TakeDamage(MeleeDamage, DamageType.Bullet);
+                    
+                    // ADD particle effects
 
-                        // ADD particle effects
-
-                    }
+                }
                 } timeBtwChop = startTimeBtwChop;
+            StopCoroutine(HideMelee());
+            StartCoroutine(HideMelee());
+
             }
             else
-            { timeBtwChop -= Time.deltaTime; } }
+            { timeBtwChop -= Time.deltaTime; }
+        
+    }
 
-  //  }
+    public IEnumerator HideMelee()
+    {
+        yield return new WaitForSeconds(timeBtwChop);
+        spriteRenderer.enabled = false;
+    }
+
+  /*  public void HideMelee()
+    {
+        spriteRenderer.enabled = false;
+    }*/
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;
