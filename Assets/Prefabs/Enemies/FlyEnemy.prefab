@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2947890936890169537}
   - component: {fileID: 2947890936890169538}
   - component: {fileID: 2947890936890169541}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: FlyEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1445a208a2ebe744eb68e071f96f63a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 2
+  Speed: 3
   LineOfSight: 8
   KamikazeRange: 6
   SplashRange: 3
