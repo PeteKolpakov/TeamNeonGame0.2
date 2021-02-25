@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6507438047184890312}
   - component: {fileID: 6507438047184890315}
   - component: {fileID: 6507438047184890319}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,5 +151,5 @@ MonoBehaviour:
     type: 3}
   ammoPrefab: {fileID: 8743885004090351468, guid: 3d586cc4622327748874ed211619bac4,
     type: 3}
-  currencyDropChance: 30
-  ammoDropChance: 30
+  currencyDropPercent: 30
+  ammodropPercent: 30

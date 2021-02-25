@@ -15,13 +15,13 @@ public class ShopItemUI : MonoBehaviour
     [SerializeField] Image itemIcon;
     [SerializeField] Button equipButton;
 
-    public void SetUIFromItem(Item item)
+    public void SetUIFromItem(ReworkedItem weaponData)
     {
-        itemName.SetText(item._name);
-        itemDescription.SetText(item._description);
-        itemCost.SetText(item._price.ToString());
-        itemType.SetText(item.itemType.ToString());
-        itemIcon.sprite = item._icon;
+        itemName.SetText(weaponData._name);
+        itemDescription.SetText(weaponData._description);
+        itemCost.SetText(weaponData._price.ToString());
+        itemType.SetText(weaponData.itemType.ToString());
+        itemIcon.sprite = weaponData._icon;
     }
 
     public void SetUIFromSkillName(string text)
