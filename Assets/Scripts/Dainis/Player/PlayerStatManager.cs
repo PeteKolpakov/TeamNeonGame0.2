@@ -58,15 +58,15 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
         Debug.Log("StartedLoading");
         Debug.Log(weaponsBought.Count);
-        List<UnityEngine.Object>whatever = new List<UnityEngine.Object>(Resources.LoadAll("GeneratedWeapons", typeof(ReworkedItem)));
+        List<UnityEngine.Object>CurrentItemList = new List<UnityEngine.Object>(Resources.LoadAll("GeneratedWeapons", typeof(ReworkedItem)));
         for(int i = 0; i < weaponsBought.Count; i++)
         {
             int current = weaponsBought[i];
 
-            for (int x = 0; x < whatever.Count; x++)
+            for (int x = 0; x < CurrentItemList.Count; x++)
             {
                 
-                ReworkedItem currentItem = (ReworkedItem)whatever[x];
+                ReworkedItem currentItem = (ReworkedItem)CurrentItemList[x];
                // Debug.Log(whatever.Count);
                 Debug.Log(currentItem.WeaponID);
                 if (currentItem.WeaponID == current)

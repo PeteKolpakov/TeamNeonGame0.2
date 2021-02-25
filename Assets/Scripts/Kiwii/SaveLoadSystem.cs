@@ -33,16 +33,9 @@ public class SaveLoadSystem : MonoBehaviour
 
         // LOADING DATA
 
-        LoadingData();
+    //    LoadingData();
 
-        if (MyCurrentPlayerData != null)
-        {
-            print("Player Health:" + MyCurrentPlayerData.PlayerMaxHealth);
-            print("Player Armor:" + MyCurrentPlayerData.PlayerMaxArmor);
-            print("Player Ammo:" + MyCurrentPlayerData.PlayerMaxAmmo);
-            print("Player $:" + MyCurrentPlayerData.PlayerCurrentMoney);
-        }
-
+      
         // Here I am inputting these values into the scripts that handles them
         // AKA LOADING THE DATA
 
@@ -50,8 +43,11 @@ public class SaveLoadSystem : MonoBehaviour
         PStats._maxxArmorPoints = MyCurrentPlayerData.PlayerMaxArmor;
         PStats._maxxAmmoCount = MyCurrentPlayerData.PlayerMaxAmmo;
         PStats._moneyAmount = MyCurrentPlayerData.PlayerCurrentMoney;
-        //  PStats.BoughtGunsInt = myPlayer.PurchasedGunsInt;
         PStats.LoadWeapons(MyCurrentPlayerData.PurchasedGunsInt);
+
+        // This is being called and loads the data even if you dont want to. now that doesnt happen anymore for some reason
+
+
 
     }
 
@@ -75,8 +71,8 @@ public class SaveLoadSystem : MonoBehaviour
         {
             BinaryFormatter BFormatter = new BinaryFormatter();
             file = File.Create(Application.persistentDataPath + DATA_PATH);
-          // Encrypting the data
-
+        
+            // Encrypting the data
             BFormatter.Serialize(file, p);
 
         }
@@ -106,7 +102,6 @@ public class SaveLoadSystem : MonoBehaviour
             file = File.Open(Application.persistentDataPath + DATA_PATH, FileMode.Open);
 
             // Decrypting the data
-
             MyCurrentPlayerData = BinaryF.Deserialize(file) as PlayerData;
         }
 
