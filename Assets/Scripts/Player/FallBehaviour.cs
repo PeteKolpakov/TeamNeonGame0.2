@@ -87,7 +87,7 @@ namespace Assets.Scripts.Player
             Debug.Log("Falling");
             StartCoroutine(DelayedRespawn(1f));
         }
-        private bool IsRespawnInvincible()
+        public bool IsRespawnInvincible()
         {
             return Time.time - _lastRespawnTime < 0.25;
         }

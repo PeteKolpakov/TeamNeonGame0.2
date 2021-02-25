@@ -457,7 +457,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2801786142a3d9c48891ae95d3fd2df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 2022824864}
+  _chaser: {fileID: 0}
+  _despawnDistance: 0
 --- !u!1001 &507972142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -525,6 +526,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThePlayerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 8595791682816925781, guid: bea6942eb5c9ecd41bdcb2c310ab91a6,
+        type: 3}
+      propertyPath: health
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595791682816925781, guid: bea6942eb5c9ecd41bdcb2c310ab91a6,
+        type: 3}
+      propertyPath: maxHealth
+      value: 2000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bea6942eb5c9ecd41bdcb2c310ab91a6, type: 3}
 --- !u!4 &621092708 stripped
@@ -569,7 +580,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2801786142a3d9c48891ae95d3fd2df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 2022824864}
+  _chaser: {fileID: 621092708}
+  _despawnDistance: 30
 --- !u!114 &1254102819 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3629841848125617603, guid: 2b5b71af45e96f1438667ca939cb0586,

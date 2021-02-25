@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets.Scripts.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Assets.Scripts.EntityClass
     {
         // base player class, should handle health and damage related functions
         PlayerStatManager player;
+        FallBehaviour fallBehaviour;
 
         public delegate void RemoveArmorPoints();
         public static event RemoveArmorPoints removeArmor;
@@ -17,6 +19,7 @@ namespace Assets.Scripts.EntityClass
         private void Awake()
         {
             player = GetComponent<PlayerStatManager>();
+            fallBehaviour = GetComponent<FallBehaviour>();
         }
 
         protected override void Die()
@@ -27,27 +30,30 @@ namespace Assets.Scripts.EntityClass
 
         public override void TakeDamage(float damage, DamageType type)
         {
-            if(type == DamageType.Bullet)
+            if (!fallBehaviour.IsRespawnInvincible())
             {
-                float _APBlock = player._currentArmorPoints * player._armorPointHealth;
-                float damageTaken = damage - _APBlock;
-                if (damageTaken < 0)
+                if(type == DamageType.Bullet)
                 {
-                    damageTaken = 0;
-                }
-                health -= damageTaken;
-
-                if (damage > _APBlock)
-                {
-                    if (removeArmor != null)
+                    float _APBlock = player._currentArmorPoints * player._armorPointHealth;
+                    float damageTaken = damage - _APBlock;
+                    if (damageTaken < 0)
                     {
-                        removeArmor();
+                        damageTaken = 0;
+                    }
+                    health -= damageTaken;
+
+                    if (damage > _APBlock)
+                    {
+                        if (removeArmor != null)
+                        {
+                            removeArmor();
+                        }
                     }
                 }
-            }
-            else if(type == DamageType.Fall)
-            {
-                health -= damage;
+                else if(type == DamageType.Fall)
+                {
+                    health -= damage;
+                }
             }
         }
     }
