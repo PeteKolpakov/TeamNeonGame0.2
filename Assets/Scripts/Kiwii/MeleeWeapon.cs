@@ -36,7 +36,7 @@ public class MeleeWeapon : MonoBehaviour
        
         if (timeBtwChop <= 0)
         {
-            spriteRenderer.enabled = true;
+         //   spriteRenderer.enabled = true;
           
 
            //     Anim.SetTrigger("Cutting");
@@ -62,8 +62,8 @@ public class MeleeWeapon : MonoBehaviour
 
                 }
                 } timeBtwChop = startTimeBtwChop;
-            StopCoroutine(HideMelee());
-            StartCoroutine(HideMelee());
+           /* StopCoroutine(HideMelee());
+            StartCoroutine(HideMelee());*/
 
             }
             else
