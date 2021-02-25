@@ -25,10 +25,6 @@ namespace Assets.Scripts.LevelGen_Scripts
         {
             Setup();
         }
-
-        private void Start()
-        {
-        }
         private void Update()
         {
            Generate();
