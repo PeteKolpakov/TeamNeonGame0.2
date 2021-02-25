@@ -8,6 +8,11 @@ namespace Assets.Scripts.GameManager
 {
     public class ScenesManager : MonoBehaviour
     {
+        public int GetCurrentScene()
+        {
+            int index = SceneManager.GetActiveScene().buildIndex;
+            return index;
+        }
         public void GoToScene()
         {
             SceneManager.LoadScene(0);
