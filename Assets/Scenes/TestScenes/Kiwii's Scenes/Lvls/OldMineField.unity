@@ -2110,8 +2110,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4446495626005320003, guid: bea6942eb5c9ecd41bdcb2c310ab91a6,
         type: 3}
+      propertyPath: _moneyAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446495626005320003, guid: bea6942eb5c9ecd41bdcb2c310ab91a6,
+        type: 3}
       propertyPath: _maxxAmmoCount
-      value: 2000
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4446495626005320012, guid: bea6942eb5c9ecd41bdcb2c310ab91a6,
         type: 3}
@@ -2127,7 +2132,7 @@ PrefabInstance:
     - target: {fileID: 8595791682816925781, guid: bea6942eb5c9ecd41bdcb2c310ab91a6,
         type: 3}
       propertyPath: maxHealth
-      value: 10000
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bea6942eb5c9ecd41bdcb2c310ab91a6, type: 3}
@@ -2824,6 +2829,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  Explode: {fileID: 0}
 --- !u!50 &139171918
 Rigidbody2D:
   serializedVersion: 4
@@ -12157,6 +12163,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  Explode: {fileID: 0}
 --- !u!50 &557863448
 Rigidbody2D:
   serializedVersion: 4
@@ -15775,6 +15782,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  Explode: {fileID: 0}
 --- !u!50 &721330414
 Rigidbody2D:
   serializedVersion: 4
@@ -22175,6 +22183,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  Explode: {fileID: 0}
 --- !u!50 &1070669140
 Rigidbody2D:
   serializedVersion: 4
@@ -26042,6 +26051,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  Explode: {fileID: 0}
 --- !u!50 &1218853236
 Rigidbody2D:
   serializedVersion: 4
@@ -31821,6 +31831,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  Explode: {fileID: 0}
 --- !u!50 &1529558089
 Rigidbody2D:
   serializedVersion: 4
@@ -32194,6 +32205,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  Explode: {fileID: 0}
 --- !u!50 &1549352724
 Rigidbody2D:
   serializedVersion: 4
@@ -34734,6 +34746,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  Explode: {fileID: 0}
 --- !u!50 &1682478962
 Rigidbody2D:
   serializedVersion: 4
@@ -36825,6 +36838,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  Explode: {fileID: 0}
 --- !u!50 &1739881737
 Rigidbody2D:
   serializedVersion: 4
@@ -38060,6 +38074,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  Explode: {fileID: 0}
 --- !u!50 &1770762583
 Rigidbody2D:
   serializedVersion: 4
@@ -39967,6 +39982,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  Explode: {fileID: 0}
 --- !u!50 &1838457707
 Rigidbody2D:
   serializedVersion: 4
@@ -41782,6 +41798,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  Explode: {fileID: 0}
 --- !u!50 &1932769803
 Rigidbody2D:
   serializedVersion: 4
@@ -42815,6 +42832,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  Explode: {fileID: 0}
 --- !u!50 &1966067023
 Rigidbody2D:
   serializedVersion: 4
@@ -46202,6 +46220,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  Explode: {fileID: 0}
 --- !u!50 &2071523959
 Rigidbody2D:
   serializedVersion: 4
@@ -46685,6 +46704,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  Explode: {fileID: 0}
 --- !u!50 &2088033786
 Rigidbody2D:
   serializedVersion: 4
