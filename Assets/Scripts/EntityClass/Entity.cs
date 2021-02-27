@@ -81,6 +81,7 @@ public class Entity : MonoBehaviour
     {
         Drop();
         Destroy(gameObject);
+  
     }
 
     public void Drop()
