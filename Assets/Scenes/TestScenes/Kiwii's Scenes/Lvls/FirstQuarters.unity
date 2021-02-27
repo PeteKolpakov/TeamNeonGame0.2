@@ -271,8 +271,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4446495626005320003, guid: bea6942eb5c9ecd41bdcb2c310ab91a6,
         type: 3}
+      propertyPath: _moneyAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446495626005320003, guid: bea6942eb5c9ecd41bdcb2c310ab91a6,
+        type: 3}
       propertyPath: _maxxAmmoCount
-      value: 2000
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4446495626005320012, guid: bea6942eb5c9ecd41bdcb2c310ab91a6,
         type: 3}
@@ -288,7 +293,7 @@ PrefabInstance:
     - target: {fileID: 8595791682816925781, guid: bea6942eb5c9ecd41bdcb2c310ab91a6,
         type: 3}
       propertyPath: maxHealth
-      value: 10000
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bea6942eb5c9ecd41bdcb2c310ab91a6, type: 3}
