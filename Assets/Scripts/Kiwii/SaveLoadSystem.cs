@@ -33,7 +33,7 @@ public class SaveLoadSystem : MonoBehaviour
 
         // LOADING DATA
 
-    //    LoadingData();
+        LoadingData();
 
       
         // Here I am inputting these values into the scripts that handles them
@@ -63,6 +63,7 @@ public class SaveLoadSystem : MonoBehaviour
         p.PlayerMaxAmmo = PStats._maxxAmmoCount;
         p.PlayerCurrentMoney = PStats._moneyAmount;
         p.PurchasedGunsInt = PStats.BoughtGunsInt;
+   //     p.CompletedLevelsInt = PStats.FinishedLevelsInt;
 
         Debug.Log("Im trying to save weapons");
         Debug.Log(PStats.BoughtGunsInt.Count);

@@ -28,6 +28,8 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
     public List<int> BoughtGunsInt;
 
+   // public List<int> FinishedLevelsInt;
+
     private void Awake()
     {
         EQManager = GetComponent<EquipmentManager>();
@@ -65,7 +67,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
             for (int x = 0; x < CurrentItemList.Count; x++)
             {
-                
                 ReworkedItem currentItem = (ReworkedItem)CurrentItemList[x];
                // Debug.Log(whatever.Count);
                 Debug.Log(currentItem.WeaponID);
@@ -74,12 +75,14 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
                     _purchasedItems.Add(currentItem);
                     break;
                 }
-
             }
-          
         }
-       
     }
+
+    public void LoadLevels()
+    {
+
+    } 
 
     public bool TrySpendCurrency(int price)
     {

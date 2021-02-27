@@ -146,7 +146,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  _maxHealth: 1
+  maxHealth: 0
+  currencyPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
+  currencyDropPercent: 30
+  ammodropPercent: 30
 --- !u!1 &1826681559275140136
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +297,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  _maxHealth: 1
+  maxHealth: 0
+  currencyPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
+  currencyDropPercent: 30
+  ammodropPercent: 30
 --- !u!1 &1907188729976015960
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +448,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  _maxHealth: 1
+  maxHealth: 0
+  currencyPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
+  currencyDropPercent: 30
+  ammodropPercent: 30
 --- !u!1 &2224512474469720095
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +599,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  _maxHealth: 1
+  maxHealth: 0
+  currencyPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
+  currencyDropPercent: 30
+  ammodropPercent: 30
 --- !u!1 &2228344053899774352
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,7 +750,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  _maxHealth: 1
+  maxHealth: 0
+  currencyPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
+  currencyDropPercent: 30
+  ammodropPercent: 30
 --- !u!1 &4274549529611777333
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,7 +931,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  _maxHealth: 1
+  maxHealth: 0
+  currencyPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
+  currencyDropPercent: 30
+  ammodropPercent: 30
 --- !u!1 &5397440749426412230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,7 +1112,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  _maxHealth: 1
+  maxHealth: 0
+  currencyPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
+  currencyDropPercent: 30
+  ammodropPercent: 30
 --- !u!1 &5804255033827647528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,7 +1263,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  _maxHealth: 1
+  maxHealth: 0
+  currencyPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
+  currencyDropPercent: 30
+  ammodropPercent: 30
 --- !u!1 &5806532724799794082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,6 +1341,7 @@ MonoBehaviour:
   _chaser: {fileID: 0}
   _despawnDistance: 35
   _endPosition: {fileID: 61740112335860439}
+  HasSpawned: 0
 --- !u!1 &7942369220766359302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,6 +1644,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4856514563483142382}
     m_Modifications:
+    - target: {fileID: 606264597, guid: 4109a030a9e69d147a10a364983a7563, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 606264597, guid: 4109a030a9e69d147a10a364983a7563, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1030341708709422755, guid: 4109a030a9e69d147a10a364983a7563,
         type: 3}
       propertyPath: m_RootOrder
@@ -2081,6 +2122,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4856514563483142382}
     m_Modifications:
+    - target: {fileID: 606264597, guid: 4109a030a9e69d147a10a364983a7563, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 606264597, guid: 4109a030a9e69d147a10a364983a7563, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1030341708709422755, guid: 4109a030a9e69d147a10a364983a7563,
         type: 3}
       propertyPath: m_RootOrder
