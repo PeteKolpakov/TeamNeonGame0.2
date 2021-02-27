@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Assets.Scripts.GameManager;
 
 namespace Assets.Scripts.EntityClass
 {
@@ -26,6 +27,7 @@ namespace Assets.Scripts.EntityClass
         {
             Destroy(gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //ScenesManager.LoadLevel(SceneManager.GetActiveScene().buildIndex));
         }
 
         public override void TakeDamage(float damage, DamageType type)
