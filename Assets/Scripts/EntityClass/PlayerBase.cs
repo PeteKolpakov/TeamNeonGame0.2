@@ -58,5 +58,8 @@ namespace Assets.Scripts.EntityClass
                 }
             }
         }
+
+        
+        
     }
 }

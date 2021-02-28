@@ -6,7 +6,8 @@ public class EquipmentManager : MonoBehaviour
 {
     PlayerStatManager player;
     Transform playerTransform;
-    public GameObject weaponTemplatePrefab;
+    public GameObject rangedWeaponTemplatePrefab;
+    public GameObject meleeWeaponTemplatePrefab;
 
     private void Awake()
     {
@@ -20,19 +21,25 @@ public class EquipmentManager : MonoBehaviour
 
         if(weapon.itemType == ItemType.Ranged)
         {
-            if(weaponTemplatePrefab == null)
+            if(rangedWeaponTemplatePrefab == null)
             {
-                Instantiate(weaponTemplatePrefab, playerTransform);
+                Instantiate(rangedWeaponTemplatePrefab, playerTransform);
             }
 
-            Item templateWeaponItem = weaponTemplatePrefab.GetComponent<Item>();
+            Item templateWeaponItem = rangedWeaponTemplatePrefab.GetComponent<Item>();
             templateWeaponItem.AssignData(weapon);
 
 
         }
         if(weapon.itemType == ItemType.Melee)
         {
-            //attackBase._meleeWeapon = weapon;
+            if (meleeWeaponTemplatePrefab == null)
+            {
+                Instantiate(meleeWeaponTemplatePrefab, playerTransform);
+            }
+
+            Item meleetemplateWeaponItem = meleeWeaponTemplatePrefab.GetComponent<Item>();
+            meleetemplateWeaponItem.AssignData(weapon);
         }
 
     }

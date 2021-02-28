@@ -5,13 +5,16 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using Companion;
+using Assets.Scripts.GameManager;
+using Assets.Scripts.Player;
 
 
 class ShopManager : MonoBehaviour
 {
-    public PlayerStatManager player;
-    public Transform playerTransform;
+    private PlayerStatManager player;
+    private Transform playerTransform;
     private ShopUIManager UIManager;
+    private CompareEquipment compare;
 
     private Transform shopItemTemplate;
     private Transform shopItemTemplateConsumable;
@@ -42,14 +45,20 @@ class ShopManager : MonoBehaviour
         shopItemTemplateSkill.gameObject.SetActive(false);
 
         UIManager = GetComponent<ShopUIManager>();
+
+
     }
     private void Start()
     {
+        player = PlayerTracker.Instance.Player.GetComponent<PlayerStatManager>();
+        
 
         // Grabbing all the weapon prefabs from a folder and putting them in a nice list
         weaponPrefabList = new List<Object>(Resources.LoadAll("GeneratedWeapons", typeof (ReworkedItem)));
         consumablePrefabList = new List<Object>(Resources.LoadAll("ConsumablePrefabs", typeof(ReworkedItem)));
         skillPrefabList = new List<Object>(Resources.LoadAll("SkillPrefabs", typeof(GameObject)));
+
+        playerTransform = PlayerTracker.Instance.Player.transform;
 
         PopulateShopList();
 
@@ -88,6 +97,9 @@ class ShopManager : MonoBehaviour
             float shopItemHeight = 90f;
             shopItemRectTransform.anchoredPosition = new Vector2(1, -shopItemHeight * positionIndex);
             positionIndex++;
+
+            compare = shopItemTransform.GetComponent<CompareEquipment>();
+            compare.AssignShopItemData(weaponData);
 
             // Adding a button event for "Buy"
             Button button = shopItemTransform.GetComponent<Button>();
@@ -227,9 +239,6 @@ class ShopManager : MonoBehaviour
         buttonTransform.Find("equipped").gameObject.SetActive(true);
         button.interactable = false;
 
-        // Update the sprite in the loadout
-
-        UIManager.ChangeLoadoutSprite(weaponData);
     }
 
     public void Unequip(ReworkedItem weaponData,Transform shopItemTransform, ReworkedItem oldWeapon)
@@ -267,4 +276,5 @@ class ShopManager : MonoBehaviour
         }
         // Is this efficient? Hell no. Does it work? Yes.
     }
+
 }

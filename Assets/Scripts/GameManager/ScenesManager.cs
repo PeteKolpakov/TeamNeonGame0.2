@@ -53,7 +53,10 @@ namespace Assets.Scripts.GameManager
         }
         public IEnumerator LoadLevel(int lvlIndex)
         {
-            transition.SetTrigger("Start");
+            if(transition != null){
+                transition.SetTrigger("Start");
+
+            }
 
             yield return new WaitForSeconds(1);
 

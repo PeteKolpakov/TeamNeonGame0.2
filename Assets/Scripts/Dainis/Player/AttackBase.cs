@@ -6,9 +6,10 @@ using UnityEngine;
 abstract class AttackBase : MonoBehaviour
 {
     public Item _weapon;
-    public Item _meleeWeapon;
+    public MeleeWeapon _meleeWeapon;
 
     public Item CurrentWeapon { get => _weapon; }
+    public MeleeWeapon CurrentMeleeWeapon { get => _meleeWeapon; }
 
     protected virtual void Update()
     {
