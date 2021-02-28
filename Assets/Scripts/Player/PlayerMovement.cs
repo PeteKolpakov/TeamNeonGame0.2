@@ -122,7 +122,10 @@ namespace Assets.Scripts.Player
 
         private void DashStart()
         {
-            _dashAfterImage.Play();
+            if(_dashAfterImage != null){
+                _dashAfterImage.Play();
+
+            }
             Vector2 dashPosition = ((Vector2)transform.position + _moveDirection * _dashLenght);
             /**RaycastHit2D raycastHit2d = Physics2D.Raycast(transform.position, _direction, _dashLenght, _dashLayerMask);
            
