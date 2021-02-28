@@ -104,7 +104,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 00088b267dce2f145a17828675df1931, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -127,5 +127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 6666308039632654906}
+<<<<<<< HEAD
+  itemData: {fileID: 11400000, guid: 1b59f0b5b651aa44fbf3e69c0b4da430, type: 2}
+=======
   itemData: {fileID: 11400000, guid: 9cf95e30425e7914d9a3f5834f29675d, type: 2}
+>>>>>>> Production
   _isEquipped: 1

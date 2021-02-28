@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class PlayerStatManager : MonoBehaviour, IShopCustomer
 {
-    [SerializeField]
     GlobalUIManager UIManager;
     EquipmentManager EQManager;
 
@@ -33,6 +32,7 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     private void Awake()
     {
         EQManager = GetComponent<EquipmentManager>();
+        UIManager = GameObject.FindGameObjectWithTag("GlobalUI").GetComponent<GlobalUIManager>();
     }
     private void Start()
     {
@@ -58,7 +58,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     {
         BoughtGunsInt = weaponsBought;
 
-        Debug.Log("StartedLoading");
         Debug.Log(weaponsBought.Count);
         List<UnityEngine.Object>CurrentItemList = new List<UnityEngine.Object>(Resources.LoadAll("GeneratedWeapons", typeof(ReworkedItem)));
         for(int i = 0; i < weaponsBought.Count; i++)
@@ -109,7 +108,7 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     }
 
     public void EquipItem(ReworkedItem item)
-    {   
+    {
         _damage += item._damage;
         EQManager.SetCurrentWeapon(item);
     }

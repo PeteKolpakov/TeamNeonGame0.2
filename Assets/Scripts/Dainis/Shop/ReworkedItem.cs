@@ -21,10 +21,6 @@ public class ReworkedItem : ScriptableObject
     public bool _isEquipped = false;
     public Color colour;
 
-
-    //public delegate void RemoveAmmo(int ammo);
-    //public static event RemoveAmmo removeAmmo;
-
 }
     public enum ItemType
     {

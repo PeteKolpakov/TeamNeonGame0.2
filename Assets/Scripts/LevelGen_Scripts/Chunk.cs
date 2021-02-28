@@ -9,7 +9,7 @@ namespace Assets.Scripts.LevelGen_Scripts
     /// A Collection of Lvl Sections
     /// </summary>
     [Serializable]
-    class Chunk
+    struct Chunk
     {
         public string name;
         //[Range(0, 5f)]
