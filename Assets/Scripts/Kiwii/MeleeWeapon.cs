@@ -14,15 +14,13 @@ public class MeleeWeapon : MonoBehaviour
 
     public float chopRange;
 
-     SpriteRenderer spriteRenderer;
+    SpriteRenderer spriteRenderer;
 
     // Reference the animator 
-
-<<<<<<< HEAD
     //public Animator anim;
-=======
+
     //public Animator Anim;
->>>>>>> Production
+
 
 
     private void Start()
@@ -32,28 +30,25 @@ public class MeleeWeapon : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
     }
-    
+
 
     public void MeleeAttack()
     {
-       
+
         if (timeBtwChop <= 0)
         {
-<<<<<<< HEAD
             //Add the animation trigger here
 
             // anim.SetTrigger("Daniel is gay");
-=======
-         //   spriteRenderer.enabled = true;
-          
-
-           //     Anim.SetTrigger("Cutting");
+            //   spriteRenderer.enabled = true;
 
 
-                //Add the animation trigger here
+            //     Anim.SetTrigger("Cutting");
 
-                // anim.SetTrigger("Daniel is not gay");
->>>>>>> Production
+
+            //Add the animation trigger here
+
+            // anim.SetTrigger("Daniel is not gay");
 
             var CollidersToDamage = Physics2D.OverlapCircleAll(AttackPos.position, chopRange);
             foreach (var hitCollider in CollidersToDamage)
@@ -66,31 +61,33 @@ public class MeleeWeapon : MonoBehaviour
                     Debug.Log(entity.name + " took " + MeleeDamage + " damage");
                     entity.TakeDamage(MeleeDamage, DamageType.Bullet);
 
-<<<<<<< HEAD
                     // ADD particle effects
 
                 }
-            } timeBtwChop = startTimeBtwChop;
-        }
-        else
-        { timeBtwChop -= Time.deltaTime; }  }
-
-=======
-                        Debug.Log(entity.name + " took " + MeleeDamage + " damage");
-                        entity.TakeDamage(MeleeDamage, DamageType.Bullet);
-                    
-                    // ADD particle effects
-
-                }
-                } timeBtwChop = startTimeBtwChop;
-           /* StopCoroutine(HideMelee());
-            StartCoroutine(HideMelee());*/
-
             }
-            else
-            { timeBtwChop -= Time.deltaTime; }
-        
+            timeBtwChop = startTimeBtwChop;
+        }
+
+        else
+        {
+            timeBtwChop -= Time.deltaTime;
+        }
+
+        //Debug.Log(entity.name + " took " + MeleeDamage + " damage");
+        //entity.TakeDamage(MeleeDamage, DamageType.Bullet);
+
+
+        // ADD particle effects
+
+        timeBtwChop = startTimeBtwChop;
+        /* StopCoroutine(HideMelee());
+         StartCoroutine(HideMelee());*/
     }
+
+
+
+
+
 
     public IEnumerator HideMelee()
     {
@@ -98,11 +95,10 @@ public class MeleeWeapon : MonoBehaviour
         spriteRenderer.enabled = false;
     }
 
-  /*  public void HideMelee()
-    {
-        spriteRenderer.enabled = false;
-    }*/
->>>>>>> Production
+    /*  public void HideMelee()
+      {
+          spriteRenderer.enabled = false;
+      }*/
 
     private void OnDrawGizmosSelected()
     {
@@ -110,8 +106,17 @@ public class MeleeWeapon : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, chopRange);
     }
 
-
-
-
+    public Item AccessItemData()
+    {
+        Item data = GetComponent<Item>();
+        return data;
+    }
 }
+
+
+
+
+
+
+
 

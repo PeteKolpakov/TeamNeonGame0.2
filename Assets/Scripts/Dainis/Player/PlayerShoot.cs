@@ -1,3 +1,4 @@
+using Assets.Scripts.Player;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ class PlayerShoot : AttackBase
 {
     Camera _sceneCamera;
     PlayerStatManager _playerStats;
+    PlayerMovement playerMovement;
 
     private Vector3 _mousePos;
     //public ShopkeeperInteraction _shop;
@@ -16,6 +18,7 @@ class PlayerShoot : AttackBase
     {
         _sceneCamera = Camera.main;
         _playerStats = GetComponent<PlayerStatManager>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     protected override void Update()
@@ -25,32 +28,37 @@ class PlayerShoot : AttackBase
     }
     protected override void Aim()
     {
-        Vector3 mouseWorldSpace = _sceneCamera.ScreenToWorldPoint(_mousePos);
-
-        Vector3 direction = mouseWorldSpace - transform.position;
-
-
-        float angle = Mathf.Atan2(direction.y, direction.x); // in radians
-        _weapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
-        if (_meleeWeapon != null)
+        if(playerMovement.isPauseMenuOpen == false)
         {
-            _meleeWeapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+            Vector3 mouseWorldSpace = _sceneCamera.ScreenToWorldPoint(_mousePos);
+
+            Vector3 direction = mouseWorldSpace - transform.position;
+
+
+            float angle = Mathf.Atan2(direction.y, direction.x); // in radians
+            _weapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+            if (_meleeWeapon != null)
+            {
+                _meleeWeapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+
+            }
+
+            direction.z = 0;
+            _weapon.transform.position = transform.position + direction.normalized;
+            if (_meleeWeapon != null)
+            {
+                _meleeWeapon.transform.position = transform.position + direction.normalized;
+
+            }
 
         }
 
-        direction.z = 0;
-        _weapon.transform.position = transform.position + direction.normalized;
-        if (_meleeWeapon != null)
-        {
-            _meleeWeapon.transform.position = transform.position + direction.normalized;
-
-        }
 
     }
 
     protected override void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && _weapon.projectileAmount <= _playerStats._currentAmmoCount)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && _weapon.projectileAmount <= _playerStats._currentAmmoCount && playerMovement.isPauseMenuOpen == false)
         {
             _weapon.Attack();
             _playerStats._currentAmmoCount -= _weapon.projectileAmount;
@@ -58,7 +66,7 @@ class PlayerShoot : AttackBase
 
         // Melee attack 
 
-        if ((Input.GetKeyDown(KeyCode.Mouse1)) && (_meleeWeapon.TryGetComponent(out MeleeWeapon melee)) == true)
+        if ((Input.GetKeyDown(KeyCode.Mouse1)) && (_meleeWeapon.TryGetComponent(out MeleeWeapon melee)) == true && playerMovement.isPauseMenuOpen == false)
         {
 
             Debug.Log("Cutting");

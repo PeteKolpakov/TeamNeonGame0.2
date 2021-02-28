@@ -6,12 +6,14 @@ using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
 using Assets.Scripts.EntityClass;
+using Assets.Scripts.GameManager;
+using Assets.Scripts.Player;
 
 class GlobalUIManager : MonoBehaviour
 {
-    public PlayerStatManager _playerStatManager;
+    private  PlayerStatManager _playerStatManager;
     public HealthBar _playerHealthbar;
-    public Entity player;
+    private Entity player;
 
     public EnemyBase enemyBase;
     public EnemyHealthBar _enemyHealhbar;
@@ -25,25 +27,37 @@ class GlobalUIManager : MonoBehaviour
     public TMP_Text _moneyDisplay;
     public TMP_Text _healthDisplay;
 
+    public Image firstGlobalSlot;
+    public Image secondGlobalSlot;
+    public Image thirdGlobalSlot;
     private void Awake()
     {
         PlayerBase.removeArmor += RemoveArmor;
+    }
+
+    private void Start()
+    {
+        player = PlayerTracker.Instance.Player.GetComponent<Entity>();
+        _playerStatManager = PlayerTracker.Instance.Player.GetComponent<PlayerStatManager>();
+        PlayerShoot playerShoot = player.GetComponent<PlayerShoot>();
+        playerShoot.CurrentWeapon.removeAmmo += OnRemoveAmmo;
+
 
         _playerHealthbar.SetMaxHealth(player.health);
-        _enemyHealhbar.SetMaxHealth(enemyBase.maxHealth);
+
+        if(_enemyHealhbar != null)
+        {
+         _enemyHealhbar.SetMaxHealth(enemyBase.maxHealth);
+        }
 
         SetAmmoCountDisplay();
         SetArmorPointDisplay();
     }
 
-    private void Start()
-    {
-        PlayerShoot playerShoot = player.GetComponent<PlayerShoot>();
-        playerShoot.CurrentWeapon.removeAmmo += OnRemoveAmmo;
-    }
-
     private void Update()
     {
+        PlayerShoot playerShootScript = player.GetComponent<PlayerShoot>();
+
         _playerHealthbar.SetHealth(player.health);
         _enemyHealhbar.SetHealth(enemyBase.health);
 
@@ -59,7 +73,12 @@ class GlobalUIManager : MonoBehaviour
         // DEBUG ONLY //
 
 
+        // Updating the current weapon loadout visuals
 
+        firstGlobalSlot.sprite = playerShootScript.CurrentWeapon.icon;
+        firstGlobalSlot.color = Color.white;
+        secondGlobalSlot.sprite = playerShootScript.CurrentMeleeWeapon.AccessItemData().icon;
+        secondGlobalSlot.color = Color.white;
     }
 
     public void SetAmmoCountDisplay()

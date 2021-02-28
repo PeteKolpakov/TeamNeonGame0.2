@@ -50,5 +50,8 @@ namespace Assets.Scripts.EntityClass
                 health -= damage;
             }
         }
+
+        
+        
     }
 }
