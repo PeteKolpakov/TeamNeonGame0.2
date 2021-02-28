@@ -7,6 +7,8 @@ namespace Assets.Scripts.Player
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField]
+        private ParticleSystem _dashAfterImage;
+        [SerializeField]
         [Range(1,10)]
         private float _dashLenght;
         [SerializeField]
@@ -81,7 +83,8 @@ namespace Assets.Scripts.Player
         }
 
         private void DashStart()
-        {       
+        {
+            _dashAfterImage.Play();
             Vector2 dashPosition = ((Vector2)transform.position + _moveDirection * _dashLenght);
             
             Vector2 dashVelocity = (dashPosition - (Vector2)transform.position) / _dashDuration;
