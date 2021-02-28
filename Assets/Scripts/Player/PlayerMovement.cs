@@ -27,6 +27,9 @@ namespace Assets.Scripts.Player
         private Vector2 _moveDirection;
         private Rigidbody2D rigidBody;
 
+        public GameObject PauseMenu;
+        public bool isPauseMenuOpen;
+
         private void Start()
         {
             _timeSinceDash = 0;
@@ -36,6 +39,7 @@ namespace Assets.Scripts.Player
         private void Update()
         {
             MoveInput();
+            PauseInput();
 
             if(Input.GetKeyDown(KeyCode.Space) && CanDash())
                 _wannaDash = true;
@@ -60,33 +64,76 @@ namespace Assets.Scripts.Player
 
         private void MoveInput()
         {
-            float moveX = 0f;
-            float moveY = 0f;
-            if (Input.GetKey(KeyCode.W))
+            if(isPauseMenuOpen == false)
             {
-                moveY += +1f;
+                float moveX = 0f;
+                float moveY = 0f;
+                if (Input.GetKey(KeyCode.W))
+                {
+                    moveY += +1f;
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    moveY -= 1f;
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    moveX += 1f;
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    moveX -= 1f;
+                }
+                _moveDirection = new Vector2(moveX, moveY).normalized;
+
             }
-            if (Input.GetKey(KeyCode.S))
+            else
             {
-                moveY -= 1f;
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                moveX += 1f;
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                moveX -= 1f;
+                return;
             }
 
-            _moveDirection = new Vector2(moveX, moveY).normalized;
+        }
+
+        private void PauseInput()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if(isPauseMenuOpen == true)
+                {
+                    Time.timeScale = 1;
+                    PauseMenu.SetActive(false);
+                    isPauseMenuOpen = false;
+                }
+                else
+                {
+                    Time.timeScale = 0;
+                    PauseMenu.SetActive(true);
+                    isPauseMenuOpen = true;
+                }
+            }
+        }
+        
+        public void ResumeButton()
+        {
+            Time.timeScale = 1;
+            PauseMenu.SetActive(false);
+            isPauseMenuOpen = false;
         }
 
         private void DashStart()
         {
-            _dashAfterImage.Play();
+            if(_dashAfterImage != null){
+                _dashAfterImage.Play();
+
+            }
             Vector2 dashPosition = ((Vector2)transform.position + _moveDirection * _dashLenght);
-            
+            /**RaycastHit2D raycastHit2d = Physics2D.Raycast(transform.position, _direction, _dashLenght, _dashLayerMask);
+           
+            if (raycastHit2d.collider != null)
+            {
+                Debug.DrawLine(rb.position, raycastHit2d.point, Color.cyan, 2f);
+                dashPosition = raycastHit2d.point;
+            }**/
             Vector2 dashVelocity = (dashPosition - (Vector2)transform.position) / _dashDuration;
             rigidBody.velocity = dashVelocity;
             _timeSinceDash = 0;        
