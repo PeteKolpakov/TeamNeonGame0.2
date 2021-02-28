@@ -8,20 +8,34 @@ namespace Assets.Scripts.GameManager
 {
     public class ScenesManager : MonoBehaviour
     {
+        [SerializeField]
+        private Animator transition;
+        public void Update()
+        {
+            //Testing purposes
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+            }
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));
+            }
+        }
         public int GetCurrentScene()
         {
             int index = SceneManager.GetActiveScene().buildIndex;
             return index;
         }
-        public void GoToScene()
+        public static void GoToScene(int levelindex)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(levelindex);
         }
-        public void GoToRestStage()
+        public static void GoToRestStage()
         {
             SceneManager.LoadScene(6);
         }
-        public void GoToNextLevel()
+        public static void GoToNextLevel()
         {
             //After Rest Stage
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -37,6 +51,13 @@ namespace Assets.Scripts.GameManager
             LevelFive,
             RestStage
         }
+        public IEnumerator LoadLevel(int lvlIndex)
+        {
+            transition.SetTrigger("Start");
 
+            yield return new WaitForSeconds(1);
+
+            GoToScene(lvlIndex);
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace Assets.Scripts.EntityClass
     class DestructableBase : Entity
     {
         // Base destructable class, used to for object hp management
-        public ParticleSystem Explode;
+        //public ParticleSystem Explode;
 
         /*    public void Update()
             {
