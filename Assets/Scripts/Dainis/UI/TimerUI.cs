@@ -20,7 +20,7 @@ public class TimerUI : MonoBehaviour
         int minutes = (int)(t % 60); //return the remainder of the minutes divide by 60 as an int
         
 
-        timerText.text = string.Format("{0}:{1}", minutes.ToString("00"), seconds.ToString("00"));
-        milisecondsText.text = string.Format(".{0}", milliseconds.ToString("00"));
+        timerText.text = string.Format("{0}:{1}.", minutes.ToString("00"), seconds.ToString("00"));
+        milisecondsText.text = string.Format("{0}", milliseconds.ToString("00"));
     }
 }
