@@ -10,12 +10,13 @@ public enum DamageType
 
 public class Entity : MonoBehaviour
 {
-
     public float health;
 
     [SerializeField]
     public float maxHealth;
 
+    [SerializeField]
+    private ParticleSystem _explosion;
     [SerializeField]
     GameObject currencyPrefab;
     [SerializeField]
@@ -79,6 +80,7 @@ public class Entity : MonoBehaviour
 
     protected virtual void Die()
     {
+        StartCoroutine(Effects());
         Drop();
         Destroy(gameObject);
   
@@ -109,6 +111,11 @@ public class Entity : MonoBehaviour
         }
     }
 
-
+    public IEnumerator Effects()
+    {
+        _explosion.Play();
+        Debug.Log("BoomChakalaca");
+        yield return new WaitForSeconds(1);
+    }
 
 }
