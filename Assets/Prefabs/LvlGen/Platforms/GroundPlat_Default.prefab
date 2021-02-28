@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9195701298184481810}
   - component: {fileID: 9195701298184481820}
   - component: {fileID: 9195701298184481821}
+  - component: {fileID: 3414056828443534580}
   m_Layer: 3
   m_Name: GroundPlat_Default
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4,
     type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -110,3 +111,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3414056828443534580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9195701298184481811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 0.8962264, g: 0.7135678, b: 0.08877714, a: 1}
+  glowBrightness: 2.25
+  outlineWidth: 1
+  alphaThreshold: 0.031
+  drawOutside: 0
+  enableInstancing: 0

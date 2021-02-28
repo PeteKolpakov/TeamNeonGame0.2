@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class LandMine : MonoBehaviour
 {
+    [SerializeField]
+    private Gradient _gradient;
 
-   private SpriteRenderer rend;
+    private SpriteRenderer rend;
     public Color changeColor = Color.red;
 
     public float LineOfSight = 4f;
+
+    public float Duration;
+
+    public float t = 0;
 
     public float ExplosionDelay = 2f;
 
@@ -57,7 +63,11 @@ public class LandMine : MonoBehaviour
     {
         Triggered = true;
 
-        rend.color = changeColor;
+        float value = Mathf.Lerp(0f, 1f, t);
+        t += Time.deltaTime / Duration;
+        Color color = _gradient.Evaluate(value);
+        rend.color = color;
+        //rend.color = changeColor;
         yield return new WaitForSeconds(ExplosionDelay);
 
         Explode();

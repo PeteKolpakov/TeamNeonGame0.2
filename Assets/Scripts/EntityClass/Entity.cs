@@ -10,12 +10,13 @@ public enum DamageType
 
 public class Entity : MonoBehaviour
 {
-
     public float health;
 
     [SerializeField]
     public float maxHealth;
 
+    [SerializeField]
+    private GameObject _explosion;
     [SerializeField]
     GameObject currencyPrefab;
     [SerializeField]
@@ -79,8 +80,10 @@ public class Entity : MonoBehaviour
 
     protected virtual void Die()
     {
+        Instantiate(_explosion, transform.position, Quaternion.identity);
         Drop();
         Destroy(gameObject);
+  
     }
 
     public void Drop()
@@ -107,7 +110,5 @@ public class Entity : MonoBehaviour
             }
         }
     }
-
-
 
 }
