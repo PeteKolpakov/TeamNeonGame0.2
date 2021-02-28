@@ -209,8 +209,8 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 91.1
-  orthographic: 0
+  field of view: 60
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -239,7 +239,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &488134633
 MonoBehaviour:
@@ -293,7 +293,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-<<<<<<< Updated upstream:Assets/Scenes/TestScenes/Pete's Scenes/LvlGenTest_1.unity
     - target: {fileID: 8723911010916576808, guid: 7df915cfca5e8df4e9531de0a0cbf67d,
         type: 3}
       propertyPath: m_Follow
@@ -303,40 +302,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 1
-=======
-    - target: {fileID: 9195701298184481810, guid: 6ffabf2fbac7a464b9b5dc4a863c9d90,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9195701298184481810, guid: 6ffabf2fbac7a464b9b5dc4a863c9d90,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 28.211678
-      objectReference: {fileID: 0}
-    - target: {fileID: 9195701298184481810, guid: 6ffabf2fbac7a464b9b5dc4a863c9d90,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 17.073385
->>>>>>> Stashed changes:Assets/Scenes/TestScenes/Kiwii's Scenes/WhipTest.unity
       objectReference: {fileID: 0}
     - target: {fileID: 8723911010916576809, guid: 7df915cfca5e8df4e9531de0a0cbf67d,
         type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< Updated upstream:Assets/Scenes/TestScenes/Pete's Scenes/LvlGenTest_1.unity
       value: 0
-=======
-      value: 0.6746
->>>>>>> Stashed changes:Assets/Scenes/TestScenes/Kiwii's Scenes/WhipTest.unity
       objectReference: {fileID: 0}
     - target: {fileID: 8723911010916576809, guid: 7df915cfca5e8df4e9531de0a0cbf67d,
         type: 3}
       propertyPath: m_LocalPosition.y
-<<<<<<< Updated upstream:Assets/Scenes/TestScenes/Pete's Scenes/LvlGenTest_1.unity
       value: 6.2399993
-=======
-      value: -0.0333
->>>>>>> Stashed changes:Assets/Scenes/TestScenes/Kiwii's Scenes/WhipTest.unity
       objectReference: {fileID: 0}
     - target: {fileID: 8723911010916576809, guid: 7df915cfca5e8df4e9531de0a0cbf67d,
         type: 3}
@@ -502,7 +477,7 @@ PrefabInstance:
     - target: {fileID: 4563026847613705862, guid: 6f6d1a1e04e37e54ead3315f319982eb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4563026847613705862, guid: 6f6d1a1e04e37e54ead3315f319982eb,
         type: 3}
@@ -648,85 +623,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f6d1a1e04e37e54ead3315f319982eb, type: 3}
---- !u!1001 &657963406
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3236424954980025547, guid: 55cb015a99e03fe46a7207cb8187ac43,
-        type: 3}
-      propertyPath: m_Name
-      value: neon shop 3 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3236424954980025558, guid: 55cb015a99e03fe46a7207cb8187ac43,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3236424954980025558, guid: 55cb015a99e03fe46a7207cb8187ac43,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.63790715
-      objectReference: {fileID: 0}
-    - target: {fileID: 3236424954980025558, guid: 55cb015a99e03fe46a7207cb8187ac43,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.6379403
-      objectReference: {fileID: 0}
-    - target: {fileID: 3236424954980025558, guid: 55cb015a99e03fe46a7207cb8187ac43,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3236424954980025558, guid: 55cb015a99e03fe46a7207cb8187ac43,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 3236424954980025558, guid: 55cb015a99e03fe46a7207cb8187ac43,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3236424954980025558, guid: 55cb015a99e03fe46a7207cb8187ac43,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3236424954980025558, guid: 55cb015a99e03fe46a7207cb8187ac43,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3236424954980025558, guid: 55cb015a99e03fe46a7207cb8187ac43,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3236424954980025558, guid: 55cb015a99e03fe46a7207cb8187ac43,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3236424954980025558, guid: 55cb015a99e03fe46a7207cb8187ac43,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3236424954980025558, guid: 55cb015a99e03fe46a7207cb8187ac43,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3236424954980025558, guid: 55cb015a99e03fe46a7207cb8187ac43,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 55cb015a99e03fe46a7207cb8187ac43, type: 3}
 --- !u!1001 &685399725
 >>>>>>> Production:Assets/Scenes/TestScenes/Kiwii's Scenes/WhipTest.unity
 PrefabInstance:
@@ -751,7 +647,7 @@ PrefabInstance:
     - target: {fileID: 8723911010916576809, guid: 7df915cfca5e8df4e9531de0a0cbf67d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8723911010916576809, guid: 7df915cfca5e8df4e9531de0a0cbf67d,
 >>>>>>> Production:Assets/Scenes/TestScenes/Kiwii's Scenes/WhipTest.unity
@@ -855,11 +751,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CM vcam1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8723911010916576815, guid: 7df915cfca5e8df4e9531de0a0cbf67d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7df915cfca5e8df4e9531de0a0cbf67d, type: 3}
@@ -1389,7 +1280,7 @@ PrefabInstance:
     - target: {fileID: 5510721126214567730, guid: c30d31d92ca40244b9c3dd2d99014a66,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5510721126214567730, guid: c30d31d92ca40244b9c3dd2d99014a66,
         type: 3}
@@ -1509,7 +1400,7 @@ PrefabInstance:
     - target: {fileID: 8580959926271605868, guid: af1f50feca6e3624ab9fa05911576702,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8580959926271605868, guid: af1f50feca6e3624ab9fa05911576702,
         type: 3}
@@ -1583,7 +1474,7 @@ PrefabInstance:
     - target: {fileID: 6507438047184890313, guid: 1350d88a7e1adad45a2e13f3ec93ae17,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6507438047184890313, guid: 1350d88a7e1adad45a2e13f3ec93ae17,
         type: 3}
@@ -1769,7 +1660,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1574523685
 PrefabInstance:
@@ -1870,7 +1761,7 @@ PrefabInstance:
     - target: {fileID: 2613963996673092439, guid: bea6942eb5c9ecd41bdcb2c310ab91a6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2613963996673092439, guid: bea6942eb5c9ecd41bdcb2c310ab91a6,
         type: 3}
