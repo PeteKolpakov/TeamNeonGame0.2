@@ -9,7 +9,10 @@ class PlayerShoot : AttackBase
 {
     Camera _sceneCamera;
     PlayerStatManager _playerStats;
+<<<<<<< Updated upstream:Assets/Scripts/Dainis/Player/PlayerShoot.cs
     PlayerMovement playerMovement;
+=======
+>>>>>>> Stashed changes:Assets/Scripts/UI/PlayerShoot.cs
 
     private Vector3 _mousePos;
     //public ShopkeeperInteraction _shop;
@@ -58,6 +61,7 @@ class PlayerShoot : AttackBase
 
     protected override void Shoot()
     {
+<<<<<<< Updated upstream:Assets/Scripts/Dainis/Player/PlayerShoot.cs
         if (Input.GetKeyDown(KeyCode.Mouse0) && _weapon.projectileAmount <= _playerStats._currentAmmoCount && playerMovement.isPauseMenuOpen == false)
         {
             _weapon.Attack();
@@ -79,6 +83,10 @@ class PlayerShoot : AttackBase
                melee2.HideMelee();
 
        }*/
+=======
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            _weapon.Attack();
+>>>>>>> Stashed changes:Assets/Scripts/UI/PlayerShoot.cs
     }
 
 
