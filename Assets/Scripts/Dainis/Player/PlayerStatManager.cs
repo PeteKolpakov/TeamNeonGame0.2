@@ -22,13 +22,8 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
     public int _moneyAmount;
 
-<<<<<<< Updated upstream:Assets/Scripts/Dainis/Player/PlayerStatManager.cs
     public List<ReworkedItem> _purchasedItems;
     public List<ReworkedItem> _equippedItems;
-=======
-    public List<GameObject> _purchasedItems;
-    public List<GameObject> _equippedItems;
->>>>>>> Stashed changes:Assets/Scripts/UI/PlayerStatManager.cs
 
     public List<int> BoughtGunsInt;
 
@@ -43,13 +38,10 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     {
         _currentArmorPoints = _maxxArmorPoints;
         _currentAmmoCount = _maxxAmmoCount;
-<<<<<<< Updated upstream:Assets/Scripts/Dainis/Player/PlayerStatManager.cs
 
         Pickupable.pickupAmmo += AddAmmo;
         Pickupable.pickupCurrency += AddCurrency;
 
-=======
->>>>>>> Stashed changes:Assets/Scripts/UI/PlayerStatManager.cs
     }
 
     private void Update()
@@ -64,17 +56,7 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     // This just works beautifully
     public void LoadWeapons(List<int> weaponsBought)
     {
-<<<<<<< Updated upstream:Assets/Scripts/Dainis/Player/PlayerStatManager.cs
         BoughtGunsInt = weaponsBought;
-=======
-        float _APBlock = _currentArmorPoints * _armorPointHealth;
-        float damageTaken = damage - _APBlock;
-        if(damageTaken < 0)
-        {
-            damageTaken = 0;
-        }
-        _currentHealth -= damageTaken;
->>>>>>> Stashed changes:Assets/Scripts/UI/PlayerStatManager.cs
 
         Debug.Log(weaponsBought.Count);
         List<UnityEngine.Object>CurrentItemList = new List<UnityEngine.Object>(Resources.LoadAll("GeneratedWeapons", typeof(ReworkedItem)));
@@ -117,7 +99,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         }
     }
 
-<<<<<<< Updated upstream:Assets/Scripts/Dainis/Player/PlayerStatManager.cs
     public void BoughtItem(ReworkedItem item)
     { 
         _purchasedItems.Add(item);
@@ -147,22 +128,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     {
         _currentAmmoCount += ammo;
         UIManager.UpdateAmmoUI();
-=======
-    public void BoughtItem(GameObject item)
-    { 
-        _purchasedItems.Add(item);
-    }
-
-    public void EquipItem(Item item)
-    {   
-        _damage += item._damage;
-    }
-
-    public void UnequipItem(Item item)
-    {
-        _damage -= item._damage;
-
->>>>>>> Stashed changes:Assets/Scripts/UI/PlayerStatManager.cs
     }
 
 
