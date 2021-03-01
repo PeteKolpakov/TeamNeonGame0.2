@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 4446495627074821341}
   - component: {fileID: 2613963996673092437}
   - component: {fileID: 2613963996673092436}
+  - component: {fileID: 155019561}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -179,7 +180,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -202,7 +203,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f,
     type: 3}
-  m_Color: {r: 0.20959415, g: 0.51515, b: 0.7075472, a: 1}
+  m_Color: {r: 0.02430385, g: 0, b: 0.4245283, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -281,6 +282,7 @@ MonoBehaviour:
   ammoPrefab: {fileID: 0}
   currencyDropPercent: 30
   ammodropPercent: 30
+  canTakeDamage: 1
 --- !u!114 &4446495626005320003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +371,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &155019561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2613963996673092441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 0.9811321, g: 0.06941971, b: 0.84467727, a: 1}
+  glowBrightness: 5
+  outlineWidth: 10
+  alphaThreshold: 0
+  drawOutside: 0
+  enableInstancing: 0
 --- !u!1 &3449226561730771611
 GameObject:
   m_ObjectHideFlags: 0
@@ -5214,6 +5234,7 @@ GameObject:
   - component: {fileID: 7004887292760054384}
   - component: {fileID: 7004887292760054351}
   - component: {fileID: 7004887292760054385}
+  - component: {fileID: 107078935}
   m_Layer: 0
   m_Name: RangedWeaponTemplate
   m_TagString: Untagged
@@ -5255,7 +5276,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5300,8 +5321,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 7004887294432392563}
-  itemData: {fileID: 11400000, guid: ec645f92ff81a5249b20ebe9f44dd8ad, type: 2}
+  itemData: {fileID: 11400000, guid: 1b59f0b5b651aa44fbf3e69c0b4da430, type: 2}
   _isEquipped: 0
+--- !u!114 &107078935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7004887292760054350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 0, g: 1, b: 0.91119623, a: 1}
+  glowBrightness: 4.37
+  outlineWidth: 4
+  alphaThreshold: 0.247
+  drawOutside: 0
+  enableInstancing: 0
 --- !u!1 &7004887294432392562
 GameObject:
   m_ObjectHideFlags: 0
