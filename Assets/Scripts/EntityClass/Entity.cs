@@ -27,6 +27,7 @@ public class Entity : MonoBehaviour
     private int nothingPercent = 40;
 
     private bool _canDrop = true;
+    public bool canTakeDamage = true;
 
     private void Start()
     {
@@ -66,7 +67,9 @@ public class Entity : MonoBehaviour
 
     public virtual void TakeDamage(float damage, DamageType type)
     {
-        health -= damage;
+        if(canTakeDamage){
+            health -= damage;
+        }
     }
 
     public void SetNewMaxHealth(float newMax)
@@ -80,7 +83,10 @@ public class Entity : MonoBehaviour
 
     protected virtual void Die()
     {
-        Instantiate(_explosion, transform.position, Quaternion.identity);
+        if (_explosion != null)
+        {
+            Instantiate(_explosion, transform.position, Quaternion.identity);
+        }
         Drop();
         Destroy(gameObject);
   

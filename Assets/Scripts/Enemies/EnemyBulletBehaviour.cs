@@ -31,9 +31,11 @@ public class EnemyBulletBehaviour : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Colliding with something");
         if (collision.collider.TryGetComponent(out Entity health))
         {
-            health.TakeDamage(20);
+            Debug.Log("I hit a player!");
+            health.TakeDamage(20, DamageType.Bullet);
         }
         Destroy(gameObject);
     }
