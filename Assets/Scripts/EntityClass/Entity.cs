@@ -80,7 +80,10 @@ public class Entity : MonoBehaviour
 
     protected virtual void Die()
     {
-        Instantiate(_explosion, transform.position, Quaternion.identity);
+        if (_explosion != null)
+        {
+            Instantiate(_explosion, transform.position, Quaternion.identity);
+        }
         Drop();
         Destroy(gameObject);
   
