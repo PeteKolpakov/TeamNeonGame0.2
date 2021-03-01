@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  maxHealth: 5
+  maxHealth: 1
   _explosion: {fileID: 352795596918730512, guid: c3a04e176d7c15d4c9b217a62a946f0d,
     type: 3}
   currencyPrefab: {fileID: 5108749737209198752, guid: aae6a1bda0edc8148b26dbf48ee187a5,
@@ -155,3 +155,4 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  canTakeDamage: 1

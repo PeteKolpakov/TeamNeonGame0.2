@@ -22,9 +22,7 @@ public class Boss : MonoBehaviour
     private WaveBulletShooting waveAttack;
     private SprialBulletShooting spiralAttack;
 
-    [NonSerialized]
     public bool leftArmDead = false;
-    [NonSerialized]
 
     public bool rightArmDead = false;
 
