@@ -107,12 +107,12 @@ public class LandMine : MonoBehaviour
                 var damage = Mathf.Lerp(MaxDamage, 0, distance / SplashRange);
 
                 //Deal damage to all Entities inside the range based on percentage related distance
-
+                int damageInt = (int)Mathf.Round(damage);
                 
 
                 Debug.Log(entity.name + "Took" + damage);
 
-                entity.TakeDamage(damage, DamageType.Bullet);
+                entity.TakeDamage(damageInt, DamageType.Bullet);
             }
         }
 

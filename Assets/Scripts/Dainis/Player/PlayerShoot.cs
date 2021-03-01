@@ -58,10 +58,10 @@ class PlayerShoot : AttackBase
 
     protected override void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && _weapon.projectileAmount <= _playerStats._currentAmmoCount && playerMovement.isPauseMenuOpen == false)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && playerMovement.isPauseMenuOpen == false)
         {
             _weapon.Attack();
-            _playerStats._currentAmmoCount -= _weapon.projectileAmount;
+
         }
 
         // Melee attack 
@@ -74,11 +74,6 @@ class PlayerShoot : AttackBase
             melee.MeleeAttack();
 
         }
-        /*   if ((Input.GetKeyUp(KeyCode.Mouse1)) && (_meleeWeapon.TryGetComponent(out MeleeWeapon melee2)) == true)
-
-               melee2.HideMelee();
-
-       }*/
     }
 
 

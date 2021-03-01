@@ -8,14 +8,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 {
     GlobalUIManager UIManager;
     EquipmentManager EQManager;
-
-    public int _maxxArmorPoints = 1;
-    public int _currentArmorPoints;
-    public float _armorPointHealth = 1; // How much HP is 1 AP
-
-    public int _maxxAmmoCount = 5;
-    public int _currentAmmoCount;
-
     public float _fireRate = 1f;
 
     public int _damage = 1;
@@ -27,7 +19,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
     public List<int> BoughtGunsInt;
 
-   // public List<int> FinishedLevelsInt;
 
     private void Awake()
     {
@@ -36,22 +27,10 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     }
     private void Start()
     {
-        _currentArmorPoints = _maxxArmorPoints;
-        _currentAmmoCount = _maxxAmmoCount;
-
-        Pickupable.pickupAmmo += AddAmmo;
         Pickupable.pickupCurrency += AddCurrency;
 
     }
 
-    private void Update()
-    {
-        if (_currentAmmoCount > _maxxAmmoCount)
-        {
-            _currentAmmoCount = _maxxAmmoCount;
-        }
-
-    }
 
     // This just works beautifully
     public void LoadWeapons(List<int> weaponsBought)
@@ -78,23 +57,16 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         }
     }
 
-    public void LoadLevels()
-    {
-
-    } 
-
     public bool TrySpendCurrency(int price)
     {
         if(_moneyAmount >= price)
         {
             _moneyAmount -= price;
             return true;
-
         }
         else
         {
             Debug.Log("Not enough money!");
-
             return false;
         }
     }
@@ -123,13 +95,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     {
         _moneyAmount += currency;
     }
-
-    public void AddAmmo(int ammo)
-    {
-        _currentAmmoCount += ammo;
-        UIManager.UpdateAmmoUI();
-    }
-
 
 }
 

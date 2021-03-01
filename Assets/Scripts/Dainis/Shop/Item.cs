@@ -17,8 +17,6 @@ public class Item : MonoBehaviour
 
     public bool _isEquipped = false;
 
-    public delegate void RemoveAmmo();
-    public event RemoveAmmo removeAmmo;
 
     public ItemType itemType { get => itemData.itemType; }
     public int price { get => itemData._price; }
@@ -49,7 +47,6 @@ public class Item : MonoBehaviour
             Instantiate(itemData._projectilePrefab, _firePoint.position, transform.rotation * Quaternion.Euler(0, 0, angle));
         }
 
-        removeAmmo?.Invoke(); // WHY IS THIS NULL???
         _attackTimer -= _attackTimer;
 
     }
