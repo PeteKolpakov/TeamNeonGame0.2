@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 9195701298184481811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 16, y: 4, z: 1}
+  m_LocalScale: {x: 3.2478874, y: 2.7968, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c1d3dcc0cdd140438263743649c7444, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,14 +118,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9195701298184481811}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   glowColor: {r: 0.8962264, g: 0.7135678, b: 0.08877714, a: 1}
-  glowBrightness: 2.25
-  outlineWidth: 1
-  alphaThreshold: 0.031
+  glowBrightness: 3.59
+  outlineWidth: 2
+  alphaThreshold: 0.978
   drawOutside: 0
   enableInstancing: 0

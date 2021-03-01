@@ -65,7 +65,7 @@ public class Entity : MonoBehaviour
         if (health > maxHealth) health = maxHealth;
     }
 
-    public virtual void TakeDamage(float damage, DamageType type)
+    public virtual void TakeDamage(int damage, DamageType type)
     {
         if(canTakeDamage){
             health -= damage;
