@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2969876368306861103}
   - component: {fileID: 2969876368306861102}
   - component: {fileID: 2969876368306861097}
-  - component: {fileID: 2969876368306861099}
   - component: {fileID: 2969876368306861096}
   m_Layer: 14
   m_Name: LandMine
@@ -125,8 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee593e85e6f1994f80e0155cf1ec32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
+  health: 1
+  maxHealth: 1
   _explosion: {fileID: 352795596918730512, guid: c3a04e176d7c15d4c9b217a62a946f0d,
     type: 3}
   currencyPrefab: {fileID: 5108749737209198752, guid: aae6a1bda0edc8148b26dbf48ee187a5,
@@ -135,27 +134,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
---- !u!50 &2969876368306861099
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2969876368306861098}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
+  canTakeDamage: 1
 --- !u!114 &2969876368306861096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +178,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   changeColor: {r: 1, g: 0, b: 0, a: 1}
   LineOfSight: 2
+  Duration: 0
+  t: 0
   ExplosionDelay: 1
   MaxDamage: 50
   SplashRange: 2
