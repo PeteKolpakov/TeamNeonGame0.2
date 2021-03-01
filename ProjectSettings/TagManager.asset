@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - string
   - Currency
+  - GlobalUI
+  - ShopUI
+  - GameManager
   layers:
   - Default
   - TransparentFX
@@ -23,9 +26,9 @@ TagManager:
   - Pickup
   - 
   - LandMine
-  - 
-  - 
-  - 
+  - FlyingEnemy
+  - Destructables
+  - PostProcessing
   - 
   - 
   - 

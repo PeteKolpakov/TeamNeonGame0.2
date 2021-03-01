@@ -5,17 +5,18 @@ using UnityEngine;
 
 abstract class AttackBase : MonoBehaviour
 {
-    [SerializeField]
-    protected Item _weapon;
+    public Item _weapon;
+    public MeleeWeapon _meleeWeapon;
 
     public Item CurrentWeapon { get => _weapon; }
+    public MeleeWeapon CurrentMeleeWeapon { get => _meleeWeapon; }
 
     protected virtual void Update()
     {
         Aim();
         Shoot();
     }
-
+    
     protected abstract void Aim();
     protected abstract void Shoot();
 }

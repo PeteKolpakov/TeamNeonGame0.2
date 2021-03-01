@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.Misc;
 
 public class Pickupable : MonoBehaviour
 {
@@ -16,23 +15,23 @@ public class Pickupable : MonoBehaviour
     public enum PickupableType
     {
         Currency,
-        Ammo
+        AmmoPickup
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player"))
         {
-            if(pickupableType.ToString() == "Currency")
+            if(pickupableType == PickupableType.Currency)
             {
                 int amount = Random.Range(2, 7);
                 pickupCurrency(amount);
                 Destroy(gameObject);
-            }else if(pickupableType.ToString() == "Ammo")
+            }else if(pickupableType == PickupableType.AmmoPickup)
             {
                 int amount = Random.Range(1, 3);
-                pickupAmmo(amount);
                 Destroy(gameObject);
+                pickupAmmo(amount);
 
             }
         }

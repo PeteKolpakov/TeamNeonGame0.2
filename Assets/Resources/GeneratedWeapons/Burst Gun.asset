@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ba855c1fbb302e4689134c2444debd2, type: 3}
+  m_Name: Burst Gun
+  m_EditorClassIdentifier: 
+  _name: Burst Gun
+  _description: Seems kinda rusty but would come in handy Bursts 3 bullets per shot
+  _price: 1
+  _damage: 1
+  itemType: 0
+  _fireRate: 0.1
+  _projectileAmount: 1
+  _spreadAngle: 0
+  WeaponID: 20
+  _icon: {fileID: 21300000, guid: 155f4d186c645384689855d56ebdf445, type: 3}
+  _projectilePrefab: {fileID: 3351136579877671628, guid: 6db80e3557cf9854688284df4af6b70b,
+    type: 3}
+  _isEquipped: 0
+  colour: {r: 0, g: 0, b: 0, a: 1}

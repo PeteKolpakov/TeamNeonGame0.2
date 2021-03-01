@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ba855c1fbb302e4689134c2444debd2, type: 3}
+  m_Name: SL Laser Sable 1
+  m_EditorClassIdentifier: 
+  _name: SL Laser Sable
+  _description: It disintegrates anything it touches
+  _price: 1
+  _damage: 5
+  itemType: 0
+  _fireRate: 0.5
+  _projectileAmount: 1
+  _spreadAngle: 170
+  WeaponID: 45
+  _icon: {fileID: 0}
+  _projectilePrefab: {fileID: 3351136579877671628, guid: 6db80e3557cf9854688284df4af6b70b,
+    type: 3}
+  _isEquipped: 0
+  colour: {r: 0, g: 0, b: 0, a: 1}

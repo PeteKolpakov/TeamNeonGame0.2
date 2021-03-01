@@ -1,3 +1,4 @@
+using Assets.Scripts.Player;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,17 +7,19 @@ using UnityEngine;
 
 class PlayerShoot : AttackBase
 {
-    [SerializeField]
     Camera _sceneCamera;
-
-    [SerializeField]
     PlayerStatManager _playerStats;
+    PlayerMovement playerMovement;
 
     private Vector3 _mousePos;
-
-    
-
     //public ShopkeeperInteraction _shop;
+
+    private void Awake()
+    {
+        _sceneCamera = Camera.main;
+        _playerStats = GetComponent<PlayerStatManager>();
+        playerMovement = GetComponent<PlayerMovement>();
+    }
 
     protected override void Update()
     {
@@ -25,26 +28,45 @@ class PlayerShoot : AttackBase
     }
     protected override void Aim()
     {
-        Vector3 mouseWorldSpace = _sceneCamera.ScreenToWorldPoint(_mousePos);
+        if(playerMovement.isPauseMenuOpen == false)
+        {
+            Vector3 mouseWorldSpace = _sceneCamera.ScreenToWorldPoint(_mousePos);
 
-        Vector3 direction = mouseWorldSpace - transform.position;
+            Vector3 direction = mouseWorldSpace - transform.position;
 
 
-        float angle = Mathf.Atan2(direction.y, direction.x); // in radians
-        _weapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
-        direction.z = 0;
-        _weapon.transform.position = transform.position + direction.normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x); // in radians
+            _weapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+            if (_meleeWeapon != null)
+            {
+                _meleeWeapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+
+            }
+
+            direction.z = 0;
+            _weapon.transform.position = transform.position + direction.normalized;
+            if (_meleeWeapon != null)
+            {
+                _meleeWeapon.transform.position = transform.position + direction.normalized;
+
+            }
+
+        }
+
+
     }
 
     protected override void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && _weapon._projectileAmount <= _playerStats._currentAmmoCount)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && _weapon.projectileAmount <= _playerStats._currentAmmoCount && playerMovement.isPauseMenuOpen == false)
         {
-            _playerStats._currentAmmoCount -= _weapon._projectileAmount;
             _weapon.Attack();
+            _playerStats._currentAmmoCount -= _weapon.projectileAmount;
         }
 
-        if ((Input.GetKeyDown(KeyCode.Mouse1)) && (_weapon.TryGetComponent(out MeleeWeapon melee)))
+        // Melee attack 
+
+        if ((Input.GetKeyDown(KeyCode.Mouse1)) && (_meleeWeapon.TryGetComponent(out MeleeWeapon melee)) == true && playerMovement.isPauseMenuOpen == false)
         {
 
             Debug.Log("Cutting");
@@ -52,15 +74,13 @@ class PlayerShoot : AttackBase
             melee.MeleeAttack();
 
         }
-        /*  if(_weapon.TryGetComponent(out MeleeWeapon melee))
-            {
+        /*   if ((Input.GetKeyUp(KeyCode.Mouse1)) && (_meleeWeapon.TryGetComponent(out MeleeWeapon melee2)) == true)
 
-              melee.MeleeAttack();
+               melee2.HideMelee();
 
-          }*/
-
-
-    }
+       }*/
     }
 
 
+
+}

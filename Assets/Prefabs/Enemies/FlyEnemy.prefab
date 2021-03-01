@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2947890936890169537}
   - component: {fileID: 2947890936890169538}
   - component: {fileID: 2947890936890169541}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: FlyEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -126,7 +126,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  _maxHealth: 1
+  maxHealth: 5
+  _explosion: {fileID: 352795596918730512, guid: c3a04e176d7c15d4c9b217a62a946f0d,
+    type: 3}
   currencyPrefab: {fileID: 5108749737209198752, guid: aae6a1bda0edc8148b26dbf48ee187a5,
     type: 3}
   ammoPrefab: {fileID: 8743885004090351468, guid: 3d586cc4622327748874ed211619bac4,
@@ -145,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1445a208a2ebe744eb68e071f96f63a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 2
+  Speed: 3
   LineOfSight: 8
   KamikazeRange: 6
   SplashRange: 3

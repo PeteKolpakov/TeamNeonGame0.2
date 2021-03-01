@@ -10,30 +10,32 @@ public enum DamageType
 
 public class Entity : MonoBehaviour
 {
-
     public float health;
 
     [SerializeField]
-    public float _maxHealth;
+    public float maxHealth;
 
+    [SerializeField]
+    private GameObject _explosion;
     [SerializeField]
     GameObject currencyPrefab;
     [SerializeField]
     GameObject ammoPrefab;
 
-    public int currencyDropChance = 30;
-    public int ammoDropChance = 30;
-    private int getFuckedChance = 40;
+    public int currencyDropPercent = 30;
+    public int ammodropPercent = 30;
+    private int nothingPercent = 40;
 
     private bool _canDrop = true;
+    public bool canTakeDamage = true;
 
     private void Start()
     {
-        health = _maxHealth;
+        health = maxHealth;
 
-        getFuckedChance = 100 - currencyDropChance - ammoDropChance;
+        nothingPercent = 100 - currencyDropPercent - ammodropPercent;
 
-        if (System.Math.Abs(getFuckedChance) + currencyDropChance + ammoDropChance != 100)
+        if (System.Math.Abs(nothingPercent) + currencyDropPercent + ammodropPercent != 100)
         {
             Debug.Log("Drop percentages do not equal 100. Change the values and try again, darling");
             _canDrop = false;
@@ -49,7 +51,7 @@ public class Entity : MonoBehaviour
     }
     public void Initialize() // to be called at the beginning of a lvl
     {
-        health = _maxHealth;
+        health = maxHealth;
     }
 
     public float GetHealth()
@@ -60,17 +62,19 @@ public class Entity : MonoBehaviour
     public void Heal(float healAmount)
     {
         health += healAmount;
-        if (health > _maxHealth) health = _maxHealth;
+        if (health > maxHealth) health = maxHealth;
     }
 
     public virtual void TakeDamage(float damage, DamageType type)
     {
-        health -= damage;
+        if(canTakeDamage){
+            health -= damage;
+        }
     }
 
     public void SetNewMaxHealth(float newMax)
     {
-        _maxHealth = newMax;
+        maxHealth = newMax;
         if(newMax <= 0)
         {
             Debug.LogError("WARNING: Max HP must be greater than zero!");
@@ -79,8 +83,13 @@ public class Entity : MonoBehaviour
 
     protected virtual void Die()
     {
+        if (_explosion != null)
+        {
+            Instantiate(_explosion, transform.position, Quaternion.identity);
+        }
         Drop();
         Destroy(gameObject);
+  
     }
 
     public void Drop()
@@ -89,22 +98,23 @@ public class Entity : MonoBehaviour
         {
             float roll = Random.Range(1, 100f);
 
-            if (roll <= currencyDropChance)
+            if (roll <= currencyDropPercent)
             {
                 Debug.Log("You get MONEY!");
                 Instantiate(currencyPrefab, transform.position, Quaternion.identity);
             }
-            else if (roll >= currencyDropChance + 1 && roll <= currencyDropChance + ammoDropChance)
+            else if (roll >= currencyDropPercent + 1 && roll <= currencyDropPercent + ammodropPercent)
             {
                 Debug.Log("You get AMMO!");
                 Instantiate(ammoPrefab, transform.position, Quaternion.identity);
             }
-            else if (roll >= currencyDropChance + ammoDropChance + 1)
+            else if (roll >= currencyDropPercent + ammodropPercent + 1)
             {
-                Debug.Log("You get FUCKED!");
+                Debug.Log("Nothing");
 
                 // GET FUCKED
             }
         }
     }
+
 }
