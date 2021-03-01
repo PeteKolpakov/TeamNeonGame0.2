@@ -25,6 +25,9 @@ class GlobalUIManager : MonoBehaviour
     public Image secondGlobalSlot;
     public Image thirdGlobalSlot;
 
+    //Debug//
+    public TMP_Text firerate;
+
     private void Start()
     {
         player = PlayerTracker.Instance.Player.GetComponent<Entity>();
@@ -57,6 +60,8 @@ class GlobalUIManager : MonoBehaviour
         firstGlobalSlot.color = Color.white;
         secondGlobalSlot.sprite = playerShootScript.CurrentMeleeWeapon.AccessItemData().icon;
         secondGlobalSlot.color = Color.white;
+
+        firerate.text = "FireRate: " + Math.Round(playerShootScript.CurrentWeapon.fireRate, 1).ToString();
     }
 }
 

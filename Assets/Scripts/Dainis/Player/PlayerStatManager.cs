@@ -8,7 +8,7 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 {
     GlobalUIManager UIManager;
     EquipmentManager EQManager;
-    public float _fireRate = 1f;
+    PlayerShoot playerShoot;
 
     public int _damage = 1;
 
@@ -23,11 +23,13 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     private void Awake()
     {
         EQManager = GetComponent<EquipmentManager>();
+        playerShoot = GetComponent<PlayerShoot>();
         UIManager = GameObject.FindGameObjectWithTag("GlobalUI").GetComponent<GlobalUIManager>();
     }
     private void Start()
     {
         Pickupable.pickupCurrency += AddCurrency;
+        Pickupable.pickupFR += AddFireRate;
 
     }
 
@@ -94,6 +96,29 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     public void AddCurrency(int currency)
     {
         _moneyAmount += currency;
+    }
+
+    public void AddFireRate(float reduction){
+        float oldFireRate = playerShoot.CurrentWeapon.fireRate;
+        float newFireRate = oldFireRate - reduction;
+        if(newFireRate <= 0){
+            newFireRate = 0.1f;
+        }
+        playerShoot.CurrentWeapon.fireRate = newFireRate;
+        Debug.Log("FireRate buff acquired");
+        StartCoroutine(BuffTimerForFireRate(oldFireRate));
+
+    }
+
+    public IEnumerator BuffTimerForFireRate(float oldFR){
+        yield return new WaitForSeconds(4);
+        SetFireRateBackToNormal(oldFR);
+    }
+
+    public void SetFireRateBackToNormal(float oldFR){
+        Debug.Log("FireRate buff lost lol");
+        playerShoot.CurrentWeapon.fireRate = oldFR;
+
     }
 
 }

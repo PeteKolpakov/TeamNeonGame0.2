@@ -25,7 +25,7 @@ public class Item : MonoBehaviour
     public string itemDescription { get => itemData._description; }
     public int damage { get => itemData._damage; }
     public int projectileAmount { get => itemData._projectileAmount; }
-    public float fireRate { get => itemData._fireRate;  }
+    public float fireRate { get => itemData._fireRate; set =>  itemData._fireRate = value;  }
 
 
     private void Update()

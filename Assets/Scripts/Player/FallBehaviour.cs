@@ -17,7 +17,7 @@ namespace Assets.Scripts.Player
         private Rigidbody2D _rigidBody;
         private float _scale;
         private float _lastRespawnTime;
-        private bool _isFalling;
+        public bool _isFalling;
         [SerializeField]
         private LayerMask _groundCheckMask;
 
