@@ -9,8 +9,6 @@ public class PlayerData
     public int CurrentLvl;
 
     public float PlayerMaxHealth;
-    public int PlayerMaxArmor;
-    public int PlayerMaxAmmo;
 
     public int PlayerCurrentMoney;
 

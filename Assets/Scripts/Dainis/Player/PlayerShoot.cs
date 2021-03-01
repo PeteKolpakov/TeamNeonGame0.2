@@ -10,6 +10,7 @@ class PlayerShoot : AttackBase
     Camera _sceneCamera;
     PlayerStatManager _playerStats;
     PlayerMovement playerMovement;
+    FallBehaviour fallBehaviour;
 
     private Vector3 _mousePos;
     //public ShopkeeperInteraction _shop;
@@ -19,6 +20,8 @@ class PlayerShoot : AttackBase
         _sceneCamera = Camera.main;
         _playerStats = GetComponent<PlayerStatManager>();
         playerMovement = GetComponent<PlayerMovement>();
+        fallBehaviour = GetComponent<FallBehaviour>();
+
     }
 
     protected override void Update()
@@ -58,10 +61,10 @@ class PlayerShoot : AttackBase
 
     protected override void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && _weapon.projectileAmount <= _playerStats._currentAmmoCount && playerMovement.isPauseMenuOpen == false)
+        if (fallBehaviour._isFalling == false && Input.GetKey(KeyCode.Mouse0) && playerMovement.isPauseMenuOpen == false)
         {
             _weapon.Attack();
-            _playerStats._currentAmmoCount -= _weapon.projectileAmount;
+
         }
 
         // Melee attack 
@@ -74,11 +77,6 @@ class PlayerShoot : AttackBase
             melee.MeleeAttack();
 
         }
-        /*   if ((Input.GetKeyUp(KeyCode.Mouse1)) && (_meleeWeapon.TryGetComponent(out MeleeWeapon melee2)) == true)
-
-               melee2.HideMelee();
-
-       }*/
     }
 
 

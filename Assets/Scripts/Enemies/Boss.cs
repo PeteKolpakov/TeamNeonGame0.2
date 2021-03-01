@@ -22,9 +22,9 @@ public class Boss : MonoBehaviour
     private WaveBulletShooting waveAttack;
     private SprialBulletShooting spiralAttack;
 
-    public bool leftArmDead = false;
+    public bool leftArmDead;
 
-    public bool rightArmDead = false;
+    public bool rightArmDead;
 
     private bool _phase1;
 

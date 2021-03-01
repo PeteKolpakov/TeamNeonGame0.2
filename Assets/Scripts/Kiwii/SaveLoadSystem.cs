@@ -40,8 +40,6 @@ public class SaveLoadSystem : MonoBehaviour
         // AKA LOADING THE DATA
 
         entity.maxHealth = MyCurrentPlayerData.PlayerMaxHealth;
-        PStats._maxxArmorPoints = MyCurrentPlayerData.PlayerMaxArmor;
-        PStats._maxxAmmoCount = MyCurrentPlayerData.PlayerMaxAmmo;
         PStats._moneyAmount = MyCurrentPlayerData.PlayerCurrentMoney;
         PStats.LoadWeapons(MyCurrentPlayerData.PurchasedGunsInt);
 
@@ -59,8 +57,6 @@ public class SaveLoadSystem : MonoBehaviour
         PlayerData p = new PlayerData();
 
         p.PlayerMaxHealth = entity.maxHealth;
-        p.PlayerMaxArmor = PStats._maxxArmorPoints;
-        p.PlayerMaxAmmo = PStats._maxxAmmoCount;
         p.PlayerCurrentMoney = PStats._moneyAmount;
         p.PurchasedGunsInt = PStats.BoughtGunsInt;
    //     p.CompletedLevelsInt = PStats.FinishedLevelsInt;
@@ -80,8 +76,6 @@ public class SaveLoadSystem : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError(e.Message);
-
-
         }
         finally
         {
