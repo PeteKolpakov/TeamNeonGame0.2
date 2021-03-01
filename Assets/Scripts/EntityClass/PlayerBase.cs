@@ -30,27 +30,15 @@ namespace Assets.Scripts.EntityClass
             //ScenesManager.LoadLevel(SceneManager.GetActiveScene().buildIndex));
         }
 
-        public override void TakeDamage(float damage, DamageType type)
+        public override void TakeDamage(int damage, DamageType type)
         {
             if (!fallBehaviour.IsRespawnInvincible())
             {
                 if(type == DamageType.Bullet)
                 {
-                    float _APBlock = player._currentArmorPoints * player._armorPointHealth;
-                    float damageTaken = damage - _APBlock;
-                    if (damageTaken < 0)
-                    {
-                        damageTaken = 0;
-                    }
-                    health -= damageTaken;
 
-                    if (damage > _APBlock)
-                    {
-                        if (removeArmor != null)
-                        {
-                            removeArmor();
-                        }
-                    }
+                    health -= damage;
+
                 }
                 else if(type == DamageType.Fall)
                 {

@@ -9,13 +9,13 @@ public class Pickupable : MonoBehaviour
     public delegate void PickupCurrency(int currency);
     public static event PickupCurrency pickupCurrency;
 
-    public delegate void PickupAmmo(int ammo);
-    public static event PickupAmmo pickupAmmo;
+    public delegate void PickupFireRate(float firerate);
+    public static event PickupFireRate pickupFR;
 
     public enum PickupableType
     {
         Currency,
-        AmmoPickup
+        FireRatePickup
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -27,11 +27,12 @@ public class Pickupable : MonoBehaviour
                 int amount = Random.Range(2, 7);
                 pickupCurrency(amount);
                 Destroy(gameObject);
-            }else if(pickupableType == PickupableType.AmmoPickup)
+            }else if(pickupableType == PickupableType.FireRatePickup)
             {
-                int amount = Random.Range(1, 3);
+                // Add firerate
+                float amount = Random.Range(0.1f, 0.2f);
+                pickupFR(amount);
                 Destroy(gameObject);
-                pickupAmmo(amount);
 
             }
         }

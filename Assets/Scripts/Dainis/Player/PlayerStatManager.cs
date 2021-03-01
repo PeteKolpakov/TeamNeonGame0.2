@@ -8,15 +8,7 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 {
     GlobalUIManager UIManager;
     EquipmentManager EQManager;
-
-    public int _maxxArmorPoints = 1;
-    public int _currentArmorPoints;
-    public float _armorPointHealth = 1; // How much HP is 1 AP
-
-    public int _maxxAmmoCount = 5;
-    public int _currentAmmoCount;
-
-    public float _fireRate = 1f;
+    PlayerShoot playerShoot;
 
     public int _damage = 1;
 
@@ -27,31 +19,20 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
     public List<int> BoughtGunsInt;
 
-   // public List<int> FinishedLevelsInt;
 
     private void Awake()
     {
         EQManager = GetComponent<EquipmentManager>();
+        playerShoot = GetComponent<PlayerShoot>();
         UIManager = GameObject.FindGameObjectWithTag("GlobalUI").GetComponent<GlobalUIManager>();
     }
     private void Start()
     {
-        _currentArmorPoints = _maxxArmorPoints;
-        _currentAmmoCount = _maxxAmmoCount;
-
-        Pickupable.pickupAmmo += AddAmmo;
         Pickupable.pickupCurrency += AddCurrency;
+        Pickupable.pickupFR += AddFireRate;
 
     }
 
-    private void Update()
-    {
-        if (_currentAmmoCount > _maxxAmmoCount)
-        {
-            _currentAmmoCount = _maxxAmmoCount;
-        }
-
-    }
 
     // This just works beautifully
     public void LoadWeapons(List<int> weaponsBought)
@@ -78,23 +59,16 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         }
     }
 
-    public void LoadLevels()
-    {
-
-    } 
-
     public bool TrySpendCurrency(int price)
     {
         if(_moneyAmount >= price)
         {
             _moneyAmount -= price;
             return true;
-
         }
         else
         {
             Debug.Log("Not enough money!");
-
             return false;
         }
     }
@@ -124,12 +98,28 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         _moneyAmount += currency;
     }
 
-    public void AddAmmo(int ammo)
-    {
-        _currentAmmoCount += ammo;
-        UIManager.UpdateAmmoUI();
+    public void AddFireRate(float reduction){
+        float oldFireRate = playerShoot.CurrentWeapon.fireRate;
+        float newFireRate = oldFireRate - reduction;
+        if(newFireRate <= 0){
+            newFireRate = 0.1f;
+        }
+        playerShoot.CurrentWeapon.fireRate = newFireRate;
+        Debug.Log("FireRate buff acquired");
+        StartCoroutine(BuffTimerForFireRate(oldFireRate));
+
     }
 
+    public IEnumerator BuffTimerForFireRate(float oldFR){
+        yield return new WaitForSeconds(4);
+        SetFireRateBackToNormal(oldFR);
+    }
+
+    public void SetFireRateBackToNormal(float oldFR){
+        Debug.Log("FireRate buff lost lol");
+        playerShoot.CurrentWeapon.fireRate = oldFR;
+
+    }
 
 }
 

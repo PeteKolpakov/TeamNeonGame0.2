@@ -18,7 +18,7 @@ public class FlyingEnemy : MonoBehaviour
     [SerializeField]
     private float Kamikaze = 4;
 
-    private float MaxDamage = 80f;
+    private float MaxDamage = 80;
 
 
 
@@ -66,11 +66,10 @@ public class FlyingEnemy : MonoBehaviour
                 var damage = Mathf.Lerp(MaxDamage, 0, distance / SplashRange);
 
                 //Deal damage to all Entities inside the range based on percentage related distance
-
+                int damageInt = (int)Mathf.Round(damage);
               
-                Debug.Log(entity.name + "Took" + damage);
 
-                entity.TakeDamage(damage, DamageType.Bullet);
+                entity.TakeDamage(damageInt, DamageType.Bullet);
             }
 
         }
