@@ -1,9 +1,11 @@
+using Assets.Scripts.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Player
 {
+    [RequireComponent(typeof(PlayerAudio))]
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField]
@@ -30,10 +32,13 @@ namespace Assets.Scripts.Player
         public GameObject PauseMenu;
         public bool isPauseMenuOpen;
 
+        private PlayerAudio _audio;
+
         private void Start()
         {
             _timeSinceDash = 0;
             rigidBody = GetComponent<Rigidbody2D>();
+            _audio = GetComponent<PlayerAudio>();
         }
 
         private void Update()
@@ -124,16 +129,9 @@ namespace Assets.Scripts.Player
         {
             if(_dashAfterImage != null){
                 _dashAfterImage.Play();
-
             }
+            _audio.TriggerAudio(_audio._dashSFX);
             Vector2 dashPosition = ((Vector2)transform.position + _moveDirection * _dashLenght);
-            /**RaycastHit2D raycastHit2d = Physics2D.Raycast(transform.position, _direction, _dashLenght, _dashLayerMask);
-           
-            if (raycastHit2d.collider != null)
-            {
-                Debug.DrawLine(rb.position, raycastHit2d.point, Color.cyan, 2f);
-                dashPosition = raycastHit2d.point;
-            }**/
             Vector2 dashVelocity = (dashPosition - (Vector2)transform.position) / _dashDuration;
             rigidBody.velocity = dashVelocity;
             _timeSinceDash = 0;        

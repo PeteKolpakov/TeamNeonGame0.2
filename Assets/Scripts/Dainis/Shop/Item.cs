@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.Audio;
 
 public class Item : MonoBehaviour
 {
-
     // projectile spawn point
     [SerializeField]
     private Transform _firePoint;
@@ -13,10 +13,11 @@ public class Item : MonoBehaviour
     [SerializeField]
     public ReworkedItem itemData;
 
+    private PlayerAudio _audio;
+
     private float _attackTimer;
 
     public bool _isEquipped = false;
-
 
     public ItemType itemType { get => itemData.itemType; }
     public int price { get => itemData._price; }
@@ -27,6 +28,10 @@ public class Item : MonoBehaviour
     public int projectileAmount { get => itemData._projectileAmount; }
     public float fireRate { get => itemData._fireRate; set =>  itemData._fireRate = value;  }
 
+    private void Awake()
+    {
+        _audio = GetComponentInParent<PlayerAudio>();
+    }
 
     private void Update()
     {
@@ -40,6 +45,8 @@ public class Item : MonoBehaviour
     {
         if (_attackTimer < itemData._fireRate)
             return;
+
+        _audio.PlayerShoot();
 
         for (int i = 0; i < itemData._projectileAmount; i++)
         {

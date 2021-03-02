@@ -1,9 +1,9 @@
+using Assets.Scripts.Audio;
 using Assets.Scripts.Player;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 
 class PlayerShoot : AttackBase
 {
@@ -64,7 +64,6 @@ class PlayerShoot : AttackBase
         if (fallBehaviour._isFalling == false && Input.GetKey(KeyCode.Mouse0) && playerMovement.isPauseMenuOpen == false)
         {
             _weapon.Attack();
-
         }
 
         // Melee attack 
@@ -75,7 +74,6 @@ class PlayerShoot : AttackBase
             Debug.Log("Cutting");
 
             melee.MeleeAttack();
-
         }
     }
 
