@@ -1,4 +1,5 @@
 using Assets.Scripts.GameManager;
+using SpriteGlow;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,10 @@ public class LandMine : MonoBehaviour
 {
     [SerializeField]
     private Gradient _gradient;
+    [SerializeField]
+    private GameObject _landMineBoom;
 
-    public Color changeColor = Color.red;
+    SpriteGlowEffect glowEffect;
 
     public float LineOfSight = 4f;
 
@@ -23,8 +26,10 @@ public class LandMine : MonoBehaviour
 
     public bool Triggered;
 
-
-
+    private void Start()
+    {
+        glowEffect = GetComponent<SpriteGlowEffect>();
+    }
     private void Update()
     {
         if (!Triggered)
@@ -34,7 +39,7 @@ public class LandMine : MonoBehaviour
         }
         else
         {
-            ChangeMaterialColor();
+            ChangeMaterialColorAndGlow();
         }
 
     }
@@ -63,20 +68,22 @@ public class LandMine : MonoBehaviour
 
         Explode();
     }
-    private void ChangeMaterialColor()
+    private void ChangeMaterialColorAndGlow()
     {
         float value = Mathf.Lerp(0f, 1f, t);
         t += Time.deltaTime / ExplosionDelay;
-        
+        glowEffect.GlowBrightness += 0.2f;
         Color color = _gradient.Evaluate(value);
-        this.GetComponent<Renderer>().material.color = color;
+        GetComponent<Renderer>().material.color = color;
     }
 
     //Explode and deal damage after being triggered
     public void Explode()
     {
-
-        Debug.Log("Explodeee");
+        if(_landMineBoom !=null)
+        {
+            Instantiate(_landMineBoom, transform.position, Quaternion.identity);
+        }
 
         Destroy(gameObject);
 

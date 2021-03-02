@@ -88,6 +88,7 @@ public class FlyingEnemy : MonoBehaviour
 
         if (distanceFromPlayer < LineOfSight && distanceFromPlayer > KamikazeRange) // Should you be able to just walk out of its range when detected? Show Visual Test Scene to demonstrate
         {
+           
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle * Mathf.Rad2Deg - 90f));
             transform.position = Vector2.MoveTowards(this.transform.position, playerPos, Speed * Time.deltaTime);
         }

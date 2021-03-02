@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2969876368306861102}
   - component: {fileID: 2969876368306861097}
   - component: {fileID: 2969876368306861096}
+  - component: {fileID: 2079444578}
   m_Layer: 14
   m_Name: LandMine
   m_TagString: Enemy
@@ -53,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4,
     type: 3}
   m_Color: {r: 0.6132076, g: 0.5871752, b: 0.5871752, a: 1}
@@ -176,10 +177,29 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  changeColor: {r: 1, g: 0, b: 0, a: 1}
+  _landMineBoom: {fileID: 352795596918730512, guid: c51b2ce9dbf4b5345ac933c89c471498,
+    type: 3}
   LineOfSight: 2
   t: 0
   ExplosionDelay: 1
   MaxDamage: 50
   SplashRange: 2
   Triggered: 0
+--- !u!114 &2079444578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2969876368306861098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 0.6792453, g: 0.6340864, b: 0.20185119, a: 1}
+  glowBrightness: 1
+  outlineWidth: 10
+  alphaThreshold: 0.052
+  drawOutside: 0
+  enableInstancing: 0
