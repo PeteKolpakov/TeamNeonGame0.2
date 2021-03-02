@@ -96,7 +96,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -178,7 +178,6 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   changeColor: {r: 1, g: 0, b: 0, a: 1}
   LineOfSight: 2
-  Duration: 0
   t: 0
   ExplosionDelay: 1
   MaxDamage: 50

@@ -19,9 +19,9 @@ public class FlyingEnemy : MonoBehaviour
 
     // This is the speed the normal Speed will be multiplied for (Speed * Kamikaze)
     [SerializeField]
-    private float Kamikaze = 4;
+    private float _kamikaze = 4;
 
-    private float MaxDamage = 80;
+    private float _maxDamage = 80;
 
 
     void Start()
@@ -62,7 +62,7 @@ public class FlyingEnemy : MonoBehaviour
 
                 //The damage percent depends on how close you are to the center of the explosion
 
-                var damage = Mathf.Lerp(MaxDamage, 0, distance / SplashRange);
+                var damage = Mathf.Lerp(_maxDamage, 0, distance / SplashRange);
 
                 //Deal damage to all Entities inside the range based on percentage related distance
                 int damageInt = (int)Mathf.Round(damage);
@@ -86,7 +86,7 @@ public class FlyingEnemy : MonoBehaviour
 
         float angle = Mathf.Atan2(_direction.y, _direction.x);
 
-        if (distanceFromPlayer < LineOfSight && distanceFromPlayer > KamikazeRange)
+        if (distanceFromPlayer < LineOfSight && distanceFromPlayer > KamikazeRange) // Should you be able to just walk out of its range when detected? Show Visual Test Scene to demonstrate
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle * Mathf.Rad2Deg - 90f));
             transform.position = Vector2.MoveTowards(this.transform.position, playerPos, Speed * Time.deltaTime);
@@ -94,7 +94,7 @@ public class FlyingEnemy : MonoBehaviour
         else if (distanceFromPlayer <= KamikazeRange)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle * Mathf.Rad2Deg - 90f));
-            transform.position = Vector2.MoveTowards(this.transform.position, playerPos, (Speed * Kamikaze) * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(this.transform.position, playerPos, (Speed * _kamikaze) * Time.deltaTime);
         }
 
     }
@@ -104,13 +104,12 @@ public class FlyingEnemy : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-       if (collision.collider.TryGetComponent(out Entity health))
-            {
-                Debug.Log("Hitting Player");
+       if (collision.collider.TryGetComponent(out Entity health)) // Should it not be Player Base? Ask in meeting c:
+       {
+            Debug.Log("Hitting Player");
           
-
             Explode();
-        }
+       }
       
     }
 

@@ -517,9 +517,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4,
-    type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 2a97d68f69be9bf4981276b79aa3ae18, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -564,7 +563,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.7066667, y: 1.7066667}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -585,8 +584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee593e85e6f1994f80e0155cf1ec32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
-  maxHealth: 1
+  health: 50
+  maxHealth: 50
   _explosion: {fileID: 352795596918730512, guid: c3a04e176d7c15d4c9b217a62a946f0d,
     type: 3}
   currencyPrefab: {fileID: 5108749737209198752, guid: aae6a1bda0edc8148b26dbf48ee187a5,
@@ -595,6 +594,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  canTakeDamage: 1
 --- !u!114 &6530174152558589475
 MonoBehaviour:
   m_ObjectHideFlags: 0

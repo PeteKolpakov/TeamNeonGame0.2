@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4,
     type: 3}
-  m_Color: {r: 0.34117648, g: 0.68235296, b: 1, a: 1}
+  m_Color: {r: 0.18431373, g: 0.27450982, b: 0.12941177, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,7 +97,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -125,8 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee593e85e6f1994f80e0155cf1ec32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
+  health: 1
+  maxHealth: 1
   _explosion: {fileID: 352795596918730512, guid: c3a04e176d7c15d4c9b217a62a946f0d,
     type: 3}
   currencyPrefab: {fileID: 5108749737209198752, guid: aae6a1bda0edc8148b26dbf48ee187a5,
@@ -135,6 +135,7 @@ MonoBehaviour:
     type: 3}
   currencyDropPercent: 30
   ammodropPercent: 30
+  canTakeDamage: 1
 --- !u!50 &2969876368306861099
 Rigidbody2D:
   serializedVersion: 4
@@ -168,8 +169,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88112142b6e82f645b42e43dcc1a56d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gradient:
+    serializedVersion: 2
+    key0: {r: 0.18342376, g: 0.2735849, b: 0.13033998, a: 1}
+    key1: {r: 1, g: 0, b: 0, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   changeColor: {r: 1, g: 0, b: 0, a: 1}
   LineOfSight: 3
+  t: 0
   ExplosionDelay: 1
   MaxDamage: 80
   SplashRange: 3

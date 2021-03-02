@@ -1,3 +1,4 @@
+using Assets.Scripts.GameManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,17 +18,12 @@ public class LandMine : MonoBehaviour
 
     public float MaxDamage = 80f;
    
-    private Transform player;
 
     public float SplashRange = 1;
 
     public bool Triggered;
 
 
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").transform;       
-    }
 
     private void Update()
     {
@@ -46,7 +42,8 @@ public class LandMine : MonoBehaviour
     // Check if player is in Line of sight
     public void DetectPlayer()
     {
-        float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
+        Vector3 playerPos = PlayerTracker.Instance.Player.transform.position;
+        float distanceFromPlayer = Vector2.Distance(playerPos, transform.position);
         if (distanceFromPlayer <= LineOfSight)
         {
 
@@ -61,9 +58,7 @@ public class LandMine : MonoBehaviour
     private IEnumerator TriggerExplode()
     {
         Triggered = true;
-
-       
-        
+              
         yield return new WaitForSeconds(ExplosionDelay);
 
         Explode();
@@ -88,7 +83,7 @@ public class LandMine : MonoBehaviour
 
         //Add damage to anything inside this range
 
-        var hitColliders = Physics2D.OverlapCircleAll(transform.position, SplashRange);
+        var hitColliders = Physics2D.OverlapCircleAll(transform.position, SplashRange); //Does this work???
 
         // Detect all colliders inside the SplashRange
         foreach (var hitCollider in hitColliders)
