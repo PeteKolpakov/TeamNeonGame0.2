@@ -106,12 +106,14 @@ namespace Assets.Scripts.Player
             {
                 if(isPauseMenuOpen == true)
                 {
+                    _audio.PlaySFX(_audio._pauseExitSFX);
                     Time.timeScale = 1;
                     PauseMenu.SetActive(false);
                     isPauseMenuOpen = false;
                 }
                 else
                 {
+                    _audio.PlaySFX(_audio._pauseEnterSFX);
                     Time.timeScale = 0;
                     PauseMenu.SetActive(true);
                     isPauseMenuOpen = true;
