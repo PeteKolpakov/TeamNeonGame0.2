@@ -258,18 +258,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14748105}
   m_CullTransparentMesh: 1
---- !u!114 &27000092 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 317005701, guid: af1f50feca6e3624ab9fa05911576702,
-    type: 3}
-  m_PrefabInstance: {fileID: 629651111}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b60aec9f5ac9fdd49a4ac69801e246a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &34712829
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,7 +488,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 27000092}
+      - m_Target: {fileID: 1833767277}
         m_TargetAssemblyTypeName: StatsTracker, Assembly-CSharp
         m_MethodName: SpeedrunModeActivated
         m_Mode: 1
@@ -2829,6 +2817,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580959926271605871, guid: af1f50feca6e3624ab9fa05911576702,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af1f50feca6e3624ab9fa05911576702, type: 3}
@@ -5575,6 +5568,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832349679}
   m_CullTransparentMesh: 1
+--- !u!114 &1833767277 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9210204501130672630, guid: af1f50feca6e3624ab9fa05911576702,
+    type: 3}
+  m_PrefabInstance: {fileID: 629651111}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b60aec9f5ac9fdd49a4ac69801e246a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1845899151
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,11 @@ namespace Assets.Scripts.GameManager
     {
         [SerializeField]
         private Animator transition;
+        private PlayerTracker _playerTracker;
+
+        private void Start() {
+            _playerTracker = GetComponent<PlayerTracker>();
+        }
         public void Update()
         {
             //Testing purposes
@@ -35,7 +40,7 @@ namespace Assets.Scripts.GameManager
         {
             SceneManager.LoadScene(6);
         }
-        public static void GoToNextLevel()
+        public void GoToNextLevel()
         {
             //After Rest Stage
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -62,5 +67,8 @@ namespace Assets.Scripts.GameManager
 
             GoToScene(lvlIndex);
         }
+
+        
+        
     }
 }

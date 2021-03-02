@@ -12,6 +12,10 @@ public class BossEyeball : Entity
 
         healthBar.SetMaxHealth(maxHealth);
     }
+
+        
+
+
     public override void Update() {
         base.Update();
         healthBar.SetHealth(health);

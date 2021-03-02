@@ -27,8 +27,11 @@ class GlobalUIManager : MonoBehaviour
     public Image secondGlobalSlot;
     public Image thirdGlobalSlot;
 
+
     //Debug//
     public TMP_Text firerate;
+
+    
 
     private void Start()
     {

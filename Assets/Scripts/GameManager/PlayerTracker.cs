@@ -11,8 +11,7 @@ namespace Assets.Scripts.GameManager{
 
         private void Awake()
         {
-            Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMarker>();
-            Debug.Log("I have awakened!");
+            Debug.Log("PlayerTracker has awakened");
             if(Instance == null)
             {
                 Instance = this;
@@ -22,5 +21,12 @@ namespace Assets.Scripts.GameManager{
                 Destroy(gameObject);
             }
         }
+
+        public void CashPlayerReference(PlayerMarker player){
+            
+            Player = player;
+        }
+
+        
     }
 }
