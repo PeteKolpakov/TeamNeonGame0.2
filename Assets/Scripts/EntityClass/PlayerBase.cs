@@ -26,8 +26,8 @@ namespace Assets.Scripts.EntityClass
         protected override void Die()
         {
             Destroy(gameObject);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            //ScenesManager.LoadLevel(SceneManager.GetActiveScene().buildIndex));
+            //StartCoroutine(LoadLevel(SceneManager.GetActiveScene()));
+            ScenesManager.GoToScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         public override void TakeDamage(int damage, DamageType type)
