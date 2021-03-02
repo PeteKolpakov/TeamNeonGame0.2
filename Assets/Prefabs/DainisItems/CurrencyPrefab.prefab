@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5108749737209198782}
   - component: {fileID: 5108749737209198783}
   - component: {fileID: -3520041107211767022}
+  - component: {fileID: -2873982913128453278}
   m_Layer: 12
   m_Name: CurrencyPrefab
   m_TagString: Untagged
@@ -161,3 +162,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupableType: 0
+--- !u!114 &-2873982913128453278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5108749737209198752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510183727af248e46a59bb7d9b30dab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sound: event:/CreditsPickup
+  _playOnAwake: 0
+  _playOnDestroy: 1

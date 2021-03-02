@@ -182,9 +182,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Load Profile
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -365,6 +364,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &34712832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,6 +502,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1833767277}
         m_TargetAssemblyTypeName: StatsTracker, Assembly-CSharp
         m_MethodName: SpeedrunModeActivated
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -650,9 +673,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Load Save
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -862,9 +884,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Options
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1135,7 +1156,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 200317779}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &200317779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1233,9 +1266,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Back
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1454,6 +1486,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &277984474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1626,9 +1670,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: SFX Volume
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1801,6 +1844,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2169,7 +2224,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 417786667}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &417786667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2267,7 +2334,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "D0 Y0U WISH TO DELETE\n THIS SAVE?"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
     type: 2}
   m_fontSharedMaterials: []
@@ -2517,6 +2584,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3055,9 +3134,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Create New Profile
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3190,9 +3268,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: OPTIONS
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3523,6 +3600,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &910927484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3698,6 +3787,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3951,7 +4052,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: YES
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
     type: 2}
   m_fontSharedMaterials: []
@@ -4086,9 +4187,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4438,7 +4538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1357172359
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4599,9 +4699,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4770,6 +4869,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1481102878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4867,9 +4978,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Back
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5002,9 +5112,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Music Volume
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5212,9 +5321,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Back
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5395,6 +5503,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1820315011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5492,9 +5612,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: BACK
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5662,7 +5781,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1845899154}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1845899154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5716,7 +5847,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1870711642
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5848,6 +5979,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1880700563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5945,9 +6088,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Level Select
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6080,7 +6222,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: N0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
     type: 2}
   m_fontSharedMaterials: []
@@ -6215,9 +6357,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Speedrun Mode
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6487,6 +6628,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &2029134641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6537,6 +6690,7 @@ GameObject:
   - component: {fileID: 2032085712}
   - component: {fileID: 2032085711}
   - component: {fileID: 2032085710}
+  - component: {fileID: 2032085714}
   m_Layer: 5
   m_Name: MainMenuCanvas
   m_TagString: Untagged
@@ -6631,6 +6785,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2032085714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032085709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e83e90ab1a953d459d3e31128862ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mouseOverSFX: event:/UIButtonMouseOver
+  _buttonPressSFX: event:/UIButtonPress
 --- !u!1 &2047643708
 GameObject:
   m_ObjectHideFlags: 0
@@ -7066,9 +7234,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: LEVEL SELECT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7406,6 +7573,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &3795834752106410806
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7726,9 +7905,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Save 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9247,9 +9425,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Level 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9452,9 +9629,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Select
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9644,9 +9820,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Load
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9755,7 +9930,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8208749771777366088}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2032085714}
+        m_TargetAssemblyTypeName: Assets.Scripts.Audio.MenuAudio, Assembly-CSharp
+        m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7142119920255830481
 GameObject:
   m_ObjectHideFlags: 0
@@ -9815,9 +10002,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: L0AD SAVE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10189,9 +10375,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: GAME TITLE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10504,9 +10689,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PR0FILE SELECT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10631,9 +10815,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Delete
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
-  m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 270d46dc2cdc4514d86fcfcbc925e923, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

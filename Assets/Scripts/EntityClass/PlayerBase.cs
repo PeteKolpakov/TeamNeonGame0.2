@@ -17,10 +17,13 @@ namespace Assets.Scripts.EntityClass
         public delegate void RemoveArmorPoints();
         public static event RemoveArmorPoints removeArmor;
 
+        private PlayerAudio _audio;
+
         private void Awake()
         {
             player = GetComponent<PlayerStatManager>();
             fallBehaviour = GetComponent<FallBehaviour>();
+            _audio = GetComponent<PlayerAudio>();
         }
 
         protected override void Die()
@@ -36,12 +39,13 @@ namespace Assets.Scripts.EntityClass
             {
                 if(type == DamageType.Bullet)
                 {
-
+                    _audio.PlaySFX(_audio._takeDamageSFX);
                     health -= damage;
 
                 }
                 else if(type == DamageType.Fall)
                 {
+                    _audio.PlaySFX(_audio._fallSFX);
                     health -= damage;
                 }
             }

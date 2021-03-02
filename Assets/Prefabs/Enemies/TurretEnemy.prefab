@@ -454,6 +454,7 @@ GameObject:
   - component: {fileID: 6582319218940928089}
   - component: {fileID: 6530174152558589475}
   - component: {fileID: 5535808356353545309}
+  - component: {fileID: 2765483319598474888}
   m_Layer: 8
   m_Name: TurretEnemy
   m_TagString: Untagged
@@ -626,6 +627,19 @@ MonoBehaviour:
   alphaThreshold: 0.01
   drawOutside: 0
   enableInstancing: 0
+--- !u!114 &2765483319598474888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030341708709422757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510183727af248e46a59bb7d9b30dab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sound: event:/EnemyDeath
 --- !u!1 &1030341709444230953
 GameObject:
   m_ObjectHideFlags: 0

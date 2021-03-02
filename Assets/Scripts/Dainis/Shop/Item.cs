@@ -1,8 +1,10 @@
+using Assets.Scripts.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioEventTrigger))]
 public class Item : MonoBehaviour
 {
 
@@ -17,6 +19,7 @@ public class Item : MonoBehaviour
 
     public bool _isEquipped = false;
 
+    private AudioEventTrigger _audio;
 
     public ItemType itemType { get => itemData.itemType; }
     public int price { get => itemData._price; }
@@ -27,6 +30,10 @@ public class Item : MonoBehaviour
     public int projectileAmount { get => itemData._projectileAmount; }
     public float fireRate { get => itemData._fireRate; set =>  itemData._fireRate = value;  }
 
+    private void Awake()
+    {
+        _audio = GetComponent<AudioEventTrigger>();    
+    }
 
     private void Update()
     {
@@ -41,6 +48,8 @@ public class Item : MonoBehaviour
         if (_attackTimer < itemData._fireRate)
             return;
 
+        _audio.PlaySound();
+
         for (int i = 0; i < itemData._projectileAmount; i++)
         {
             float angle = Random.Range(-itemData._spreadAngle, itemData._spreadAngle);
@@ -48,7 +57,6 @@ public class Item : MonoBehaviour
         }
 
         _attackTimer -= _attackTimer;
-
     }
 
     public void AssignData(ReworkedItem data)
