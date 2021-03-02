@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SpriteGlow;
 
 
 public class PlayerStatManager : MonoBehaviour, IShopCustomer
@@ -19,17 +20,30 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
     public List<int> BoughtGunsInt;
 
+    SpriteGlowEffect glow;
+    private Color oldColor;
+    private float oldBrightness;
+    private float oldFireRate;
+
+
 
     private void Awake()
     {
         EQManager = GetComponent<EquipmentManager>();
         playerShoot = GetComponent<PlayerShoot>();
+
         UIManager = GameObject.FindGameObjectWithTag("GlobalUI").GetComponent<GlobalUIManager>();
     }
     private void Start()
     {
         Pickupable.pickupCurrency += AddCurrency;
         Pickupable.pickupFR += AddFireRate;
+
+        glow = GetComponent<SpriteGlowEffect>();
+        oldColor = glow.GlowColor;
+        oldBrightness = glow.GlowBrightness;
+
+        oldFireRate = playerShoot.CurrentWeapon.fireRate;
 
     }
 
@@ -99,20 +113,35 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     }
 
     public void AddFireRate(float reduction){
-        float oldFireRate = playerShoot.CurrentWeapon.fireRate;
-        float newFireRate = oldFireRate - reduction;
+        float currentFireRate = playerShoot.CurrentWeapon.fireRate;
+        float newFireRate = currentFireRate - reduction;
         if(newFireRate <= 0){
             newFireRate = 0.1f;
         }
         playerShoot.CurrentWeapon.fireRate = newFireRate;
         Debug.Log("FireRate buff acquired");
-        StartCoroutine(BuffTimerForFireRate(oldFireRate));
+
+        BuffVisualActive(glow);
+        StartCoroutine(BuffTimerForFireRate(oldFireRate, oldColor, oldBrightness, glow));
 
     }
 
-    public IEnumerator BuffTimerForFireRate(float oldFR){
+    private void BuffVisualActive(SpriteGlowEffect glow){
+
+        glow.GlowColor = new Color(0,1,0,255);
+        glow.GlowBrightness = 0.868f;
+    }
+
+    private void RemoveBuffVisual(Color oldColor, float oldBrightness, SpriteGlowEffect glow){
+        glow.GlowColor = oldColor;
+        glow.GlowBrightness = oldBrightness;
+
+    }
+
+    public IEnumerator BuffTimerForFireRate(float oldFR, Color oldColor, float oldBrightness, SpriteGlowEffect glow){
         yield return new WaitForSeconds(4);
         SetFireRateBackToNormal(oldFR);
+        RemoveBuffVisual(oldColor, oldBrightness, glow);
     }
 
     public void SetFireRateBackToNormal(float oldFR){

@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Assets.Scripts.GameManager;
 
 public class TimerUI : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI milisecondsText;
+
+    private StatsTracker gameManager;
+
+    private void Start() {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
+        if(gameManager.SpeedrunMode == true){
+            timerText.gameObject.SetActive(true);
+            milisecondsText.gameObject.SetActive(true);
+        }
+    }
 
     void Update()
     {
