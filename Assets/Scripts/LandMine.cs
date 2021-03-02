@@ -7,12 +7,9 @@ public class LandMine : MonoBehaviour
     [SerializeField]
     private Gradient _gradient;
 
-    private SpriteRenderer rend;
     public Color changeColor = Color.red;
 
     public float LineOfSight = 4f;
-
-    public float Duration;
 
     public float t = 0;
 
@@ -29,10 +26,7 @@ public class LandMine : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        rend = gameObject.GetComponent<SpriteRenderer>();
-
-       
+        player = GameObject.FindGameObjectWithTag("Player").transform;       
     }
 
     private void Update()
@@ -40,6 +34,11 @@ public class LandMine : MonoBehaviour
         if (!Triggered)
         {
             DetectPlayer();
+
+        }
+        else
+        {
+            ChangeMaterialColor();
         }
 
     }
@@ -63,18 +62,21 @@ public class LandMine : MonoBehaviour
     {
         Triggered = true;
 
-        float value = Mathf.Lerp(0f, 1f, t);
-        t += Time.deltaTime / Duration;
-        Color color = _gradient.Evaluate(value);
-        rend.color = color;
-        //rend.color = changeColor;
+       
+        
         yield return new WaitForSeconds(ExplosionDelay);
 
         Explode();
-
-
     }
-
+    private void ChangeMaterialColor()
+    {
+        float value = Mathf.Lerp(0f, 1f, t);
+        t += Time.deltaTime / ExplosionDelay;
+        
+        Color color = _gradient.Evaluate(value);
+        this.GetComponent<Renderer>().material.color = color;
+        Debug.Log(color);
+    }
 
     //Explode and deal damage after being triggered
     public void Explode()
