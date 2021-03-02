@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Assets.Scripts.EntityClass;
 
+using UnityEngine.SceneManagement;
+
 
 public class Boss : MonoBehaviour
 {
@@ -36,7 +38,7 @@ public class Boss : MonoBehaviour
         waveAttack = leftArm.GetComponent<WaveBulletShooting>();
         spiralAttack = rightArm.GetComponent<SprialBulletShooting>();
 
-        eyeball.GetComponent<EnemyBase>().canTakeDamage = false;
+        eyeball.canTakeDamage = false;
 
         StartCoroutine(Shoot());
     }
@@ -50,7 +52,19 @@ public class Boss : MonoBehaviour
         transform.position = tempPos;
 
         if(leftArmDead == true && rightArmDead == true){
-            eyeball.GetComponent<EnemyBase>().canTakeDamage = true;
+            eyeball.canTakeDamage = true;
+        }
+
+        if(eyeball.health <= 0){
+            // Game over
+            Time.timeScale = 0;
+
+            StatsTracker stats = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
+            TimerUI timer  = GameObject.FindGameObjectWithTag("GlobalUI").GetComponent<TimerUI>();
+
+            stats.Timer = timer.timerText.text + timer.milisecondsText.text;
+            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 

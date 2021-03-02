@@ -3,18 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.EntityClass;
 
-public class BossEyeball : MonoBehaviour
+public class BossEyeball : Entity
 {
-   private EnemyBase enemybase;
     private EnemyHealthBar healthBar;
 
     private void Start() {
-        enemybase = GetComponent<EnemyBase>();
         healthBar = GetComponent<EnemyHealthBar>();
 
-        healthBar.SetMaxHealth(enemybase.maxHealth);
+        healthBar.SetMaxHealth(maxHealth);
     }
-    private void Update() {
-        healthBar.SetHealth(enemybase.health);
+    public override void Update() {
+        base.Update();
+        healthBar.SetHealth(health);
+    }
+
+    protected override void Die()
+    {
+            gameObject.SetActive(false);
+
+            if(gameObject.layer == 8){
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>().EnemiesKilled++;
+        }
     }
 }

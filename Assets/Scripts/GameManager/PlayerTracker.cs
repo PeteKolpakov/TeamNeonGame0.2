@@ -11,6 +11,8 @@ namespace Assets.Scripts.GameManager{
 
         private void Awake()
         {
+            Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMarker>();
+            Debug.Log("I have awakened!");
             if(Instance == null)
             {
                 Instance = this;

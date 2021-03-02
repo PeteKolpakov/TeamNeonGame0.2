@@ -3,25 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.EntityClass;
 
-public class BossLeftArm : MonoBehaviour
+public class BossLeftArm : Entity
 {
-    private EnemyBase enemybase;
     private EnemyHealthBar healthBar;
 
     public Boss bossMain;
 
     private void Start() {
-        enemybase = GetComponent<EnemyBase>();
         healthBar = GetComponent<EnemyHealthBar>();
 
-        healthBar.SetMaxHealth(enemybase.maxHealth);
+        healthBar.SetMaxHealth(maxHealth);
     }
-    private void Update() {
-        healthBar.SetHealth(enemybase.health);
+    public override void Update() {
+        base.Update();
+        healthBar.SetHealth(health);
+    }
 
-        if(enemybase.health <= 0){
-            bossMain.leftArmDead = true;
+    protected override void Die()
+    {
+        bossMain.leftArmDead = true;
             Destroy(gameObject);
+
+            if(gameObject.layer == 8){
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>().EnemiesKilled++;
         }
     }
 

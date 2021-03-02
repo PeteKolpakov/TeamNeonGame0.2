@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 8580959926271605868}
   - component: {fileID: 8580959926271605869}
   - component: {fileID: 395323520}
-  - component: {fileID: 693141409319693397}
+  - component: {fileID: 317005701}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2798aeee5ebd78a40bbeee0f59f310e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &693141409319693397
+  transition: {fileID: 0}
+--- !u!114 &317005701
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,6 +68,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8580959926271605871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d683a1244d24e694981f131aa7d33d04, type: 3}
+  m_Script: {fileID: 11500000, guid: b60aec9f5ac9fdd49a4ac69801e246a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Timer: 
+  DeathCount: 0
+  EnemiesKilled: 0
