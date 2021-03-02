@@ -13,6 +13,8 @@ class GlobalUIManager : MonoBehaviour
 {
     private  PlayerStatManager _playerStatManager;
     public HealthBar _playerHealthbar;
+
+    [SerializeField]
     private Entity player;
 
     public EnemyBase enemyBase;
@@ -25,8 +27,11 @@ class GlobalUIManager : MonoBehaviour
     public Image secondGlobalSlot;
     public Image thirdGlobalSlot;
 
+
     //Debug//
     public TMP_Text firerate;
+
+    
 
     private void Start()
     {
@@ -61,7 +66,10 @@ class GlobalUIManager : MonoBehaviour
         secondGlobalSlot.sprite = playerShootScript.CurrentMeleeWeapon.AccessItemData().icon;
         secondGlobalSlot.color = Color.white;
 
-        firerate.text = "FireRate: " + Math.Round(playerShootScript.CurrentWeapon.fireRate, 1).ToString();
+        if(firerate != null){
+            firerate.text = "FireRate: " + Math.Round(playerShootScript.CurrentWeapon.fireRate, 1).ToString();
+
+        }
     }
 }
 

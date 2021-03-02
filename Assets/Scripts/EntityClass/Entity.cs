@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.GameManager;
 
 public enum DamageType
 {
@@ -16,7 +17,7 @@ public class Entity : MonoBehaviour
     public float maxHealth;
 
     [SerializeField]
-    private GameObject _explosion;
+    public GameObject _explosion;
     [SerializeField]
     GameObject currencyPrefab;
     [SerializeField]
@@ -42,7 +43,7 @@ public class Entity : MonoBehaviour
         }
     }
 
-    private void Update()
+    public virtual void Update()
     {
         if (health<= 0)
         {
@@ -83,12 +84,20 @@ public class Entity : MonoBehaviour
 
     protected virtual void Die()
     {
+        Debug.Log("Entity class DIE method");
         if (_explosion != null)
         {
             Instantiate(_explosion, transform.position, Quaternion.identity);
         }
         Drop();
+
+        // If the entity that dies is an enemy, we add 1 to the counter
+        if(gameObject.layer == 8){
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>().EnemiesKilled++;
+        }
+
         Destroy(gameObject);
+    
   
     }
 
@@ -105,14 +114,13 @@ public class Entity : MonoBehaviour
             }
             else if (roll >= currencyDropPercent + 1 && roll <= currencyDropPercent + ammodropPercent)
             {
-                Debug.Log("You get AMMO!");
+                Debug.Log("You get FireRate Buff!");
                 Instantiate(ammoPrefab, transform.position, Quaternion.identity);
             }
             else if (roll >= currencyDropPercent + ammodropPercent + 1)
             {
-                Debug.Log("Nothing");
-
-                // GET FUCKED
+                Debug.Log("You get nothing from this enemy...");
+                return;
             }
         }
     }
