@@ -2,19 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using SpriteGlow;
 
 public class SprialBulletShooting : MonoBehaviour
 {
     [NonSerialized]
-    public float angle = 0f;
+    public float angle = 90f;
     public GameObject bulletPrefab;
     public GameObject firePoint;
-    public float _bulletSpeed = 5f;
+    public float _bulletSpeed = 6f;
+    public float invokeInterval = 0.2f;
 
+    private BossRightArm rightArm;
+    private SpriteGlowEffect glow;
+    private Color oldColor;
+    private float oldBrightness;
+    private int oldWidth;
     
     void Start()
     {
-        //InvokeRepeating("Fire", 0f, 0.3f);
+        rightArm = GetComponent<BossRightArm>();
+        glow = GetComponent<SpriteGlowEffect>();
+
+        oldColor = glow.GlowColor;
+        oldBrightness = glow.GlowBrightness;
+        oldWidth = glow.OutlineWidth;
     }
 
     private void Fire()
@@ -31,7 +43,7 @@ public class SprialBulletShooting : MonoBehaviour
 
         _Bullet.AddForce(bulletDirection * _bulletSpeed, ForceMode2D.Impulse);
 
-        angle += 10f;
+        angle += 15f;
     }
 
     private void OnDisable()
@@ -41,6 +53,31 @@ public class SprialBulletShooting : MonoBehaviour
 
     private void OnEnable()
     {
-        InvokeRepeating("Fire", 0f, 0.4f);
+        InvokeRepeating("Fire", 0f, invokeInterval);
+    }
+
+    public void ChangeInvokeParameters(float newInterval, float newBulletSpeed){
+        CancelInvoke();
+        InvokeRepeating("Fire", 0f, newInterval);
+        _bulletSpeed = newBulletSpeed;
+    }
+
+    public void ResetInvokeParameters(){
+        CancelInvoke();
+        InvokeRepeating("Fire", 0f, 0.3f);
+        _bulletSpeed = 6f;
+
+        glow.GlowColor = oldColor;
+        glow.GlowBrightness = oldBrightness;
+        glow.OutlineWidth = oldWidth;
+        rightArm.canTakeDamage = true;
+    }
+
+    public void MakeInvincible(){
+        rightArm.canTakeDamage = false;
+
+        glow.GlowColor = new Color(0,51,255,255);
+        glow.GlowBrightness = 0.0525f;
+        glow.OutlineWidth = 1;
     }
 }

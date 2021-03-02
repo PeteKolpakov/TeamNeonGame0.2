@@ -10,7 +10,7 @@ public class BossBulletBehaviour : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
 
-        Destroy(gameObject, 6f);
+        Destroy(gameObject, 5f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
