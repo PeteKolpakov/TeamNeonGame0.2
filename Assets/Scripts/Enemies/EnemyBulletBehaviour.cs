@@ -5,29 +5,30 @@ using UnityEngine;
 
 public class EnemyBulletBehaviour : MonoBehaviour
 {
-    [SerializeField]
-    private float _speed;
-    [SerializeField]
-    private float _lifeTime = 10f;
+    public float _speed;
 
-    private Vector2 _bulletDirection;
-    [SerializeField]
-    private Rigidbody2D _rb;
+    private Transform _player;
 
-    private void Start() // is there a reason not to put this in awake? (question for Luca)
+    private Vector2 _bulletTarget;
+
+    public Rigidbody2D _rb;
+
+    private void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _bulletDirection = EnemyBehaviour.Direction;
+        _bulletTarget = EnemyBehaviour.Direction;
     }
     private void Update()
     {
-        transform.Translate(Vector3.right*Time.deltaTime*_speed,Space.Self); // TODO Change to Rb2D movement
-        Destroy(gameObject, _lifeTime);
+        //transform.position = Vector2.MoveTowards(transform.position, _bulletTarget, _speed * Time.deltaTime);
 
+        if (transform.position.x == _bulletTarget.x && transform.position.y == _bulletTarget.y)
+        {
+            Destroy(gameObject);
+        }
     }
     private void FixedUpdate()
     {
-        //_rb.MovePosition(_bulletDirection);
+        _rb.MovePosition(Vector2.MoveTowards(_rb.position, _bulletTarget, Time.deltaTime * _speed));
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -39,6 +40,4 @@ public class EnemyBulletBehaviour : MonoBehaviour
         }
         Destroy(gameObject);
     }
-
-  
 }
