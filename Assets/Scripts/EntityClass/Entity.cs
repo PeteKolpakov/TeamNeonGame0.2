@@ -17,7 +17,7 @@ public class Entity : MonoBehaviour
     public float maxHealth;
 
     [SerializeField]
-    private GameObject _explosion;
+    public GameObject _explosion;
     [SerializeField]
     GameObject currencyPrefab;
     [SerializeField]

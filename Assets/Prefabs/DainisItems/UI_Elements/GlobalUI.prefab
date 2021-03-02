@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3215395612435236823
 RectTransform:
   m_ObjectHideFlags: 0
@@ -549,7 +549,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4563026846445310845
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1293,6 +1293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerHealthbar: {fileID: 7176121385352644043}
+  player: {fileID: 0}
   enemyBase: {fileID: 6582319218940928089, guid: 4109a030a9e69d147a10a364983a7563,
     type: 3}
   _enemyHealhbar: {fileID: 6530174152558589475, guid: 4109a030a9e69d147a10a364983a7563,

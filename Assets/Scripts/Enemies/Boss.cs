@@ -24,7 +24,10 @@ public class Boss : MonoBehaviour
     private WaveBulletShooting waveAttack;
     private SprialBulletShooting spiralAttack;
 
+    [NonSerialized]
     public bool leftArmDead;
+
+    [NonSerialized]
 
     public bool rightArmDead;
 
@@ -70,25 +73,46 @@ public class Boss : MonoBehaviour
 
     private IEnumerator Shoot()
     {
-        while (_phase1 == true)
+        while (true)
         {
             yield return new WaitForSeconds(1);
-            if(waveAttack != null)
-                waveAttack.enabled = true;
+            // Phase 1 
+                if(waveAttack != null)
+                    waveAttack.enabled = true;
+                if(spiralAttack != null)
+                    spiralAttack.enabled = true;
+
             yield return new WaitForSeconds(10);
-            if (waveAttack != null)
-                waveAttack.enabled = false;
-            if (spiralAttack != null)
-                spiralAttack.enabled = true;
+           // Phase 2
+                if(waveAttack != null)
+                    waveAttack.enabled = false;
+                if(spiralAttack != null){
+                    spiralAttack.enabled = true;
+
+                    spiralAttack.MakeInvincible();
+                    spiralAttack.ChangeInvokeParameters(0.05f, 8f);
+                }
+
             yield return new WaitForSeconds(11);
-            if (waveAttack != null)
-                waveAttack.enabled = true;
-            if (spiralAttack != null)
-                spiralAttack.enabled = true;
+            if(spiralAttack != null){
+                spiralAttack.ResetInvokeParameters();
+            }
+            // Phase 3
+                if(waveAttack != null){
+                    waveAttack.enabled = true;
+                    waveAttack.RotateTheSpiral();
+                    waveAttack.MakeInvincible();
+                    waveAttack.ChangeInvokeParameters(0.2f, 6f, 9);          
+                }
+                if(spiralAttack != null)
+                    spiralAttack.enabled = false;
+
+
             yield return new WaitForSeconds(11);
-            if (waveAttack != null)
+            if(waveAttack != null)
+                waveAttack.ResetInvokeParameters();
+            // Phase 4
                 waveAttack.enabled = false;
-            if (spiralAttack != null)
                 spiralAttack.enabled = false;
         }
 

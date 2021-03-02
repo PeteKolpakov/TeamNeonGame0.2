@@ -8,6 +8,8 @@ public class BossRightArm : Entity
 {
     private EnemyHealthBar healthBar;
     public Boss bossMain;
+    public GameObject firepoint;
+
 
     private void Start() {
         healthBar = GetComponent<EnemyHealthBar>();
@@ -24,6 +26,10 @@ public class BossRightArm : Entity
     {
         bossMain.rightArmDead = true;
             Destroy(gameObject);
+            if (_explosion != null)
+        {
+            Instantiate(_explosion, firepoint.transform.position, Quaternion.identity);
+        }
 
             if(gameObject.layer == 8){
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>().EnemiesKilled++;
