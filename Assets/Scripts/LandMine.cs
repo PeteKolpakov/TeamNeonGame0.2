@@ -1,3 +1,5 @@
+using Assets.Scripts.GameManager;
+using SpriteGlow;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +8,12 @@ public class LandMine : MonoBehaviour
 {
     [SerializeField]
     private Gradient _gradient;
+    [SerializeField]
+    private GameObject _landMineBoom;
 
-    private SpriteRenderer rend;
-    public Color changeColor = Color.red;
+    SpriteGlowEffect glowEffect;
 
     public float LineOfSight = 4f;
-
-    public float Duration;
 
     public float t = 0;
 
@@ -20,26 +21,25 @@ public class LandMine : MonoBehaviour
 
     public float MaxDamage = 80f;
    
-    private Transform player;
 
     public float SplashRange = 1;
 
     public bool Triggered;
 
-
-    void Start()
+    private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        rend = gameObject.GetComponent<SpriteRenderer>();
-
-       
+        glowEffect = GetComponent<SpriteGlowEffect>();
     }
-
     private void Update()
     {
         if (!Triggered)
         {
             DetectPlayer();
+
+        }
+        else
+        {
+            ChangeMaterialColorAndGlow();
         }
 
     }
@@ -47,7 +47,8 @@ public class LandMine : MonoBehaviour
     // Check if player is in Line of sight
     public void DetectPlayer()
     {
-        float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
+        Vector3 playerPos = PlayerTracker.Instance.Player.transform.position;
+        float distanceFromPlayer = Vector2.Distance(playerPos, transform.position);
         if (distanceFromPlayer <= LineOfSight)
         {
 
@@ -62,31 +63,33 @@ public class LandMine : MonoBehaviour
     private IEnumerator TriggerExplode()
     {
         Triggered = true;
-
-        float value = Mathf.Lerp(0f, 1f, t);
-        t += Time.deltaTime / Duration;
-        Color color = _gradient.Evaluate(value);
-        rend.color = color;
-        //rend.color = changeColor;
+              
         yield return new WaitForSeconds(ExplosionDelay);
 
         Explode();
-
-
     }
-
+    private void ChangeMaterialColorAndGlow()
+    {
+        float value = Mathf.Lerp(0f, 1f, t);
+        t += Time.deltaTime / ExplosionDelay;
+        glowEffect.GlowBrightness += 0.2f;
+        Color color = _gradient.Evaluate(value);
+        GetComponent<Renderer>().material.color = color;
+    }
 
     //Explode and deal damage after being triggered
     public void Explode()
     {
-
-        Debug.Log("Explodeee");
+        if(_landMineBoom !=null)
+        {
+            Instantiate(_landMineBoom, transform.position, Quaternion.identity);
+        }
 
         Destroy(gameObject);
 
         //Add damage to anything inside this range
 
-        var hitColliders = Physics2D.OverlapCircleAll(transform.position, SplashRange);
+        var hitColliders = Physics2D.OverlapCircleAll(transform.position, SplashRange); //Does this work???
 
         // Detect all colliders inside the SplashRange
         foreach (var hitCollider in hitColliders)

@@ -1,3 +1,4 @@
+using Assets.Scripts.GameManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,20 +14,18 @@ public class FlyingEnemy : MonoBehaviour
 
     public float SplashRange = 3f;
 
+    private Vector2 _direction;
+
 
     // This is the speed the normal Speed will be multiplied for (Speed * Kamikaze)
     [SerializeField]
-    private float Kamikaze = 4;
+    private float _kamikaze = 4;
 
-    private float MaxDamage = 80;
+    private float _maxDamage = 80;
 
-
-
-    private Transform player;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()
@@ -63,7 +62,7 @@ public class FlyingEnemy : MonoBehaviour
 
                 //The damage percent depends on how close you are to the center of the explosion
 
-                var damage = Mathf.Lerp(MaxDamage, 0, distance / SplashRange);
+                var damage = Mathf.Lerp(_maxDamage, 0, distance / SplashRange);
 
                 //Deal damage to all Entities inside the range based on percentage related distance
                 int damageInt = (int)Mathf.Round(damage);
@@ -77,17 +76,26 @@ public class FlyingEnemy : MonoBehaviour
 
     // Detect if player is within range of sight and KamikazeRange
 
-        public void DetectPlayer()
+    public void DetectPlayer()
     {
-        float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
-        if (distanceFromPlayer < LineOfSight && distanceFromPlayer > KamikazeRange)
+        Vector3 playerPos = PlayerTracker.Instance.Player.transform.position;
+
+        float distanceFromPlayer = Vector2.Distance(playerPos, transform.position);
+        
+        _direction = playerPos - transform.position;
+
+        float angle = Mathf.Atan2(_direction.y, _direction.x);
+
+        if (distanceFromPlayer < LineOfSight && distanceFromPlayer > KamikazeRange) // Should you be able to just walk out of its range when detected? Show Visual Test Scene to demonstrate
         {
-            transform.position = Vector2.MoveTowards(this.transform.position, player.position, Speed * Time.deltaTime);
+           
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle * Mathf.Rad2Deg - 90f));
+            transform.position = Vector2.MoveTowards(this.transform.position, playerPos, Speed * Time.deltaTime);
         }
         else if (distanceFromPlayer <= KamikazeRange)
         {
-            transform.position = Vector2.MoveTowards(this.transform.position, player.position, (Speed * Kamikaze) * Time.deltaTime);
-           
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle * Mathf.Rad2Deg - 90f));
+            transform.position = Vector2.MoveTowards(this.transform.position, playerPos, (Speed * _kamikaze) * Time.deltaTime);
         }
 
     }
@@ -97,13 +105,12 @@ public class FlyingEnemy : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-       if (collision.collider.TryGetComponent(out Entity health))
-            {
-                Debug.Log("Hitting Player");
+       if (collision.collider.TryGetComponent(out Entity health)) // Should it not be Player Base? Ask in meeting c:
+       {
+            Debug.Log("Hitting Player");
           
-
             Explode();
-        }
+       }
       
     }
 
