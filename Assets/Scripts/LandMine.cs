@@ -70,7 +70,6 @@ public class LandMine : MonoBehaviour
         
         Color color = _gradient.Evaluate(value);
         this.GetComponent<Renderer>().material.color = color;
-        Debug.Log(color);
     }
 
     //Explode and deal damage after being triggered
