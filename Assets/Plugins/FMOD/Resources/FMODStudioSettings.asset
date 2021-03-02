@@ -1,5 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD
 --- !u!114 &-8117003274625578098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,6 +316,8 @@ MonoBehaviour:
   threadAffinities:
     Value: []
     HasValue: 0
+=======
+>>>>>>> Production
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +327,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: eef8d824ea7b63742966aaa0e94ac383, type: 3}
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
@@ -332,6 +336,16 @@ MonoBehaviour:
   HasPlatforms: 0
   sourceProjectPath: 
   sourceBankPath: FMOD/Desktop
+=======
+  m_Script: {fileID: 0}
+  m_Name: FMODStudioSettings
+  m_EditorClassIdentifier: FMODUnity:FMODUnity:Settings
+  SwitchSettingsMigration: 1
+  HasSourceProject: 1
+  HasPlatforms: 1
+  sourceProjectPath: 
+  sourceBankPath: 
+>>>>>>> Production
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
@@ -350,8 +364,12 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
+<<<<<<< HEAD
   MasterBanks:
   - Master
+=======
+  MasterBanks: []
+>>>>>>> Production
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
@@ -361,6 +379,7 @@ MonoBehaviour:
   StopEventsOutsideMaxDistance: 0
   BoltUnitOptionsBuildPending: 0
   MigratedPlatforms: 0c000000150000000b0000000a00000009000000120000000800000005000000060000000200000001000000
+<<<<<<< HEAD
 --- !u!114 &143652061987981899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,3 +758,5 @@ MonoBehaviour:
   threadAffinities:
     Value: []
     HasValue: 0
+=======
+>>>>>>> Production
