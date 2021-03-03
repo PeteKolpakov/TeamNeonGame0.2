@@ -823,7 +823,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 8
   m_TargetDisplay: 0
@@ -1377,7 +1377,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5137654884221283443}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17e57c0ad01018340b6dbb54534bf11e, type: 3}
   m_Name: 
@@ -2686,8 +2686,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6551f20bbdac97f428d94481c4770c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2000
-  maxHealth: 2000
+  health: 3400
+  maxHealth: 3400
   _explosion: {fileID: 0}
   currencyPrefab: {fileID: 0}
   ammoPrefab: {fileID: 0}
@@ -3617,7 +3617,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5137654885579230508}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1240c9c20fd313a44ade647a3f27f596, type: 3}
   m_Name: 
@@ -3839,6 +3839,8 @@ MonoBehaviour:
   EyeballHealthbar: {fileID: 1687074666992512873}
   LeftArmHealthbar: {fileID: 3474253189359702957}
   RightArmHealthbar: {fileID: 658952503182080920}
+  FireRatePickup: {fileID: 8743885004090351468, guid: 3d586cc4622327748874ed211619bac4,
+    type: 3}
 --- !u!1 &5137654885799806921
 GameObject:
   m_ObjectHideFlags: 0

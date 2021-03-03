@@ -4,8 +4,9 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Assets.Scripts.EntityClass;
-
 using UnityEngine.SceneManagement;
+using Assets.Scripts.GameManager;
+using SpriteGlow;
 
 
 public class Boss : MonoBehaviour
@@ -41,6 +42,11 @@ public class Boss : MonoBehaviour
     public GameObject EyeballHealthbar;
     public GameObject LeftArmHealthbar;
     public GameObject RightArmHealthbar;
+    public GameObject FireRatePickup;
+    private SpriteGlowEffect glow;
+    private float oldBrightness;
+    private int oldWidth;
+    
 
 
 
@@ -52,6 +58,11 @@ public class Boss : MonoBehaviour
         laserBeam = eyeball.GetComponent<BossLaserBeamAttack>();
 
         eyeball.canTakeDamage = false;
+
+        // cashing eyeball glow
+        glow = eyeball.GetComponent<SpriteGlowEffect>();
+        oldBrightness = glow.GlowBrightness;
+        oldWidth = glow.OutlineWidth;
 
         StartCoroutine(Shoot());
     }
@@ -66,7 +77,7 @@ public class Boss : MonoBehaviour
 
         if (laserBeam.attackFinished == false && leftArmDead == true && rightArmDead == true)
         {
-            StopAllCoroutines();
+            StopCoroutine(Shoot());
             EyeballHealthbar.SetActive(true);
             eyeball.canTakeDamage = true;
             laserBeam.enabled = true;
@@ -96,56 +107,75 @@ public class Boss : MonoBehaviour
         }
     }
 
+    public IEnumerator SpawnPickupables(){
+        while(true){
+            yield return new WaitForSeconds(8);
+            float randomXOffset = UnityEngine.Random.Range(-9f,9f);
+            Vector3 offset = new Vector3(randomXOffset,0,0);
+            Instantiate(FireRatePickup,offset, Quaternion.identity );
+        }
+    }
+
     private IEnumerator Shoot()
     {
+        StartCoroutine(SpawnPickupables());
+        yield return new WaitForSeconds(3);
         while (true)
         {
             yield return new WaitForSeconds(1);
-            // Phase 1 
+            // Phase 1 - default
             if (waveAttack != null)
                 waveAttack.enabled = true;
             if (spiralAttack != null)
                 spiralAttack.enabled = true;
 
             yield return new WaitForSeconds(10);
-            // Phase 2
+            // Phase 2 - Right arm enrage
             if (waveAttack != null)
                 waveAttack.enabled = false;
-            if (spiralAttack != null)
+            if (spiralAttack != null) // if the right arm exists - we enrage it
             {
                 spiralAttack.enabled = true;
                 RightArmHealthbar.SetActive(false);
                 spiralAttack.MakeInvincible();
                 spiralAttack.ChangeInvokeParameters(0.05f, 8f);
-            }
-
-            yield return new WaitForSeconds(11);
-            if (spiralAttack != null)
-            {
-                RightArmHealthbar.SetActive(true);
-                spiralAttack.ResetInvokeParameters();
-            }
-            // Phase 3
-            if (waveAttack != null)
-            {
+            }else if(waveAttack != null){  // otherwise, we enrage the left arm
                 waveAttack.enabled = true;
                 waveAttack.RotateTheSpiral();
                 LeftArmHealthbar.SetActive(false);
                 waveAttack.MakeInvincible();
                 waveAttack.ChangeInvokeParameters(0.2f, 6f, 9);
-            }
-            if (spiralAttack != null)
-                spiralAttack.enabled = false;
+                }
 
             yield return new WaitForSeconds(11);
+            // Phase 3 - left arm enrage
+            if (spiralAttack != null) // if the right arm exists we reset it after enrage
+            {
+                RightArmHealthbar.SetActive(true);
+                spiralAttack.ResetInvokeParameters();
+                spiralAttack.enabled = false;
+
+                // if it exists, but the left arm doesn't - switch it to the default state
+                if(waveAttack == null){
+                    spiralAttack.enabled = true;
+                }
+
+            }else if(waveAttack != null){ // if the right arm still doesnt exist, we reset the enrage of the left arm
+                LeftArmHealthbar.SetActive(true);
+                waveAttack.ResetInvokeParameters();
+                waveAttack.enabled = true; // and make it shoot in the default stage
+            }
+            yield return new WaitForSeconds(7);
             if (waveAttack != null)
             {
                 LeftArmHealthbar.SetActive(true);
                 waveAttack.ResetInvokeParameters();
                 // Phase 4
                 waveAttack.enabled = true;
-                spiralAttack.enabled = false;
             }
+            if(spiralAttack != null)
+                spiralAttack.enabled = false;
+            
         }
 
     }
@@ -153,8 +183,12 @@ public class Boss : MonoBehaviour
     private IEnumerator Phase2Attack()
     {
         StopCoroutine(Shoot());
-        yield return new WaitForSeconds(2);
 
+        //lerp the glow
+        glow.GlowBrightness = Mathf.Lerp(oldBrightness, 9.8f, 2f);
+        glow.OutlineWidth = 3;
+
+        yield return new WaitForSeconds(2);
         var randomLeft = UnityEngine.Random.Range(-9.7f, 0.5f);
         var randomRight = UnityEngine.Random.Range(0.5f, 10.3f);
         Vector3 posLeft = new Vector3(randomLeft, 8f, 0);

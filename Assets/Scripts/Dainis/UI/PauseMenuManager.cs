@@ -17,6 +17,10 @@ public class PauseMenuManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void DebugMessage(){
+        Debug.Log("Trying to click the button");
+    }
+
     public void MainMenu(){
         ScenesManager sceneManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScenesManager>();
         sceneManager.GoToMainMenu();
