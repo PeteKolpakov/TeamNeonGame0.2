@@ -29,9 +29,8 @@ namespace Assets.Scripts.Player
         private Vector2 _moveDirection;
         private Rigidbody2D rigidBody;
 
-        public GameObject PauseMenu;
-        public bool isPauseMenuOpen;
         private PlayerBase playerBase;
+        public PauseMenuManager pauseMenu;
 
         private void Start()
         {
@@ -48,7 +47,6 @@ namespace Assets.Scripts.Player
         private void Update()
         {
             MoveInput();
-            PauseInput();
 
             if(Input.GetKeyDown(KeyCode.Space) && CanDash())
                 _wannaDash = true;
@@ -73,7 +71,7 @@ namespace Assets.Scripts.Player
 
         private void MoveInput()
         {
-            if(isPauseMenuOpen == false)
+            if(pauseMenu._isPauseMenuOpen == false)
             {
                 float moveX = 0f;
                 float moveY = 0f;
@@ -101,34 +99,6 @@ namespace Assets.Scripts.Player
                 return;
             }
 
-        }
-
-        private void PauseInput()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if(isPauseMenuOpen == true)
-                {
-                    _audio.PlaySFX(_audio._pauseExitSFX);
-                    Time.timeScale = 1;
-                    PauseMenu.SetActive(false);
-                    isPauseMenuOpen = false;
-                }
-                else
-                {
-                    _audio.PlaySFX(_audio._pauseEnterSFX);
-                    Time.timeScale = 0;
-                    PauseMenu.SetActive(true);
-                    isPauseMenuOpen = true;
-                }
-            }
-        }
-        
-        public void ResumeButton()
-        {
-            Time.timeScale = 1;
-            PauseMenu.SetActive(false);
-            isPauseMenuOpen = false;
         }
 
         private void DashStart()

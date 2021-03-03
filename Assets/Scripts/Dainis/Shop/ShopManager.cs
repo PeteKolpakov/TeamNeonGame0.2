@@ -187,15 +187,15 @@ class ShopManager : MonoBehaviour
 
     public void EquipCheck(ReworkedItem weaponData, IShopCustomer shopCustomer, Transform shopItemTransform)
     {
-        if (player._equippedItems.Count != 0)
+        if (player.EquippedItems.Count != 0)
         {
             // Iterating through the equipped items to see if an item
             // of the same type is already equipped
-            for (int i = 0; i < player._equippedItems.Count; i++)
+            for (int i = 0; i < player.EquippedItems.Count; i++)
             {
                 // Is this is the case - we store the equipped item's
                 // index in the list
-                if (player._equippedItems[i].itemType == weaponData.itemType)
+                if (player.EquippedItems[i].itemType == weaponData.itemType)
                 {
                     _sameTypeIndex = i;
                     _sameTypeCount++;
@@ -206,15 +206,15 @@ class ShopManager : MonoBehaviour
             if (_sameTypeCount != 0)
             {
                 // We replace equipped item of the same type with a new one
-                ReworkedItem oldWeapon = player._equippedItems[_sameTypeIndex];
-                player._equippedItems[_sameTypeIndex] = weaponData;
+                ReworkedItem oldWeapon = player.EquippedItems[_sameTypeIndex];
+                player.EquippedItems[_sameTypeIndex] = weaponData;
                 Equip(weaponData, shopCustomer, shopItemTransform);
                 shopCustomer.EquipItem(weaponData);
                 Unequip(weaponData,shopItemTransform, oldWeapon);
             }
             else
             {
-                player._equippedItems.Add(weaponData);
+                player.EquippedItems.Add(weaponData);
                 shopCustomer.EquipItem(weaponData);
                 Equip(weaponData, shopCustomer, shopItemTransform);
             }
@@ -222,7 +222,7 @@ class ShopManager : MonoBehaviour
         // If no items are equipped - equip it right away
         else
         {
-            player._equippedItems.Add(weaponData);
+            player.EquippedItems.Add(weaponData);
             shopCustomer.EquipItem(weaponData);
             Equip(weaponData,shopCustomer, shopItemTransform);
         }

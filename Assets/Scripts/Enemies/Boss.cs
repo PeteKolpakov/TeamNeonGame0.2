@@ -37,9 +37,10 @@ public class Boss : MonoBehaviour
     public bool rightArmDead;
 
     private bool stopDisabling = false;
-    private float randomX;
-    private float randomX1;
-    private float distanceBetween;
+
+    public GameObject EyeballHealthbar;
+    public GameObject LeftArmHealthbar;
+    public GameObject RightArmHealthbar;
 
 
 
@@ -63,25 +64,29 @@ public class Boss : MonoBehaviour
 
         transform.position = tempPos;
 
-        if(laserBeam.attackFinished == false && leftArmDead == true && rightArmDead == true){
+        if (laserBeam.attackFinished == false && leftArmDead == true && rightArmDead == true)
+        {
             StopAllCoroutines();
+            EyeballHealthbar.SetActive(true);
             eyeball.canTakeDamage = true;
             laserBeam.enabled = true;
         }
 
-        if(eyeball.health <= 0){
+        if (eyeball.health <= 0)
+        {
             // Game over
             Time.timeScale = 0;
 
             StatsTracker stats = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
-            TimerUI timer  = GameObject.FindGameObjectWithTag("GlobalUI").GetComponent<TimerUI>();
+            TimerUI timer = GameObject.FindGameObjectWithTag("GlobalUI").GetComponent<TimerUI>();
 
             stats.Timer = timer.timerText.text + timer.milisecondsText.text;
-            
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
-        if(laserBeam.attackFinished == true && stopDisabling == false){
+        if (laserBeam.attackFinished == true && stopDisabling == false)
+        {
             stopDisabling = true;
             laserBeam.enabled = false;
             laserBeamGameObject.SetActive(false);
@@ -97,74 +102,92 @@ public class Boss : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             // Phase 1 
-                if(waveAttack != null)
-                    waveAttack.enabled = true;
-                if(spiralAttack != null)
-                    spiralAttack.enabled = true;
+            if (waveAttack != null)
+                waveAttack.enabled = true;
+            if (spiralAttack != null)
+                spiralAttack.enabled = true;
 
             yield return new WaitForSeconds(10);
-           // Phase 2
-                if(waveAttack != null)
-                    waveAttack.enabled = false;
-                if(spiralAttack != null){
-                    spiralAttack.enabled = true;
-
-                    spiralAttack.MakeInvincible();
-                    spiralAttack.ChangeInvokeParameters(0.05f, 8f);
-                }
+            // Phase 2
+            if (waveAttack != null)
+                waveAttack.enabled = false;
+            if (spiralAttack != null)
+            {
+                spiralAttack.enabled = true;
+                RightArmHealthbar.SetActive(false);
+                spiralAttack.MakeInvincible();
+                spiralAttack.ChangeInvokeParameters(0.05f, 8f);
+            }
 
             yield return new WaitForSeconds(11);
-            if(spiralAttack != null){
+            if (spiralAttack != null)
+            {
+                RightArmHealthbar.SetActive(true);
                 spiralAttack.ResetInvokeParameters();
             }
             // Phase 3
-                if(waveAttack != null){
-                    waveAttack.enabled = true;
-                    waveAttack.RotateTheSpiral();
-                    waveAttack.MakeInvincible();
-                    waveAttack.ChangeInvokeParameters(0.2f, 6f, 9);          
-                }
-                if(spiralAttack != null)
-                    spiralAttack.enabled = false;
-
+            if (waveAttack != null)
+            {
+                waveAttack.enabled = true;
+                waveAttack.RotateTheSpiral();
+                LeftArmHealthbar.SetActive(false);
+                waveAttack.MakeInvincible();
+                waveAttack.ChangeInvokeParameters(0.2f, 6f, 9);
+            }
+            if (spiralAttack != null)
+                spiralAttack.enabled = false;
 
             yield return new WaitForSeconds(11);
-            if(waveAttack != null){
-                    waveAttack.ResetInvokeParameters();
+            if (waveAttack != null)
+            {
+                LeftArmHealthbar.SetActive(true);
+                waveAttack.ResetInvokeParameters();
                 // Phase 4
-                    waveAttack.enabled = false;
-                    spiralAttack.enabled = false;
+                waveAttack.enabled = true;
+                spiralAttack.enabled = false;
             }
         }
 
     }
 
-    private IEnumerator Phase2Attack(){
+    private IEnumerator Phase2Attack()
+    {
         StopCoroutine(Shoot());
         yield return new WaitForSeconds(2);
-        while(true){
-            randomX = UnityEngine.Random.Range(-9.7f, 10.3f);
-            randomX1 = UnityEngine.Random.Range(-9.7f, 10.3f);
 
-            //Checking if they're too close
-            distanceBetween = randomX - randomX1;
-            if(distanceBetween < 0.5f){
-                for (int i = 0; i < 10; i++)
-                {
-                    randomX1 = UnityEngine.Random.Range(-9.7f, 10.3f);
-                    distanceBetween = randomX - randomX1;
+        var randomLeft = UnityEngine.Random.Range(-9.7f, 0.5f);
+        var randomRight = UnityEngine.Random.Range(0.5f, 10.3f);
+        Vector3 posLeft = new Vector3(randomLeft, 8f, 0);
+        Vector3 posRight = new Vector3(randomRight, 8f, 0);
 
-                    if(distanceBetween < 0.5f)
-                        break;         
-                }
+        var leftEye = Instantiate(smallEye, posLeft, Quaternion.identity).GetComponent<SmallEyeballs>();
+        var rightEye = Instantiate(smallEye, posRight, Quaternion.identity).GetComponent<SmallEyeballs>();
+
+        while (true)
+        {
+
+            randomLeft = UnityEngine.Random.Range(-9.7f, 0.5f);
+            randomRight = UnityEngine.Random.Range(0.5f, 10.3f);
+            posLeft = new Vector3(randomLeft, 8f, 0);
+            posRight = new Vector3(randomRight, 8f, 0);
+
+            float time = 0;
+            while (time < 0.3f)
+            {
+                leftEye.transform.position = Vector3.Lerp(leftEye.transform.position, posLeft, time / 0.3f);
+                if(leftEye.AfterImage != null){
+                leftEye.AfterImage.Play();
             }
-            
+                rightEye.transform.position = Vector3.Lerp(rightEye.transform.position, posRight, time / 0.3f);
+                if(rightEye.AfterImage != null){
+                rightEye.AfterImage.Play();
+            }
+                yield return null;
+                time += Time.deltaTime;
+            }
 
-            Vector3 randomPos = new Vector3(randomX, 8f, 0);
-            Vector3 randomPos1 = new Vector3(randomX1, 8f, 0);
-            Instantiate(smallEye, randomPos, Quaternion.identity);
-            Instantiate(smallEye, randomPos1, Quaternion.identity);
-
+            leftEye.FireBeam();
+            rightEye.FireBeam();
             yield return new WaitForSeconds(1.6f);
         }
 

@@ -31,6 +31,7 @@ namespace Assets.Scripts.EntityClass
             Destroy(gameObject);
             //StartCoroutine(LoadLevel(SceneManager.GetActiveScene()));
             ScenesManager.GoToScene(SceneManager.GetActiveScene().buildIndex);
+            player.RemoveScore(30);
         }
 
         public override void TakeDamage(int damage, DamageType type)

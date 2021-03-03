@@ -12,64 +12,30 @@ using Assets.Scripts.Player;
 class GlobalUIManager : MonoBehaviour
 {
     private  PlayerStatManager _playerStatManager;
-    public HealthBar _playerHealthbar;
+    public HealthBar PlayerHealthbar;
 
     [SerializeField]
-    private Entity player;
-
-    public EnemyBase enemyBase;
-    public EnemyHealthBar _enemyHealhbar;
-
-    public TMP_Text _moneyDisplay;
-    public TMP_Text _healthDisplay;
-
-    public Image firstGlobalSlot;
-    public Image secondGlobalSlot;
-    public Image thirdGlobalSlot;
-
-
-    //Debug//
-    public TMP_Text firerate;
-
-    
+    private Entity _player;
+    public TMP_Text ScoreDisplay;
+    public TMP_Text HealthDisplay;
 
     private void Start()
     {
-        player = PlayerTracker.Instance.Player.GetComponent<Entity>();
+        _player = PlayerTracker.Instance.Player.GetComponent<Entity>();
         _playerStatManager = PlayerTracker.Instance.Player.GetComponent<PlayerStatManager>();
-        PlayerShoot playerShoot = player.GetComponent<PlayerShoot>();
+        PlayerShoot playerShoot = _player.GetComponent<PlayerShoot>();
 
-
-        _playerHealthbar.SetMaxHealth(player.health);
-
-        if(_enemyHealhbar != null)
-        {
-         _enemyHealhbar.SetMaxHealth(enemyBase.maxHealth);
-        }
+        PlayerHealthbar.SetMaxHealth(_player.health);
     }
 
     private void Update()
     {
-        PlayerShoot playerShootScript = player.GetComponent<PlayerShoot>();
+        PlayerShoot playerShootScript = _player.GetComponent<PlayerShoot>();
 
-        _playerHealthbar.SetHealth(player.health);
-        _enemyHealhbar.SetHealth(enemyBase.health);
+        PlayerHealthbar.SetHealth(_player.health);
 
-        _moneyDisplay.text = "$: " + _playerStatManager._moneyAmount.ToString();
-        _healthDisplay.text = player.health.ToString() + " \\ " + player.maxHealth.ToString();
-
-
-        // Updating the current weapon loadout visuals
-
-        firstGlobalSlot.sprite = playerShootScript.CurrentWeapon.icon;
-        firstGlobalSlot.color = Color.white;
-        secondGlobalSlot.sprite = playerShootScript.CurrentMeleeWeapon.AccessItemData().icon;
-        secondGlobalSlot.color = Color.white;
-
-        if(firerate != null){
-            firerate.text = "FireRate: " + Math.Round(playerShootScript.CurrentWeapon.fireRate, 1).ToString();
-
-        }
+        ScoreDisplay.text =  _playerStatManager.Score.ToString();
+        HealthDisplay.text = _player.health.ToString() + " \\ " + _player.maxHealth.ToString();
     }
 }
 
