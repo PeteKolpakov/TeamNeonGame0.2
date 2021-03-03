@@ -23,7 +23,8 @@ public class FlyingEnemy : MonoBehaviour
     [SerializeField]
     private float _kamikaze = 4;
 
-    private float _maxDamage = 80;
+    [SerializeField]
+    private float _maxDamage = 60;
 
 
     void Start()

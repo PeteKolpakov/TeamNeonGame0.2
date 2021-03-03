@@ -1,4 +1,5 @@
 using UnityEngine;
+using Assets.Scripts.EntityClass;
 
 namespace Assets.Scripts.Player
 {
@@ -30,11 +31,13 @@ namespace Assets.Scripts.Player
 
         public GameObject PauseMenu;
         public bool isPauseMenuOpen;
+        private PlayerBase playerBase;
 
         private void Start()
         {
             _timeSinceDash = 0;
             rigidBody = GetComponent<Rigidbody2D>();
+            playerBase = GetComponent<PlayerBase>();
         }
 
         private void Awake()
@@ -130,6 +133,8 @@ namespace Assets.Scripts.Player
 
         private void DashStart()
         {
+
+            playerBase.canTakeDamage = false;
             _audio.PlaySFX(_audio._dashSFX);
             if(_dashAfterImage != null){
                 _dashAfterImage.Play();
@@ -139,6 +144,10 @@ namespace Assets.Scripts.Player
             rigidBody.velocity = dashVelocity;
             _timeSinceDash = 0;        
             _wannaDash = false;
+
+            playerBase.canTakeDamage = true;
+
+
         }
 
         private bool CanDash()
