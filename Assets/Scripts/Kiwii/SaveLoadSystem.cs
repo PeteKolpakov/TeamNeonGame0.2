@@ -21,8 +21,6 @@ public class SaveLoadSystem : MonoBehaviour
     [SerializeField]
     private PlayerStatManager PStats;
 
-    [SerializeField]
-    private LevelManager LevelManagerCheck;
 
     private void Start()
     {
@@ -44,9 +42,8 @@ public class SaveLoadSystem : MonoBehaviour
         entity.maxHealth = MyCurrentPlayerData.PlayerMaxHealth;
         PStats._moneyAmount = MyCurrentPlayerData.PlayerCurrentMoney;
         PStats.LoadWeapons(MyCurrentPlayerData.PurchasedGunsInt);
-        LevelManagerCheck.LevelIsUnlocked = MyCurrentPlayerData.CompletedLevelsInt;
 
-        
+        // This is being called and loads the data even if you dont want to. now that doesnt happen anymore for some reason
 
 
 
@@ -62,8 +59,7 @@ public class SaveLoadSystem : MonoBehaviour
         p.PlayerMaxHealth = entity.maxHealth;
         p.PlayerCurrentMoney = PStats._moneyAmount;
         p.PurchasedGunsInt = PStats.BoughtGunsInt;
-     
-        p.CompletedLevelsInt = LevelManagerCheck.LevelIsUnlocked;
+   //     p.CompletedLevelsInt = PStats.FinishedLevelsInt;
 
         Debug.Log("Im trying to save weapons");
         Debug.Log(PStats.BoughtGunsInt.Count);

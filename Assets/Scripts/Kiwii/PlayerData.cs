@@ -15,7 +15,7 @@ public class PlayerData
 
     public List<int> PurchasedGunsInt;
 
-    public int CompletedLevelsInt;
+ //   public List<int> CompletedLevelsInt;
 
 
     public PlayerData()
