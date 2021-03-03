@@ -45,7 +45,7 @@ public class FlyingEnemy : MonoBehaviour
         // Detect all colliders inside the SplashRange
         foreach (var hitCollider in hitColliders)
         {
-            //Check if its an entity
+            //Check if its an Player
             if (hitCollider.TryGetComponent(out PlayerBase player))
             {
                 var closestPoint = hitCollider.ClosestPoint(transform.position);
