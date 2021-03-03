@@ -6,7 +6,7 @@ public class BossEyeTracker : MonoBehaviour
 {
 
     private Vector2 _playerDistanceComparison;
-    public static Vector3 Direction;
+    public  Vector3 Direction;
 
     
     void Update()

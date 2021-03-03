@@ -35,7 +35,8 @@ namespace Assets.Scripts.EntityClass
 
         public override void TakeDamage(int damage, DamageType type)
         {
-            if (!fallBehaviour.IsRespawnInvincible())
+            
+            if (!fallBehaviour.IsRespawnInvincible() && canTakeDamage == true)
             {
                 if(type == DamageType.Bullet)
                 {
