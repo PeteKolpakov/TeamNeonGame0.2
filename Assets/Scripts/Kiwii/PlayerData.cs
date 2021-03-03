@@ -8,7 +8,7 @@ public class PlayerData
 {
     public int CurrentLvl;
 
-    public float PlayerMaxHealth;
+    public int PlayerMaxHealth;
 
     public int PlayerCurrentMoney;
 

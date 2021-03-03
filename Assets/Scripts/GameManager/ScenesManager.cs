@@ -56,6 +56,7 @@ namespace Assets.Scripts.GameManager
             //After Rest Stage
             StartCoroutine(LoadLevel(GetCurrentScene() + 1));
         }
+
         
         public IEnumerator LoadLevel(int lvlIndex)
         {

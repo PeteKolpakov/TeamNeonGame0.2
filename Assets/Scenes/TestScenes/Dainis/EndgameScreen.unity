@@ -552,7 +552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &147950764
 Transform:
   m_ObjectHideFlags: 0
@@ -1039,7 +1039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &290379847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1293,8 +1293,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48.86, y: -54}
-  m_SizeDelta: {x: 228.34, y: 61.01}
+  m_AnchoredPosition: {x: 43.33, y: -54}
+  m_SizeDelta: {x: 239.4, y: 61.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &308991728
 MonoBehaviour:
@@ -1318,7 +1318,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Luca Lombardo
 
-    Luca Martinelli
+    Luca Martinelli <3
+
+    Joao Azuaga
 
 '
   m_isRightToLeft: 0
@@ -3388,9 +3390,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ea13d6453290f4981734067083097c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalTime: {fileID: 1574986697}
-  deaths: {fileID: 618005191}
-  kills: {fileID: 1780016678}
+  SpeedrunFinalTime: {fileID: 1574986697}
+  SpeedrunDeaths: {fileID: 618005191}
+  SpeedrunKills: {fileID: 1780016678}
+  NormalDeaths: {fileID: 2095027265}
+  NormalKills: {fileID: 639206213}
   speedrunText: {fileID: 627576413}
   normalrunText: {fileID: 176491974}
 --- !u!1 &736120415
@@ -4084,8 +4088,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 131.3, y: -79}
-  m_SizeDelta: {x: 123.98, y: 32.31}
+  m_AnchoredPosition: {x: 72.6, y: -79}
+  m_SizeDelta: {x: 235.27, y: 32.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &872884021
 MonoBehaviour:
@@ -4107,7 +4111,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: website.com
+  m_text: freesound.org, Lunarett
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
   m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
@@ -4420,7 +4424,10 @@ MonoBehaviour:
 
     Dainis Klavins
 
-    Ivan Lopez'
+    Ivan Lopez
+
+    Victor
+    Sanchez'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 40dc6a0937ccfc24da9a8779474c07e8, type: 2}
   m_sharedMaterial: {fileID: 3655829413190482203, guid: 40dc6a0937ccfc24da9a8779474c07e8,
@@ -5610,7 +5617,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 61.6, y: -108}
+  m_AnchoredPosition: {x: -52.6, y: -108}
   m_SizeDelta: {x: 298.27, y: 89.41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1313287460
@@ -7064,7 +7071,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15, y: -85.00001}
+  m_AnchoredPosition: {x: 6.3, y: -85.00001}
   m_SizeDelta: {x: 298.27, y: 89.41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1604027767
@@ -7087,7 +7094,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Background video:
+  m_text: 'Background videos:
 
 '
   m_isRightToLeft: 0
@@ -7873,7 +7880,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 139.6, y: -57.2}
+  m_AnchoredPosition: {x: 138.9, y: -57.2}
   m_SizeDelta: {x: 123.98, y: 32.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1966650666

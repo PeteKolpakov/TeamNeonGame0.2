@@ -11,9 +11,12 @@ public class TimerUI : MonoBehaviour
     public TextMeshProUGUI milisecondsText;
 
     private StatsTracker gameManager;
+    private static float t;
+
 
     private void Start() {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
+
         if(gameManager.SpeedrunMode == true){
             timerText.gameObject.SetActive(true);
             milisecondsText.gameObject.SetActive(true);
@@ -22,7 +25,7 @@ public class TimerUI : MonoBehaviour
 
     void Update()
     {
-        float t = Time.timeSinceLevelLoad; // time since scene loaded
+        t += Time.time; // time since the game loaded
 
         float milliseconds = (Mathf.Floor(t * 100) % 100); // calculate the milliseconds for the timer
 
