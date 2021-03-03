@@ -1,3 +1,4 @@
+using Assets.Scripts.EntityClass;
 using Assets.Scripts.GameManager;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,7 +6,6 @@ using UnityEngine;
 
 public class FlyingEnemy : MonoBehaviour
 {
-
     public float Speed;
 
     public float LineOfSight = 8f;
@@ -16,6 +16,8 @@ public class FlyingEnemy : MonoBehaviour
 
     private Vector2 _direction;
 
+    [SerializeField]
+    private GameObject _flyingEnemyBoom;
 
     // This is the speed the normal Speed will be multiplied for (Speed * Kamikaze)
     [SerializeField]
@@ -31,16 +33,10 @@ public class FlyingEnemy : MonoBehaviour
     private void Update()
     {
         DetectPlayer();
-
     }
 
     public void Explode()
     {
-
-        Debug.Log("Explodeee");
-
-        Destroy(gameObject);
-
         //Add damage to anything inside this range
 
         var hitColliders = Physics2D.OverlapCircleAll(transform.position, SplashRange);
@@ -48,17 +44,12 @@ public class FlyingEnemy : MonoBehaviour
         // Detect all colliders inside the SplashRange
         foreach (var hitCollider in hitColliders)
         {
-            Debug.Log(hitCollider.name);
-
             //Check if its an entity
-
-            if (hitCollider.TryGetComponent(out Entity entity))
+            if (hitCollider.TryGetComponent(out PlayerBase player))
             {
-
                 var closestPoint = hitCollider.ClosestPoint(transform.position);
 
                 var distance = Vector3.Distance(closestPoint, transform.position);
-
 
                 //The damage percent depends on how close you are to the center of the explosion
 
@@ -66,12 +57,15 @@ public class FlyingEnemy : MonoBehaviour
 
                 //Deal damage to all Entities inside the range based on percentage related distance
                 int damageInt = (int)Mathf.Round(damage);
-              
 
-                entity.TakeDamage(damageInt, DamageType.Bullet);
+                if(_flyingEnemyBoom != null)
+                {
+                    Instantiate(_flyingEnemyBoom, transform.position, Quaternion.identity);
+                }
+                player.TakeDamage(damageInt, DamageType.Bullet);
             }
-
         }
+        Destroy(gameObject);
     }
 
     // Detect if player is within range of sight and KamikazeRange
@@ -105,7 +99,7 @@ public class FlyingEnemy : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-       if (collision.collider.TryGetComponent(out Entity health)) // Should it not be Player Base? Ask in meeting c:
+       if (collision.collider.TryGetComponent(out PlayerBase health)) // Should it not be Player Base? Ask in meeting c:
        {
             Debug.Log("Hitting Player");
           
