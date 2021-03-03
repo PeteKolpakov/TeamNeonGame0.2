@@ -19,6 +19,7 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     public List<ReworkedItem> _equippedItems;
 
     public List<int> BoughtGunsInt;
+    public List<int> FinishedLevelsInt;
 
     SpriteGlowEffect glow;
     private Color oldColor;
@@ -48,7 +49,7 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     }
 
 
-    // This just works beautifully
+    // This just works beautifully for loading the weapons but it is not in use :( RIP -Kiwii
     public void LoadWeapons(List<int> weaponsBought)
     {
         BoughtGunsInt = weaponsBought;
@@ -62,7 +63,7 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
             for (int x = 0; x < CurrentItemList.Count; x++)
             {
                 ReworkedItem currentItem = (ReworkedItem)CurrentItemList[x];
-               // Debug.Log(whatever.Count);
+               
                 Debug.Log(currentItem.WeaponID);
                 if (currentItem.WeaponID == current)
                 {

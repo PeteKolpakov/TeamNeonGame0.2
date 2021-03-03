@@ -16,8 +16,6 @@ public class FlyingEnemy : MonoBehaviour
 
     private Vector2 _direction;
 
-    [SerializeField]
-    private GameObject _flyingEnemyBoom;
 
     // This is the speed the normal Speed will be multiplied for (Speed * Kamikaze)
     [SerializeField]
