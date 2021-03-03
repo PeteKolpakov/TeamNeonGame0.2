@@ -43,7 +43,8 @@ namespace Assets.Scripts.GameManager
         public void GoToNextLevel()
         {
             //After Rest Stage
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
         }
         public enum SceneIndex
         {

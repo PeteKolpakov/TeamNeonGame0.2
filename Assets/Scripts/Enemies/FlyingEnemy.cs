@@ -21,7 +21,8 @@ public class FlyingEnemy : MonoBehaviour
     [SerializeField]
     private float _kamikaze = 4;
 
-    private float _maxDamage = 80;
+    [SerializeField]
+    private float _maxDamage = 60;
 
 
     void Start()
@@ -37,9 +38,6 @@ public class FlyingEnemy : MonoBehaviour
     public void Explode()
     {
 
-        Debug.Log("Explodeee");
-
-        Destroy(gameObject);
 
         //Add damage to anything inside this range
 
@@ -70,6 +68,7 @@ public class FlyingEnemy : MonoBehaviour
 
                 entity.TakeDamage(damageInt, DamageType.Bullet);
             }
+            Destroy(gameObject);
 
         }
     }

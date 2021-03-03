@@ -17,7 +17,7 @@ public class BossBulletBehaviour : MonoBehaviour
     {
         if (collision.collider.TryGetComponent(out Entity health))
         {
-            health.TakeDamage(10, DamageType.Bullet);
+            health.TakeDamage(4, DamageType.Bullet);
         }
         Destroy(gameObject);
     }

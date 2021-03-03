@@ -68,7 +68,10 @@ public class Entity : MonoBehaviour
 
     public virtual void TakeDamage(int damage, DamageType type)
     {
-        if(canTakeDamage){
+        if(canTakeDamage == true){
+            int randomDamage = Random.Range(-3,4);
+            damage += randomDamage;
+
             health -= damage;
         }
     }
@@ -84,7 +87,6 @@ public class Entity : MonoBehaviour
 
     protected virtual void Die()
     {
-        Debug.Log("Entity class DIE method");
         if (_explosion != null)
         {
             Instantiate(_explosion, transform.position, Quaternion.identity);
@@ -103,23 +105,20 @@ public class Entity : MonoBehaviour
 
     public void Drop()
     {
-        if (_canDrop == true)
+        if (_canDrop == true && currencyPrefab != null)
         {
             float roll = Random.Range(1, 100f);
 
             if (roll <= currencyDropPercent)
             {
-                Debug.Log("You get MONEY!");
                 Instantiate(currencyPrefab, transform.position, Quaternion.identity);
             }
             else if (roll >= currencyDropPercent + 1 && roll <= currencyDropPercent + ammodropPercent)
             {
-                Debug.Log("You get FireRate Buff!");
                 Instantiate(ammoPrefab, transform.position, Quaternion.identity);
             }
             else if (roll >= currencyDropPercent + ammodropPercent + 1)
             {
-                Debug.Log("You get nothing from this enemy...");
                 return;
             }
         }

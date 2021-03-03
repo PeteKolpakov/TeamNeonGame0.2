@@ -11,7 +11,6 @@ namespace Assets.Scripts.GameManager{
 
         private void Awake()
         {
-            Debug.Log("PlayerTracker has awakened");
             if(Instance == null)
             {
                 Instance = this;

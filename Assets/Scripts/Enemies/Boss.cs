@@ -23,6 +23,11 @@ public class Boss : MonoBehaviour
 
     private WaveBulletShooting waveAttack;
     private SprialBulletShooting spiralAttack;
+    private BossLaserBeamAttack laserBeam;
+    public BossEyeTracker eyeTracker;
+    public GameObject laserBeamGameObject;
+    public GameObject smallEye;
+
 
     [NonSerialized]
     public bool leftArmDead;
@@ -31,7 +36,10 @@ public class Boss : MonoBehaviour
 
     public bool rightArmDead;
 
-    private bool _phase1;
+    private bool stopDisabling = false;
+    private float randomX;
+    private float randomX1;
+    private float distanceBetween;
 
 
 
@@ -40,6 +48,7 @@ public class Boss : MonoBehaviour
         posOffset = transform.position;
         waveAttack = leftArm.GetComponent<WaveBulletShooting>();
         spiralAttack = rightArm.GetComponent<SprialBulletShooting>();
+        laserBeam = eyeball.GetComponent<BossLaserBeamAttack>();
 
         eyeball.canTakeDamage = false;
 
@@ -54,8 +63,10 @@ public class Boss : MonoBehaviour
 
         transform.position = tempPos;
 
-        if(leftArmDead == true && rightArmDead == true){
+        if(laserBeam.attackFinished == false && leftArmDead == true && rightArmDead == true){
+            StopAllCoroutines();
             eyeball.canTakeDamage = true;
+            laserBeam.enabled = true;
         }
 
         if(eyeball.health <= 0){
@@ -68,6 +79,15 @@ public class Boss : MonoBehaviour
             stats.Timer = timer.timerText.text + timer.milisecondsText.text;
             
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+
+        if(laserBeam.attackFinished == true && stopDisabling == false){
+            stopDisabling = true;
+            laserBeam.enabled = false;
+            laserBeamGameObject.SetActive(false);
+            eyeTracker.enabled = true;
+            StartCoroutine(Phase2Attack());
+            laserBeam.StopAllCoroutines();
         }
     }
 
@@ -109,11 +129,43 @@ public class Boss : MonoBehaviour
 
 
             yield return new WaitForSeconds(11);
-            if(waveAttack != null)
-                waveAttack.ResetInvokeParameters();
-            // Phase 4
-                waveAttack.enabled = false;
-                spiralAttack.enabled = false;
+            if(waveAttack != null){
+                    waveAttack.ResetInvokeParameters();
+                // Phase 4
+                    waveAttack.enabled = false;
+                    spiralAttack.enabled = false;
+            }
+        }
+
+    }
+
+    private IEnumerator Phase2Attack(){
+        StopCoroutine(Shoot());
+        yield return new WaitForSeconds(2);
+        while(true){
+            randomX = UnityEngine.Random.Range(-9.7f, 10.3f);
+            randomX1 = UnityEngine.Random.Range(-9.7f, 10.3f);
+
+            //Checking if they're too close
+            distanceBetween = randomX - randomX1;
+            if(distanceBetween < 0.5f){
+                for (int i = 0; i < 10; i++)
+                {
+                    randomX1 = UnityEngine.Random.Range(-9.7f, 10.3f);
+                    distanceBetween = randomX - randomX1;
+
+                    if(distanceBetween < 0.5f)
+                        break;         
+                }
+            }
+            
+
+            Vector3 randomPos = new Vector3(randomX, 8f, 0);
+            Vector3 randomPos1 = new Vector3(randomX1, 8f, 0);
+            Instantiate(smallEye, randomPos, Quaternion.identity);
+            Instantiate(smallEye, randomPos1, Quaternion.identity);
+
+            yield return new WaitForSeconds(1.6f);
         }
 
     }
