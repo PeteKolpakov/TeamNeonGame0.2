@@ -18,13 +18,13 @@ namespace Assets.Scripts.Audio
             SFX = FMODUnity.RuntimeManager.GetBus("bus:/SFX"); // eg. "bus:/Master/SFX"
         }
 
-        /*
+        
         private void Update()
         {
             BGM.setVolume(BGMVol);
             SFX.setVolume(SFXVol); 
         }
-        */
+        
         public void SetBGMVol(float newBGMVol)
         {
             BGMVol = newBGMVol;
