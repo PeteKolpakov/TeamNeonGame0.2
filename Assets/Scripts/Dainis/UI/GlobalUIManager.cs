@@ -20,12 +20,9 @@ class GlobalUIManager : MonoBehaviour
     public EnemyBase enemyBase;
     public EnemyHealthBar _enemyHealhbar;
 
-    public TMP_Text _moneyDisplay;
+    public TMP_Text ScoreDisplay;
     public TMP_Text _healthDisplay;
 
-    public Image firstGlobalSlot;
-    public Image secondGlobalSlot;
-    public Image thirdGlobalSlot;
 
 
     //Debug//
@@ -55,16 +52,9 @@ class GlobalUIManager : MonoBehaviour
         _playerHealthbar.SetHealth(player.health);
         _enemyHealhbar.SetHealth(enemyBase.health);
 
-        _moneyDisplay.text = "$: " + _playerStatManager._moneyAmount.ToString();
+        ScoreDisplay.text =  _playerStatManager._moneyAmount.ToString();
         _healthDisplay.text = player.health.ToString() + " \\ " + player.maxHealth.ToString();
 
-
-        // Updating the current weapon loadout visuals
-
-        firstGlobalSlot.sprite = playerShootScript.CurrentWeapon.icon;
-        firstGlobalSlot.color = Color.white;
-        secondGlobalSlot.sprite = playerShootScript.CurrentMeleeWeapon.AccessItemData().icon;
-        secondGlobalSlot.color = Color.white;
 
         if(firerate != null){
             firerate.text = "FireRate: " + Math.Round(playerShootScript.CurrentWeapon.fireRate, 1).ToString();

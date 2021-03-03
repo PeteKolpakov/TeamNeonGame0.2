@@ -127,12 +127,11 @@ public class Boss : MonoBehaviour
                 if(spiralAttack != null)
                     spiralAttack.enabled = false;
 
-
             yield return new WaitForSeconds(11);
             if(waveAttack != null){
                     waveAttack.ResetInvokeParameters();
                 // Phase 4
-                    waveAttack.enabled = false;
+                    waveAttack.enabled = true;
                     spiralAttack.enabled = false;
             }
         }

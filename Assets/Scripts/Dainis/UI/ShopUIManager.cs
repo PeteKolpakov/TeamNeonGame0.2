@@ -37,7 +37,6 @@ class ShopUIManager : MonoBehaviour
         shopManager = GetComponent<ShopManager>();
         GlobalUIManager globalUIManager = GlobalUI.GetComponent<GlobalUIManager>();
 
-        thirdGlobalSlot = globalUIManager.thirdGlobalSlot;
     }
 
     private void Start()
