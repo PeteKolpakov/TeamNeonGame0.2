@@ -37,7 +37,7 @@ class PlayerShoot : AttackBase
     }
     protected override void Aim()
     {
-        if(pauseMenu._isPauseMenuOpen == false)
+        if(playerMovement.IsPauseMenuOpen == false)
         {
             Vector3 mouseWorldSpace = _sceneCamera.ScreenToWorldPoint(_mousePos);
 
@@ -54,7 +54,7 @@ class PlayerShoot : AttackBase
 
     protected override void Shoot()
     {
-        if (fallBehaviour._isFalling == false && Input.GetKey(KeyCode.Mouse0) && pauseMenu._isPauseMenuOpen == false)
+        if (fallBehaviour._isFalling == false && Input.GetKey(KeyCode.Mouse0) && playerMovement.IsPauseMenuOpen == false)
         {
             _weapon.Attack();
 

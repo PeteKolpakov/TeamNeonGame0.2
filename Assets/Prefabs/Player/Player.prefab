@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 155019561}
   - component: {fileID: 9148215322465655284}
   - component: {fileID: -1253361411988344503}
+  - component: {fileID: 288038958317809992}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -119,7 +120,7 @@ MonoBehaviour:
   _movementSpeed: 400
   PauseMenu: {fileID: 523466631759324818, guid: ae559db2580065945b9a45c78cb5ec96,
     type: 3}
-  isPauseMenuOpen: 0
+  IsPauseMenuOpen: 0
 --- !u!114 &2613963996673092435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,9 +162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82307163ed561d74d908e8219f761f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
-  _explosion: {fileID: 0}
+  health: 2000
+  maxHealth: 2000
+  _explosion: {fileID: 352795596918730512, guid: 9effbdd3095c6824b9f399049be0dd27,
+    type: 3}
   currencyPrefab: {fileID: 0}
   ammoPrefab: {fileID: 0}
   currencyDropPercent: 30
@@ -300,6 +302,20 @@ MonoBehaviour:
   _dieSFX: event:/UIPauseMenu_Enter
   _pauseEnterSFX: event:/UIPauseMenu_Enter
   _pauseExitSFX: event:/UIPauseMenu_Exit
+--- !u!114 &288038958317809992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2613963996673092441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2801786142a3d9c48891ae95d3fd2df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _chaser: {fileID: 0}
+  _reloadSceneDistance: 16
 --- !u!1 &7004887292760054350
 GameObject:
   m_ObjectHideFlags: 0
