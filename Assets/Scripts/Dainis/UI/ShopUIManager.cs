@@ -37,20 +37,19 @@ class ShopUIManager : MonoBehaviour
         shopManager = GetComponent<ShopManager>();
         GlobalUIManager globalUIManager = GlobalUI.GetComponent<GlobalUIManager>();
 
-        thirdGlobalSlot = globalUIManager.thirdGlobalSlot;
     }
 
     private void Start()
     {
         _playerStatManager = PlayerTracker.Instance.Player.transform.GetComponent<PlayerStatManager>();
         _playerShoot = PlayerTracker.Instance.Player.transform.GetComponent<PlayerShoot>();
-        Debug.Log(_playerStatManager._equippedItems);
+        Debug.Log(_playerStatManager.EquippedItems);
 
     }
     private void Update()
     {
-        MoneyShopDisplay.text = _playerStatManager._moneyAmount.ToString();
-        DamageDisplay.text = _playerStatManager._damage.ToString();
+        MoneyShopDisplay.text = _playerStatManager.Score.ToString();
+        DamageDisplay.text = _playerStatManager.Damage.ToString();
         FireRateDisplay.text = _playerShoot.CurrentWeapon.fireRate.ToString();
 
         // DEBUG ONLY //

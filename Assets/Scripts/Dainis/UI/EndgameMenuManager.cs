@@ -6,9 +6,12 @@ using Assets.Scripts.GameManager;
 
 public class EndgameMenuManager : MonoBehaviour
 {
-    public TMP_Text finalTime;
-    public TMP_Text deaths;
-    public TMP_Text kills;
+    public TMP_Text SpeedrunFinalTime;
+    public TMP_Text SpeedrunDeaths;
+    public TMP_Text SpeedrunKills;
+
+    public TMP_Text NormalDeaths;
+    public TMP_Text NormalKills;
 
     public GameObject speedrunText;
     public GameObject normalrunText;
@@ -16,9 +19,12 @@ public class EndgameMenuManager : MonoBehaviour
     private void Start() {
         StatsTracker stats = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
 
-        finalTime.text = stats.Timer;
-        deaths.text = stats.DeathCount.ToString();
-        kills.text = stats.EnemiesKilled.ToString();
+        SpeedrunFinalTime.text = stats.Timer;
+        SpeedrunDeaths.text = stats.DeathCount.ToString();
+        SpeedrunKills.text = stats.EnemiesKilled.ToString();
+
+        NormalDeaths.text = stats.DeathCount.ToString();
+        NormalKills.text = stats.EnemiesKilled.ToString();
 
 
         if(stats.SpeedrunMode == true){

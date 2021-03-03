@@ -40,7 +40,7 @@ public class SaveLoadSystem : MonoBehaviour
         // AKA LOADING THE DATA
 
         entity.maxHealth = MyCurrentPlayerData.PlayerMaxHealth;
-        PStats._moneyAmount = MyCurrentPlayerData.PlayerCurrentMoney;
+        PStats.Score = MyCurrentPlayerData.PlayerCurrentMoney;
         PStats.LoadWeapons(MyCurrentPlayerData.PurchasedGunsInt);
 
         // This is being called and loads the data even if you dont want to. now that doesnt happen anymore for some reason
@@ -57,7 +57,7 @@ public class SaveLoadSystem : MonoBehaviour
         PlayerData p = new PlayerData();
 
         p.PlayerMaxHealth = entity.maxHealth;
-        p.PlayerCurrentMoney = PStats._moneyAmount;
+        p.PlayerCurrentMoney = PStats.Score;
         p.PurchasedGunsInt = PStats.BoughtGunsInt;
    //     p.CompletedLevelsInt = PStats.FinishedLevelsInt;
 
