@@ -13,6 +13,8 @@ namespace Assets.Scripts.EntityClass
         // base player class, should handle health and damage related functions
         PlayerStatManager player;
         FallBehaviour fallBehaviour;
+        [SerializeField]
+        private GameObject _playerDeathAnim;
 
         public delegate void RemoveArmorPoints();
         public static event RemoveArmorPoints removeArmor;
@@ -28,8 +30,11 @@ namespace Assets.Scripts.EntityClass
 
         protected override void Die()
         {
+            Instantiate(_playerDeathAnim, transform.position, Quaternion.identity);
+            Debug.Log("Player base");
+            StartCoroutine(DelayDeath());
+            
             Destroy(gameObject);
-            //StartCoroutine(LoadLevel(SceneManager.GetActiveScene()));
             ScenesManager.GoToScene(SceneManager.GetActiveScene().buildIndex);
         }
 
@@ -51,8 +56,9 @@ namespace Assets.Scripts.EntityClass
                 }
             }
         }
-
-        
-        
+        public IEnumerator DelayDeath()
+        {
+            yield return new WaitForSeconds(1.5f);
+        } 
     }
 }
