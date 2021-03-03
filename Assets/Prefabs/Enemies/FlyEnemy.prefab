@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 7801e44d21df95049b1eb787ccb967e9, type: 3}
   m_Color: {r: 0.4087961, g: 0.8396226, b: 0.30495724, a: 1}
   m_FlipX: 0
@@ -154,7 +154,10 @@ MonoBehaviour:
   LineOfSight: 8
   KamikazeRange: 6
   SplashRange: 3
+  _flyingEnemyBoom: {fileID: 352795596918730512, guid: c51b2ce9dbf4b5345ac933c89c471498,
+    type: 3}
   _kamikaze: 4
+  _maxDamage: 60
 --- !u!50 &2947890936890169541
 Rigidbody2D:
   serializedVersion: 4
