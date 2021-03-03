@@ -32,12 +32,14 @@ namespace Assets.Scripts.Player
         public GameObject PauseMenu;
         public bool IsPauseMenuOpen;
         private PlayerBase _playerBase;
+        private FallBehaviour _playerFall;
 
         private void Start()
         {
             _timeSinceDash = 0;
             _rigidBody = GetComponent<Rigidbody2D>();
             _playerBase = GetComponent<PlayerBase>();
+            _playerFall = GetComponent<FallBehaviour>();
         }
 
         private void Awake()
@@ -73,7 +75,7 @@ namespace Assets.Scripts.Player
 
         private void MoveInput()
         {
-            if(IsPauseMenuOpen == false)
+            if(IsPauseMenuOpen == false && !_playerFall._isFalling)
             {
                 float moveX = 0f;
                 float moveY = 0f;
