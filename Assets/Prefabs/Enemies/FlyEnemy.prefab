@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2947890936890169541}
   - component: {fileID: 851057800}
   - component: {fileID: 1547901240}
+  - component: {fileID: 4776264261938657297}
   m_Layer: 15
   m_Name: FlyEnemy
   m_TagString: Enemy
@@ -212,3 +213,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4776264261938657297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2947890936890169539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510183727af248e46a59bb7d9b30dab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sound: event:/EnemyDeath

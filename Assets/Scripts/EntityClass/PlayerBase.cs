@@ -17,17 +17,20 @@ namespace Assets.Scripts.EntityClass
         public delegate void RemoveArmorPoints();
         public static event RemoveArmorPoints removeArmor;
 
+        private PlayerAudio _audio;
+
         private void Awake()
         {
             player = GetComponent<PlayerStatManager>();
             fallBehaviour = GetComponent<FallBehaviour>();
+            _audio = GetComponent<PlayerAudio>();
         }
 
         protected override void Die()
         {
             Destroy(gameObject);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            //ScenesManager.LoadLevel(SceneManager.GetActiveScene().buildIndex));
+            //StartCoroutine(LoadLevel(SceneManager.GetActiveScene()));
+            ScenesManager.GoToScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         public override void TakeDamage(int damage, DamageType type)
@@ -37,12 +40,13 @@ namespace Assets.Scripts.EntityClass
             {
                 if(type == DamageType.Bullet)
                 {
-
+                    _audio.PlaySFX(_audio._takeDamageSFX);
                     health -= damage;
 
                 }
                 else if(type == DamageType.Fall)
                 {
+                    _audio.PlaySFX(_audio._fallSFX);
                     health -= damage;
                 }
             }

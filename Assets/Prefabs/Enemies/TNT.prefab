@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2969876368306861097}
   - component: {fileID: 2969876368306861099}
   - component: {fileID: 2969876368306861096}
+  - component: {fileID: 6079967035875594018}
   m_Layer: 14
   m_Name: TNT
   m_TagString: Enemy
@@ -206,3 +207,16 @@ MonoBehaviour:
   MaxDamage: 80
   SplashRange: 3
   Triggered: 0
+--- !u!114 &6079967035875594018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2969876368306861098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510183727af248e46a59bb7d9b30dab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sound: event:/MineExplosion

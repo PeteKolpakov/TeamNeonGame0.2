@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 392066558070785742}
   - component: {fileID: 5917556225817316665}
   - component: {fileID: 5979654748333499802}
+  - component: {fileID: -8857760079871918361}
   m_Layer: 12
   m_Name: AmmoPickupPrefab
   m_TagString: Untagged
@@ -145,3 +146,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupableType: 1
+--- !u!114 &-8857760079871918361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8743885004090351468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510183727af248e46a59bb7d9b30dab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sound: event:/AmmoPickup
+  _playOnAwake: 0
+  _playOnDestroy: 1

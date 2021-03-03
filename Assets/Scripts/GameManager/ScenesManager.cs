@@ -40,10 +40,13 @@ namespace Assets.Scripts.GameManager
         {
             SceneManager.LoadScene(6);
         }
+        public void ResetLevel()
+        {
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+        }
         public void GoToNextLevel()
         {
             //After Rest Stage
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
         }
         public enum SceneIndex

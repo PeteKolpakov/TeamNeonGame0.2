@@ -1,7 +1,9 @@
+using Assets.Scripts.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioEventTrigger))]
 public class Pickupable : MonoBehaviour
 {
     public PickupableType pickupableType;
@@ -12,6 +14,12 @@ public class Pickupable : MonoBehaviour
     public delegate void PickupFireRate(float firerate);
     public static event PickupFireRate pickupFR;
 
+    private AudioEventTrigger _audio;
+
+    private void Awake()
+    {
+        _audio = GetComponent<AudioEventTrigger>();
+    }
     public enum PickupableType
     {
         Currency,
@@ -24,11 +32,13 @@ public class Pickupable : MonoBehaviour
         {
             if(pickupableType == PickupableType.Currency)
             {
+                _audio.PlaySound();
                 int amount = Random.Range(2, 7);
                 pickupCurrency(amount);
                 Destroy(gameObject);
             }else if(pickupableType == PickupableType.FireRatePickup)
             {
+                _audio.PlaySound();
                 // Add firerate
                 float amount = Random.Range(0.1f, 0.2f);
                 pickupFR(amount);

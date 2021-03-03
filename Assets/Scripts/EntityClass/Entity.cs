@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.GameManager;
+using Assets.Scripts.Audio;
 
 public enum DamageType
 {
     Bullet,
     Fall
 }
-
+[RequireComponent(typeof(AudioEventTrigger))]
 public class Entity : MonoBehaviour
 {
     public float health;
@@ -22,6 +23,8 @@ public class Entity : MonoBehaviour
     GameObject currencyPrefab;
     [SerializeField]
     GameObject ammoPrefab;
+
+    private AudioEventTrigger _deathAudio;
 
     public int currencyDropPercent = 30;
     public int ammodropPercent = 30;
@@ -41,6 +44,11 @@ public class Entity : MonoBehaviour
             Debug.Log("Drop percentages do not equal 100. Change the values and try again, darling");
             _canDrop = false;
         }
+    }
+
+    private void Awake()
+    {
+        _deathAudio = GetComponent<AudioEventTrigger>();
     }
 
     public virtual void Update()
@@ -87,6 +95,8 @@ public class Entity : MonoBehaviour
 
     protected virtual void Die()
     {
+        _deathAudio.PlaySound();
+        Debug.Log("Entity class DIE method");
         if (_explosion != null)
         {
             Instantiate(_explosion, transform.position, Quaternion.identity);
