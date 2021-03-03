@@ -7,20 +7,71 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000029E684C30B8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 000001E804872BD8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] PlaybackSystem::init                     : done
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001E80E91EED8
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001E80E91EED8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001E80E913898
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001E80E913898
+[LOG] SoundI::release                          : helicopter buchla  - Trimmed (2) (000001E80E91ED28)
+[LOG] SoundI::release                          :     helicopter buchla  - Trimmed (2) (000001E80EDB9BF8)
+[LOG] SoundI::release                          :     helicopter buchla  - Trimmed (2) (000001E80E913898)
+[LOG] SoundI::release                          : helicopter buchla  - Trimmed (000001E80E91E818)
+[LOG] SoundI::release                          :     helicopter buchla  - Trimmed (000001E80EDBB118)
+[LOG] SoundI::release                          :     helicopter buchla  - Trimmed (000001E80E91F3E8)
+[LOG] SoundI::release                          : helicopter buchla  - Trimmed (2) (000001E80E91F748)
+[LOG] SoundI::release                          :     helicopter buchla  - Trimmed (2) (000001E80EDBADD8)
+[LOG] SoundI::release                          :     helicopter buchla  - Trimmed (2) (000001E80E91EED8)
+[LOG] SoundI::release                          : helicopter buchla  - Trimmed (000001E80E91F8F8)
+[LOG] SoundI::release                          :     helicopter buchla  - Trimmed (000001E80EDBA418)
+[LOG] SoundI::release                          :     helicopter buchla  - Trimmed (000001E80E91F598)
+[LOG] SoundI::release                          :  (000001E80FE7C088)
+[LOG] SoundI::release                          :     Load04 (000001E581C6C468)
+[LOG] SoundI::release                          :  (000001E804649388)
+[LOG] SoundI::release                          :     confirm-spacey (000001E776B6B568)
+[LOG] SoundI::release                          :  (000001E80FE8E658)
+[LOG] SoundI::release                          :     dramatic-bass-drop_B_minor (000001E775877F78)
+[LOG] SoundI::release                          :  (000001E80D6D54E8)
+[LOG] SoundI::release                          :     wood-crate-destory-1 - Trimmed (000001E805020048)
+[LOG] SoundI::release                          :  (000001E80D6D5098)
+[LOG] SoundI::release                          :     ammo-pickup (000001E80501FB68)
+[LOG] SoundI::release                          :  (000001E80D6D5938)
+[LOG] SoundI::release                          :     Load02 (000001E80501FD08)
+[LOG] SoundI::release                          :  (000001E80D6D5AA8)
+[LOG] SoundI::release                          :     pickup-coin (000001E80501FEA8)
+[LOG] SoundI::release                          :  (000001E80D6D5C18)
+[LOG] SoundI::release                          :     Fizzle (000001E8050201E8)
+[LOG] SoundI::release                          :  (000001E804562308)
+[LOG] SoundI::release                          :     bomb-explosion - Trimmed (000001E80EDB9D98)
+[LOG] SoundI::release                          :  (000001E80FE7C7B8)
+[LOG] SoundI::release                          :     plastic-woosh (000001E581C6C2C8)
+[LOG] SoundI::release                          :  (000001E80FE7CA98)
+[LOG] SoundI::release                          :     woosh-noise-1 (000001E581C6C128)
+[LOG] SoundI::release                          :  (000001E80DAE39C8)
+[LOG] SoundI::release                          :     GS01 (000001E804E69218)
+[LOG] SoundI::release                          :  (000001E80DAE4B08)
+[LOG] SoundI::release                          :     GS02 (000001E804E693B8)
+[LOG] SoundI::release                          :  (000001E80DAE3858)
+[LOG] SoundI::release                          :     GS03 (000001E804E6A0B8)
+[LOG] SoundI::release                          :  (000001E80DAE40F8)
+[LOG] SoundI::release                          :     GS04 (000001E804E6A738)
+[LOG] SoundI::release                          :  (000001E80DAE4828)
+[LOG] SoundI::release                          :     explocion (000001E804E6CE38)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
@@ -28,3 +79,5 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] SystemI::close                           : Closed.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.

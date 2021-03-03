@@ -11,8 +11,6 @@ namespace Assets.Scripts.Player
         [FMODUnity.EventRef] public string _fallSFX;
         [FMODUnity.EventRef] public string _takeDamageSFX;
         [FMODUnity.EventRef] public string _dieSFX;
-        [FMODUnity.EventRef] public string _pauseEnterSFX;
-        [FMODUnity.EventRef] public string _pauseExitSFX;
 
         public void PlaySFX(string path)
         {

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2947890936890169541}
   - component: {fileID: 851057800}
   - component: {fileID: 1547901240}
+  - component: {fileID: -333925160656410344}
   m_Layer: 15
   m_Name: FlyEnemyWithIncreasedRange
   m_TagString: Enemy
@@ -151,7 +152,9 @@ MonoBehaviour:
   LineOfSight: 100
   KamikazeRange: 1
   SplashRange: 2
+  _flyingEnemyBoom: {fileID: 0}
   _kamikaze: 3
+  _maxDamage: 60
 --- !u!50 &2947890936890169541
 Rigidbody2D:
   serializedVersion: 4
@@ -210,3 +213,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-333925160656410344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2947890936890169539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a57aedbf221196419090d8b5c0672bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sound: event:/MineExplosion

@@ -652,6 +652,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPauseMenuOpen: 0
   PauseMenu: {fileID: 8658392662176268414}
+  _pauseEnterSFX: event:/UIPauseMenu_Enter
+  _pauseExitSFX: event:/UIPauseMenu_Exit
 --- !u!1 &8487458974573340465
 GameObject:
   m_ObjectHideFlags: 0

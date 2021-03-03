@@ -26,11 +26,6 @@ public class FlyingEnemy : MonoBehaviour
     [SerializeField]
     private float _maxDamage = 60;
 
-
-    void Start()
-    {
-    }
-
     private void Update()
     {
         DetectPlayer();
@@ -46,7 +41,7 @@ public class FlyingEnemy : MonoBehaviour
         foreach (var hitCollider in hitColliders)
         {
             //Check if its an Player
-            if (hitCollider.TryGetComponent(out PlayerBase player))
+            if (hitCollider.TryGetComponent(out Entity entity))
             {
                 var closestPoint = hitCollider.ClosestPoint(transform.position);
 
@@ -63,9 +58,10 @@ public class FlyingEnemy : MonoBehaviour
                 {
                     Instantiate(_flyingEnemyBoom, transform.position, Quaternion.identity);
                 }
-                player.TakeDamage(damageInt, DamageType.Bullet);
+                entity.TakeDamage(damageInt, DamageType.Bullet);
             }
         }
+
         Destroy(gameObject);
     }
 

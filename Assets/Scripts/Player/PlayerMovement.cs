@@ -27,16 +27,19 @@ namespace Assets.Scripts.Player
         private bool _wannaDash;
         private bool _canMove = true;
         private Vector2 _moveDirection;
-        private Rigidbody2D rigidBody;
+        private Rigidbody2D _rigidBody;
 
-        private PlayerBase playerBase;
-        public PauseMenuManager pauseMenu;
+        public GameObject PauseMenu;
+        public bool IsPauseMenuOpen;
+        private PlayerBase _playerBase;
+        private FallBehaviour _playerFall;
 
         private void Start()
         {
             _timeSinceDash = 0;
-            rigidBody = GetComponent<Rigidbody2D>();
-            playerBase = GetComponent<PlayerBase>();
+            _rigidBody = GetComponent<Rigidbody2D>();
+            _playerBase = GetComponent<PlayerBase>();
+            _playerFall = GetComponent<FallBehaviour>();
         }
 
         private void Awake()
@@ -58,8 +61,8 @@ namespace Assets.Scripts.Player
         {
             if (_canMove && !IsDashing())
             {
-                rigidBody.velocity = _moveDirection * _movementSpeed * Time.fixedDeltaTime;
-                if (_wannaDash && CanDash())
+                _rigidBody.velocity = _moveDirection * _movementSpeed * Time.fixedDeltaTime;
+                if (_wannaDash && _rigidBody.velocity != new Vector2(0,0) && CanDash())
                     DashStart();
             }
         }
@@ -71,7 +74,7 @@ namespace Assets.Scripts.Player
 
         private void MoveInput()
         {
-            if(pauseMenu._isPauseMenuOpen == false)
+            if(IsPauseMenuOpen == false && !_playerFall._isFalling)
             {
                 float moveX = 0f;
                 float moveY = 0f;
@@ -101,21 +104,47 @@ namespace Assets.Scripts.Player
 
         }
 
+        private void PauseInput()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if(IsPauseMenuOpen == true)
+                {
+                    Time.timeScale = 1;
+                    PauseMenu.SetActive(false);
+                    IsPauseMenuOpen = false;
+                }
+                else
+                {
+                    Time.timeScale = 0;
+                    PauseMenu.SetActive(true);
+                    IsPauseMenuOpen = true;
+                }
+            }
+        }
+        
+        public void ResumeButton()
+        {
+            Time.timeScale = 1;
+            PauseMenu.SetActive(false);
+            IsPauseMenuOpen = false;
+        }
+
         private void DashStart()
         {
 
-            playerBase.canTakeDamage = false;
+            _playerBase.canTakeDamage = false;
             _audio.PlaySFX(_audio._dashSFX);
             if(_dashAfterImage != null){
                 _dashAfterImage.Play();
             }
             Vector2 dashPosition = ((Vector2)transform.position + _moveDirection * _dashLenght);
             Vector2 dashVelocity = (dashPosition - (Vector2)transform.position) / _dashDuration;
-            rigidBody.velocity = dashVelocity;
+            _rigidBody.velocity = dashVelocity;
             _timeSinceDash = 0;        
             _wannaDash = false;
 
-            playerBase.canTakeDamage = true;
+            _playerBase.canTakeDamage = true;
 
 
         }
@@ -133,7 +162,7 @@ namespace Assets.Scripts.Player
         public void DisableMovement()
         {
             _canMove = false;
-            rigidBody.velocity = Vector2.zero;
+            _rigidBody.velocity = Vector2.zero;
         }
     }
 }
