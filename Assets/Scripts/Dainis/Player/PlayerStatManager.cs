@@ -148,7 +148,7 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     }
 
     public IEnumerator BuffTimerForFireRate(float oldFR, Color oldColor, float oldBrightness, SpriteGlowEffect glow){
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
         SetFireRateBackToNormal(oldFR);
         RemoveBuffVisual(oldColor, oldBrightness, glow);
     }
