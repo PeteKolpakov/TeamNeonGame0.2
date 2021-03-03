@@ -694,6 +694,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1253361411988344503, guid: e1a3591bda460794281d1618a48d6417,
+        type: 3}
+      propertyPath: _dieSFX
+      value: event:/UIPauseMenu_Enter
+      objectReference: {fileID: 0}
     - target: {fileID: 2613963996673092434, guid: e1a3591bda460794281d1618a48d6417,
         type: 3}
       propertyPath: PauseMenu
@@ -788,6 +793,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148215322465655284, guid: e1a3591bda460794281d1618a48d6417,
+        type: 3}
+      propertyPath: Sound
+      value: event:/PlayerInRange_Shooter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1a3591bda460794281d1618a48d6417, type: 3}

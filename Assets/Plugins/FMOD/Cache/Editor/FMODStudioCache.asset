@@ -167,7 +167,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637503859239834960
+  lastModified: 637504059363585289
   LoadResult: 0
   FileSizes:
   - Name: 
@@ -575,6 +575,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-1112483414043867614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/GameBGM/XFade
+  m_EditorClassIdentifier: 
+  Name: XFade
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-843682724090064625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,7 +630,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637503859239834960
+  lastModified: 637504059363515466
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -637,6 +657,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 257
+--- !u!114 &-119432736463780493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/GameBGM/XFade
+  m_EditorClassIdentifier: 
+  Name: XFade
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,7 +718,7 @@ MonoBehaviour:
   - {fileID: -828601040924647143}
   StringsBanks:
   - {fileID: -7317947540582038399}
-  stringsBankWriteTime: 637503859239834960
+  stringsBankWriteTime: 637504059363585289
   cacheVersion: 6
 --- !u!114 &330484270317667516
 MonoBehaviour:
@@ -746,7 +786,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -843682724090064625}
+  - {fileID: -1112483414043867614}
   MinDistance: 0
   MaxDistance: 0
   Length: 49218
@@ -796,6 +836,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 140
+--- !u!114 &3529833310773859944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/GameBGM/XFade
+  m_EditorClassIdentifier: 
+  Name: XFade
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &3546262613047682834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,7 +1129,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 1930
+  Length: 1086
 --- !u!114 &7421821421713879846
 MonoBehaviour:
   m_ObjectHideFlags: 0
