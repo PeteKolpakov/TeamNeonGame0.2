@@ -8,21 +8,23 @@ public class Pickupable : MonoBehaviour
 {
     public PickupableType pickupableType;
 
-    public delegate void PickupCurrency(int currency);
-    public static event PickupCurrency pickupCurrency;
+    public delegate void PickupScore(int score);
+    public static event PickupScore pickupScore;
 
     public delegate void PickupFireRate(float firerate);
     public static event PickupFireRate pickupFR;
 
     private AudioEventTrigger _audio;
 
+
     private void Awake()
     {
         _audio = GetComponent<AudioEventTrigger>();
+        Destroy(gameObject, 5f);
     }
     public enum PickupableType
     {
-        Currency,
+        Score,
         FireRatePickup
     }
 
@@ -30,11 +32,10 @@ public class Pickupable : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-            if(pickupableType == PickupableType.Currency)
+            if(pickupableType == PickupableType.Score)
             {
                 _audio.PlaySound();
-                int amount = Random.Range(2, 7);
-                pickupCurrency(amount);
+                pickupScore(100);
                 Destroy(gameObject);
             }else if(pickupableType == PickupableType.FireRatePickup)
             {

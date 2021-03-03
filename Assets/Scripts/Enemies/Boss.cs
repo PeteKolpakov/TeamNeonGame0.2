@@ -38,7 +38,9 @@ public class Boss : MonoBehaviour
 
     private bool stopDisabling = false;
 
-
+    public GameObject EyeballHealthbar;
+    public GameObject LeftArmHealthbar;
+    public GameObject RightArmHealthbar;
 
 
 
@@ -65,6 +67,7 @@ public class Boss : MonoBehaviour
         if (laserBeam.attackFinished == false && leftArmDead == true && rightArmDead == true)
         {
             StopAllCoroutines();
+            EyeballHealthbar.SetActive(true);
             eyeball.canTakeDamage = true;
             laserBeam.enabled = true;
         }
@@ -111,7 +114,7 @@ public class Boss : MonoBehaviour
             if (spiralAttack != null)
             {
                 spiralAttack.enabled = true;
-
+                RightArmHealthbar.SetActive(false);
                 spiralAttack.MakeInvincible();
                 spiralAttack.ChangeInvokeParameters(0.05f, 8f);
             }
@@ -119,6 +122,7 @@ public class Boss : MonoBehaviour
             yield return new WaitForSeconds(11);
             if (spiralAttack != null)
             {
+                RightArmHealthbar.SetActive(true);
                 spiralAttack.ResetInvokeParameters();
             }
             // Phase 3
@@ -126,6 +130,7 @@ public class Boss : MonoBehaviour
             {
                 waveAttack.enabled = true;
                 waveAttack.RotateTheSpiral();
+                LeftArmHealthbar.SetActive(false);
                 waveAttack.MakeInvincible();
                 waveAttack.ChangeInvokeParameters(0.2f, 6f, 9);
             }
@@ -135,6 +140,7 @@ public class Boss : MonoBehaviour
             yield return new WaitForSeconds(11);
             if (waveAttack != null)
             {
+                LeftArmHealthbar.SetActive(true);
                 waveAttack.ResetInvokeParameters();
                 // Phase 4
                 waveAttack.enabled = true;
@@ -169,7 +175,13 @@ public class Boss : MonoBehaviour
             while (time < 0.3f)
             {
                 leftEye.transform.position = Vector3.Lerp(leftEye.transform.position, posLeft, time / 0.3f);
+                if(leftEye.AfterImage != null){
+                leftEye.AfterImage.Play();
+            }
                 rightEye.transform.position = Vector3.Lerp(rightEye.transform.position, posRight, time / 0.3f);
+                if(rightEye.AfterImage != null){
+                rightEye.AfterImage.Play();
+            }
                 yield return null;
                 time += Time.deltaTime;
             }

@@ -54,7 +54,7 @@ public class CSVToSO : EditorWindow
 
                 ParseFloat(i, splitData, 5, ref item._fireRate);
                 ParseInt(i, splitData, 6, ref item._projectileAmount);
-                ParseFloat(i, splitData, 7, ref item._spreadAngle);
+                //ParseFloat(i, splitData, 7, ref item._spreadAngle);
                 ParseInt(i, splitData, 8, ref item.WeaponID);
 
                 AssetDatabase.CreateAsset(item, $"Assets/Resources/WeaponPrefabs/Test/{item._name}.asset");

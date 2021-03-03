@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SmallEyeballs : MonoBehaviour
 {
+    public ParticleSystem AfterImage;
     public GameObject oneShotBeam;
     public void FireBeam()
     {

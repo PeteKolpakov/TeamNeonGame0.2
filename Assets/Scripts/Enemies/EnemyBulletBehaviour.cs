@@ -2,6 +2,8 @@ using Assets.Scripts.Enemies;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.GameManager;
+
 
 public class EnemyBulletBehaviour : MonoBehaviour
 {
@@ -15,7 +17,8 @@ public class EnemyBulletBehaviour : MonoBehaviour
 
     private void Start()
     {
-        _bulletTarget = EnemyBehaviour.Direction;
+       // _bulletTarget = EnemyBehaviour.Direction;
+       _bulletTarget = PlayerTracker.Instance.Player.transform.position;
     }
     private void Update()
     {
@@ -35,7 +38,6 @@ public class EnemyBulletBehaviour : MonoBehaviour
         Debug.Log("Colliding with something");
         if (collision.collider.TryGetComponent(out Entity health))
         {
-            Debug.Log("I hit a player!");
             health.TakeDamage(20, DamageType.Bullet);
         }
         Destroy(gameObject);

@@ -87,9 +87,6 @@ namespace Assets.Scripts.Player
             Debug.Log("Falling");
             StartCoroutine(DelayedRespawn(1f));
 
-            // Adding 1 to the tracker every time player falls of the platform ("dies")
-            GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>().DeathCount++;
-
         }
         public bool IsRespawnInvincible()
         {

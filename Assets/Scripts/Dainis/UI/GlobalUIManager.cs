@@ -12,54 +12,30 @@ using Assets.Scripts.Player;
 class GlobalUIManager : MonoBehaviour
 {
     private  PlayerStatManager _playerStatManager;
-    public HealthBar _playerHealthbar;
+    public HealthBar PlayerHealthbar;
 
     [SerializeField]
-    private Entity player;
-
-    public EnemyBase enemyBase;
-    public EnemyHealthBar _enemyHealhbar;
-
+    private Entity _player;
     public TMP_Text ScoreDisplay;
-    public TMP_Text _healthDisplay;
-
-
-
-    //Debug//
-    public TMP_Text firerate;
-
-    
+    public TMP_Text HealthDisplay;
 
     private void Start()
     {
-        player = PlayerTracker.Instance.Player.GetComponent<Entity>();
+        _player = PlayerTracker.Instance.Player.GetComponent<Entity>();
         _playerStatManager = PlayerTracker.Instance.Player.GetComponent<PlayerStatManager>();
-        PlayerShoot playerShoot = player.GetComponent<PlayerShoot>();
+        PlayerShoot playerShoot = _player.GetComponent<PlayerShoot>();
 
-
-        _playerHealthbar.SetMaxHealth(player.health);
-
-        if(_enemyHealhbar != null)
-        {
-         _enemyHealhbar.SetMaxHealth(enemyBase.maxHealth);
-        }
+        PlayerHealthbar.SetMaxHealth(_player.health);
     }
 
     private void Update()
     {
-        PlayerShoot playerShootScript = player.GetComponent<PlayerShoot>();
+        PlayerShoot playerShootScript = _player.GetComponent<PlayerShoot>();
 
-        _playerHealthbar.SetHealth(player.health);
-        _enemyHealhbar.SetHealth(enemyBase.health);
+        PlayerHealthbar.SetHealth(_player.health);
 
-        ScoreDisplay.text =  _playerStatManager._moneyAmount.ToString();
-        _healthDisplay.text = player.health.ToString() + " \\ " + player.maxHealth.ToString();
-
-
-        if(firerate != null){
-            firerate.text = "FireRate: " + Math.Round(playerShootScript.CurrentWeapon.fireRate, 1).ToString();
-
-        }
+        ScoreDisplay.text =  _playerStatManager.Score.ToString();
+        HealthDisplay.text = _player.health.ToString() + " \\ " + _player.maxHealth.ToString();
     }
 }
 
