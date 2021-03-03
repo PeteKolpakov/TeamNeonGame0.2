@@ -31,7 +31,7 @@ class PlayerShoot : AttackBase
     }
     protected override void Aim()
     {
-        if(playerMovement.isPauseMenuOpen == false)
+        if(playerMovement.IsPauseMenuOpen == false)
         {
             Vector3 mouseWorldSpace = _sceneCamera.ScreenToWorldPoint(_mousePos);
 
@@ -61,7 +61,7 @@ class PlayerShoot : AttackBase
 
     protected override void Shoot()
     {
-        if (fallBehaviour._isFalling == false && Input.GetKey(KeyCode.Mouse0) && playerMovement.isPauseMenuOpen == false)
+        if (fallBehaviour._isFalling == false && Input.GetKey(KeyCode.Mouse0) && playerMovement.IsPauseMenuOpen == false)
         {
             _weapon.Attack();
 
@@ -69,7 +69,7 @@ class PlayerShoot : AttackBase
 
         // Melee attack 
 
-        if ((Input.GetKeyDown(KeyCode.Mouse1)) && (_meleeWeapon.TryGetComponent(out MeleeWeapon melee)) == true && playerMovement.isPauseMenuOpen == false)
+        if ((Input.GetKeyDown(KeyCode.Mouse1)) && (_meleeWeapon.TryGetComponent(out MeleeWeapon melee)) == true && playerMovement.IsPauseMenuOpen == false)
         {
 
             Debug.Log("Cutting");

@@ -18,18 +18,6 @@ namespace Assets.Scripts.GameManager
         private void Start() {
             _playerTracker = GetComponent<PlayerTracker>();
         }
-        public void Update()
-        {
-            //Testing purposes
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                GoToNextLevel();
-            }
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));
-            }
-        }
         public static void GoToScene(int levelindex)
         {
             SceneManager.LoadScene(levelindex);

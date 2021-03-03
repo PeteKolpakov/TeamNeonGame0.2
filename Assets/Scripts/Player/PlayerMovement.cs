@@ -27,17 +27,17 @@ namespace Assets.Scripts.Player
         private bool _wannaDash;
         private bool _canMove = true;
         private Vector2 _moveDirection;
-        private Rigidbody2D rigidBody;
+        private Rigidbody2D _rigidBody;
 
         public GameObject PauseMenu;
-        public bool isPauseMenuOpen;
-        private PlayerBase playerBase;
+        public bool IsPauseMenuOpen;
+        private PlayerBase _playerBase;
 
         private void Start()
         {
             _timeSinceDash = 0;
-            rigidBody = GetComponent<Rigidbody2D>();
-            playerBase = GetComponent<PlayerBase>();
+            _rigidBody = GetComponent<Rigidbody2D>();
+            _playerBase = GetComponent<PlayerBase>();
         }
 
         private void Awake()
@@ -60,8 +60,8 @@ namespace Assets.Scripts.Player
         {
             if (_canMove && !IsDashing())
             {
-                rigidBody.velocity = _moveDirection * _movementSpeed * Time.fixedDeltaTime;
-                if (_wannaDash && CanDash())
+                _rigidBody.velocity = _moveDirection * _movementSpeed * Time.fixedDeltaTime;
+                if (_wannaDash && _rigidBody.velocity != new Vector2(0,0) && CanDash())
                     DashStart();
             }
         }
@@ -73,7 +73,7 @@ namespace Assets.Scripts.Player
 
         private void MoveInput()
         {
-            if(isPauseMenuOpen == false)
+            if(IsPauseMenuOpen == false)
             {
                 float moveX = 0f;
                 float moveY = 0f;
@@ -107,19 +107,19 @@ namespace Assets.Scripts.Player
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if(isPauseMenuOpen == true)
+                if(IsPauseMenuOpen == true)
                 {
                     _audio.PlaySFX(_audio._pauseExitSFX);
                     Time.timeScale = 1;
                     PauseMenu.SetActive(false);
-                    isPauseMenuOpen = false;
+                    IsPauseMenuOpen = false;
                 }
                 else
                 {
                     _audio.PlaySFX(_audio._pauseEnterSFX);
                     Time.timeScale = 0;
                     PauseMenu.SetActive(true);
-                    isPauseMenuOpen = true;
+                    IsPauseMenuOpen = true;
                 }
             }
         }
@@ -128,24 +128,24 @@ namespace Assets.Scripts.Player
         {
             Time.timeScale = 1;
             PauseMenu.SetActive(false);
-            isPauseMenuOpen = false;
+            IsPauseMenuOpen = false;
         }
 
         private void DashStart()
         {
 
-            playerBase.canTakeDamage = false;
+            _playerBase.canTakeDamage = false;
             _audio.PlaySFX(_audio._dashSFX);
             if(_dashAfterImage != null){
                 _dashAfterImage.Play();
             }
             Vector2 dashPosition = ((Vector2)transform.position + _moveDirection * _dashLenght);
             Vector2 dashVelocity = (dashPosition - (Vector2)transform.position) / _dashDuration;
-            rigidBody.velocity = dashVelocity;
+            _rigidBody.velocity = dashVelocity;
             _timeSinceDash = 0;        
             _wannaDash = false;
 
-            playerBase.canTakeDamage = true;
+            _playerBase.canTakeDamage = true;
 
 
         }
@@ -163,7 +163,7 @@ namespace Assets.Scripts.Player
         public void DisableMovement()
         {
             _canMove = false;
-            rigidBody.velocity = Vector2.zero;
+            _rigidBody.velocity = Vector2.zero;
         }
     }
 }
