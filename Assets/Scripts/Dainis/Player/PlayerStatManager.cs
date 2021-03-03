@@ -11,19 +11,20 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     EquipmentManager EQManager;
     PlayerShoot playerShoot;
 
-    public int _damage = 1;
+    public int Damage;
 
-    public int _moneyAmount;
+    public int Score;
 
-    public List<ReworkedItem> _purchasedItems;
-    public List<ReworkedItem> _equippedItems;
+    public List<ReworkedItem> PurchasedItems;
+    public List<ReworkedItem> EquippedItems;
 
     public List<int> BoughtGunsInt;
 
     SpriteGlowEffect glow;
-    private Color oldColor;
-    private float oldBrightness;
-    private float oldFireRate;
+    private Color _oldColor;
+    private float _oldBrightness;
+    private float _oldFireRate;
+
 
 
 
@@ -36,14 +37,16 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     }
     private void Start()
     {
-        Pickupable.pickupCurrency += AddCurrency;
+        Pickupable.pickupScore += AddScore;
         Pickupable.pickupFR += AddFireRate;
 
         glow = GetComponent<SpriteGlowEffect>();
-        oldColor = glow.GlowColor;
-        oldBrightness = glow.GlowBrightness;
+        _oldColor = glow.GlowColor;
+        _oldBrightness = glow.GlowBrightness;
 
-        oldFireRate = playerShoot.CurrentWeapon.fireRate;
+        _oldFireRate = playerShoot.CurrentWeapon.fireRate;
+
+        Damage = playerShoot.CurrentWeapon.damage;
 
     }
 
@@ -66,7 +69,7 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
                 Debug.Log(currentItem.WeaponID);
                 if (currentItem.WeaponID == current)
                 {
-                    _purchasedItems.Add(currentItem);
+                    PurchasedItems.Add(currentItem);
                     break;
                 }
             }
@@ -75,9 +78,9 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
     public bool TrySpendCurrency(int price)
     {
-        if(_moneyAmount >= price)
+        if(Score >= price)
         {
-            _moneyAmount -= price;
+            Score -= price;
             return true;
         }
         else
@@ -89,7 +92,7 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
     public void BoughtItem(ReworkedItem item)
     { 
-        _purchasedItems.Add(item);
+        PurchasedItems.Add(item);
         BoughtGunsInt.Add(item.WeaponID);
 
       
@@ -97,19 +100,22 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
     public void EquipItem(ReworkedItem item)
     {
-        _damage += item._damage;
+        Damage += item._damage;
         EQManager.SetCurrentWeapon(item);
     }
 
     public void UnequipItem(ReworkedItem item)
     {
-        _damage -= item._damage;
+        Damage -= item._damage;
 
     }
 
-    public void AddCurrency(int currency)
+    public void AddScore(int plusScore)
     {
-        _moneyAmount += currency;
+        Score += plusScore;
+    }
+    public void RemoveScore(int minusScore){
+        Score -= minusScore;
     }
 
     public void AddFireRate(float reduction){
@@ -119,10 +125,13 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
             newFireRate = 0.1f;
         }
         playerShoot.CurrentWeapon.fireRate = newFireRate;
-        Debug.Log("FireRate buff acquired");
+        
+        // change the weapon shooting mode
+        playerShoot.CurrentWeapon.projectileAmount = 3;
+        playerShoot.CurrentWeapon.spreadAngle = 45;
 
         BuffVisualActive(glow);
-        StartCoroutine(BuffTimerForFireRate(oldFireRate, oldColor, oldBrightness, glow));
+        StartCoroutine(BuffTimerForFireRate(_oldFireRate, _oldColor, _oldBrightness, glow));
 
     }
 
@@ -145,7 +154,9 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     }
 
     public void SetFireRateBackToNormal(float oldFR){
-        Debug.Log("FireRate buff lost lol");
+        // Set the weapon shooting mode back to normal
+        playerShoot.CurrentWeapon.projectileAmount = 1;
+        playerShoot.CurrentWeapon.spreadAngle = 0;
         playerShoot.CurrentWeapon.fireRate = oldFR;
 
     }

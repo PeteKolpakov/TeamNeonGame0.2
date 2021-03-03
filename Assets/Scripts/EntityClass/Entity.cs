@@ -12,10 +12,9 @@ public enum DamageType
 [RequireComponent(typeof(AudioEventTrigger))]
 public class Entity : MonoBehaviour
 {
-    public float health;
+    public int health;
 
-    [SerializeField]
-    public float maxHealth;
+    public int maxHealth;
 
     [SerializeField]
     public GameObject _explosion;
@@ -68,7 +67,7 @@ public class Entity : MonoBehaviour
         return health;
     }
 
-    public void Heal(float healAmount)
+    public void Heal(int healAmount)
     {
         health += healAmount;
         if (health > maxHealth) health = maxHealth;
@@ -77,14 +76,11 @@ public class Entity : MonoBehaviour
     public virtual void TakeDamage(int damage, DamageType type)
     {
         if(canTakeDamage == true){
-            int randomDamage = Random.Range(-3,4);
-            damage += randomDamage;
-
             health -= damage;
         }
     }
 
-    public void SetNewMaxHealth(float newMax)
+    public void SetNewMaxHealth(int newMax)
     {
         maxHealth = newMax;
         if(newMax <= 0)
@@ -96,7 +92,6 @@ public class Entity : MonoBehaviour
     protected virtual void Die()
     {
         _deathAudio.PlaySound();
-        Debug.Log("Entity class DIE method");
         if (_explosion != null)
         {
             Instantiate(_explosion, transform.position, Quaternion.identity);
@@ -106,6 +101,8 @@ public class Entity : MonoBehaviour
         // If the entity that dies is an enemy, we add 1 to the counter
         if(gameObject.layer == 8){
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>().EnemiesKilled++;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatManager>().AddScore(25);
+           
         }
 
         Destroy(gameObject);

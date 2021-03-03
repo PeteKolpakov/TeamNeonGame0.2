@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510183727af248e46a59bb7d9b30dab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sound: event:/PlayerDeath
+  Sound: event:/PlayerInRange_Shooter
 --- !u!114 &-1253361411988344503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
   _dashSFX: event:/Dash
   _fallSFX: event:/PlayerFall
   _takeDamageSFX: event:/PlayerDamage
-  _dieSFX: event:/PlayerDeath
+  _dieSFX: event:/UIPauseMenu_Enter
   _pauseEnterSFX: event:/UIPauseMenu_Enter
   _pauseExitSFX: event:/UIPauseMenu_Exit
 --- !u!114 &288038958317809992

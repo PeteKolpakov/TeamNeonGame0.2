@@ -13,6 +13,7 @@ class PlayerShoot : AttackBase
     FallBehaviour fallBehaviour;
 
     private Vector3 _mousePos;
+    public PauseMenuManager pauseMenu;
     //public ShopkeeperInteraction _shop;
 
     private void Awake()
@@ -21,7 +22,12 @@ class PlayerShoot : AttackBase
         _playerStats = GetComponent<PlayerStatManager>();
         playerMovement = GetComponent<PlayerMovement>();
         fallBehaviour = GetComponent<FallBehaviour>();
+    }
 
+    private void Start() {
+        CurrentWeapon.projectileAmount =1;
+        CurrentWeapon.spreadAngle = 0;
+        CurrentWeapon.fireRate = 0.3f;
     }
 
     protected override void Update()
@@ -40,23 +46,10 @@ class PlayerShoot : AttackBase
 
             float angle = Mathf.Atan2(direction.y, direction.x); // in radians
             _weapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
-            if (_meleeWeapon != null)
-            {
-                _meleeWeapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
-
-            }
 
             direction.z = 0;
             _weapon.transform.position = transform.position + direction.normalized;
-            if (_meleeWeapon != null)
-            {
-                _meleeWeapon.transform.position = transform.position + direction.normalized;
-
-            }
-
         }
-
-
     }
 
     protected override void Shoot()
@@ -64,17 +57,6 @@ class PlayerShoot : AttackBase
         if (fallBehaviour._isFalling == false && Input.GetKey(KeyCode.Mouse0) && playerMovement.IsPauseMenuOpen == false)
         {
             _weapon.Attack();
-
-        }
-
-        // Melee attack 
-
-        if ((Input.GetKeyDown(KeyCode.Mouse1)) && (_meleeWeapon.TryGetComponent(out MeleeWeapon melee)) == true && playerMovement.IsPauseMenuOpen == false)
-        {
-
-            Debug.Log("Cutting");
-
-            melee.MeleeAttack();
 
         }
     }

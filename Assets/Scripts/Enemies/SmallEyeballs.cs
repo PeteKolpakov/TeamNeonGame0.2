@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SmallEyeballs : MonoBehaviour
 {
+    public ParticleSystem AfterImage;
     public GameObject oneShotBeam;
-    private void Awake() {
-        Destroy(gameObject, 1.61f);
+    public void FireBeam()
+    {
         StartCoroutine(LoadUpTheBeam());
-        
     }
 
     private IEnumerator LoadUpTheBeam(){

@@ -21,6 +21,7 @@ public class WaveBulletShooting : MonoBehaviour
     private Color oldColor;
     private float oldBrightness;
     private int oldWidth;
+    private bool _waveRotationActive = false;
 
     private void Start() {
         leftArm = GetComponent<BossLeftArm>();
@@ -29,9 +30,7 @@ public class WaveBulletShooting : MonoBehaviour
         oldColor = glow.GlowColor;
         oldBrightness = glow.GlowBrightness;
         oldWidth = glow.OutlineWidth;
-        
     }
-
 
     private void Fire()
     {
@@ -56,11 +55,6 @@ public class WaveBulletShooting : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        CancelInvoke();
-    }
-
     private void OnEnable()
     {
         InvokeRepeating("Fire", 0f, invokeInterval);
@@ -75,10 +69,13 @@ public class WaveBulletShooting : MonoBehaviour
 
     public void ResetInvokeParameters(){
         CancelInvoke();
+        _waveRotationActive = false;
+        StopCoroutine(AngleRotation());
+
+
         InvokeRepeating("Fire", 0f, 2f);
         _bulletAmount = 12;
         _bulletSpeed = 5f;
-        StopCoroutine(AngleRotation());
         _startAngle = 90;
         _endAngle = 270;
 
@@ -90,16 +87,16 @@ public class WaveBulletShooting : MonoBehaviour
     }
 
     public void RotateTheSpiral(){
+        _waveRotationActive = true;
         StartCoroutine(AngleRotation());
     }
 
     private IEnumerator AngleRotation(){
-        while(true){
+        while(_waveRotationActive == true){
             _startAngle += 0.8f;
             _endAngle += 0.8f;
             yield return new WaitForSeconds(0.2f);
         }
-
     }
 
     public void MakeInvincible(){
@@ -114,6 +111,12 @@ public class WaveBulletShooting : MonoBehaviour
         StopAllCoroutines();
         CancelInvoke();
     }
+    private void OnDisable()
+    {
+        CancelInvoke();
+        StopAllCoroutines();
+    }
+
 }
 
 

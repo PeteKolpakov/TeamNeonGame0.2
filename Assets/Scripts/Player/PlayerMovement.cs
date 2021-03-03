@@ -50,7 +50,6 @@ namespace Assets.Scripts.Player
         private void Update()
         {
             MoveInput();
-            PauseInput();
 
             if(Input.GetKeyDown(KeyCode.Space) && CanDash())
                 _wannaDash = true;
