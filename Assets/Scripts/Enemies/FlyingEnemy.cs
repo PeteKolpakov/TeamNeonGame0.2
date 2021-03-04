@@ -1,7 +1,5 @@
 using Assets.Scripts.EntityClass;
 using Assets.Scripts.GameManager;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FlyingEnemy : MonoBehaviour
@@ -54,7 +52,7 @@ public class FlyingEnemy : MonoBehaviour
                 //Deal damage to all Entities inside the range based on percentage related distance
                 int damageInt = (int)Mathf.Round(damage);
 
-                if(_flyingEnemyBoom != null)
+                if (_flyingEnemyBoom != null)
                 {
                     Instantiate(_flyingEnemyBoom, transform.position, Quaternion.identity);
                 }
@@ -72,14 +70,14 @@ public class FlyingEnemy : MonoBehaviour
         Vector3 playerPos = PlayerTracker.Instance.Player.transform.position;
 
         float distanceFromPlayer = Vector2.Distance(playerPos, transform.position);
-        
+
         _direction = playerPos - transform.position;
 
         float angle = Mathf.Atan2(_direction.y, _direction.x);
 
         if (distanceFromPlayer < LineOfSight && distanceFromPlayer > KamikazeRange) // Should you be able to just walk out of its range when detected? Show Visual Test Scene to demonstrate
         {
-           
+
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle * Mathf.Rad2Deg - 90f));
             transform.position = Vector2.MoveTowards(this.transform.position, playerPos, Speed * Time.deltaTime);
         }
@@ -91,17 +89,17 @@ public class FlyingEnemy : MonoBehaviour
 
     }
 
- 
-    
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-       if (collision.collider.TryGetComponent(out PlayerBase health)) // Should it not be Player Base? Ask in meeting c:
-       {
-          
+
+        if (collision.collider.TryGetComponent(out PlayerBase health)) // Should it not be Player Base? Ask in meeting c:
+        {
+
             Explode();
-       }
-      
+        }
+
     }
 
 

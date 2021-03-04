@@ -39,7 +39,7 @@ public class SaveLoadSystem : MonoBehaviour
         // Here I am inputting these values into the scripts that handles them
         // AKA LOADING THE DATA
 
-        entity.maxHealth = MyCurrentPlayerData.PlayerMaxHealth;
+        entity.MaxHealth = MyCurrentPlayerData.PlayerMaxHealth;
         PStats.Score = MyCurrentPlayerData.PlayerCurrentMoney;
         PStats.LoadWeapons(MyCurrentPlayerData.PurchasedGunsInt);
 
@@ -56,7 +56,7 @@ public class SaveLoadSystem : MonoBehaviour
 
         PlayerData p = new PlayerData();
 
-        p.PlayerMaxHealth = entity.maxHealth;
+        p.PlayerMaxHealth = entity.MaxHealth;
         p.PlayerCurrentMoney = PStats.Score;
         p.PurchasedGunsInt = PStats.BoughtGunsInt;
    //     p.CompletedLevelsInt = PStats.FinishedLevelsInt;

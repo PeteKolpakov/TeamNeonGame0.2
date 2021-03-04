@@ -8,7 +8,6 @@ public class BossEyeTracker : MonoBehaviour
     private Vector2 _playerDistanceComparison;
     public  Vector3 Direction;
 
-    
     void Update()
     {
         Vector3 playerPos = PlayerTracker.Instance.Player.transform.position;

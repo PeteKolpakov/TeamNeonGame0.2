@@ -17,8 +17,8 @@ namespace Assets.Scripts.LevelGen_Scripts
 
         private Vector3 _lastEndPos;
 
-        [SerializeField][ReadOnly] private int _chunkIndex = 0;
-        [SerializeField][ReadOnly] private int _sectionIndex = 0;
+        [SerializeField] [ReadOnly] private int _chunkIndex = 0;
+        [SerializeField] [ReadOnly] private int _sectionIndex = 0;
 
 
         private void Awake()
@@ -27,8 +27,7 @@ namespace Assets.Scripts.LevelGen_Scripts
         }
         private void Update()
         {
-           Generate();
-           //ChaserSpeedRefresh();
+            Generate();
         }
 
         private void Setup()
@@ -39,7 +38,7 @@ namespace Assets.Scripts.LevelGen_Scripts
             Generate();
         }
         private void Generate()
-        {                       
+        {
             if (ShouldSpawn())
             {
                 for (int i = _chunkIndex; i < _level.Count; i++)
@@ -49,14 +48,14 @@ namespace Assets.Scripts.LevelGen_Scripts
                         for (int n = _sectionIndex; n < _level[_chunkIndex].sections.Count; n++)
                         {
                             GenerateSectionAtIndex(_chunkIndex, _sectionIndex);
-                            _sectionIndex++;                   
+                            _sectionIndex++;
                         }
                         _sectionIndex = 0;
                         _chunkIndex++;
-                    }                    
+                    }
                     Debug.Log("All Level Sections Generated");
                 }
-            }            
+            }
         }
         private void GenerateSectionAtIndex(int chunk, int section)
         {
@@ -64,12 +63,12 @@ namespace Assets.Scripts.LevelGen_Scripts
             LevelSection lastSpawnedSectionTransform = GenerateSection(selectedSectionPrefab, _lastEndPos); // Spawn Selected Section at lastEndPos, Store Spawned Section Transform
             _lastEndPos = lastSpawnedSectionTransform.EndPosition.position;                              // Update last used EndPos
             if (Application.isEditor)                                                       // if using the button to spawn in editor, add spawned sections to log
-            {                                                                                      
+            {
                 _generatedSectionsLog.Add(lastSpawnedSectionTransform);                     // log generated sections for later removal
             }
         }
-        private LevelSection GenerateSection(Transform levelPrefab, Vector3 spawnPosition)   
-            
+        private LevelSection GenerateSection(Transform levelPrefab, Vector3 spawnPosition)
+
         {
             Transform sectionTransform = Instantiate(levelPrefab, spawnPosition, Quaternion.identity);         // Spawn Lvl Section
             LevelSection levelSection = sectionTransform.GetComponent<LevelSection>();
@@ -84,9 +83,9 @@ namespace Assets.Scripts.LevelGen_Scripts
 
         private void LogCheck()
         {
-            if (_generatedSectionsLog.Count > 0)   
+            if (_generatedSectionsLog.Count > 0)
             {
-                SceneReset();                    
+                SceneReset();
             }
         } // TODO : check if section log exists on Generate Call
         private bool ShouldSpawn()
@@ -95,7 +94,7 @@ namespace Assets.Scripts.LevelGen_Scripts
             {
                 return Vector3.Distance(_chaser.transform.position, _lastEndPos) < DistanceNeededToSpawn;
             }
-            else return true; 
+            else return true;
         }
         private void IndexReset()
         {

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Enemies
 {
-    class EnemyGunTest : MonoBehaviour
+    class EnemyGun : MonoBehaviour
     {
         [SerializeField]
         private Transform _spawnPoint;

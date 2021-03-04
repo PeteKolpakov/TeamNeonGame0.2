@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.GameManager
 {
-    public class ScenesManager : MonoBehaviour
+    public class ManagerOfScenes : MonoBehaviour
     {
         [SerializeField]
         private Animator _transition;
@@ -15,7 +13,8 @@ namespace Assets.Scripts.GameManager
 
         private PlayerTracker _playerTracker;
 
-        private void Start() {
+        private void Start()
+        {
             _playerTracker = GetComponent<PlayerTracker>();
         }
         public static void GoToScene(int levelindex)
@@ -29,7 +28,7 @@ namespace Assets.Scripts.GameManager
         }
         public void ResetScene()
         {
-            StartCoroutine(LoadLevel(GetCurrentScene())); //lol
+            StartCoroutine(LoadLevel(GetCurrentScene()));
         }
         public void GoToMainMenu()
         {
@@ -44,24 +43,26 @@ namespace Assets.Scripts.GameManager
             //After Rest Stage
             StartCoroutine(LoadLevel(GetCurrentScene() + 1));
         }
-        public void QuitGame(){
+        public void QuitGame()
+        {
             Application.Quit();
         }
 
-        
+
         public IEnumerator LoadLevel(int lvlIndex)
         {
-            if(_transition != null){
+            if (_transition != null)
+            {
                 _transition.SetTrigger("Start");
             }
 
             yield return new WaitForSeconds(_transitionDuration);
 
             GoToScene(lvlIndex);
-            if(_transition != null)
+            if (_transition != null)
             {
                 _transition.SetTrigger("End");
             }
-        }        
+        }
     }
 }

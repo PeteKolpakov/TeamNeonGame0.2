@@ -1,5 +1,5 @@
-using UnityEngine;
 using Assets.Scripts.EntityClass;
+using UnityEngine;
 
 namespace Assets.Scripts.Player
 {
@@ -9,10 +9,10 @@ namespace Assets.Scripts.Player
         [SerializeField]
         private ParticleSystem _dashAfterImage;
         [SerializeField]
-        [Range(1,10)]
+        [Range(1, 10)]
         private float _dashLenght;
         [SerializeField]
-        [Range(0.1f,0.5f)]
+        [Range(0.1f, 0.5f)]
         private float _dashDuration;
         [SerializeField]
         private LayerMask _dashLayerMask;
@@ -51,7 +51,7 @@ namespace Assets.Scripts.Player
         {
             MoveInput();
 
-            if(Input.GetKeyDown(KeyCode.Space) && CanDash())
+            if (Input.GetKeyDown(KeyCode.Space) && CanDash())
                 _wannaDash = true;
 
             _timeSinceDash += Time.deltaTime;
@@ -62,19 +62,13 @@ namespace Assets.Scripts.Player
             if (_canMove && !IsDashing())
             {
                 _rigidBody.velocity = _moveDirection * _movementSpeed * Time.fixedDeltaTime;
-                if (_wannaDash && _rigidBody.velocity != new Vector2(0,0) && CanDash())
+                if (_wannaDash && _rigidBody.velocity != new Vector2(0, 0) && CanDash())
                     DashStart();
             }
         }
-
-        public bool IsDashing()
-        {
-            return _timeSinceDash <= _dashDuration;
-        }
-
         private void MoveInput()
         {
-            if(IsPauseMenuOpen == false && !_playerFall._isFalling)
+            if (IsPauseMenuOpen == false && !_playerFall._isFalling)
             {
                 float moveX = 0f;
                 float moveY = 0f;
@@ -104,40 +98,45 @@ namespace Assets.Scripts.Player
             }
 
         }
-
-        private void DashStart()
-        {
-
-            _playerBase.canTakeDamage = false;
-            _audio.PlaySFX(_audio._dashSFX);
-            if(_dashAfterImage != null){
-                _dashAfterImage.Play();
-            }
-            Vector2 dashPosition = ((Vector2)transform.position + _moveDirection * _dashLenght);
-            Vector2 dashVelocity = (dashPosition - (Vector2)transform.position) / _dashDuration;
-            _rigidBody.velocity = dashVelocity;
-            _timeSinceDash = 0;        
-            _wannaDash = false;
-
-            _playerBase.canTakeDamage = true;
-
-
-        }
-
-        private bool CanDash()
-        {
-            return _timeSinceDash >= _dashCooldown;     
-        }
-
         public void EnableMovement()
         {
             _canMove = true;
         }
-
         public void DisableMovement()
         {
             _canMove = false;
             _rigidBody.velocity = Vector2.zero;
         }
+
+        public bool IsDashing()
+        {
+            return _timeSinceDash <= _dashDuration;
+        }
+
+        private void DashStart()
+        {
+            _playerBase.CanTakeDamage = false;
+
+            _audio.PlaySFX(_audio._dashSFX);
+
+            if (_dashAfterImage != null)
+            {
+                _dashAfterImage.Play();
+            }
+            Vector2 dashPosition = ((Vector2)transform.position + _moveDirection * _dashLenght);
+            Vector2 dashVelocity = (dashPosition - (Vector2)transform.position) / _dashDuration;
+            _rigidBody.velocity = dashVelocity;
+            _timeSinceDash = 0;
+            _wannaDash = false;
+
+            _playerBase.CanTakeDamage = true;
+        }
+
+        private bool CanDash()
+        {
+            return _timeSinceDash >= _dashCooldown;
+        }
+
+
     }
 }

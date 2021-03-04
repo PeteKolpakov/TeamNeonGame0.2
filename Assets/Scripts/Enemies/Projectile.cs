@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.Enemies;
 
 public class Projectile : MonoBehaviour
 {
-    public float _speed;
+    public float Speed;
 
     private Transform _player;
     private Vector2 _direction;
@@ -18,9 +15,9 @@ public class Projectile : MonoBehaviour
     }
     private void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, _direction, _speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, _direction, Speed * Time.deltaTime);
 
-        if(transform.position.x == _direction.x && transform.position.y == _direction.y)
+        if (transform.position.x == _direction.x && transform.position.y == _direction.y)
         {
             Destroy(gameObject);
         }

@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Assets.Scripts.GameManager;
 using Assets.Scripts.Audio;
+using UnityEngine;
 
 public enum DamageType
 {
@@ -12,12 +9,12 @@ public enum DamageType
 [RequireComponent(typeof(AudioEventTrigger))]
 public class Entity : MonoBehaviour
 {
-    public int health;
+    public int Health;
 
-    public int maxHealth;
+    public int MaxHealth;
 
     [SerializeField]
-    public GameObject _explosion;
+    public GameObject Explosion;
     [SerializeField]
     GameObject currencyPrefab;
     [SerializeField]
@@ -25,22 +22,21 @@ public class Entity : MonoBehaviour
 
     private AudioEventTrigger _deathAudio;
 
-    public int currencyDropPercent = 30;
-    public int ammodropPercent = 30;
-    public int nothingPercent = 40;
+    public int CurrencyDropPercent = 30;
+    public int AmmodropPercent = 30;
+    public int NothingPercent = 40;
 
     private bool _canDrop = true;
-    public bool canTakeDamage = true;
+    public bool CanTakeDamage = true;
 
     private void Start()
     {
-        health = maxHealth;
+        Health = MaxHealth;
 
-        nothingPercent = 100 - currencyDropPercent - ammodropPercent;
+        NothingPercent = 100 - CurrencyDropPercent - AmmodropPercent;
 
-        if (System.Math.Abs(nothingPercent) + currencyDropPercent + ammodropPercent != 100)
+        if (System.Math.Abs(NothingPercent) + CurrencyDropPercent + AmmodropPercent != 100)
         {
-            Debug.Log("Drop percentages do not equal 100. Change the values and try again, darling");
             _canDrop = false;
         }
     }
@@ -52,62 +48,61 @@ public class Entity : MonoBehaviour
 
     public virtual void Update()
     {
-        if (health<= 0)
+        if (Health <= 0)
         {
             Die();
         }
     }
     public void Initialize() // to be called at the beginning of a lvl
     {
-        health = maxHealth;
+        Health = MaxHealth;
     }
 
     public float GetHealth()
     {
-        return health;
+        return Health;
     }
 
     public void Heal(int healAmount)
     {
-        health += healAmount;
-        if (health > maxHealth) health = maxHealth;
+        Health += healAmount;
+        if (Health > MaxHealth) Health = MaxHealth;
     }
 
     public virtual void TakeDamage(int damage, DamageType type)
     {
-        if(canTakeDamage == true){
-            health -= damage;
+        if (CanTakeDamage == true)
+        {
+            Health -= damage;
         }
     }
 
     public void SetNewMaxHealth(int newMax)
     {
-        maxHealth = newMax;
-        if(newMax <= 0)
+        MaxHealth = newMax;
+        if (newMax <= 0)
         {
-            Debug.LogError("WARNING: Max HP must be greater than zero!");
+           
         }
     }
 
     protected virtual void Die()
     {
         _deathAudio.PlaySound();
-        if (_explosion != null)
+        if (Explosion != null)
         {
-            Instantiate(_explosion, transform.position, Quaternion.identity);
+            Instantiate(Explosion, transform.position, Quaternion.identity);
         }
         Drop();
 
         // If the entity that dies is an enemy, we add 1 to the counter
-        if(gameObject.layer == 8){
+        if (gameObject.layer == 8)
+        {
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>().EnemiesKilled++;
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatManager>().AddScore(25);
-           
         }
 
         Destroy(gameObject);
-    
-  
     }
 
     public void Drop()
@@ -116,15 +111,15 @@ public class Entity : MonoBehaviour
         {
             float roll = Random.Range(1, 100f);
 
-            if (roll <= currencyDropPercent)
+            if (roll <= CurrencyDropPercent)
             {
                 Instantiate(currencyPrefab, transform.position, Quaternion.identity);
             }
-            else if (roll >= currencyDropPercent + 1 && roll <= currencyDropPercent + ammodropPercent)
+            else if (roll >= CurrencyDropPercent + 1 && roll <= CurrencyDropPercent + AmmodropPercent)
             {
                 Instantiate(ammoPrefab, transform.position, Quaternion.identity);
             }
-            else if (roll >= currencyDropPercent + ammodropPercent + 1)
+            else if (roll >= CurrencyDropPercent + AmmodropPercent + 1)
             {
                 return;
             }

@@ -46,7 +46,6 @@ namespace Assets.Scripts.Misc
             }
             else
             {
-                Debug.LogError("ERROR: Coinflip has registered non bianary values, returning default value");
                 return false;
             }
 

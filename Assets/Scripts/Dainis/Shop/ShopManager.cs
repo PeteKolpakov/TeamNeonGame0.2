@@ -1,89 +1,83 @@
-using System.Collections;
+using Assets.Scripts.GameManager;
+using Companion;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using TMPro;
-using Companion;
-using Assets.Scripts.GameManager;
-using Assets.Scripts.Player;
 
 
 class ShopManager : MonoBehaviour
 {
-    private PlayerStatManager player;
-    private Transform playerTransform;
-    private ShopUIManager UIManager;
-    private CompareEquipment compare;
+    private PlayerStatManager _player;
+    private Transform _playerTransform;
+    private ShopUIManager _UIManager;
+    private CompareEquipment _compare;
 
-    private Transform shopItemTemplate;
-    private Transform shopItemTemplateConsumable;
-    private Transform shopItemTemplateSkill;
+    private Transform _shopItemTemplate;
+    private Transform _shopItemTemplateConsumable;
+    private Transform _shopItemTemplateSkill;
 
-    public Transform weaponContainer;
-    public Transform consumableContainer;
-    public Transform skillContainer;
+    public Transform WeaponContainer;
+    public Transform ConsumableContainer;
+    public Transform SkillContainer;
 
-    public List<Transform> children;
+    public List<Transform> Children;
 
     private int _sameTypeIndex;
     private int _sameTypeCount = 0;
 
-    public List<Object> weaponPrefabList;
-    public List<Object> consumablePrefabList;
-    public List<Object> skillPrefabList;
+    public List<Object> WeaponPrefabList;
+    public List<Object> ConsumablePrefabList;
+    public List<Object> SkillPrefabList;
 
     private void Awake()
     {
-        shopItemTemplate = weaponContainer.Find("shopItemTemplate");
-        shopItemTemplate.gameObject.SetActive(false);
+        _shopItemTemplate = WeaponContainer.Find("shopItemTemplate");
+        _shopItemTemplate.gameObject.SetActive(false);
 
-        shopItemTemplateConsumable = consumableContainer.Find("shopItemTemplate");
-        shopItemTemplateConsumable.gameObject.SetActive(false);
+        _shopItemTemplateConsumable = ConsumableContainer.Find("shopItemTemplate");
+        _shopItemTemplateConsumable.gameObject.SetActive(false);
 
-        shopItemTemplateSkill = skillContainer.Find("shopItemTemplate");
-        shopItemTemplateSkill.gameObject.SetActive(false);
+        _shopItemTemplateSkill = SkillContainer.Find("shopItemTemplate");
+        _shopItemTemplateSkill.gameObject.SetActive(false);
 
-        UIManager = GetComponent<ShopUIManager>();
-
-
+        _UIManager = GetComponent<ShopUIManager>();
     }
     private void Start()
     {
-        player = PlayerTracker.Instance.Player.GetComponent<PlayerStatManager>();
-        
+        _player = PlayerTracker.Instance.Player.GetComponent<PlayerStatManager>();
+
 
         // Grabbing all the weapon prefabs from a folder and putting them in a nice list
-        weaponPrefabList = new List<Object>(Resources.LoadAll("GeneratedWeapons", typeof (ReworkedItem)));
-        consumablePrefabList = new List<Object>(Resources.LoadAll("ConsumablePrefabs", typeof(ReworkedItem)));
-        skillPrefabList = new List<Object>(Resources.LoadAll("SkillPrefabs", typeof(GameObject)));
+        WeaponPrefabList = new List<Object>(Resources.LoadAll("GeneratedWeapons", typeof(ReworkedItem)));
+        ConsumablePrefabList = new List<Object>(Resources.LoadAll("ConsumablePrefabs", typeof(ReworkedItem)));
+        SkillPrefabList = new List<Object>(Resources.LoadAll("SkillPrefabs", typeof(GameObject)));
 
-        playerTransform = PlayerTracker.Instance.Player.transform;
+        _playerTransform = PlayerTracker.Instance.Player.transform;
 
         PopulateShopList();
 
         // see the Unequip function to understand what the hell is this thing
-        foreach (Transform child in weaponContainer)
+        foreach (Transform child in WeaponContainer)
         {
-            children.Add(child.Find("itemType"));
+            Children.Add(child.Find("itemType"));
         }
-        foreach (Transform child in consumableContainer)
+        foreach (Transform child in ConsumableContainer)
         {
-            children.Add(child.Find("itemType"));
+            Children.Add(child.Find("itemType"));
         }
-
     }
     private void PopulateShopList()
     {
         int positionIndex = 0; // position in the list
-        for (int i = 0; i < weaponPrefabList.Count; i++)
+        for (int i = 0; i < WeaponPrefabList.Count; i++)
         {
-            Transform shopItemTransform = Instantiate(shopItemTemplate, weaponContainer);
+            Transform shopItemTransform = Instantiate(_shopItemTemplate, WeaponContainer);
 
             // This is a terrible way to do it.
             // But this is the only way to convert List[i] (which is of type Object)
             // to GameObject for further GetComponent method call
-            ReworkedItem weaponData = (ReworkedItem)weaponPrefabList[i];
+            ReworkedItem weaponData = (ReworkedItem)WeaponPrefabList[i];
 
             // Updating the visuals
 
@@ -98,19 +92,19 @@ class ShopManager : MonoBehaviour
             shopItemRectTransform.anchoredPosition = new Vector2(1, -shopItemHeight * positionIndex);
             positionIndex++;
 
-            compare = shopItemTransform.GetComponent<CompareEquipment>();
-            compare.AssignShopItemData(weaponData);
+            _compare = shopItemTransform.GetComponent<CompareEquipment>();
+            _compare.AssignShopItemData(weaponData);
 
             // Adding a button event for "Buy"
             Button button = shopItemTransform.GetComponent<Button>();
             button.onClick.AddListener(delegate { BuyItem(weaponData, button, shopItemTransform); });
         }
 
-        for (int i = 0; i < consumablePrefabList.Count; i++)
+        for (int i = 0; i < ConsumablePrefabList.Count; i++)
         {
-            Transform shopItemTransformConsumable = Instantiate(shopItemTemplateConsumable, consumableContainer);
+            Transform shopItemTransformConsumable = Instantiate(_shopItemTemplateConsumable, ConsumableContainer);
 
-            ReworkedItem consumableData = (ReworkedItem)consumablePrefabList[i];
+            ReworkedItem consumableData = (ReworkedItem)ConsumablePrefabList[i];
 
             // Updating the visuals
 
@@ -129,12 +123,12 @@ class ShopManager : MonoBehaviour
             Button button = shopItemTransformConsumable.GetComponent<Button>();
             button.onClick.AddListener(delegate { BuyItem(consumableData, button, shopItemTransformConsumable); });
         }
-        for (int i = 0; i < skillPrefabList.Count; i++)
+        for (int i = 0; i < SkillPrefabList.Count; i++)
         {
-            Transform shopItemTransformSkill = Instantiate(shopItemTemplateSkill, skillContainer);
+            Transform shopItemTransformSkill = Instantiate(_shopItemTemplateSkill, SkillContainer);
 
-            GameObject skillGO = (GameObject)skillPrefabList[i];
-            Skill skillScript =  skillGO.GetComponent<Skill>();
+            GameObject skillGO = (GameObject)SkillPrefabList[i];
+            Skill skillScript = skillGO.GetComponent<Skill>();
 
             // Updating the visuals
 
@@ -159,7 +153,7 @@ class ShopManager : MonoBehaviour
     public void BuyItem(ReworkedItem weaponData, Button button, Transform shopItemTransform)
     {
         // Getting a reference for the customer interface
-        IShopCustomer shopCustomer = playerTransform.GetComponent<IShopCustomer>();
+        IShopCustomer shopCustomer = _playerTransform.GetComponent<IShopCustomer>();
         if (shopCustomer.TrySpendCurrency(weaponData._price))
         {
             // Buy item
@@ -187,15 +181,15 @@ class ShopManager : MonoBehaviour
 
     public void EquipCheck(ReworkedItem weaponData, IShopCustomer shopCustomer, Transform shopItemTransform)
     {
-        if (player.EquippedItems.Count != 0)
+        if (_player.EquippedItems.Count != 0)
         {
             // Iterating through the equipped items to see if an item
             // of the same type is already equipped
-            for (int i = 0; i < player.EquippedItems.Count; i++)
+            for (int i = 0; i < _player.EquippedItems.Count; i++)
             {
                 // Is this is the case - we store the equipped item's
                 // index in the list
-                if (player.EquippedItems[i].itemType == weaponData.itemType)
+                if (_player.EquippedItems[i].itemType == weaponData.itemType)
                 {
                     _sameTypeIndex = i;
                     _sameTypeCount++;
@@ -206,15 +200,15 @@ class ShopManager : MonoBehaviour
             if (_sameTypeCount != 0)
             {
                 // We replace equipped item of the same type with a new one
-                ReworkedItem oldWeapon = player.EquippedItems[_sameTypeIndex];
-                player.EquippedItems[_sameTypeIndex] = weaponData;
+                ReworkedItem oldWeapon = _player.EquippedItems[_sameTypeIndex];
+                _player.EquippedItems[_sameTypeIndex] = weaponData;
                 Equip(weaponData, shopCustomer, shopItemTransform);
                 shopCustomer.EquipItem(weaponData);
-                Unequip(weaponData,shopItemTransform, oldWeapon);
+                Unequip(weaponData, shopItemTransform, oldWeapon);
             }
             else
             {
-                player.EquippedItems.Add(weaponData);
+                _player.EquippedItems.Add(weaponData);
                 shopCustomer.EquipItem(weaponData);
                 Equip(weaponData, shopCustomer, shopItemTransform);
             }
@@ -222,9 +216,9 @@ class ShopManager : MonoBehaviour
         // If no items are equipped - equip it right away
         else
         {
-            player.EquippedItems.Add(weaponData);
+            _player.EquippedItems.Add(weaponData);
             shopCustomer.EquipItem(weaponData);
-            Equip(weaponData,shopCustomer, shopItemTransform);
+            Equip(weaponData, shopCustomer, shopItemTransform);
         }
         _sameTypeCount = 0;
     }
@@ -241,25 +235,24 @@ class ShopManager : MonoBehaviour
 
     }
 
-    public void Unequip(ReworkedItem weaponData,Transform shopItemTransform, ReworkedItem oldWeapon)
+    public void Unequip(ReworkedItem weaponData, Transform shopItemTransform, ReworkedItem oldWeapon)
     {
-        // THIS SHIT SUCKS SO MUCH I HATE IT
         // thanks god we only run this mess once, when we equip another weapon.
 
         // basically - we get the "children" list, with all of the
         // itemTypes (melee, ranged) of the weapons in the shop.
-       
+
         // we iterate through this list
-        for (int i = 0; i < children.Count; i++)
+        for (int i = 0; i < Children.Count; i++)
         {
             // checking if children[i] has the same type as our current weapon
             // (but making sure we're not counting THE current weapon
-            if(children[i].GetComponent<TextMeshProUGUI>().text == weaponData.itemType.ToString() && children[i].transform.parent.transform != shopItemTransform)
+            if (Children[i].GetComponent<TextMeshProUGUI>().text == weaponData.itemType.ToString() && Children[i].transform.parent.transform != shopItemTransform)
             {
                 // then we find the parent transform, that holds the interactible button
                 // and we re-enable it, chaning the text from "equipped" to "equip", 
                 // making player able to equip it again
-                Transform parent = children[i].transform.parent.transform;
+                Transform parent = Children[i].transform.parent.transform;
                 Transform buttonTransform = parent.Find("equipButton");
                 Button button = buttonTransform.gameObject.GetComponent<Button>();
                 Transform equipped = buttonTransform.Find("equipped");
@@ -270,7 +263,7 @@ class ShopManager : MonoBehaviour
                     button.interactable = true;
 
                     // unequip the old weapon, removing his stats from the player
-                    player.UnequipItem(oldWeapon);
+                    _player.UnequipItem(oldWeapon);
                 }
             }
         }

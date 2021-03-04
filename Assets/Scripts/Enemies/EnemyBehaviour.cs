@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Assets.Scripts.GameManager;
+using UnityEngine;
 
 namespace Assets.Scripts.Enemies
 {
@@ -19,7 +17,7 @@ namespace Assets.Scripts.Enemies
         [SerializeField]
         private GameObject _bulletPrefab = null;
         [SerializeField]
-        private EnemyGunTest _weapon = null;
+        private EnemyGun _weapon = null;
 
         private EnemyHealthBar _enemyHealthbar;
         private Entity _entity;
@@ -30,20 +28,20 @@ namespace Assets.Scripts.Enemies
         {
         }
         private void Start()
-        {          
+        {
             _enemyHealthbar = GetComponent<EnemyHealthBar>();
             _entity = GetComponent<Entity>();
             _shootingDelay = StartTimeShots;
-            _enemyHealthbar.SetMaxHealth(_entity.health);
+            _enemyHealthbar.SetMaxHealth(_entity.Health);
         }
         private void Update()
         {
-            _enemyHealthbar.SetHealth(_entity.health);
-                Aim();
+            _enemyHealthbar.SetHealth(_entity.Health);
+            Aim();
 
             if (Vector2.Distance(transform.position, _playerDistanceComparison) < ShootingDistance)
             {
-                if(_shootingDelay <= 0)
+                if (_shootingDelay <= 0)
                 {
                     _shootingDelay = StartTimeShots;
                     Shoot();
@@ -52,12 +50,12 @@ namespace Assets.Scripts.Enemies
                 {
                     _shootingDelay -= Time.deltaTime;
                 }
-            } 
+            }
         }
 
         private void Aim()
         {
-             playerPos = PlayerTracker.Instance.Player.transform.position;
+            playerPos = PlayerTracker.Instance.Player.transform.position;
             _playerDistanceComparison = playerPos;
             Direction = playerPos - transform.position;
 

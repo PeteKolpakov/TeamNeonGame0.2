@@ -45,10 +45,10 @@ class PlayerShoot : AttackBase
 
 
             float angle = Mathf.Atan2(direction.y, direction.x); // in radians
-            _weapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+            Weapon.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
 
             direction.z = 0;
-            _weapon.transform.position = transform.position + direction.normalized;
+            Weapon.transform.position = transform.position + direction.normalized;
         }
     }
 
@@ -56,7 +56,7 @@ class PlayerShoot : AttackBase
     {
         if (fallBehaviour._isFalling == false && Input.GetKey(KeyCode.Mouse0) && playerMovement.IsPauseMenuOpen == false)
         {
-            _weapon.Attack();
+            Weapon.Attack();
 
         }
     }

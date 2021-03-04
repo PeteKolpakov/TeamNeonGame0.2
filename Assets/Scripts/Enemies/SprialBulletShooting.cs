@@ -1,49 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
 using SpriteGlow;
+using System;
+using UnityEngine;
 
 public class SprialBulletShooting : MonoBehaviour
 {
     [NonSerialized]
-    public float angle = 90f;
-    public GameObject bulletPrefab;
-    public GameObject firePoint;
-    public float _bulletSpeed = 6f;
-    public float invokeInterval = 0.2f;
+    public float Anlge = 90f;
+    public GameObject BulletPrefab;
+    public GameObject FirePoint;
+    public float BulletSpeed = 6f;
+    public float InvokeInterval = 0.2f;
 
-    private BossRightArm rightArm;
-    private SpriteGlowEffect glow;
-    private Color oldColor;
-    private float oldBrightness;
-    private int oldWidth;
-    
+    private BossRightArm _rightArm;
+    private SpriteGlowEffect _glow;
+    private Color _oldColor;
+    private float _oldBrightness;
+    private int _oldWidth;
+
     void Start()
     {
-        rightArm = GetComponent<BossRightArm>();
-        glow = GetComponent<SpriteGlowEffect>();
+        _rightArm = GetComponent<BossRightArm>();
+        _glow = GetComponent<SpriteGlowEffect>();
 
-        oldColor = glow.GlowColor;
-        oldBrightness = glow.GlowBrightness;
-        oldWidth = glow.OutlineWidth;
+        _oldColor = _glow.GlowColor;
+        _oldBrightness = _glow.GlowBrightness;
+        _oldWidth = _glow.OutlineWidth;
     }
 
     private void Fire()
     {
-        float bulletDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
-        float bulletDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
+        float bulletDirX = transform.position.x + Mathf.Sin((Anlge * Mathf.PI) / 180f);
+        float bulletDirY = transform.position.y + Mathf.Cos((Anlge * Mathf.PI) / 180f);
 
         Vector3 bulletMoveVector = new Vector3(bulletDirX, bulletDirY, 0f);
         Vector2 bulletDirection = (bulletMoveVector - transform.position).normalized;
 
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation);
+        GameObject bullet = Instantiate(BulletPrefab, FirePoint.transform.position, FirePoint.transform.rotation);
 
         Rigidbody2D _Bullet = bullet.GetComponent<Rigidbody2D>();
 
-        _Bullet.AddForce(bulletDirection * _bulletSpeed, ForceMode2D.Impulse);
+        _Bullet.AddForce(bulletDirection * BulletSpeed, ForceMode2D.Impulse);
 
-        angle += 15f;
+        Anlge += 15f;
     }
 
     private void OnDisable()
@@ -53,31 +51,34 @@ public class SprialBulletShooting : MonoBehaviour
 
     private void OnEnable()
     {
-        InvokeRepeating("Fire", 0f, invokeInterval);
+        InvokeRepeating("Fire", 0f, InvokeInterval);
     }
 
-    public void ChangeInvokeParameters(float newInterval, float newBulletSpeed){
+    public void ChangeInvokeParameters(float newInterval, float newBulletSpeed)
+    {
         CancelInvoke();
         InvokeRepeating("Fire", 0f, newInterval);
-        _bulletSpeed = newBulletSpeed;
+        BulletSpeed = newBulletSpeed;
     }
 
-    public void ResetInvokeParameters(){
+    public void ResetInvokeParameters()
+    {
         CancelInvoke();
         InvokeRepeating("Fire", 0f, 0.3f);
-        _bulletSpeed = 6f;
+        BulletSpeed = 6f;
 
-        glow.GlowColor = oldColor;
-        glow.GlowBrightness = oldBrightness;
-        glow.OutlineWidth = oldWidth;
-        rightArm.canTakeDamage = true;
+        _glow.GlowColor = _oldColor;
+        _glow.GlowBrightness = _oldBrightness;
+        _glow.OutlineWidth = _oldWidth;
+        _rightArm.CanTakeDamage = true;
     }
 
-    public void MakeInvincible(){
-        rightArm.canTakeDamage = false;
+    public void MakeInvincible()
+    {
+        _rightArm.CanTakeDamage = false;
 
-        glow.GlowColor = new Color(0,51,255,255);
-        glow.GlowBrightness = 0.0525f;
-        glow.OutlineWidth = 1;
+        _glow.GlowColor = new Color(0, 51, 255, 255);
+        _glow.GlowBrightness = 0.0525f;
+        _glow.OutlineWidth = 1;
     }
 }
