@@ -44,6 +44,9 @@ namespace Assets.Scripts.GameManager
             //After Rest Stage
             StartCoroutine(LoadLevel(GetCurrentScene() + 1));
         }
+        public void QuitGame(){
+            Application.Quit();
+        }
 
         
         public IEnumerator LoadLevel(int lvlIndex)

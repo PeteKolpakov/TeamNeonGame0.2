@@ -20,7 +20,6 @@ public class BossLaserBeamAttack : MonoBehaviour
         eyeTracker.enabled = false;
         laserBeam.SetActive(true);
         theEye.transform.rotation = Quaternion.Euler(0,0,40);
-
         StartRotating();
     }
 

@@ -12,7 +12,7 @@ public class SmallEyeballs : MonoBehaviour
     }
 
     private IEnumerator LoadUpTheBeam(){
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.2f);
         oneShotBeam.SetActive(true);
         yield return new WaitForSeconds(1f);
         oneShotBeam.SetActive(false);

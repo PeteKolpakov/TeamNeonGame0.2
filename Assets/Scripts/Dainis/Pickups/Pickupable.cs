@@ -2,6 +2,7 @@ using Assets.Scripts.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.GameManager;
 
 [RequireComponent(typeof(AudioEventTrigger))]
 public class Pickupable : MonoBehaviour
@@ -42,7 +43,8 @@ public class Pickupable : MonoBehaviour
                 _audio.PlaySound();
                 // Add firerate
                 float amount = Random.Range(0.1f, 0.2f);
-                pickupFR(amount);
+                PlayerStatManager player = PlayerTracker.Instance.Player.GetComponent<PlayerStatManager>();
+                player.AddFireRate(amount);
                 Destroy(gameObject);
 
             }

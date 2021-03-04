@@ -97,13 +97,13 @@ namespace Assets.Scripts.Player
         {
             _lastRespawnTime = Time.time;
             
-            Debug.Log("Respawned");
             _playerMovement.EnableMovement();
             transform.position = _exitPoint;
             _rigidBody.position = _exitPoint;
             transform.localScale = new Vector3(1f, 1f, 1f);
             _sprite.sortingOrder = 2;
             _isFalling = false;
+            _rigidBody.velocity = new Vector2(0,0);
         }
         private IEnumerator DelayedRespawn(float duration)
         {

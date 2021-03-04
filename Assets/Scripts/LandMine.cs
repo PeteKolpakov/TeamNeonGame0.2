@@ -53,8 +53,6 @@ public class LandMine : MonoBehaviour
         {
 
             StartCoroutine(TriggerExplode());
-          
-            Debug.Log("Explosion Range");
 
         }
      
@@ -94,8 +92,6 @@ public class LandMine : MonoBehaviour
         // Detect all colliders inside the SplashRange
         foreach (var hitCollider in hitColliders)
         {
-            Debug.Log(hitCollider.name);
-
             //Check if its an entity
 
             if (hitCollider.TryGetComponent(out Entity entity))
@@ -111,9 +107,6 @@ public class LandMine : MonoBehaviour
 
                 //Deal damage to all Entities inside the range based on percentage related distance
                 int damageInt = (int)Mathf.Round(damage);
-                
-
-                Debug.Log(entity.name + "Took" + damage);
 
                 entity.TakeDamage(damageInt, DamageType.Bullet);
             }
@@ -128,13 +121,8 @@ public class LandMine : MonoBehaviour
 
         if (collider.TryGetComponent(out Entity entity))
         {
-            Debug.Log("inside");
-
-        
 
             Explode();
-
-
         }
 
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SpriteGlow;
+using Assets.Scripts.GameManager;
 
 
 public class PlayerStatManager : MonoBehaviour, IShopCustomer
@@ -24,19 +25,15 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     private Color _oldColor;
     private float _oldBrightness;
     private float _oldFireRate;
-
-
-
-
-    private void Awake()
+    private void Start()
     {
         EQManager = GetComponent<EquipmentManager>();
         playerShoot = GetComponent<PlayerShoot>();
 
         UIManager = GameObject.FindGameObjectWithTag("GlobalUI").GetComponent<GlobalUIManager>();
-    }
-    private void Start()
-    {
+
+
+
         Pickupable.pickupScore += AddScore;
         Pickupable.pickupFR += AddFireRate;
 
@@ -113,9 +110,14 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     public void AddScore(int plusScore)
     {
         Score += plusScore;
+        StatsTracker stats = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
+        stats.Score += plusScore;
+        
     }
     public void RemoveScore(int minusScore){
         Score -= minusScore;
+        StatsTracker stats = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
+        stats.Score -= minusScore;
     }
 
     public void AddFireRate(float reduction){
@@ -148,9 +150,12 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     }
 
     public IEnumerator BuffTimerForFireRate(float oldFR, Color oldColor, float oldBrightness, SpriteGlowEffect glow){
-        yield return new WaitForSeconds(4);
-        SetFireRateBackToNormal(oldFR);
-        RemoveBuffVisual(oldColor, oldBrightness, glow);
+        if(playerShoot != null){
+            yield return new WaitForSeconds(3);
+            SetFireRateBackToNormal(oldFR);
+            RemoveBuffVisual(oldColor, oldBrightness, glow);
+
+        }
     }
 
     public void SetFireRateBackToNormal(float oldFR){
@@ -158,7 +163,12 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         playerShoot.CurrentWeapon.projectileAmount = 1;
         playerShoot.CurrentWeapon.spreadAngle = 0;
         playerShoot.CurrentWeapon.fireRate = oldFR;
+        StopAllCoroutines();
 
+    }
+
+    private void OnDestroy() {
+        StopAllCoroutines();
     }
 
 }

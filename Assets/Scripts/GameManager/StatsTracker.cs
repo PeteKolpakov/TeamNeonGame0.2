@@ -8,8 +8,9 @@ public class StatsTracker : MonoBehaviour
 
     public bool SpeedrunMode;
     public string Timer;
-    public int DeathCount = 0;
-    public int EnemiesKilled = 0;
+    public  int DeathCount = 0;
+    public  int EnemiesKilled = 0;
+    public int Score = 0;
     public static StatsTracker instance;
 
     private void Awake() {

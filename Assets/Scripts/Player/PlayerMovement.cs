@@ -99,37 +99,10 @@ namespace Assets.Scripts.Player
             }
             else
             {
+                _moveDirection = new Vector2(0, 0);
                 return;
             }
 
-        }
-
-        private void PauseInput()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if(IsPauseMenuOpen == true)
-                {
-                    _audio.PlaySFX(_audio._pauseExitSFX);
-                    Time.timeScale = 1;
-                    PauseMenu.SetActive(false);
-                    IsPauseMenuOpen = false;
-                }
-                else
-                {
-                    _audio.PlaySFX(_audio._pauseEnterSFX);
-                    Time.timeScale = 0;
-                    PauseMenu.SetActive(true);
-                    IsPauseMenuOpen = true;
-                }
-            }
-        }
-        
-        public void ResumeButton()
-        {
-            Time.timeScale = 1;
-            PauseMenu.SetActive(false);
-            IsPauseMenuOpen = false;
         }
 
         private void DashStart()
