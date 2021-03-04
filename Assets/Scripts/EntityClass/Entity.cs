@@ -27,7 +27,7 @@ public class Entity : MonoBehaviour
 
     public int currencyDropPercent = 30;
     public int ammodropPercent = 30;
-    private int nothingPercent = 40;
+    public int nothingPercent = 40;
 
     private bool _canDrop = true;
     public bool canTakeDamage = true;

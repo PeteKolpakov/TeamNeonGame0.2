@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 5108749737209198783}
   - component: {fileID: -3520041107211767022}
   - component: {fileID: -2873982913128453278}
+  - component: {fileID: 1978868839}
   m_Layer: 12
-  m_Name: CurrencyPrefab
+  m_Name: ScorePickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74,9 +75,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 155f4d186c645384689855d56ebdf445, type: 3}
-  m_Color: {r: 0, g: 0.11251116, b: 1, a: 1}
+  m_Color: {r: 0.9469855, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -175,5 +176,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sound: event:/CreditsPickup
-  _playOnAwake: 0
-  _playOnDestroy: 1
+--- !u!114 &1978868839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5108749737209198752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 1, g: 0.97072524, b: 0.023584902, a: 1}
+  glowBrightness: 3.5
+  outlineWidth: 5
+  alphaThreshold: 0.01
+  drawOutside: 0
+  enableInstancing: 0

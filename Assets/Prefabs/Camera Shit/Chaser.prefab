@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3629841848125617603}
   m_Layer: 0
   m_Name: Chaser
-  m_TagString: Untagged
+  m_TagString: Chaser
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,6 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e41b12f7f097414bbed5bffed97edc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _crawlSpeed: 1.5
-  _playerPosition: {fileID: 0}
-  startCrawl: 1
+  _crawlSpeed: 2
+  _canMove: 1

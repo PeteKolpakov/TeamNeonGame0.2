@@ -15,7 +15,7 @@ namespace Assets.Scripts.Player
 
         private void Start()
         {
-            
+            _chaser = GameObject.FindGameObjectWithTag("Chaser").transform;
         }
         private void Update()
         {
@@ -27,7 +27,6 @@ namespace Assets.Scripts.Player
             {
                 if (_chaser.position.y - this.transform.position.y > _reloadSceneDistance)
                 {
-                    Debug.Log("Reloaded mf");
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 }
             }

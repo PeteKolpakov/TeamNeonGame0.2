@@ -409,11 +409,25 @@ PrefabInstance:
       propertyPath: m_text
       value: 'LEFT CLICK = SHOOT
 
+        ESCAPE = PAUSE
+
 
         GET TO THE END,
 
-        GOOD LUCK!'
+        GOOD
+        LUCK!'
       objectReference: {fileID: 0}
+    - target: {fileID: 3274277248042717778, guid: a45ac45f8f78c534b823e44c3e2adfc7,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+        type: 2}
+    - target: {fileID: 3274277248042717778, guid: a45ac45f8f78c534b823e44c3e2adfc7,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 6163510184606144200, guid: a45ac45f8f78c534b823e44c3e2adfc7,
         type: 3}
       propertyPath: m_Name
@@ -1334,6 +1348,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4856514563483142382}
     m_Modifications:
+    - target: {fileID: 6792517029293988044, guid: 31af1443fca7fe845bb90cc40e0afb33,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6792517029293988045, guid: 31af1443fca7fe845bb90cc40e0afb33,
         type: 3}
       propertyPath: m_Name
@@ -1599,6 +1618,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4856514563483142382}
     m_Modifications:
+    - target: {fileID: 6792517029293988044, guid: 31af1443fca7fe845bb90cc40e0afb33,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6792517029293988045, guid: 31af1443fca7fe845bb90cc40e0afb33,
         type: 3}
       propertyPath: m_Name
@@ -2224,6 +2248,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4856514563483142382}
     m_Modifications:
+    - target: {fileID: 6792517029293988044, guid: 31af1443fca7fe845bb90cc40e0afb33,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6792517029293988045, guid: 31af1443fca7fe845bb90cc40e0afb33,
         type: 3}
       propertyPath: m_Name
@@ -2309,6 +2338,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4856514563483142382}
     m_Modifications:
+    - target: {fileID: 6792517029293988044, guid: 31af1443fca7fe845bb90cc40e0afb33,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6792517029293988045, guid: 31af1443fca7fe845bb90cc40e0afb33,
         type: 3}
       propertyPath: m_Name
