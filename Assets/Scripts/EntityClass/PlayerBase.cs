@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Assets.Scripts.GameManager;
+using SpriteGlow;
 
 namespace Assets.Scripts.EntityClass
 {
@@ -20,12 +21,14 @@ namespace Assets.Scripts.EntityClass
         public static event RemoveArmorPoints removeArmor;
 
         private PlayerAudio _audio;
+        private Color _originalColor;
 
         private void Awake()
         {
             player = GetComponent<PlayerStatManager>();
             fallBehaviour = GetComponent<FallBehaviour>();
             _audio = GetComponent<PlayerAudio>();
+            _originalColor = GetComponent<SpriteRenderer>().color;
         }
 
         protected override void Die()
@@ -48,7 +51,7 @@ namespace Assets.Scripts.EntityClass
                 {
                     _audio.PlaySFX(_audio._takeDamageSFX);
                     health -= damage;
-
+                    StartCoroutine(HurtColorChange());
                 }
                 else if(type == DamageType.Fall)
                 {
@@ -60,6 +63,12 @@ namespace Assets.Scripts.EntityClass
         public IEnumerator DelayDeath()
         {
             yield return new WaitForSeconds(1.5f);
-        } 
+        }
+        public IEnumerator HurtColorChange()
+        {
+            GetComponent<SpriteRenderer>().color = new Color(253, 15, 20);
+            yield return new WaitForSeconds(0.06f);
+            GetComponent<SpriteRenderer>().color = _originalColor;
+        }
     }
 }

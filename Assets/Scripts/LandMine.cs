@@ -35,7 +35,6 @@ public class LandMine : MonoBehaviour
         if (!Triggered)
         {
             DetectPlayer();
-
         }
         else
         {
@@ -51,19 +50,15 @@ public class LandMine : MonoBehaviour
         float distanceFromPlayer = Vector2.Distance(playerPos, transform.position);
         if (distanceFromPlayer <= LineOfSight)
         {
-
             StartCoroutine(TriggerExplode());
-
         }
-     
     }
 
     private IEnumerator TriggerExplode()
     {
         Triggered = true;
-              
+        
         yield return new WaitForSeconds(ExplosionDelay);
-
         Explode();
     }
     private void ChangeMaterialColorAndGlow()
@@ -111,20 +106,16 @@ public class LandMine : MonoBehaviour
                 entity.TakeDamage(damageInt, DamageType.Bullet);
             }
         }
-
     }
 
     //If player walks over mine it explodes and deals damage
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-
         if (collider.TryGetComponent(out Entity entity))
         {
-
             Explode();
         }
-
     }
 
 
@@ -135,5 +126,4 @@ public class LandMine : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, LineOfSight);
         Gizmos.DrawWireSphere(transform.position, SplashRange);
     }
-
 }

@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 4446495627074821341}
   - component: {fileID: 2613963996673092437}
   - component: {fileID: 2613963996673092436}
-  - component: {fileID: 155019561}
   - component: {fileID: 9148215322465655284}
   - component: {fileID: -1253361411988344503}
   - component: {fileID: 288038958317809992}
@@ -170,6 +169,7 @@ MonoBehaviour:
   ammoPrefab: {fileID: 0}
   currencyDropPercent: 40
   ammodropPercent: 20
+  nothingPercent: 40
   canTakeDamage: 1
   _playerDeathAnim: {fileID: 352795596918730512, guid: 9effbdd3095c6824b9f399049be0dd27,
     type: 3}
@@ -256,24 +256,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &155019561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2613963996673092441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  glowColor: {r: 0.9811321, g: 0.06941971, b: 0.84467727, a: 1}
-  glowBrightness: 5
-  outlineWidth: 10
-  alphaThreshold: 0
-  drawOutside: 0
-  enableInstancing: 0
 --- !u!114 &9148215322465655284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chaser: {fileID: 0}
-  _reloadSceneDistance: 16
+  _reloadSceneDistance: 14
 --- !u!114 &4969258736355488230
 MonoBehaviour:
   m_ObjectHideFlags: 0
