@@ -9,6 +9,8 @@ public class EndgameMenuManager : MonoBehaviour
     public TMP_Text SpeedrunFinalTime;
     public TMP_Text SpeedrunDeaths;
     public TMP_Text SpeedrunKills;
+    public TMP_Text SpeedrunScore;
+    public TMP_Text NormalScore;
 
     public TMP_Text NormalDeaths;
     public TMP_Text NormalKills;
@@ -25,6 +27,9 @@ public class EndgameMenuManager : MonoBehaviour
 
         NormalDeaths.text = stats.DeathCount.ToString();
         NormalKills.text = stats.EnemiesKilled.ToString();
+
+        SpeedrunScore.text = stats.Score.ToString();
+        NormalScore.text = stats.Score.ToString();
 
 
         if(stats.SpeedrunMode == true){

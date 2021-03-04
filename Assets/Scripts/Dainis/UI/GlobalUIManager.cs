@@ -13,6 +13,7 @@ class GlobalUIManager : MonoBehaviour
 {
     private  PlayerStatManager _playerStatManager;
     public HealthBar PlayerHealthbar;
+    private StatsTracker stats;
 
     [SerializeField]
     private Entity _player;
@@ -24,6 +25,8 @@ class GlobalUIManager : MonoBehaviour
         _player = PlayerTracker.Instance.Player.GetComponent<Entity>();
         _playerStatManager = PlayerTracker.Instance.Player.GetComponent<PlayerStatManager>();
         PlayerShoot playerShoot = _player.GetComponent<PlayerShoot>();
+        stats = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
+
 
         PlayerHealthbar.SetMaxHealth(_player.health);
     }
@@ -34,7 +37,7 @@ class GlobalUIManager : MonoBehaviour
 
         PlayerHealthbar.SetHealth(_player.health);
 
-        ScoreDisplay.text =  _playerStatManager.Score.ToString();
+        ScoreDisplay.text = stats.Score.ToString();
         HealthDisplay.text = _player.health.ToString() + " \\ " + _player.maxHealth.ToString();
     }
 }

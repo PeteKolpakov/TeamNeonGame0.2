@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 9148215322465655284}
   - component: {fileID: -1253361411988344503}
   - component: {fileID: 288038958317809992}
+  - component: {fileID: 4969258736355488230}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -118,8 +119,7 @@ MonoBehaviour:
     m_Bits: 0
   _dashCooldown: 0.5
   _movementSpeed: 400
-  PauseMenu: {fileID: 523466631759324818, guid: ae559db2580065945b9a45c78cb5ec96,
-    type: 3}
+  PauseMenu: {fileID: 0}
   IsPauseMenuOpen: 0
 --- !u!114 &2613963996673092435
 MonoBehaviour:
@@ -162,15 +162,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82307163ed561d74d908e8219f761f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2000
-  maxHealth: 2000
+  health: 200
+  maxHealth: 200
   _explosion: {fileID: 352795596918730512, guid: 9effbdd3095c6824b9f399049be0dd27,
     type: 3}
   currencyPrefab: {fileID: 0}
   ammoPrefab: {fileID: 0}
-  currencyDropPercent: 30
-  ammodropPercent: 30
+  currencyDropPercent: 40
+  ammodropPercent: 20
   canTakeDamage: 1
+  _playerDeathAnim: {fileID: 352795596918730512, guid: 9effbdd3095c6824b9f399049be0dd27,
+    type: 3}
 --- !u!114 &4446495626005320003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,10 +185,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4988f237b831a84e9b22e070dad59f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
-  _moneyAmount: 1000
-  _purchasedItems: []
-  _equippedItems: []
+  Damage: 0
+  Score: 0
+  PurchasedItems: []
+  EquippedItems: []
   BoughtGunsInt: 
 --- !u!114 &4446495626005320012
 MonoBehaviour:
@@ -202,6 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weapon: {fileID: 7004887292760054385}
   _meleeWeapon: {fileID: 0}
+  pauseMenu: {fileID: 0}
 --- !u!114 &4446495627074821341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,8 +303,6 @@ MonoBehaviour:
   _fallSFX: event:/PlayerFall
   _takeDamageSFX: event:/PlayerDamage
   _dieSFX: event:/UIPauseMenu_Enter
-  _pauseEnterSFX: event:/UIPauseMenu_Enter
-  _pauseExitSFX: event:/UIPauseMenu_Exit
 --- !u!114 &288038958317809992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +317,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _chaser: {fileID: 0}
   _reloadSceneDistance: 16
+--- !u!114 &4969258736355488230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2613963996673092441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 0.9811321, g: 0.06941971, b: 0.84467727, a: 1}
+  glowBrightness: 5
+  outlineWidth: 10
+  alphaThreshold: 0
+  drawOutside: 0
+  enableInstancing: 0
 --- !u!1 &7004887292760054350
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +348,7 @@ GameObject:
   - component: {fileID: 7004887292760054385}
   - component: {fileID: 107078935}
   - component: {fileID: 409565178778897661}
+  - component: {fileID: 9196261385499716609}
   m_Layer: 0
   m_Name: RangedWeaponTemplate
   m_TagString: Untagged
@@ -448,6 +468,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sound: event:/GunshotPlayerBasic
+--- !u!114 &9196261385499716609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7004887292760054350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 0, g: 1, b: 0.91119623, a: 1}
+  glowBrightness: 4.37
+  outlineWidth: 4
+  alphaThreshold: 0.247
+  drawOutside: 0
+  enableInstancing: 0
 --- !u!1 &7004887294432392562
 GameObject:
   m_ObjectHideFlags: 0

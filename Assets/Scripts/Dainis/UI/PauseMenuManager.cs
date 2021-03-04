@@ -31,9 +31,10 @@ public class PauseMenuManager : MonoBehaviour
         ResumeGame();
     }
 
-    private void Update() {
+    public void Update() {
          if (Input.GetKeyDown(KeyCode.Escape))
             {
+                Debug.Log("trying to open a pause menu");
                 if(_isPauseMenuOpen == true)
                 {
                     PlaySFX(_pauseExitSFX);

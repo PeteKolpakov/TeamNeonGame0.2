@@ -98,7 +98,6 @@ public class FlyingEnemy : MonoBehaviour
         
        if (collision.collider.TryGetComponent(out PlayerBase health)) // Should it not be Player Base? Ask in meeting c:
        {
-            Debug.Log("Hitting Player");
           
             Explode();
        }
