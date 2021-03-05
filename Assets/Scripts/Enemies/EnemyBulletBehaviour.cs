@@ -17,21 +17,15 @@ public class EnemyBulletBehaviour : MonoBehaviour
 
     private void Start()
     {
-       // _bulletTarget = EnemyBehaviour.Direction;
-       _bulletTarget = PlayerTracker.Instance.Player.transform.position;
+       _bulletTarget = EnemyBehaviour.Direction;
     }
     private void Update()
     {
-        //transform.position = Vector2.MoveTowards(transform.position, _bulletTarget, _speed * Time.deltaTime);
-
-        if (transform.position.x == _bulletTarget.x && transform.position.y == _bulletTarget.y)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject, 6f);
     }
     private void FixedUpdate()
     {
-        _rb.MovePosition(Vector2.MoveTowards(_rb.position, _bulletTarget, Time.deltaTime * _speed));
+        _rb.velocity = _bulletTarget.normalized * _speed;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

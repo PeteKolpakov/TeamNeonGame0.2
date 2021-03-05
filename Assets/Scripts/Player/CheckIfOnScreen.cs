@@ -12,7 +12,8 @@ namespace Assets.Scripts.Player
         [SerializeField]
         private float _reloadSceneDistance;
 
-        private void Start() {
+        private void Start()
+        {
             _chaser = GameObject.FindGameObjectWithTag("Chaser").transform;
         }
 
