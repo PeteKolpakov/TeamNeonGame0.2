@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using Assets.Scripts.GameManager;
+using UnityEngine;
 
 public class EndgameMenuManager : MonoBehaviour
 {
@@ -15,10 +12,11 @@ public class EndgameMenuManager : MonoBehaviour
     public TMP_Text NormalDeaths;
     public TMP_Text NormalKills;
 
-    public GameObject speedrunText;
-    public GameObject normalrunText;
+    public GameObject SpeedrunText;
+    public GameObject NormalrunText;
 
-    private void Start() {
+    private void Start()
+    {
         StatsTracker stats = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
 
         SpeedrunFinalTime.text = stats.Timer;
@@ -32,12 +30,15 @@ public class EndgameMenuManager : MonoBehaviour
         NormalScore.text = stats.Score.ToString();
 
 
-        if(stats.SpeedrunMode == true){
-            speedrunText.SetActive(true);
-            normalrunText.SetActive(false);
-        } else if(stats.SpeedrunMode == false){
-            normalrunText.SetActive(true);
-            speedrunText.SetActive(false);
+        if (stats.SpeedrunMode == true)
+        {
+            SpeedrunText.SetActive(true);
+            NormalrunText.SetActive(false);
+        }
+        else if (stats.SpeedrunMode == false)
+        {
+            NormalrunText.SetActive(true);
+            SpeedrunText.SetActive(false);
         }
     }
 

@@ -8,7 +8,7 @@ using TMPro;
 
 public class CompareEquipment : MonoBehaviour
 {
-    public TMP_Text comparativeText;
+    public TMP_Text ComparativeText;
 
     public Image PositiveIndicator;
     public Image NegativeIndicator;
@@ -24,15 +24,13 @@ public class CompareEquipment : MonoBehaviour
 
     private void Start()
     {
-        player = PlayerTracker.Instance.Player.GetComponent<PlayerShoot>();
-       
+        player = PlayerTracker.Instance.Player.GetComponent<PlayerShoot>();  
     }
 
     private void Update()
     {
         CompareRangedWeapons();
         CompareMeleeWeapons();
-        //Debug.Log(player.CurrentWeapon.itemName);
     }
 
     private void CompareRangedWeapons()
@@ -42,7 +40,7 @@ public class CompareEquipment : MonoBehaviour
             if(shopItemData._damage > player.CurrentWeapon.damage)
             {
                 int differenceInDamage = shopItemData._damage - player.CurrentWeapon.damage;
-                comparativeText.SetText("+ " + differenceInDamage);
+                ComparativeText.SetText("+ " + differenceInDamage);
                 PositiveIndicator.gameObject.SetActive(true);
                 NegativeIndicator.gameObject.SetActive(false);
                 NeutralIndicator.gameObject.SetActive(false);
@@ -50,14 +48,14 @@ public class CompareEquipment : MonoBehaviour
             else if(shopItemData._damage < player.CurrentWeapon.damage)
             {
                 int differenceInDamage = player.CurrentWeapon.damage - shopItemData._damage;
-                comparativeText.SetText("- " + differenceInDamage);
+                ComparativeText.SetText("- " + differenceInDamage);
                 PositiveIndicator.gameObject.SetActive(false);
                 NegativeIndicator.gameObject.SetActive(true);
                 NeutralIndicator.gameObject.SetActive(false);
             }
             else if(shopItemData._damage == player.CurrentWeapon.damage)
             {
-                comparativeText.SetText("+ 0");
+                ComparativeText.SetText("+ 0");
                 PositiveIndicator.gameObject.SetActive(false);
                 NegativeIndicator.gameObject.SetActive(false);
                 NeutralIndicator.gameObject.SetActive(true);
@@ -72,7 +70,7 @@ public class CompareEquipment : MonoBehaviour
             if (shopItemData._damage > player.CurrentMeleeWeapon.MeleeDamage)
             {
                 int differenceInDamage = shopItemData._damage - player.CurrentMeleeWeapon.MeleeDamage;
-                comparativeText.SetText("+ " + differenceInDamage);
+                ComparativeText.SetText("+ " + differenceInDamage);
                 PositiveIndicator.gameObject.SetActive(true);
                 NegativeIndicator.gameObject.SetActive(false);
                 NeutralIndicator.gameObject.SetActive(false);
@@ -80,14 +78,14 @@ public class CompareEquipment : MonoBehaviour
             else if (shopItemData._damage < player.CurrentMeleeWeapon.MeleeDamage)
             {
                 int differenceInDamage = player.CurrentMeleeWeapon.MeleeDamage - shopItemData._damage;
-                comparativeText.SetText("- " + differenceInDamage);
+                ComparativeText.SetText("- " + differenceInDamage);
                 PositiveIndicator.gameObject.SetActive(false);
                 NegativeIndicator.gameObject.SetActive(true);
                 NeutralIndicator.gameObject.SetActive(false);
             }
             else if (shopItemData._damage == player.CurrentMeleeWeapon.MeleeDamage)
             {
-                comparativeText.SetText("+ 0");
+                ComparativeText.SetText("+ 0");
                 PositiveIndicator.gameObject.SetActive(false);
                 NegativeIndicator.gameObject.SetActive(false);
                 NeutralIndicator.gameObject.SetActive(true);

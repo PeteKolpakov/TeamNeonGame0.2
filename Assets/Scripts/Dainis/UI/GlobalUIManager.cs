@@ -1,17 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using TMPro;
-using UnityEngine.UI;
-using Assets.Scripts.EntityClass;
 using Assets.Scripts.GameManager;
-using Assets.Scripts.Player;
+using TMPro;
+using UnityEngine;
 
 class GlobalUIManager : MonoBehaviour
 {
-    private  PlayerStatManager _playerStatManager;
+    private PlayerStatManager _playerStatManager;
     public HealthBar PlayerHealthbar;
     private StatsTracker _stats;
 

@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using SpriteGlow;
+using System.Collections;
+using UnityEngine;
 
 public class WaveBulletShooting : MonoBehaviour
 {
@@ -11,25 +10,26 @@ public class WaveBulletShooting : MonoBehaviour
     [SerializeField]
     private float _startAngle = 90f, _endAngle = 270;
 
-    public GameObject firePoint;
-    public GameObject bulletPrefab;
-    public float _bulletSpeed = 5f;
-    public float invokeInterval = 2f;
+    public GameObject FirePoint;
+    public GameObject BulletPrefab;
+    public float BulletSpeed = 5f;
+    public float InvokeInterval = 2f;
 
-    private BossLeftArm leftArm;
-    private SpriteGlowEffect glow;
-    private Color oldColor;
-    private float oldBrightness;
-    private int oldWidth;
+    private BossLeftArm _leftArm;
+    private SpriteGlowEffect _glow;
+    private Color _oldColor;
+    private float _oldBrightness;
+    private int _oldWidth;
     private bool _waveRotationActive = false;
 
-    private void Start() {
-        leftArm = GetComponent<BossLeftArm>();
-        glow = GetComponent<SpriteGlowEffect>();
+    private void Start()
+    {
+        _leftArm = GetComponent<BossLeftArm>();
+        _glow = GetComponent<SpriteGlowEffect>();
 
-        oldColor = glow.GlowColor;
-        oldBrightness = glow.GlowBrightness;
-        oldWidth = glow.OutlineWidth;
+        _oldColor = _glow.GlowColor;
+        _oldBrightness = _glow.GlowBrightness;
+        _oldWidth = _glow.OutlineWidth;
     }
 
     private void Fire()
@@ -39,17 +39,17 @@ public class WaveBulletShooting : MonoBehaviour
 
         for (int i = 0; i < _bulletAmount; i++)
         {
-            float bulletDirX = firePoint.transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
-            float bulletDirY = firePoint.transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
+            float bulletDirX = FirePoint.transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
+            float bulletDirY = FirePoint.transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
 
             Vector3 bulletMoveVector = new Vector3(bulletDirX, bulletDirY, 0f);
-            Vector2 bulletDirection = (bulletMoveVector - firePoint.transform.position).normalized;
+            Vector2 bulletDirection = (bulletMoveVector - FirePoint.transform.position).normalized;
 
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation);
+            GameObject bullet = Instantiate(BulletPrefab, FirePoint.transform.position, FirePoint.transform.rotation);
 
             Rigidbody2D _Bullet = bullet.GetComponent<Rigidbody2D>();
 
-            _Bullet.AddForce(bulletDirection * _bulletSpeed, ForceMode2D.Impulse);
+            _Bullet.AddForce(bulletDirection * BulletSpeed, ForceMode2D.Impulse);
 
             angle += angleStep;
         }
@@ -57,17 +57,19 @@ public class WaveBulletShooting : MonoBehaviour
 
     private void OnEnable()
     {
-        InvokeRepeating("Fire", 0f, invokeInterval);
+        InvokeRepeating("Fire", 0f, InvokeInterval);
     }
 
-    public void ChangeInvokeParameters(float newInterval, float newBulletSpeed, int newBulletAmount){
+    public void ChangeInvokeParameters(float newInterval, float newBulletSpeed, int newBulletAmount)
+    {
         CancelInvoke();
         InvokeRepeating("Fire", 0f, newInterval);
         _bulletAmount = newBulletAmount;
-        _bulletSpeed = newBulletSpeed;
+        BulletSpeed = newBulletSpeed;
     }
 
-    public void ResetInvokeParameters(){
+    public void ResetInvokeParameters()
+    {
         CancelInvoke();
         _waveRotationActive = false;
         StopCoroutine(AngleRotation());
@@ -75,39 +77,44 @@ public class WaveBulletShooting : MonoBehaviour
 
         InvokeRepeating("Fire", 0f, 2f);
         _bulletAmount = 12;
-        _bulletSpeed = 5f;
+        BulletSpeed = 5f;
         _startAngle = 90;
         _endAngle = 270;
 
-        glow.GlowColor = oldColor;
-        glow.GlowBrightness = oldBrightness;
-        glow.OutlineWidth = oldWidth;
-        leftArm.canTakeDamage = true;
-    
+        _glow.GlowColor = _oldColor;
+        _glow.GlowBrightness = _oldBrightness;
+        _glow.OutlineWidth = _oldWidth;
+        _leftArm.CanTakeDamage = true;
+
     }
 
-    public void RotateTheSpiral(){
+    public void RotateTheSpiral()
+    {
         _waveRotationActive = true;
         StartCoroutine(AngleRotation());
     }
 
-    private IEnumerator AngleRotation(){
-        while(_waveRotationActive == true){
+    private IEnumerator AngleRotation()
+    {
+        while (_waveRotationActive == true)
+        {
             _startAngle += 0.8f;
             _endAngle += 0.8f;
             yield return new WaitForSeconds(0.2f);
         }
     }
 
-    public void MakeInvincible(){
-        leftArm.canTakeDamage = false;
+    public void MakeInvincible()
+    {
+        _leftArm.CanTakeDamage = false;
 
-        glow.GlowColor = new Color(0,51,255,255);
-        glow.GlowBrightness = 0.0525f;
-        glow.OutlineWidth = 1;
+        _glow.GlowColor = new Color(0, 51, 255, 255);
+        _glow.GlowBrightness = 0.0525f;
+        _glow.OutlineWidth = 1;
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         StopAllCoroutines();
         CancelInvoke();
     }

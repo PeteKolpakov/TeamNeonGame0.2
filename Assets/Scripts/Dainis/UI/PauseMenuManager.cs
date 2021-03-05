@@ -1,23 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Assets.Scripts.GameManager;
+using UnityEngine;
 
 public class PauseMenuManager : MonoBehaviour
 {
-    public bool _isPauseMenuOpen = false;
+    public bool IsPauseMenuOpen = false;
     public GameObject PauseMenu;
 
-    [FMODUnity.EventRef] public string _pauseEnterSFX;
-    [FMODUnity.EventRef] public string _pauseExitSFX;
+    [FMODUnity.EventRef] public string PauseEnterSFX;
+    [FMODUnity.EventRef] public string PauseExitSFX;
 
 
-    public void ResumeGame(){
+    public void ResumeGame()
+    {
         Time.timeScale = 1;
         PauseMenu.SetActive(false);
-        _isPauseMenuOpen = false;
+        IsPauseMenuOpen = false;
     }
-    public void QuitGame(){
+    public void QuitGame()
+    {
         Application.Quit();
     }
 
@@ -27,8 +27,11 @@ public class PauseMenuManager : MonoBehaviour
         ResumeGame();
     }
 
-    public void Update() {
-         if (Input.GetKeyDown(KeyCode.Escape))
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (IsPauseMenuOpen == true)
             {
                 if(_isPauseMenuOpen == true)
                 {
@@ -45,6 +48,14 @@ public class PauseMenuManager : MonoBehaviour
                     _isPauseMenuOpen = true;
                 }
             }
+            else
+            {
+                PlaySFX(PauseEnterSFX);
+                Time.timeScale = 0;
+                PauseMenu.SetActive(true);
+                IsPauseMenuOpen = true;
+            }
+        }
     }
     public void PlaySFX(string path)
     {

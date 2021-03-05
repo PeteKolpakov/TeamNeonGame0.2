@@ -1,44 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 
 
 public class ShopItemUI : MonoBehaviour
 {
-    [SerializeField] TMP_Text itemName;
-    [SerializeField] TMP_Text itemDescription;
-    [SerializeField] TMP_Text itemCost;
-    [SerializeField] TMP_Text itemType;
-    [SerializeField] Image itemIcon;
-    [SerializeField] Button equipButton;
+    [SerializeField] TMP_Text _itemName;
+    [SerializeField] TMP_Text _itemDescription;
+    [SerializeField] TMP_Text _itemCost;
+    [SerializeField] TMP_Text _itemType;
+    [SerializeField] Image _itemIcon;
+    [SerializeField] Button _equipButton;
 
     public void SetUIFromItem(ReworkedItem weaponData)
     {
-        itemName.SetText(weaponData._name);
-        itemDescription.SetText(weaponData._description);
-        itemCost.SetText(weaponData._price.ToString());
-        itemType.SetText(weaponData.itemType.ToString());
-        itemIcon.sprite = weaponData._icon;
+        _itemName.SetText(weaponData._name);
+        _itemDescription.SetText(weaponData._description);
+        _itemCost.SetText(weaponData._price.ToString());
+        _itemType.SetText(weaponData.itemType.ToString());
+        _itemIcon.sprite = weaponData._icon;
     }
 
     public void SetUIFromSkillName(string text)
     {
-        itemName.SetText(text);
+        _itemName.SetText(text);
     }
     public void SetUIFromSkillDescription(string text)
     {
-        itemDescription.SetText(text);
+        _itemDescription.SetText(text);
     }
-
-
 
     public void SetEquipButton(UnityEngine.Events.UnityAction action)
     {
-        equipButton.gameObject.SetActive(true);
-        equipButton.onClick.AddListener(action);
+        _equipButton.gameObject.SetActive(true);
+        _equipButton.onClick.AddListener(action);
     }
-
 }

@@ -46,7 +46,6 @@ public class Pickupable : MonoBehaviour
                 PlayerStatManager player = PlayerTracker.Instance.Player.GetComponent<PlayerStatManager>();
                 player.AddFireRate(amount);
                 Destroy(gameObject);
-
             }
         }
     }

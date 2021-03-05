@@ -7,13 +7,13 @@ using Assets.Scripts.GameManager;
 
 public class EnemyBulletBehaviour : MonoBehaviour
 {
-    public float _speed;
+    public float Speed;
 
     private Transform _player;
 
     private Vector2 _bulletTarget;
 
-    public Rigidbody2D _rb;
+    public Rigidbody2D rb;
 
     private void Start()
     {
@@ -25,7 +25,7 @@ public class EnemyBulletBehaviour : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        _rb.velocity = _bulletTarget.normalized * _speed;
+        rb.velocity = _bulletTarget.normalized * Speed;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -59,7 +59,7 @@ public class CSVToSO : EditorWindow
 
                 AssetDatabase.CreateAsset(item, $"Assets/Resources/WeaponPrefabs/Test/{item._name}.asset");
             }
-
+            //good job ivan, love, dainis
             AssetDatabase.SaveAssets();
         }
     }

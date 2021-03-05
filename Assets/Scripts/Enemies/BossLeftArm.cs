@@ -1,38 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.EntityClass;
 
 public class BossLeftArm : Entity
 {
-    private EnemyHealthBar healthBar;
+    private EnemyHealthBar _healthBar;
 
-    public Boss bossMain;
-    public GameObject firepoint;
+    public Boss BossMain;
+    public GameObject Firepoint;
 
-    private void Start() {
-        healthBar = GetComponent<EnemyHealthBar>();
+    private void Start()
+    {
+        _healthBar = GetComponent<EnemyHealthBar>();
 
-        healthBar.SetMaxHealth(maxHealth);
+        _healthBar.SetMaxHealth(MaxHealth);
     }
-    public override void Update() {
+    public override void Update()
+    {
         base.Update();
-        healthBar.SetHealth(health);
+        _healthBar.SetHealth(Health);
     }
 
     protected override void Die()
     {
-        bossMain.leftArmDead = true;
-            Destroy(gameObject);
+        BossMain.LeftArmDead = true;
+        Destroy(gameObject);
 
-            if (_explosion != null)
+        if (Explosion != null)
         {
-            Instantiate(_explosion, firepoint.transform.position, Quaternion.identity);
+            Instantiate(Explosion, Firepoint.transform.position, Quaternion.identity);
         }
 
             if(gameObject.layer == 8){
              GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>().EnemiesKilled++;
         }
     }
-
 }

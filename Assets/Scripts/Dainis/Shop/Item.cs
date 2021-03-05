@@ -1,8 +1,5 @@
 using Assets.Scripts.Audio;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioEventTrigger))]
 public class Item : MonoBehaviour
@@ -13,32 +10,32 @@ public class Item : MonoBehaviour
     private Transform _firePoint;
 
     [SerializeField]
-    public ReworkedItem itemData;
+    public ReworkedItem ItemData;
 
     private float _attackTimer;
 
-    public bool _isEquipped = false;
+    public bool IsEquipped = false;
 
     private AudioEventTrigger _audio;
 
-    public ItemType itemType { get => itemData.itemType; }
-    public int price { get => itemData._price; }
-    public Sprite icon { get => itemData._icon; }
-    public string itemName { get => itemData._name; }
-    public string itemDescription { get => itemData._description; }
-    public int damage { get => itemData._damage; }
-    public int projectileAmount { get => itemData._projectileAmount;set =>  itemData._projectileAmount = value; }
-    public float fireRate { get => itemData._fireRate; set =>  itemData._fireRate = value;  }
-    public float spreadAngle {get => itemData._spreadAngle; set => itemData._spreadAngle = value; }
+    public ItemType itemType { get => ItemData.itemType; }
+    public int price { get => ItemData._price; }
+    public Sprite icon { get => ItemData._icon; }
+    public string itemName { get => ItemData._name; }
+    public string itemDescription { get => ItemData._description; }
+    public int damage { get => ItemData._damage; }
+    public int projectileAmount { get => ItemData._projectileAmount; set => ItemData._projectileAmount = value; }
+    public float fireRate { get => ItemData._fireRate; set => ItemData._fireRate = value; }
+    public float spreadAngle { get => ItemData._spreadAngle; set => ItemData._spreadAngle = value; }
 
     private void Awake()
     {
-        _audio = GetComponent<AudioEventTrigger>();    
+        _audio = GetComponent<AudioEventTrigger>();
     }
 
     private void Update()
     {
-        if (_attackTimer < itemData._fireRate)
+        if (_attackTimer < ItemData._fireRate)
         {
             _attackTimer += Time.deltaTime;
         }
@@ -46,25 +43,24 @@ public class Item : MonoBehaviour
 
     public void Attack()
     {
-        if (_attackTimer < itemData._fireRate)
+        if (_attackTimer < ItemData._fireRate)
             return;
 
         _audio.PlaySound();
 
-        float angle = -itemData._spreadAngle / itemData._projectileAmount;
-        float angleStep = (itemData._spreadAngle) / itemData._projectileAmount-1;
-        for (int i = 0; i < itemData._projectileAmount; i++)
+        float angle = -ItemData._spreadAngle / ItemData._projectileAmount;
+        float angleStep = (ItemData._spreadAngle) / ItemData._projectileAmount - 1;
+        for (int i = 0; i < ItemData._projectileAmount; i++)
         {
-            Instantiate(itemData._projectilePrefab, _firePoint.position, transform.rotation * Quaternion.Euler(0, 0, angle));
+            Instantiate(ItemData._projectilePrefab, _firePoint.position, transform.rotation * Quaternion.Euler(0, 0, angle));
             angle += angleStep;
         }
-
         _attackTimer -= _attackTimer;
     }
 
     public void AssignData(ReworkedItem data)
     {
-        itemData = data;
+        ItemData = data;
         GetComponent<SpriteRenderer>().color = data.colour;
     }
 }

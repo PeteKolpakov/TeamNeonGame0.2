@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.LevelGen_Scripts
 {
@@ -18,7 +15,6 @@ namespace Assets.Scripts.LevelGen_Scripts
             get { return _endPosition; }
         }
 
-        // TODO : hook this shit up
         public bool HasSpawned = false;
 
         private void Awake()
@@ -43,8 +39,5 @@ namespace Assets.Scripts.LevelGen_Scripts
             _chaser = chaser;
             HasSpawned = true;
         }
-
-
-
     }
 }

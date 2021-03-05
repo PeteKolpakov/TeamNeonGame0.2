@@ -9,7 +9,6 @@ public class ShopkeeperInteraction : MonoBehaviour
     public GameObject shopUI;
     public bool _isShopOpen = false;
 
-    // Update is called once per frame
     void Update()
     {
 

@@ -1,12 +1,13 @@
 using Assets.Scripts.EntityClass;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Player
 {
-    public class FallBehaviour: MonoBehaviour
+    public class FallBehaviour : MonoBehaviour
     {
+        [SerializeField]
+        private LayerMask _groundCheckMask;
         [SerializeField]
         private float _radius;
         private Transform _currentGround;
@@ -18,8 +19,6 @@ namespace Assets.Scripts.Player
         private float _scale;
         private float _lastRespawnTime;
         public bool _isFalling;
-        [SerializeField]
-        private LayerMask _groundCheckMask;
 
         private void Start()
         {
@@ -33,7 +32,7 @@ namespace Assets.Scripts.Player
         {
             if (!IsGrounded())
             {
-                if(!_playerMovement.IsDashing()&& !_isFalling && !IsRespawnInvincible())
+                if (!_playerMovement.IsDashing() && !_isFalling && !IsRespawnInvincible())
                     Fall();
             }
             else
@@ -42,7 +41,7 @@ namespace Assets.Scripts.Player
                 {
                     _exitPoint = _currentGround.position;
                 }
-               
+
             }
         }
         private void OnDrawGizmos()
@@ -56,14 +55,14 @@ namespace Assets.Scripts.Player
             contactFilter2D.useTriggers = true;
             contactFilter2D.useLayerMask = true;
             contactFilter2D.layerMask = _groundCheckMask;
-            
-        
+
+
             int count = Physics2D.CircleCast(transform.position, _radius, Vector3.zero, contactFilter2D, groundedHits);
             foreach (var item in groundedHits)
             {
-                if(item.collider != null)
+                if (item.collider != null)
                 {
-                    if(item.collider.gameObject != gameObject)
+                    if (item.collider.gameObject != gameObject)
                     {
                         _currentGround = item.collider.transform;
                         return true;
@@ -91,22 +90,22 @@ namespace Assets.Scripts.Player
         {
             return Time.time - _lastRespawnTime < 0.25;
         }
-    
+
         private void Respawn()
         {
             _lastRespawnTime = Time.time;
-            
+
             _playerMovement.EnableMovement();
             transform.position = _exitPoint;
             _rigidBody.position = _exitPoint;
             transform.localScale = new Vector3(1f, 1f, 1f);
             _sprite.sortingOrder = 2;
             _isFalling = false;
-            _rigidBody.velocity = new Vector2(0,0);
+            _rigidBody.velocity = new Vector2(0, 0);
         }
         private IEnumerator DelayedRespawn(float duration)
         {
-            while(duration > 0)
+            while (duration > 0)
             {
                 yield return null;
                 duration -= Time.deltaTime;

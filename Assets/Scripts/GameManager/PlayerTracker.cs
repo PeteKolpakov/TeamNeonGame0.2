@@ -1,9 +1,8 @@
 using Assets.Scripts.Player;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.GameManager{
+namespace Assets.Scripts.GameManager
+{
     public class PlayerTracker : MonoBehaviour
     {
         public static PlayerTracker Instance;
@@ -11,7 +10,7 @@ namespace Assets.Scripts.GameManager{
 
         private void Awake()
         {
-            if(Instance == null)
+            if (Instance == null)
             {
                 Instance = this;
             }
@@ -21,11 +20,12 @@ namespace Assets.Scripts.GameManager{
             }
         }
 
-        public void CashPlayerReference(PlayerMarker player){
-            
+        public void CashPlayerReference(PlayerMarker player)
+        {
+
             Player = player;
         }
 
-        
+
     }
 }

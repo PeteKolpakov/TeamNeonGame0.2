@@ -10,7 +10,7 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 {
     GlobalUIManager UIManager;
     EquipmentManager EQManager;
-    PlayerShoot playerShoot;
+    PlayerShoot _playerShoot;
 
     public int Damage;
 
@@ -21,39 +21,35 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
 
     public List<int> BoughtGunsInt;
 
-    SpriteGlowEffect glow;
+    SpriteGlowEffect _glow;
     private Color _oldColor;
     private float _oldBrightness;
     private float _oldFireRate;
+
     private void Start()
     {
         EQManager = GetComponent<EquipmentManager>();
-        playerShoot = GetComponent<PlayerShoot>();
+        _playerShoot = GetComponent<PlayerShoot>();
 
         UIManager = GameObject.FindGameObjectWithTag("GlobalUI").GetComponent<GlobalUIManager>();
-
-
 
         Pickupable.pickupScore += AddScore;
         Pickupable.pickupFR += AddFireRate;
 
-        glow = GetComponent<SpriteGlowEffect>();
-        _oldColor = glow.GlowColor;
-        _oldBrightness = glow.GlowBrightness;
+        _glow = GetComponent<SpriteGlowEffect>();
+        _oldColor = _glow.GlowColor;
+        _oldBrightness = _glow.GlowBrightness;
 
         _oldFireRate = 0.3f;
 
-        Damage = playerShoot.CurrentWeapon.damage;
-
+        Damage = _playerShoot.CurrentWeapon.damage;
     }
-
 
     // This just works beautifully
     public void LoadWeapons(List<int> weaponsBought)
     {
         BoughtGunsInt = weaponsBought;
 
-        Debug.Log(weaponsBought.Count);
         List<UnityEngine.Object>CurrentItemList = new List<UnityEngine.Object>(Resources.LoadAll("GeneratedWeapons", typeof(ReworkedItem)));
         for(int i = 0; i < weaponsBought.Count; i++)
         {
@@ -62,8 +58,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
             for (int x = 0; x < CurrentItemList.Count; x++)
             {
                 ReworkedItem currentItem = (ReworkedItem)CurrentItemList[x];
-               // Debug.Log(whatever.Count);
-                Debug.Log(currentItem.WeaponID);
                 if (currentItem.WeaponID == current)
                 {
                     PurchasedItems.Add(currentItem);
@@ -82,7 +76,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         }
         else
         {
-            Debug.Log("Not enough money!");
             return false;
         }
     }
@@ -91,8 +84,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     { 
         PurchasedItems.Add(item);
         BoughtGunsInt.Add(item.WeaponID);
-
-      
     }
 
     public void EquipItem(ReworkedItem item)
@@ -104,7 +95,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
     public void UnequipItem(ReworkedItem item)
     {
         Damage -= item._damage;
-
     }
 
     public void AddScore(int plusScore)
@@ -112,7 +102,6 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         Score += plusScore;
         StatsTracker stats = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
         stats.Score += plusScore;
-        
     }
     public void RemoveScore(int minusScore){
         Score -= minusScore;
@@ -120,56 +109,56 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         stats.Score -= minusScore;
     }
 
-    public void AddFireRate(float reduction){
-        float currentFireRate = playerShoot.CurrentWeapon.fireRate;
+    public void AddFireRate(float reduction)
+    {
+        float currentFireRate = _playerShoot.CurrentWeapon.fireRate;
         float newFireRate = currentFireRate - reduction;
-        if(newFireRate <= 0){
+        if(newFireRate <= 0)
+        {
             newFireRate = 0.1f;
         }
-        playerShoot.CurrentWeapon.fireRate = newFireRate;
+        _playerShoot.CurrentWeapon.fireRate = newFireRate;
         
         // change the weapon shooting mode
-        playerShoot.CurrentWeapon.projectileAmount = 3;
-        playerShoot.CurrentWeapon.spreadAngle = 45;
+        _playerShoot.CurrentWeapon.projectileAmount = 3;
+        _playerShoot.CurrentWeapon.spreadAngle = 45;
 
-        BuffVisualActive(glow);
-        StartCoroutine(BuffTimerForFireRate(_oldFireRate, _oldColor, _oldBrightness, glow));
-
+        BuffVisualActive(_glow);
+        StartCoroutine(BuffTimerForFireRate(_oldFireRate, _oldColor, _oldBrightness, _glow));
     }
 
-    private void BuffVisualActive(SpriteGlowEffect glow){
-
+    private void BuffVisualActive(SpriteGlowEffect glow)
+    {
         glow.GlowColor = new Color(0,1,0,255);
         glow.GlowBrightness = 0.868f;
     }
 
-    private void RemoveBuffVisual(Color oldColor, float oldBrightness, SpriteGlowEffect glow){
+    private void RemoveBuffVisual(Color oldColor, float oldBrightness, SpriteGlowEffect glow)
+    {
         glow.GlowColor = oldColor;
         glow.GlowBrightness = oldBrightness;
-
     }
 
     public IEnumerator BuffTimerForFireRate(float oldFR, Color oldColor, float oldBrightness, SpriteGlowEffect glow){
-        if(playerShoot != null){
+        if(_playerShoot != null)
+        {
             yield return new WaitForSeconds(3);
             SetFireRateBackToNormal(oldFR);
             RemoveBuffVisual(oldColor, oldBrightness, glow);
-
         }
     }
 
     public void SetFireRateBackToNormal(float oldFR){
         // Set the weapon shooting mode back to normal
-        playerShoot.CurrentWeapon.projectileAmount = 1;
-        playerShoot.CurrentWeapon.spreadAngle = 0;
-        playerShoot.CurrentWeapon.fireRate = oldFR;
-        StopAllCoroutines();
-
-    }
-
-    private void OnDestroy() {
+        _playerShoot.CurrentWeapon.projectileAmount = 1;
+        _playerShoot.CurrentWeapon.spreadAngle = 0;
+        _playerShoot.CurrentWeapon.fireRate = oldFR;
         StopAllCoroutines();
     }
 
+    private void OnDestroy() 
+    {
+        StopAllCoroutines();
+    }
 }
 

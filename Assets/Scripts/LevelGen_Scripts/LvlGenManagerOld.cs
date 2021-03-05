@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.LevelGen_Scripts
 {
-    class LvlGenManager_Stable : MonoBehaviour
+    class LvlGenManagerOld : MonoBehaviour
     {
         private const float MIN_DISTANCE_TO_SPAWN_TRIGGER = 20f;
 
