@@ -11,13 +11,13 @@ public class EnemyBulletBehaviour : MonoBehaviour
 
     private Transform _player;
 
-    private Vector2 _bulletTarget;
+    private Vector3 _bulletTarget;
 
     public Rigidbody2D _rb;
 
     private void Start()
     {
-       _bulletTarget = EnemyBehaviour.Direction;
+       _bulletTarget = (PlayerTracker.Instance.Player.transform.transform.position - transform.position).normalized ;
     }
     private void Update()
     {
@@ -25,7 +25,7 @@ public class EnemyBulletBehaviour : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        _rb.velocity = _bulletTarget.normalized * _speed;
+        _rb.velocity = _bulletTarget * _speed;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

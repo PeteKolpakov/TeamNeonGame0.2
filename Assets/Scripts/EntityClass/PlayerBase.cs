@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Assets.Scripts.GameManager;
 using Assets.Scripts.Player;
+using SpriteGlow;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Assets.Scripts.GameManager;
-using SpriteGlow;
 
 namespace Assets.Scripts.EntityClass
 {
@@ -22,6 +20,8 @@ namespace Assets.Scripts.EntityClass
 
         private PlayerAudio _audio;
         private Color _originalColor;
+        private float _oldBrightness;
+        private SpriteGlowEffect glow;
 
 
 
@@ -30,7 +30,9 @@ namespace Assets.Scripts.EntityClass
             player = GetComponent<PlayerStatManager>();
             fallBehaviour = GetComponent<FallBehaviour>();
             _audio = GetComponent<PlayerAudio>();
-            _originalColor = GetComponent<SpriteRenderer>().color;
+            glow = GetComponent<SpriteGlowEffect>();
+            _originalColor = glow.GlowColor;
+            _oldBrightness = glow.GlowBrightness;
         }
 
         protected override void Die()
@@ -48,16 +50,23 @@ namespace Assets.Scripts.EntityClass
 
         public override void TakeDamage(int damage, DamageType type)
         {
-            
+
             if (!fallBehaviour.IsRespawnInvincible() && canTakeDamage == true)
             {
-                if(type == DamageType.Bullet)
+                if (type == DamageType.Bullet)
                 {
                     _audio.PlaySFX(_audio._takeDamageSFX);
                     health -= damage;
-                    StartCoroutine(HurtColorChange());
+                    if (glow.GlowColor == new Color(0, 1, 0, 255))
+                    {
+                        StartCoroutine(HurtColorChangeWhileBuffed());
+                    }
+                    else
+                    {
+                        StartCoroutine(HurtColorChange());
+                    }
                 }
-                else if(type == DamageType.Fall)
+                else if (type == DamageType.Fall)
                 {
                     _audio.PlaySFX(_audio._fallSFX);
                     health -= damage;
@@ -70,9 +79,17 @@ namespace Assets.Scripts.EntityClass
         }
         public IEnumerator HurtColorChange()
         {
-            GetComponent<SpriteRenderer>().color = new Color(253, 15, 20);
-            yield return new WaitForSeconds(0.06f);
-            GetComponent<SpriteRenderer>().color = _originalColor;
+            glow.GlowBrightness = 0.5f;
+            glow.GlowColor = new Color(253, 15, 20);
+            yield return new WaitForSeconds(0.1f);
+            glow.GlowColor = _originalColor;
+            glow.GlowBrightness = _oldBrightness;
+        }
+        public IEnumerator HurtColorChangeWhileBuffed()
+        {
+            glow.GlowColor = new Color(253, 15, 20);
+            yield return new WaitForSeconds(0.1f);
+            glow.GlowColor = new Color(0, 1, 0, 255);
         }
     }
 }
