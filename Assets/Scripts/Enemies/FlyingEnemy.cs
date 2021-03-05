@@ -56,7 +56,8 @@ public class FlyingEnemy : MonoBehaviour
                 {
                     Instantiate(_flyingEnemyBoom, transform.position, Quaternion.identity);
                 }
-                entity.TakeDamage(damageInt, DamageType.Bullet);
+                if(entity.canTakeDamage == true)
+                    entity.TakeDamage(damageInt, DamageType.Bullet);
             }
         }
 

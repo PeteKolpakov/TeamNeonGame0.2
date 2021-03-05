@@ -22,7 +22,7 @@ namespace Assets.Scripts.EntityClass
         private Color _originalColor;
         private float _oldBrightness;
 
-        SpriteGlowEffect glow;
+
 
         private void Awake()
         {
@@ -37,11 +37,13 @@ namespace Assets.Scripts.EntityClass
         protected override void Die()
         {
             Instantiate(_playerDeathAnim, transform.position, Quaternion.identity);
-            Debug.Log("Player base");
+            StatsTracker stats = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
+            stats.DeathCount++;
             StartCoroutine(DelayDeath());
 
-            Destroy(gameObject);
-            ManagerOfScenes.GoToScene(SceneManager.GetActiveScene().buildIndex);
+            
+            //Destroy(gameObject);
+            ScenesManager.GoToScene(SceneManager.GetActiveScene().buildIndex);
             player.RemoveScore(30);
         }
 

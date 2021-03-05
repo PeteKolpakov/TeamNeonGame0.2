@@ -41,4 +41,8 @@ public class EndgameMenuManager : MonoBehaviour
             SpeedrunText.SetActive(false);
         }
     }
+
+    public void QuitGame(){
+        Application.Quit();
+    }
 }

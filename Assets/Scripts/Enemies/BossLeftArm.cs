@@ -29,9 +29,8 @@ public class BossLeftArm : Entity
             Instantiate(Explosion, Firepoint.transform.position, Quaternion.identity);
         }
 
-        if (gameObject.layer == 8)
-        {
-            GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>().EnemiesKilled++;
+            if(gameObject.layer == 8){
+             GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>().EnemiesKilled++;
         }
     }
 }

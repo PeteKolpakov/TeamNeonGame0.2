@@ -42,7 +42,7 @@ public class Pickupable : MonoBehaviour
             {
                 _audio.PlaySound();
                 // Add firerate
-                float amount = Random.Range(0.1f, 0.2f);
+                float amount = 0.15f;
                 PlayerStatManager player = PlayerTracker.Instance.Player.GetComponent<PlayerStatManager>();
                 player.AddFireRate(amount);
                 Destroy(gameObject);

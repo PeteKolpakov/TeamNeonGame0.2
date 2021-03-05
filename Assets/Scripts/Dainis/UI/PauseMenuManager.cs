@@ -21,9 +21,8 @@ public class PauseMenuManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void MainMenu()
-    {
-        ManagerOfScenes sceneManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ManagerOfScenes>();
+    public void MainMenu(){
+        ScenesManager sceneManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScenesManager>();
         sceneManager.GoToMainMenu();
         ResumeGame();
     }
@@ -34,10 +33,20 @@ public class PauseMenuManager : MonoBehaviour
         {
             if (IsPauseMenuOpen == true)
             {
-                PlaySFX(PauseExitSFX);
-                Time.timeScale = 1;
-                PauseMenu.SetActive(false);
-                IsPauseMenuOpen = false;
+                if(_isPauseMenuOpen == true)
+                {
+                    PlaySFX(_pauseExitSFX);
+                    Time.timeScale = 1;
+                    PauseMenu.SetActive(false);
+                    _isPauseMenuOpen = false;
+                }
+                else
+                {
+                    PlaySFX(_pauseEnterSFX);
+                    Time.timeScale = 0;
+                    PauseMenu.SetActive(true);
+                    _isPauseMenuOpen = true;
+                }
             }
             else
             {

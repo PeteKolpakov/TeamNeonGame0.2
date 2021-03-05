@@ -83,7 +83,6 @@ namespace Assets.Scripts.Player
             _playerHealth.TakeDamage(10, DamageType.Fall);
 
             _playerMovement.DisableMovement();
-            Debug.Log("Falling");
             StartCoroutine(DelayedRespawn(1f));
 
         }

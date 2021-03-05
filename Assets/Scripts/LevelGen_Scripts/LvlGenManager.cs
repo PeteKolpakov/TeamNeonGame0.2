@@ -52,8 +52,7 @@ namespace Assets.Scripts.LevelGen_Scripts
                         }
                         _sectionIndex = 0;
                         _chunkIndex++;
-                    }
-                    Debug.Log("All Level Sections Generated");
+                    }                    
                 }
             }
         }
