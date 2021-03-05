@@ -4,37 +4,48 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Assets.Scripts.GameManager;
+using UnityEngine.SceneManagement;
+
 
 public class TimerUI : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI milisecondsText;
+    public GameObject timerSpace;
 
-    private StatsTracker gameManager;
-    private static float t;
+    private StatsTracker _stats;
+    private float _elapsedTime;
 
-
+    private void Awake() {
+        _stats = GetComponent<StatsTracker>();
+        
+    }
     private void Start() {
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
+    }
 
-        if(gameManager.SpeedrunMode == true){
-            timerText.gameObject.SetActive(true);
-            milisecondsText.gameObject.SetActive(true);
+    public void BeginTimer(){
+        if(_stats.SpeedrunMode == true){
+            _elapsedTime = 0f;
+             timerSpace.SetActive(true);
+            StartCoroutine(UpdateTimer());
         }
     }
 
-    void Update()
-    {
-        t += Time.time; // time since the game loaded
+    private IEnumerator UpdateTimer(){
+        while(true){
+            _elapsedTime += Time.deltaTime;
+            float oldTime = _elapsedTime;
+            float milliseconds = (Mathf.Floor(_elapsedTime * 100) % 100); // calculate the milliseconds for the timer
 
-        float milliseconds = (Mathf.Floor(t * 100) % 100); // calculate the milliseconds for the timer
+            int seconds = (int)(_elapsedTime % 60); // return the remainder of the seconds divide by 60 as an int
+            _elapsedTime /= 60; // divide current time by 60 to get minutes
+            int minutes = (int)(_elapsedTime % 60); //return the remainder of the minutes divide by 60 as an int
+            
+            timerText.text = string.Format("{0}:{1}.", minutes.ToString("00"), seconds.ToString("00"));
+            milisecondsText.text = string.Format("{0}", milliseconds.ToString("00"));
+            _elapsedTime = oldTime;
 
-        int seconds = (int)(t % 60); // return the remainder of the seconds divide by 60 as an int
-        t /= 60; // divide current time y 60 to get minutes
-        int minutes = (int)(t % 60); //return the remainder of the minutes divide by 60 as an int
-        
-
-        timerText.text = string.Format("{0}:{1}.", minutes.ToString("00"), seconds.ToString("00"));
-        milisecondsText.text = string.Format("{0}", milliseconds.ToString("00"));
+            yield return null;
+        }
     }
 }
