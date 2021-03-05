@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class StatsTracker : MonoBehaviour
 {
@@ -28,15 +29,20 @@ public class StatsTracker : MonoBehaviour
     }
 
     private void Start() {
-        _timer = GetComponent<TimerUI>();
-        
+        _timer = GetComponent<TimerUI>();  
     }
 
-    public void SpeedrunModeActivated(){
-        SpeedrunMode = true;
+    public void SpeedrunModeActivation(Toggle speedrun){
+        if(speedrun.isOn == true){
+            SpeedrunMode = true;
+        }else{
+            SpeedrunMode = false;
+        }
     }
+
 
     public void StartTheTimer(){
+        if(_timer != null)
         _timer.BeginTimer();
     }
 

@@ -31,7 +31,7 @@ public class BossLeftArm : Entity
         }
 
             if(gameObject.layer == 8){
-            GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>().EnemiesKilled++;
+             GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>().EnemiesKilled++;
         }
     }
 

@@ -13,7 +13,7 @@ class GlobalUIManager : MonoBehaviour
 {
     private  PlayerStatManager _playerStatManager;
     public HealthBar PlayerHealthbar;
-    private StatsTracker stats;
+    private StatsTracker _stats;
 
     [SerializeField]
     private Entity _player;
@@ -26,8 +26,7 @@ class GlobalUIManager : MonoBehaviour
     {
         _player = PlayerTracker.Instance.Player.GetComponent<Entity>();
         _playerStatManager = PlayerTracker.Instance.Player.GetComponent<PlayerStatManager>();
-        PlayerShoot playerShoot = _player.GetComponent<PlayerShoot>();
-        stats = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
+        _stats = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
 
         PlayerHealthbar.SetMaxHealth(_player.health);
         
@@ -37,20 +36,18 @@ class GlobalUIManager : MonoBehaviour
         // doesn't get destroyed between the scenes, bool never changes
         // anymore, so the timer doesn't get reset with the new
         // scene load. I don't know how to do it otherwise...
-        if(stats.CanStartTheTimer == true){
-            stats.StartTheTimer();
-            stats.CanStartTheTimer = false;
+        if(_stats.CanStartTheTimer == true){
+            _stats.StartTheTimer();
+            _stats.CanStartTheTimer = false;
         }
 
     }
 
     private void Update()
     {
-        PlayerShoot playerShootScript = _player.GetComponent<PlayerShoot>();
-
         PlayerHealthbar.SetHealth(_player.health);
 
-        ScoreDisplay.text = stats.Score.ToString();
+        ScoreDisplay.text = _stats.Score.ToString();
         HealthDisplay.text = _player.health.ToString() + " \\ " + _player.maxHealth.ToString();
     }
 }

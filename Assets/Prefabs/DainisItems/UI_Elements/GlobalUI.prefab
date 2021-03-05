@@ -148,7 +148,6 @@ GameObject:
   - component: {fileID: 4563026847613705857}
   - component: {fileID: 4563026847613705856}
   - component: {fileID: 4563026847613705859}
-  - component: {fileID: 3011203585839379852}
   m_Layer: 5
   m_Name: GlobalUI
   m_TagString: GlobalUI
@@ -255,20 +254,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3011203585839379852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4563026847613705858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dc4fbd276e9ae84fae18fd3d4111141, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerText: {fileID: 0}
-  milisecondsText: {fileID: 0}
 --- !u!1 &4855802835536739969
 GameObject:
   m_ObjectHideFlags: 0

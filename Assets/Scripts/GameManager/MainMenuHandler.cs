@@ -8,13 +8,29 @@ using UnityEngine.SceneManagement;
 public class MainMenuHandler : MonoBehaviour
 {
     private Button _playButton;
+    [SerializeField]
+    private GameObject _speedrunMode;
     public GameObject PlayButtonGameObject;
     [SerializeField]
     private Animator _transition;
     private float _transitionDuration = 1f;
+    private StatsTracker _stats;
+    private TimerUI _timer;
+    private bool _test;
 
     private void Start() {
         _playButton = PlayButtonGameObject.GetComponent<Button>();
+        _stats = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
+        _timer = GameObject.FindGameObjectWithTag("GameManager").GetComponent<TimerUI>();
+        Toggle speedrun = _speedrunMode.GetComponent<Toggle>();
+
+        // This is fine :))))))
+        speedrun.onValueChanged.AddListener(delegate{_stats.SpeedrunModeActivation(speedrun);});
+
+        speedrun.isOn = false;
+        _stats.CanStartTheTimer = true;
+
+        _timer.StopAndResetTimer();
     }
 
     public void PlayButtonInteractableSwitch(){
