@@ -41,14 +41,12 @@ namespace Assets.Scripts.GameManager
         }
         public void GoToNextLevel()
         {
-            //After Rest Stage
             StartCoroutine(LoadLevel(GetCurrentScene() + 1));
         }
         public void QuitGame(){
             Application.Quit();
         }
 
-        
         public IEnumerator LoadLevel(int lvlIndex)
         {
             if(_transition != null){

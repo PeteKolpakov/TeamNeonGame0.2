@@ -8,7 +8,9 @@ using UnityEngine.SceneManagement;
 using Assets.Scripts.GameManager;
 using SpriteGlow;
 
-
+// Almost entirety of this code (and code for the boss arms) has been written more than 2 months ago
+// for the very first prototype Dainis made, and we don't have any time to refactor it
+// and optimise it for our current systems. Sorry
 public class Boss : MonoBehaviour
 {
 
@@ -47,9 +49,6 @@ public class Boss : MonoBehaviour
     private float oldBrightness;
     private int oldWidth;
     
-
-
-
     void Start()
     {
         posOffset = transform.position;
@@ -85,14 +84,18 @@ public class Boss : MonoBehaviour
 
         if (eyeball.health <= 0)
         {
-            // Game over
+            // Game over, but we just freeze time hehehe
             Time.timeScale = 0;
 
-            StatsTracker stats = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
-            TimerUI timer = GameObject.FindGameObjectWithTag("GlobalUI").GetComponent<TimerUI>();
+            // quickly get those references going
+            GameObject gamemanager = GameObject.FindGameObjectWithTag("GameManager");
+            StatsTracker stats =gamemanager.GetComponent<StatsTracker>();
+            TimerUI timer = gamemanager.GetComponent<TimerUI>();
 
-            stats.Timer = timer.timerText.text + timer.milisecondsText.text;
+            // store our current time in a string to display it at the endgame screen
+            stats.Timer = timer.TimerText.text + timer.MilisecondsText.text;
 
+            //go to the endame screen
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
@@ -103,11 +106,13 @@ public class Boss : MonoBehaviour
             laserBeamGameObject.SetActive(false);
             eyeTracker.enabled = true;
             StartCoroutine(Phase2Attack());
+            StartCoroutine(Phase2BossMovement());
             laserBeam.StopAllCoroutines();
         }
     }
 
     public IEnumerator SpawnPickupables(){
+        // spawn a FireRate pickup every 8 seconds randomly across the platform
         while(true){
             yield return new WaitForSeconds(8);
             float randomXOffset = UnityEngine.Random.Range(-9f,9f);
@@ -120,10 +125,11 @@ public class Boss : MonoBehaviour
     {
         StartCoroutine(SpawnPickupables());
         yield return new WaitForSeconds(3);
+        // this whole thing is very slow
         while (true)
-        {
+        { 
             yield return new WaitForSeconds(1);
-            // Phase 1 - default
+            // Phase 1 - default attacks
             if (waveAttack != null)
                 waveAttack.enabled = true;
             if (spiralAttack != null)
@@ -180,6 +186,7 @@ public class Boss : MonoBehaviour
 
     }
 
+    // Last stage of the boss
     private IEnumerator Phase2Attack()
     {
         StopCoroutine(Shoot());
@@ -199,13 +206,14 @@ public class Boss : MonoBehaviour
 
         while (true)
         {
-
+            // randomising positions of the laser beams
             randomLeft = UnityEngine.Random.Range(-9.7f, 0.5f);
             randomRight = UnityEngine.Random.Range(0.5f, 10.3f);
             posLeft = new Vector3(randomLeft, 8f, 0);
             posRight = new Vector3(randomRight, 8f, 0);
 
             float time = 0;
+            // Lerping the movement between the points, for easier visual indication to the player
             while (time < 0.3f)
             {
                 leftEye.transform.position = Vector3.Lerp(leftEye.transform.position, posLeft, time / 0.3f);
@@ -226,4 +234,25 @@ public class Boss : MonoBehaviour
         }
 
     }
+
+    private IEnumerator Phase2BossMovement(){
+        // randomising and lerping movement on X axis for the boss
+        // I dont care if this boss is too hard. Stop complaining.
+        var randomXPosition = UnityEngine.Random.Range(-10f, 10f);
+        Vector3 newPos = new Vector3(randomXPosition, eyeball.transform.position.y, 0);
+        while(true){
+            randomXPosition = UnityEngine.Random.Range(-10f, 10f);
+            newPos =  new Vector3(randomXPosition, eyeball.transform.position.y, 0);
+
+            float time = 0;
+            while(time < 0.4f){
+                eyeball.transform.position = Vector3.Lerp(eyeball.transform.position, newPos, time / 0.4f);
+                yield return null;
+                time += Time.deltaTime;
+            }
+            yield return new WaitForSeconds(0.9f);
+             
+        }
+    }
 }
+

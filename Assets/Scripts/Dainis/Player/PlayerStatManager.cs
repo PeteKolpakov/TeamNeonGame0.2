@@ -41,7 +41,7 @@ public class PlayerStatManager : MonoBehaviour, IShopCustomer
         _oldColor = glow.GlowColor;
         _oldBrightness = glow.GlowBrightness;
 
-        _oldFireRate = playerShoot.CurrentWeapon.fireRate;
+        _oldFireRate = 0.3f;
 
         Damage = playerShoot.CurrentWeapon.damage;
 

@@ -161,8 +161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82307163ed561d74d908e8219f761f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 200
-  maxHealth: 200
+  health: 100
+  maxHealth: 100
   _explosion: {fileID: 352795596918730512, guid: 9effbdd3095c6824b9f399049be0dd27,
     type: 3}
   currencyPrefab: {fileID: 0}
@@ -297,7 +297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2801786142a3d9c48891ae95d3fd2df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chaser: {fileID: 0}
   _reloadSceneDistance: 14
 --- !u!114 &4969258736355488230
 MonoBehaviour:
