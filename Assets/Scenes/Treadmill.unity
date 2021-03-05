@@ -1017,7 +1017,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3011203585839379852, guid: 6f6d1a1e04e37e54ead3315f319982eb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6f6d1a1e04e37e54ead3315f319982eb, type: 3}
 --- !u!1001 &1133414890
 PrefabInstance:
@@ -1026,6 +1027,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 288038958317809992, guid: e1a3591bda460794281d1618a48d6417,
+        type: 3}
+      propertyPath: _chaser
+      value: 
+      objectReference: {fileID: 242375013}
     - target: {fileID: 2613963996673092438, guid: e1a3591bda460794281d1618a48d6417,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1124,6 +1130,11 @@ PrefabInstance:
     - target: {fileID: 3629841848125617602, guid: 2b5b71af45e96f1438667ca939cb0586,
         type: 3}
       propertyPath: m_Name
+      value: Chaser
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629841848125617602, guid: 2b5b71af45e96f1438667ca939cb0586,
+        type: 3}
+      propertyPath: m_TagString
       value: Chaser
       objectReference: {fileID: 0}
     - target: {fileID: 3629841848125617603, guid: 2b5b71af45e96f1438667ca939cb0586,

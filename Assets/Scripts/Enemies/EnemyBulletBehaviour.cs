@@ -35,7 +35,6 @@ public class EnemyBulletBehaviour : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Colliding with something");
         if (collision.collider.TryGetComponent(out Entity health))
         {
             health.TakeDamage(20, DamageType.Bullet);

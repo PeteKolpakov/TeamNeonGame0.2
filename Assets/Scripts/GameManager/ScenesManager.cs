@@ -33,7 +33,7 @@ namespace Assets.Scripts.GameManager
         }
         public void GoToMainMenu()
         {
-            StartCoroutine(LoadLevel(0));
+            GoToScene(0);
         }
         public void BossScene()
         {

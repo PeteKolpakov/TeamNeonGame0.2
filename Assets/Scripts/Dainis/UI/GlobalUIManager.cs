@@ -20,6 +20,8 @@ class GlobalUIManager : MonoBehaviour
     public TMP_Text ScoreDisplay;
     public TMP_Text HealthDisplay;
 
+
+
     private void Start()
     {
         _player = PlayerTracker.Instance.Player.GetComponent<Entity>();
@@ -27,8 +29,19 @@ class GlobalUIManager : MonoBehaviour
         PlayerShoot playerShoot = _player.GetComponent<PlayerShoot>();
         stats = GameObject.FindGameObjectWithTag("GameManager").GetComponent<StatsTracker>();
 
-
         PlayerHealthbar.SetMaxHealth(_player.health);
+        
+        // This is a switch, that controls the start of the timer.
+        // We start it at the very first time we load the level
+        // and change the bool on StatsTracker. Because StatsTracker
+        // doesn't get destroyed between the scenes, bool never changes
+        // anymore, so the timer doesn't get reset with the new
+        // scene load. I don't know how to do it otherwise...
+        if(stats.CanStartTheTimer == true){
+            stats.StartTheTimer();
+            stats.CanStartTheTimer = false;
+        }
+
     }
 
     private void Update()
